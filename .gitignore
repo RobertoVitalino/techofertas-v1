@@ -1,0 +1,21 @@
+# Dependências e saída do Next.js
+node_modules/
+.next/
+out/
+
+# Variáveis de ambiente locais
+.env
+.env.local
+.env.*.local
+
+# Banco SQLite local e arquivos gerados pelo Prisma
+dev.db
+dev.db-journal
+dev.db-shm
+dev.db-wal
+/generated/prisma/
+
+# Arquivos locais do sistema e logs
+.DS_Store
+*.log
+npm-debug.log*

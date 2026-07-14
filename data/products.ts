@@ -1,0 +1,32 @@
+export const products = [
+  {
+    title: "Notebook Lenovo IdeaPad Intel Core i5",
+    price: "R$ 2.899,00",
+    oldPrice: "R$ 3.499,00",
+    discount: "-17%",
+    category: "Notebooks",
+    image: "💻",
+    rating: 4.8,
+    affiliate: "https://www.mercadolivre.com.br",
+  },
+  {
+    title: "Samsung Galaxy 128GB",
+    price: "R$ 1.399,00",
+    oldPrice: "R$ 1.799,00",
+    discount: "-22%",
+    category: "Celulares",
+    image: "📱",
+    rating: 4.7,
+    affiliate: "https://www.mercadolivre.com.br",
+  },
+  {
+    title: "Monitor Gamer 24 Full HD",
+    price: "R$ 699,00",
+    oldPrice: "R$ 899,00",
+    discount: "-20%",
+    category: "Monitores",
+    image: "🖥️",
+    rating: 4.6,
+    affiliate: "https://www.mercadolivre.com.br",
+  },
+]
