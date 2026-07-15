@@ -1,4 +1,4 @@
-import { Heart, Menu, Search, ShoppingCart, UserRound, Zap } from 'lucide-react'
+import { Heart, Menu, Search, UserRound, Zap } from 'lucide-react'
 
 const links = [
   { label: 'Início', href: '/#início' },
@@ -54,12 +54,6 @@ export function Header() {
             <span>Minha conta</span>
           </a>
           <Heart size={20} />
-          <div className="relative">
-            <ShoppingCart size={21} />
-            <span className="absolute -right-2 -top-2 grid h-5 w-5 place-items-center rounded-full bg-brand-600 text-xs">
-              2
-            </span>
-          </div>
         </div>
 
         <details className="group relative md:hidden">
