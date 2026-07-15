@@ -14,13 +14,48 @@ import {
 } from 'lucide-react'
 
 export const categories = [
-  { name: 'Notebooks', offers: 156, icon: Laptop },
-  { name: 'Celulares', offers: 232, icon: Smartphone },
-  { name: 'Informática', offers: 189, icon: Cpu },
-  { name: 'Games', offers: 98, icon: Gamepad2 },
-  { name: 'Smart Home', offers: 72, icon: Home },
-  { name: 'Acessórios', offers: 213, icon: Headphones },
-  { name: 'Monitores', offers: 86, icon: Monitor },
+  {
+    name: 'Notebooks',
+    offers: 156,
+    icon: Laptop,
+    affiliate: 'https://meli.la/1gdYbd7',
+  },
+  {
+    name: 'Celulares',
+    offers: 232,
+    icon: Smartphone,
+    affiliate: 'https://meli.la/1sXqMvB',
+  },
+  {
+    name: 'Informática',
+    offers: 189,
+    icon: Cpu,
+    affiliate: 'https://meli.la/12BRoSy',
+  },
+  {
+    name: 'Games',
+    offers: 98,
+    icon: Gamepad2,
+    affiliate: 'https://meli.la/28K9h8j',
+  },
+  {
+    name: 'Smart Home',
+    offers: 72,
+    icon: Home,
+    affiliate: 'https://meli.la/1s72DRt',
+  },
+  {
+    name: 'Acessórios',
+    offers: 213,
+    icon: Headphones,
+    affiliate: 'https://meli.la/2KuycwK',
+  },
+  {
+    name: 'Monitores',
+    offers: 86,
+    icon: Monitor,
+    affiliate: 'https://meli.la/2Ta8TYK',
+  },
 ]
 
 export const products = [
