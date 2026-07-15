@@ -1,9 +1,12 @@
 import { prisma } from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { requireAdmin } from '@/lib/require-admin'
 
 async function createProduct(formData: FormData) {
   'use server'
+
+  await requireAdmin()
 
   await prisma.product.create({
     data: {
@@ -26,7 +29,9 @@ async function createProduct(formData: FormData) {
   redirect('/admin')
 }
 
-export default function NewProductPage() {
+export default async function NewProductPage() {
+  await requireAdmin()
+
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
       <h1 className="text-3xl font-black">Novo Produto</h1>
