@@ -3,7 +3,7 @@ import { Heart, Menu, Search, ShoppingCart, UserRound, Zap } from 'lucide-react'
 const links = [
   { label: 'Início', href: '/#início' },
   { label: 'Categorias', href: '/#categorias' },
-  { label: 'Ofertas do dia', href: '/#ofertas-do-dia' },
+  { label: 'Produtos', href: '/#produtos-por-categoria' },
   { label: 'Blog', href: '/#blog' },
   { label: 'Serviços', href: '/#serviços' },
   { label: 'Contato', href: '/#contato' },
