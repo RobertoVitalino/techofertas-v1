@@ -1,11 +1,23 @@
 import { prisma } from '@/lib/prisma'
-import { Package, Tags, MousePointerClick, PlusCircle } from 'lucide-react'
+import {
+  Package,
+  Tags,
+  MousePointerClick,
+  PlusCircle,
+  LogOut,
+} from 'lucide-react'
 import { revalidatePath } from 'next/cache'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
+import { ADMIN_SESSION_COOKIE } from '@/lib/admin-auth'
+import { requireAdmin } from '@/lib/require-admin'
 
 export const dynamic = 'force-dynamic'
 
 async function deleteProduct(formData: FormData) {
   'use server'
+
+  await requireAdmin()
 
   const id = Number(formData.get('id'))
 
@@ -17,7 +29,16 @@ async function deleteProduct(formData: FormData) {
   revalidatePath('/')
 }
 
+async function logoutAdmin() {
+  'use server'
+
+  cookies().delete(ADMIN_SESSION_COOKIE)
+  redirect('/login')
+}
+
 export default async function AdminPage() {
+  await requireAdmin()
+
   const products = await prisma.product.findMany({
     orderBy: { createdAt: 'desc' },
   })
@@ -32,13 +53,25 @@ export default async function AdminPage() {
           </p>
         </div>
 
-       <a
-  href="/admin/produtos/novo"
-  className="flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-3 font-bold hover:bg-brand-500"
->
-  <PlusCircle size={18} />
-  Novo Produto
-</a>
+        <div className="flex items-center gap-3">
+          <a
+            href="/admin/produtos/novo"
+            className="flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-3 font-bold hover:bg-brand-500"
+          >
+            <PlusCircle size={18} />
+            Novo Produto
+          </a>
+
+          <form action={logoutAdmin}>
+            <button
+              className="flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 font-bold text-slate-300 hover:border-white/20 hover:text-white"
+              title="Sair do painel"
+            >
+              <LogOut size={18} />
+              Sair
+            </button>
+          </form>
+        </div>
       </div>
 
       <div className="grid gap-4 md:grid-cols-4">

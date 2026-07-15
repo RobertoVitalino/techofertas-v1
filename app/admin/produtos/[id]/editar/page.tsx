@@ -1,9 +1,12 @@
 import { prisma } from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { requireAdmin } from '@/lib/require-admin'
 
 async function updateProduct(formData: FormData) {
   'use server'
+
+  await requireAdmin()
 
   const id = Number(formData.get('id'))
 
@@ -35,6 +38,8 @@ export default async function EditProductPage({
 }: {
   params: { id: string }
 }) {
+  await requireAdmin()
+
   const product = await prisma.product.findUnique({
     where: { id: Number(params.id) },
   })
