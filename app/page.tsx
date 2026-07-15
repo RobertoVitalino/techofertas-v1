@@ -5,6 +5,8 @@ import { AdminPreview } from '@/components/AdminPreview'
 import { prisma } from '@/lib/prisma'
 import { Github, Mail, MapPin, Phone } from 'lucide-react'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   const dbProducts = await prisma.product.findMany({
     orderBy: {
@@ -58,7 +60,7 @@ export default async function Home() {
           <div>
             <strong>Tecnologias</strong>
             <p className="mt-3 text-sm text-slate-400">
-              Next.js, TypeScript, Tailwind CSS, Prisma e SQLite.
+              Next.js, TypeScript, Tailwind CSS, Prisma e PostgreSQL.
             </p>
             <p className="mt-3 flex gap-2 text-sm text-slate-400">
               <Github size={16} /> Projeto pronto para GitHub e Vercel

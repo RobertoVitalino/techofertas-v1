@@ -2,6 +2,7 @@ import { prisma } from '@/lib/prisma'
 import { Package, Tags, MousePointerClick, PlusCircle } from 'lucide-react'
 import { revalidatePath } from 'next/cache'
 
+export const dynamic = 'force-dynamic'
 
 async function deleteProduct(formData: FormData) {
   'use server'
