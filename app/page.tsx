@@ -40,7 +40,7 @@ export default async function Home() {
           <div>
             <strong>Contato</strong>
             <p className="mt-3 flex gap-2 text-sm text-slate-400">
-              <Mail size={16} /> contato@vitalinotech.com.br
+              <Mail size={16} /> devrobertovitalino@gmail.com
             </p>
             <p className="mt-2 flex gap-2 text-sm text-slate-400">
               <Phone size={16} /> (67) 99999-9999
