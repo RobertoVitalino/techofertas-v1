@@ -45,7 +45,14 @@ export function Header() {
         </form>
 
         <div className="hidden items-center gap-4 md:flex">
-          <UserRound size={20} />
+          <a
+            href="/minha-conta"
+            className="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-bold text-slate-300 transition hover:bg-white/10 hover:text-white"
+            aria-label="Entrar ou acessar minha conta"
+          >
+            <UserRound size={20} />
+            <span>Minha conta</span>
+          </a>
           <Heart size={20} />
           <div className="relative">
             <ShoppingCart size={21} />
@@ -76,6 +83,12 @@ export function Header() {
               </button>
             </form>
             <nav className="mt-3 grid gap-1">
+              <a
+                className="mb-2 flex items-center gap-2 rounded-lg bg-brand-600/15 px-3 py-2.5 text-sm font-bold text-brand-300 hover:bg-brand-600/25 hover:text-white"
+                href="/minha-conta"
+              >
+                <UserRound size={18} /> Entrar / Minha conta
+              </a>
               {links.map((link) => (
                 <a
                   className="rounded-lg px-3 py-2 text-sm font-bold text-slate-300 hover:bg-white/10 hover:text-white"
