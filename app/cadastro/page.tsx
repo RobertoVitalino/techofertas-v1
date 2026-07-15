@@ -3,7 +3,9 @@ import {
   CUSTOMER_SESSION_DURATION_SECONDS,
   createCustomerSessionToken,
   hashCustomerPassword,
+  isValidCustomerUsername,
   normalizeCustomerEmail,
+  normalizeCustomerUsername,
 } from '@/lib/customer-auth'
 import { prisma } from '@/lib/prisma'
 import { ArrowLeft, CheckCircle2, ShieldCheck, UserPlus, Zap } from 'lucide-react'
@@ -27,6 +29,7 @@ async function registerCustomer(formData: FormData) {
 
   const name = String(formData.get('name') || '').trim()
   const email = normalizeCustomerEmail(String(formData.get('email') || ''))
+  const username = normalizeCustomerUsername(String(formData.get('username') || ''))
   const password = String(formData.get('password') || '')
   const passwordConfirmation = String(formData.get('passwordConfirmation') || '')
   const acceptedTerms = formData.get('terms') === 'on'
@@ -37,6 +40,7 @@ async function registerCustomer(formData: FormData) {
     name.length < 2 ||
     name.length > 80 ||
     !email.includes('@') ||
+    !isValidCustomerUsername(username) ||
     password.length < 8 ||
     password.length > 128 ||
     !acceptedTerms
@@ -48,7 +52,11 @@ async function registerCustomer(formData: FormData) {
     redirect(`/cadastro?erro=senhas&${nextParam}`)
   }
 
-  const existingCustomer = await prisma.customer.findUnique({ where: { email } })
+  const existingCustomer = await prisma.customer.findFirst({
+    where: {
+      OR: [{ email }, { username }],
+    },
+  })
 
   if (existingCustomer) {
     redirect(`/cadastro?erro=email&${nextParam}`)
@@ -57,7 +65,7 @@ async function registerCustomer(formData: FormData) {
   try {
     const passwordHash = await hashCustomerPassword(password)
     const customer = await prisma.customer.create({
-      data: { name, email, passwordHash },
+      data: { name, email, username, passwordHash },
     })
     const session = await createCustomerSessionToken(customer.id)
 
@@ -129,6 +137,11 @@ export default function RegisterPage({
                 E-mail
                 <input id="register-email" name="email" type="email" autoComplete="email" required className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" placeholder="voce@email.com" />
               </label>
+              <label className="grid gap-2 text-sm font-bold" htmlFor="register-username">
+                Nome de usuário
+                <input id="register-username" name="username" type="text" autoComplete="username" minLength={3} maxLength={30} pattern="[A-Za-z0-9._-]+" required className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" placeholder="Escolha seu usuário" />
+                <span className="font-normal text-slate-500">Use letras, números, ponto, hífen ou sublinhado.</span>
+              </label>
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="grid gap-2 text-sm font-bold" htmlFor="register-password">
                   Senha
@@ -140,9 +153,9 @@ export default function RegisterPage({
                 </label>
               </div>
 
-              {searchParams?.erro === 'dados' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Confira os dados. A senha deve ter pelo menos 8 caracteres e os termos precisam ser aceitos.</p> : null}
+              {searchParams?.erro === 'dados' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Confira os dados, o nome de usuário e a senha. A senha deve ter pelo menos 8 caracteres e os termos precisam ser aceitos.</p> : null}
               {searchParams?.erro === 'senhas' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">As senhas informadas não são iguais.</p> : null}
-              {searchParams?.erro === 'email' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Este e-mail já possui uma conta. Entre com sua senha.</p> : null}
+              {searchParams?.erro === 'email' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Este e-mail ou nome de usuário já possui uma conta. Entre com sua senha.</p> : null}
               {searchParams?.erro === 'configuracao' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Não foi possível criar sua conta agora. Tente novamente em instantes.</p> : null}
 
               <label className="flex items-start gap-3 text-sm leading-relaxed text-slate-400">

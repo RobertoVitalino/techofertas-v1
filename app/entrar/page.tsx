@@ -2,7 +2,6 @@ import {
   CUSTOMER_SESSION_COOKIE,
   CUSTOMER_SESSION_DURATION_SECONDS,
   createCustomerSessionToken,
-  normalizeCustomerEmail,
   verifyCustomerPassword,
 } from '@/lib/customer-auth'
 import { prisma } from '@/lib/prisma'
@@ -34,10 +33,14 @@ function getSafeDestination(value: FormDataEntryValue | string | null | undefine
 async function loginCustomer(formData: FormData) {
   'use server'
 
-  const email = normalizeCustomerEmail(String(formData.get('email') || ''))
+  const identifier = String(formData.get('identifier') || '').trim().toLowerCase()
   const password = String(formData.get('password') || '')
   const destination = getSafeDestination(formData.get('next'))
-  const customer = await prisma.customer.findUnique({ where: { email } })
+  const customer = await prisma.customer.findFirst({
+    where: {
+      OR: [{ email: identifier }, { username: identifier }],
+    },
+  })
 
   if (!customer || !(await verifyCustomerPassword(password, customer.passwordHash))) {
     redirect(`/entrar?erro=credenciais&next=${encodeURIComponent(destination)}`)
@@ -139,16 +142,16 @@ export default function CustomerLoginPage({
             <form action={loginCustomer} className="mt-8 grid gap-5">
               <input type="hidden" name="next" value={destination} />
 
-              <label className="grid gap-2 text-sm font-bold" htmlFor="customer-email">
-                E-mail
+              <label className="grid gap-2 text-sm font-bold" htmlFor="customer-identifier">
+                E-mail ou usuário
                 <input
-                  id="customer-email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  id="customer-identifier"
+                  name="identifier"
+                  type="text"
+                  autoComplete="username"
                   required
                   className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
-                  placeholder="voce@email.com"
+                  placeholder="seu usuário ou e-mail"
                 />
               </label>
 
