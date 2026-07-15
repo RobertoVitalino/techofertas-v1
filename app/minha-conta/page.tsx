@@ -81,6 +81,7 @@ export default async function CustomerAccountPage({
             </div>
             <dl className="mt-7 grid gap-5">
               <div className="rounded-2xl border border-white/10 bg-black/20 p-4"><dt className="text-xs font-bold uppercase tracking-wider text-slate-500">Nome completo</dt><dd className="mt-1 font-bold">{customer.name}</dd></div>
+              {customer.username ? <div className="rounded-2xl border border-white/10 bg-black/20 p-4"><dt className="text-xs font-bold uppercase tracking-wider text-slate-500">Nome de usuário</dt><dd className="mt-1 font-bold">@{customer.username}</dd></div> : null}
               <div className="rounded-2xl border border-white/10 bg-black/20 p-4"><dt className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500"><Mail size={14} /> E-mail</dt><dd className="mt-1 break-all font-bold">{customer.email}</dd></div>
               <div className="rounded-2xl border border-white/10 bg-black/20 p-4"><dt className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500"><CalendarDays size={14} /> Cliente desde</dt><dd className="mt-1 font-bold">{new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long' }).format(customer.createdAt)}</dd></div>
             </dl>

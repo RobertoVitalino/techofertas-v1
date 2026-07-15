@@ -62,6 +62,14 @@ export function normalizeCustomerEmail(email: string) {
   return email.trim().toLowerCase()
 }
 
+export function normalizeCustomerUsername(username: string) {
+  return username.trim().toLowerCase()
+}
+
+export function isValidCustomerUsername(username: string) {
+  return /^[a-z0-9._-]{3,30}$/.test(username)
+}
+
 export async function hashCustomerPassword(password: string) {
   const salt = crypto.getRandomValues(new Uint8Array(16))
   const keyMaterial = await crypto.subtle.importKey(

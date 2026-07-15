@@ -19,6 +19,7 @@ export async function requireCustomer() {
       id: true,
       name: true,
       email: true,
+      username: true,
       createdAt: true,
     },
   })
