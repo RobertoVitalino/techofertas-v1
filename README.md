@@ -1,55 +1,71 @@
-# TechOfertas V1.0
+# TechOfertas V1.1
 
-Portal profissional de tecnologia, ofertas, afiliados e serviços de TI.
+Portal de tecnologia, ofertas, afiliados e serviços de TI desenvolvido com Next.js.
 
-## O que já está pronto nesta versão
+## Funcionalidades
 
-- Página inicial moderna e responsiva
-- Header com busca e menu
-- Banner principal
-- Categorias
-- Ofertas do dia
-- Cards de produtos com botão de afiliado
-- Área de serviços de TI
-- Blog inicial
-- Prévia visual do painel administrativo
-- Tema escuro premium
-- SEO básico configurado
+- Home responsiva com categorias, ofertas, serviços e blog
+- Busca por produto, categoria ou loja
+- Páginas individuais de produtos
+- Painel administrativo com cadastro, edição e exclusão
+- Imagens locais ou emojis nos produtos
+- Banco PostgreSQL com Prisma ORM
+- Migrações e carga inicial automatizadas
+- Configuração preparada para Vercel
 
-## Como abrir no VS Code
+## Tecnologias
 
-1. Extraia o arquivo ZIP.
-2. Abra a pasta `techofertas-v1` no VS Code.
-3. Abra o terminal dentro do VS Code.
-4. Rode:
+- Next.js 14 e React 18
+- TypeScript e Tailwind CSS
+- Prisma ORM 6
+- PostgreSQL
+
+## Configuração local
+
+Requisitos: Node.js, npm e uma URL de conexão PostgreSQL.
+
+1. Copie `.env.example` para `.env` e informe a conexão:
+
+```env
+DATABASE_URL="postgresql://usuario:senha@host:5432/techofertas?sslmode=require"
+```
+
+2. Instale as dependências:
 
 ```bash
 npm install
+```
+
+3. Aplique as migrações e carregue os produtos iniciais:
+
+```bash
+npm run db:deploy
+npm run db:seed
+```
+
+4. Inicie o projeto:
+
+```bash
 npm run dev
 ```
 
-5. Abra no navegador:
+Acesse `http://localhost:3000`.
 
-```bash
-http://localhost:3000
-```
+## Scripts
 
-## Como publicar na Vercel
+- `npm run dev`: inicia o ambiente local
+- `npm run build`: gera o Prisma Client e compila o Next.js
+- `npm run vercel-build`: aplica migrações e compila na Vercel
+- `npm run db:deploy`: aplica migrações pendentes
+- `npm run db:seed`: sincroniza os produtos iniciais
+- `npm run db:studio`: abre o Prisma Studio
 
-1. Crie uma conta em https://vercel.com
-2. Suba o projeto para o GitHub
-3. Na Vercel, clique em `Add New Project`
-4. Selecione o repositório
-5. Clique em `Deploy`
+## Publicação na Vercel
 
-## Próxima versão
+1. Importe o repositório `RobertoVitalino/techofertas-v1` na Vercel.
+2. Conecte um PostgreSQL do Marketplace, como Neon ou Prisma Postgres.
+3. Confirme que a integração criou a variável `DATABASE_URL`.
+4. Faça o deploy. O script `vercel-build` gera o cliente, aplica as migrações e compila o projeto.
+5. Execute `npm run db:seed` uma vez usando a mesma `DATABASE_URL` para importar os produtos existentes.
 
-A V1.1 pode incluir:
-
-- Páginas individuais de produtos
-- Rotas de categorias
-- Busca funcional
-- Painel administrativo real
-- Banco de dados Prisma + PostgreSQL
-- Login administrativo
-- Integração com Mercado Livre
+Nunca envie o arquivo `.env` ao GitHub.
