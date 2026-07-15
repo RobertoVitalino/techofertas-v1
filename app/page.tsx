@@ -43,7 +43,15 @@ export default async function Home() {
               <Mail size={16} /> devrobertovitalino@gmail.com
             </p>
             <p className="mt-2 flex gap-2 text-sm text-slate-400">
-              <Phone size={16} /> (67) 99999-9999
+              <Phone size={16} />
+              <a
+                href="https://wa.me/5567984793793"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition hover:text-white"
+              >
+                (67) 98479-3793
+              </a>
             </p>
             <p className="mt-2 flex gap-2 text-sm text-slate-400">
               <MapPin size={16} /> Mato Grosso do Sul
