@@ -15,7 +15,7 @@ export default async function Home() {
   })
 
   return (
-    <main>
+    <main className="site-light-theme">
       <Header />
 
       <div className="mx-auto max-w-7xl space-y-12 px-4 py-8">
