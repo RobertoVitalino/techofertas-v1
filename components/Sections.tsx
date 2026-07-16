@@ -309,6 +309,8 @@ const featuredNews = [
     category: 'Ciência e Espaço',
     summary:
       'Acompanhe a transmissão do novo voo da Starship, o maior foguete já construído.',
+    image:
+      'https://img.odcdn.com.br/wp-content/uploads/2026/05/12-lanamento-starship-365x232.jpg',
     href: 'https://olhardigital.com.br/2026/07/16/ciencia-e-espaco/starship-decola-hoje-assista-com-o-olhar-digital/',
   },
   {
@@ -316,6 +318,8 @@ const featuredNews = [
     category: 'Pro',
     summary:
       'Entenda os argumentos usados pelos Estados Unidos para ampliar tarifas sobre produtos brasileiros.',
+    image:
+      'https://img.odcdn.com.br/wp-content/uploads/2025/07/real_dolar-365x232.jpg',
     href: 'https://olhardigital.com.br/2026/07/16/pro/o-que-esta-por-tras-do-novo-tarifaco-dos-eua-contra-o-brasil/',
   },
   {
@@ -323,6 +327,8 @@ const featuredNews = [
     category: 'Inteligência Artificial',
     summary:
       'A ferramenta FIFA AI Pro, criada com a Lenovo, passou a apoiar todas as seleções do torneio.',
+    image:
+      'https://img.odcdn.com.br/wp-content/uploads/2026/07/lenovo-365x232.jpg',
     href: 'https://olhardigital.com.br/2026/07/15/inteligencia-artificial/ia-usada-na-copa-de-2026-deu-a-todas-as-selecoes-a-mesma-arma-tatica/',
   },
   {
@@ -330,6 +336,8 @@ const featuredNews = [
     category: 'Ciência e Espaço',
     summary:
       'Estudos avaliam como isolamento, gravidade reduzida e ambiente lunar poderiam afetar a saúde mental.',
+    image:
+      'https://img.odcdn.com.br/wp-content/uploads/2026/07/vivendo_na_lua-365x232.jpg',
     href: 'https://olhardigital.com.br/2026/07/16/ciencia-e-espaco/o-que-aconteceria-com-nossa-mente-se-vivessemos-na-lua/',
   },
   {
@@ -337,6 +345,8 @@ const featuredNews = [
     category: 'Ciência e Espaço',
     summary:
       'Uma estrutura ultrafina feita com mica pode tornar experimentos quânticos mais precisos.',
+    image:
+      'https://img.odcdn.com.br/wp-content/uploads/2025/09/atomo-365x232.jpg',
     href: 'https://olhardigital.com.br/2026/07/16/ciencia-e-espaco/poucos-atomos-de-espessura-novo-material-promete-revolucao-quantica/',
   },
 ]
@@ -368,13 +378,21 @@ export function News() {
             className="card-hover flex h-full flex-col rounded-2xl border border-white/10 bg-gradient-to-br from-white/[.07] to-white/[.025] p-4"
             key={news.title}
           >
-            <div className="flex items-center justify-between gap-2">
-              <span className="rounded-lg bg-brand-600/20 px-2 py-1 text-[10px] font-bold text-brand-100">
-                {news.category}
-              </span>
-              <span className="text-xs font-black text-slate-500">
-                {String(index + 1).padStart(2, '0')}
-              </span>
+            <div className="flex items-start gap-3">
+              <img
+                alt=""
+                className="h-14 w-20 shrink-0 rounded-lg border border-white/10 object-cover"
+                loading="lazy"
+                src={news.image}
+              />
+              <div className="min-w-0 flex-1">
+                <span className="inline-block rounded-lg bg-brand-600/20 px-2 py-1 text-[10px] font-bold text-brand-100">
+                  {news.category}
+                </span>
+                <span className="mt-1 block text-right text-[10px] font-black text-slate-500">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </div>
             </div>
 
             <h3 className="mt-3 text-sm font-black leading-snug">
