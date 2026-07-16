@@ -25,7 +25,7 @@ export function ProductCard({ product }: { product: Product }) {
   const detailsUrl = `/produto/${product.id}`
 
   return (
-    <article className="card-hover relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/[.08] to-white/[.03] p-4">
+    <article className="card-hover relative flex h-full flex-col rounded-2xl border border-white/10 bg-gradient-to-br from-white/[.08] to-white/[.03] p-4">
       <span className="absolute left-4 top-4 z-10 rounded-md bg-emerald-500 px-2 py-1 text-xs font-black text-black">
         {product.discount}
       </span>
@@ -81,14 +81,16 @@ export function ProductCard({ product }: { product: Product }) {
         <span className="text-slate-400">({product.rating})</span>
       </div>
 
-      <a
-        href={product.affiliate}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-4 block rounded-xl bg-brand-600 px-4 py-3 text-center text-sm font-bold transition hover:bg-brand-500"
-      >
-        Ver oferta
-      </a>
+      <div className="mt-auto pt-4">
+        <a
+          href={product.affiliate}
+          target="_blank"
+          rel="noreferrer"
+          className="block rounded-xl bg-brand-600 px-4 py-3 text-center text-sm font-bold transition hover:bg-brand-500"
+        >
+          Ver oferta
+        </a>
+      </div>
     </article>
   )
 }
