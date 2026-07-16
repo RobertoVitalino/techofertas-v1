@@ -20,10 +20,10 @@ export default async function Home() {
 
       <div className="mx-auto max-w-7xl space-y-12 px-4 py-8">
         <Hero />
+        <Services />
         <News />
         <Categories />
         <Products products={dbProducts} variant="featured" />
-        <Services />
         <AdminPreview />
       </div>
 
