@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header'
 import { prisma } from '@/lib/prisma'
+import { CheckCircle2, ExternalLink, Store } from 'lucide-react'
 import { notFound } from 'next/navigation'
 
 function isImagePath(value: string) {
@@ -55,46 +56,54 @@ export default async function ProductPage({
             {product.title}
           </h1>
 
-          <div className="mt-4 flex items-center gap-2 text-yellow-400">
-            ★★★★★
-            <span className="text-sm text-slate-400">
-              ({product.rating} avaliações)
-            </span>
-          </div>
+          <div className="mt-7 rounded-2xl border border-sky-200 bg-white/80 p-5 shadow-sm">
+            <p className="text-xs font-black uppercase tracking-[.14em] text-sky-700">
+              Consulte as condições atuais
+            </p>
+            <h2 className="mt-2 text-xl font-black">
+              Preço atualizado no Mercado Livre
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-slate-600">
+              Para garantir que você veja o valor correto, o preço, os descontos
+              e as condições de pagamento são apresentados diretamente no
+              anúncio original do produto.
+            </p>
 
-          <p className="mt-6 text-4xl font-black text-emerald-400">
-            {product.price}
-          </p>
+            <ul className="mt-4 space-y-2 text-sm text-slate-700">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-600" size={17} />
+                Consulte preço, desconto e parcelamento vigentes.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-600" size={17} />
+                Confira frete, prazo e disponibilidade para sua região.
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-600" size={17} />
+                A compra e o pagamento são concluídos no Mercado Livre.
+              </li>
+            </ul>
 
-          <p className="mt-1 text-lg text-slate-500 line-through">
-            {product.oldPrice}
-          </p>
-
-          <span className="mt-4 inline-block rounded-lg bg-emerald-500 px-3 py-1 text-sm font-black text-black">
-            {product.discount} OFF
-          </span>
-
-          <div className="mt-6 space-y-2 text-slate-300">
-            <p>💳 {product.installments}</p>
-            <p>🚚 {product.shipping}</p>
-            <p>🏪 Loja: {product.store}</p>
+            <p className="mt-4 flex items-center gap-2 text-sm font-bold text-slate-600">
+              <Store size={17} /> Loja: {product.store}
+            </p>
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a
               href={product.affiliate}
               target="_blank"
-              rel="noreferrer"
-              className="rounded-xl bg-brand-600 px-6 py-4 text-center font-black hover:bg-brand-500"
+              rel="sponsored noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-4 text-center font-black hover:bg-brand-500"
             >
-              Ver oferta no parceiro
+              Ver preço atualizado <ExternalLink size={18} />
             </a>
 
             <a
               href="/"
               className="rounded-xl border border-white/10 px-6 py-4 text-center font-bold hover:bg-white/10"
             >
-              Voltar para ofertas
+              Voltar para produtos
             </a>
           </div>
         </div>
