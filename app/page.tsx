@@ -22,7 +22,7 @@ export default async function Home() {
         <Hero />
         <News />
         <Categories />
-        <Products products={dbProducts} />
+        <Products products={dbProducts} variant="featured" />
         <Services />
         <AdminPreview />
       </div>

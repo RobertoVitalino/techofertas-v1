@@ -83,7 +83,14 @@ function categoryId(category: string) {
     .replace(/(^-|-$)/g, '')
 }
 
-export function Products({ products }: { products: any[] }) {
+export function Products({
+  products,
+  variant = 'catalog',
+}: {
+  products: any[]
+  variant?: 'featured' | 'catalog'
+}) {
+  const isFeatured = variant === 'featured'
   const groupedProducts = Object.entries(
     products.reduce<Record<string, any[]>>((groups, product) => {
       const category = product.category || 'Outros'
@@ -102,20 +109,41 @@ export function Products({ products }: { products: any[] }) {
     if (indexB === -1) return -1
     return indexA - indexB
   })
+  const displayedCount = isFeatured
+    ? groupedProducts.reduce(
+        (total, [, categoryProducts]) =>
+          total + Math.min(categoryProducts.length, 2),
+        0,
+      )
+    : products.length
 
   return (
     <section id="produtos-por-categoria" className="scroll-mt-36">
       <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
-          <h2 className="text-2xl font-black">Produtos por seção</h2>
+          <h2 className="text-2xl font-black">
+            {isFeatured ? 'Produtos em destaque' : 'Catálogo completo'}
+          </h2>
           <p className="mt-1 text-sm text-slate-400">
-            Navegue pelas categorias e encontre as melhores ofertas.
+            {isFeatured
+              ? 'Uma seleção mais enxuta com dois produtos de cada categoria.'
+              : 'Todos os produtos organizados por categoria em um só lugar.'}
           </p>
         </div>
 
-        <span className="w-fit rounded-lg bg-brand-500/15 px-3 py-1 text-xs font-bold text-brand-100">
-          {products.length} produtos
-        </span>
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="w-fit rounded-lg bg-brand-500/15 px-3 py-1 text-xs font-bold text-brand-100">
+            {displayedCount} produtos
+          </span>
+          {isFeatured && (
+            <a
+              className="inline-flex items-center gap-1 text-sm font-black text-brand-500"
+              href="/produtos"
+            >
+              Ver todos os produtos <ArrowRight size={16} />
+            </a>
+          )}
+        </div>
       </div>
 
       {products.length === 0 ? (
@@ -123,35 +151,69 @@ export function Products({ products }: { products: any[] }) {
           Nenhum produto cadastrado ainda.
         </div>
       ) : (
-        <div className="space-y-8">
-          {groupedProducts.map(([category, categoryProducts]) => (
-            <section
-              className="scroll-mt-36 rounded-3xl border border-white/10 bg-white/[.025] p-4 sm:p-5"
-              id={`secao-${categoryId(category)}`}
-              key={category}
-            >
-              <div className="mb-5 flex items-center justify-between gap-4 border-b border-white/10 pb-4">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[.2em] text-brand-500">
-                    Seção
-                  </p>
-                  <h3 className="mt-1 text-xl font-black">{category}</h3>
-                </div>
+        <>
+          <div
+            className={isFeatured ? 'grid gap-5 lg:grid-cols-2' : 'space-y-8'}
+          >
+            {groupedProducts.map(([category, categoryProducts]) => {
+              const visibleProducts = isFeatured
+                ? categoryProducts.slice(0, 2)
+                : categoryProducts
 
-                <span className="rounded-full bg-white/[.07] px-3 py-1 text-xs font-bold text-slate-300">
-                  {categoryProducts.length}{' '}
-                  {categoryProducts.length === 1 ? 'produto' : 'produtos'}
-                </span>
-              </div>
+              return (
+                <section
+                  className="scroll-mt-36 rounded-3xl border border-white/10 bg-white/[.025] p-4 sm:p-5"
+                  id={`secao-${categoryId(category)}`}
+                  key={category}
+                >
+                  <div className="mb-5 flex items-center justify-between gap-4 border-b border-white/10 pb-4">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[.2em] text-brand-500">
+                        Seção
+                      </p>
+                      <h3 className="mt-1 text-xl font-black">{category}</h3>
+                    </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-                {categoryProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
+                    <span className="rounded-full bg-white/[.07] px-3 py-1 text-xs font-bold text-slate-300">
+                      {visibleProducts.length}{' '}
+                      {isFeatured
+                        ? visibleProducts.length === 1
+                          ? 'destaque'
+                          : 'destaques'
+                        : visibleProducts.length === 1
+                          ? 'produto'
+                          : 'produtos'}
+                    </span>
+                  </div>
+
+                  <div
+                    className={
+                      isFeatured
+                        ? 'grid gap-4 sm:grid-cols-2'
+                        : 'grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'
+                    }
+                  >
+                    {visibleProducts.map((product) => (
+                      <ProductCard key={product.id} product={product} />
+                    ))}
+                  </div>
+                </section>
+              )
+            })}
+          </div>
+
+          {isFeatured && (
+            <div className="mt-6 text-center">
+              <a
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-sky-700 px-6 py-3 text-sm font-black text-white shadow-lg shadow-sky-700/20 transition hover:bg-sky-800"
+                href="/produtos"
+              >
+                Ver catálogo completo com {products.length} produtos
+                <ArrowRight size={17} />
+              </a>
+            </div>
+          )}
+        </>
       )}
     </section>
   )
