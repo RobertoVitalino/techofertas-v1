@@ -24,7 +24,7 @@ export default async function ProductPage({
   }
 
   return (
-    <main>
+    <main className="site-light-theme min-h-screen">
       <Header />
 
       <section className="mx-auto grid max-w-7xl gap-10 px-4 py-10 md:grid-cols-2">

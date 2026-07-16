@@ -3,8 +3,32 @@
 @tailwind utilities;
 :root { color-scheme: dark; }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body { margin: 0; background: #05070b; color: #f8fafc; }
 .bg-grid { background-image: radial-gradient(circle at 1px 1px, rgba(59,130,246,.24) 1px, transparent 0); background-size: 36px 36px; }
 .glass { background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 20px 80px rgba(0,0,0,.28); }
 .card-hover { transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
 .card-hover:hover { transform: translateY(-4px); border-color: rgba(36,139,255,.55); box-shadow: 0 22px 70px rgba(0, 111, 232, .12); }
+
+.site-light-theme {
+  min-height: 100vh;
+  color-scheme: light;
+  color: #0f172a;
+  background: linear-gradient(180deg, #e0f2fe 0%, #f0f9ff 28%, #dbeafe 100%);
+}
+.site-light-theme .bg-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(2, 132, 199, .16) 1px, transparent 0);
+}
+.site-light-theme [class*="border-white/10"] { border-color: rgba(14, 116, 144, .2) !important; }
+.site-light-theme [class*="bg-white/"] { background-color: rgba(255, 255, 255, .72) !important; }
+.site-light-theme [class*="bg-black/"] { background-color: rgba(255, 255, 255, .76) !important; }
+.site-light-theme [class*="from-white/"] { --tw-gradient-from: rgba(255, 255, 255, .94) var(--tw-gradient-from-position) !important; }
+.site-light-theme [class*="to-white/"] { --tw-gradient-to: rgba(224, 242, 254, .78) var(--tw-gradient-to-position) !important; }
+.site-light-theme .text-slate-300 { color: #334155; }
+.site-light-theme .text-slate-400 { color: #475569; }
+.site-light-theme .text-slate-500 { color: #64748b; }
+.site-light-theme .text-brand-100 { color: #075985; }
+.site-light-theme .text-emerald-400 { color: #047857; }
+.site-light-theme .text-yellow-400 { color: #a16207; }
+.site-light-theme .card-hover { box-shadow: 0 12px 35px rgba(14, 116, 144, .08); }
+.site-light-theme .card-hover:hover { box-shadow: 0 20px 45px rgba(14, 116, 144, .18); }
