@@ -2,6 +2,7 @@ import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { Categories, News, Products, Services } from '@/components/Sections'
 import { AdminPreview } from '@/components/AdminPreview'
+import { SecurityCoursePromo } from '@/components/SecurityCoursePromo'
 import { prisma } from '@/lib/prisma'
 import { Github, Mail, MapPin, Phone } from 'lucide-react'
 
@@ -21,6 +22,7 @@ export default async function Home() {
       <div className="mx-auto max-w-7xl space-y-12 px-4 py-8">
         <Hero />
         <Services />
+        <SecurityCoursePromo />
         <News />
         <Categories />
         <Products products={dbProducts} variant="featured" />
@@ -67,7 +69,7 @@ export default async function Home() {
           <div>
             <strong>Links</strong>
             <p className="mt-3 text-sm text-slate-400">
-              Produtos • Notícias • Serviços • Painel Admin
+              Produtos • Curso • Notícias • Serviços • Painel Admin
             </p>
           </div>
 

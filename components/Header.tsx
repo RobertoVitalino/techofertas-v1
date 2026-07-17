@@ -4,6 +4,7 @@ const links = [
   { label: 'Início', href: '/#início' },
   { label: 'Categorias', href: '/#categorias' },
   { label: 'Produtos', href: '/produtos' },
+  { label: 'Curso', href: '/curso-seguranca-da-informacao' },
   { label: 'Notícias', href: '/#noticias' },
   { label: 'Serviços', href: '/#serviços' },
   { label: 'Contato', href: '/#contato' },
@@ -98,7 +99,7 @@ export function Header() {
       </div>
 
       <nav className="hidden border-t border-sky-200 md:block">
-        <div className="mx-auto flex max-w-7xl gap-8 px-4 py-3 text-xs font-bold uppercase tracking-wide text-slate-600">
+        <div className="mx-auto flex max-w-7xl gap-6 px-4 py-3 text-xs font-bold uppercase tracking-wide text-slate-600">
           {links.map((link, index) => (
             <a
               className={index === 0 ? 'text-sky-700' : 'hover:text-sky-800'}
