@@ -42,7 +42,7 @@ export default async function SecurityCoursePage() {
         <section className="overflow-hidden rounded-3xl border border-sky-200 bg-gradient-to-br from-slate-950 via-indigo-950 to-sky-900 p-7 text-white shadow-2xl shadow-sky-950/20 sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.25fr_.75fr] lg:items-center">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full bg-sky-400/15 px-3 py-1 text-xs font-black uppercase tracking-[.16em] text-sky-200">
+              <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-sky-950/80 px-3 py-1 text-xs font-black uppercase tracking-[.16em] text-cyan-100 shadow-sm shadow-black/20">
                 <ShieldCheck size={16} /> Curso gratuito com cadastro
               </span>
               <h1 className="mt-5 max-w-4xl text-3xl font-black leading-tight sm:text-5xl">
@@ -55,11 +55,11 @@ export default async function SecurityCoursePage() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
-                <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2">
+                <span className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/30 bg-sky-950/80 px-4 py-2 shadow-sm shadow-black/20">
                   <BookOpenCheck size={18} /> {securityCourseStats.modules} módulos ·{' '}
                   {securityCourseStats.lessons} aulas
                 </span>
-                <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2">
+                <span className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/30 bg-sky-950/80 px-4 py-2 shadow-sm shadow-black/20">
                   <Clock3 size={18} /> Carga horária aproximada:{' '}
                   {securityCourseStats.workload}
                 </span>
@@ -81,7 +81,7 @@ export default async function SecurityCoursePage() {
                     <UserPlus size={18} /> Criar conta grátis e começar
                   </a>
                   <a
-                    className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-black text-white transition hover:bg-white/15"
+                    className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/30 bg-sky-950/80 px-6 py-3 font-black text-cyan-50 shadow-sm shadow-black/20 transition hover:bg-sky-900"
                     href={`/entrar?next=${encodeURIComponent(firstLessonHref)}`}
                   >
                     <LockKeyhole size={18} /> Já tenho cadastro

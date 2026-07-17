@@ -6,7 +6,7 @@ export function SecurityCoursePromo() {
     <section className="overflow-hidden rounded-3xl border border-indigo-200 bg-gradient-to-br from-indigo-950 via-slate-950 to-sky-950 p-6 text-white shadow-xl shadow-indigo-950/15 sm:p-8">
       <div className="grid gap-6 lg:grid-cols-[1.3fr_.7fr] lg:items-center">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-[.16em] text-sky-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-sky-900/85 px-3 py-1 text-xs font-black uppercase tracking-[.16em] text-cyan-100 shadow-sm shadow-black/20">
             <ShieldCheck size={16} /> Curso gratuito
           </span>
           <h2 className="mt-4 text-2xl font-black leading-tight sm:text-3xl">
@@ -20,11 +20,11 @@ export function SecurityCoursePromo() {
           </p>
 
           <div className="mt-5 flex flex-wrap gap-3 text-xs font-bold text-sky-100">
-            <span className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-3 py-2">
+            <span className="inline-flex items-center gap-2 rounded-lg border border-cyan-300/30 bg-sky-900/85 px-3 py-2 shadow-sm shadow-black/20">
               <BookOpenCheck size={16} /> {securityCourseStats.modules} módulos e{' '}
               {securityCourseStats.lessons} aulas
             </span>
-            <span className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-3 py-2">
+            <span className="inline-flex items-center gap-2 rounded-lg border border-cyan-300/30 bg-sky-900/85 px-3 py-2 shadow-sm shadow-black/20">
               <Clock3 size={16} /> Aproximadamente {securityCourseStats.workload.replace('h', ' horas')}
             </span>
           </div>
