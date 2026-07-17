@@ -30,7 +30,7 @@ export function Hero() {
             <ShieldCheck size={15} /> Tecnologia, confiança e suporte
           </span>
 
-          <h1 className="mt-6 max-w-3xl text-4xl font-black leading-[1.08] md:text-6xl">
+          <h1 className="mt-6 max-w-3xl text-4xl font-black leading-[1.08] text-sky-700 md:text-6xl">
             Tecnologia confiável para sua{' '}
             <span className="text-sky-700">casa, trabalho e negócio.</span>
           </h1>
