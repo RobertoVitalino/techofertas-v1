@@ -367,49 +367,49 @@ export function Services() {
 
 const featuredNews = [
   {
-    title: 'Starship decola hoje; assista com o Olhar Digital!',
+    title: 'Chuva forte ou tempo seco? Veja como ficará cada região',
     category: 'Ciência e Espaço',
     summary:
-      'Acompanhe a transmissão do novo voo da Starship, o maior foguete já construído.',
+      'Ventos fortes devem provocar chuva, granizo, frio e períodos de ar seco em diferentes regiões do Brasil.',
     image:
-      'https://img.odcdn.com.br/wp-content/uploads/2026/05/12-lanamento-starship-365x232.jpg',
-    href: 'https://olhardigital.com.br/2026/07/16/ciencia-e-espaco/starship-decola-hoje-assista-com-o-olhar-digital/',
+      'https://olhardigital.com.br/wp-content/uploads/2025/12/previsao-do-tempo-chuva.jpg',
+    href: 'https://olhardigital.com.br/2026/07/17/ciencia-e-espaco/chuva-forte-ou-tempo-seco-veja-como-ficara-cada-regiao/',
   },
   {
-    title: 'O que está por trás do novo tarifaço dos EUA contra o Brasil?',
+    title: 'Google vai restringir anúncios financeiros; veja o que muda',
     category: 'Pro',
     summary:
-      'Entenda os argumentos usados pelos Estados Unidos para ampliar tarifas sobre produtos brasileiros.',
+      'Acordo com o Ministério da Justiça exigirá verificação de anunciantes para reforçar o combate a fraudes financeiras.',
     image:
-      'https://img.odcdn.com.br/wp-content/uploads/2025/07/real_dolar-365x232.jpg',
-    href: 'https://olhardigital.com.br/2026/07/16/pro/o-que-esta-por-tras-do-novo-tarifaco-dos-eua-contra-o-brasil/',
+      'https://olhardigital.com.br/wp-content/uploads/2026/07/iStock-2242188458.jpg',
+    href: 'https://olhardigital.com.br/2026/07/17/pro/google-vai-restringir-anuncios-financeiros-veja-o-que-muda/',
   },
   {
-    title: 'IA usada na Copa de 2026 deu a todas as seleções a mesma arma tática',
+    title: 'Lua hoje: confira a fase da Lua desta sexta-feira 17/07/2026',
+    category: 'Ciência e Espaço',
+    summary:
+      'Veja a fase atual da Lua e consulte o calendário lunar completo de julho de 2026.',
+    image:
+      'https://img.odcdn.com.br/wp-content/uploads/2026/06/fases-da-lua-4.jpg',
+    href: 'https://olhardigital.com.br/2026/07/17/ciencia-e-espaco/lua-hoje-confira-a-fase-da-lua-desta-sexta-feira-17-07-2026/',
+  },
+  {
+    title: 'Jogos de hoje (17/07/26): onde assistir futebol ao vivo e horários',
+    category: 'Internet e Redes',
+    summary:
+      'Confira os horários e as opções de transmissão das partidas desta sexta-feira.',
+    image:
+      'https://img.odcdn.com.br/wp-content/uploads/2024/06/futebol-streaming.jpg',
+    href: 'https://olhardigital.com.br/2026/07/17/internet-e-redes-sociais/jogos-de-hoje-17-07-26-onde-assistir-futebol-ao-vivo-e-horarios-das-partidas/',
+  },
+  {
+    title: 'A China acaba de lançar o maior modelo aberto de IA do mundo',
     category: 'Inteligência Artificial',
     summary:
-      'A ferramenta FIFA AI Pro, criada com a Lenovo, passou a apoiar todas as seleções do torneio.',
+      'A startup Moonshot AI apresentou o Kimi K3 e reduziu a distância para as principais empresas dos Estados Unidos.',
     image:
-      'https://img.odcdn.com.br/wp-content/uploads/2026/07/lenovo-365x232.jpg',
-    href: 'https://olhardigital.com.br/2026/07/15/inteligencia-artificial/ia-usada-na-copa-de-2026-deu-a-todas-as-selecoes-a-mesma-arma-tatica/',
-  },
-  {
-    title: 'O que aconteceria com nossa mente se vivêssemos na Lua?',
-    category: 'Ciência e Espaço',
-    summary:
-      'Estudos avaliam como isolamento, gravidade reduzida e ambiente lunar poderiam afetar a saúde mental.',
-    image:
-      'https://img.odcdn.com.br/wp-content/uploads/2026/07/vivendo_na_lua-365x232.jpg',
-    href: 'https://olhardigital.com.br/2026/07/16/ciencia-e-espaco/o-que-aconteceria-com-nossa-mente-se-vivessemos-na-lua/',
-  },
-  {
-    title: 'Poucos átomos de espessura: novo material promete revolução quântica',
-    category: 'Ciência e Espaço',
-    summary:
-      'Uma estrutura ultrafina feita com mica pode tornar experimentos quânticos mais precisos.',
-    image:
-      'https://img.odcdn.com.br/wp-content/uploads/2025/09/atomo-365x232.jpg',
-    href: 'https://olhardigital.com.br/2026/07/16/ciencia-e-espaco/poucos-atomos-de-espessura-novo-material-promete-revolucao-quantica/',
+      'https://olhardigital.com.br/wp-content/uploads/2026/03/ia-china.jpg',
+    href: 'https://olhardigital.com.br/2026/07/17/inteligencia-artificial/o-maior-modelo-aberto-de-ia-do-mundo-acaba-de-ser-lancado/',
   },
 ]
 
@@ -420,7 +420,7 @@ export function News() {
         <div>
           <h2 className="text-2xl font-black">Notícias em destaque</h2>
           <p className="mt-1 text-sm text-slate-400">
-            Cinco destaques de tecnologia selecionados em 16 de julho de 2026.
+            As cinco notícias mais lidas no Olhar Digital em 17 de julho de 2026.
           </p>
         </div>
 
