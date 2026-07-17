@@ -41,5 +41,9 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/minha-conta/:path*'],
+  matcher: [
+    '/admin/:path*',
+    '/minha-conta/:path*',
+    '/curso-seguranca-da-informacao/aulas/:path*',
+  ],
 }

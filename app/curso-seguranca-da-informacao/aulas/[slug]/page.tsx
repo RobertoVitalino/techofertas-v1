@@ -6,6 +6,7 @@ import {
   securityCourseLessons,
   securityCourseModules,
 } from '@/lib/security-course'
+import { requireCustomer } from '@/lib/require-customer'
 import {
   ArrowLeft,
   ArrowRight,
@@ -17,9 +18,8 @@ import {
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-export function generateStaticParams() {
-  return securityCourseLessons.map((lesson) => ({ slug: lesson.slug }))
-}
+export const dynamic = 'force-dynamic'
+
 export function generateMetadata({
   params,
 }: {
@@ -35,7 +35,7 @@ export function generateMetadata({
     : {}
 }
 
-export default function SecurityLessonPage({
+export default async function SecurityLessonPage({
   params,
 }: {
   params: { slug: string }
@@ -43,6 +43,10 @@ export default function SecurityLessonPage({
   const lesson = getSecurityLesson(params.slug)
 
   if (!lesson) notFound()
+
+  await requireCustomer(
+    `/curso-seguranca-da-informacao/aulas/${lesson.slug}`,
+  )
 
   const currentIndex = securityCourseLessons.findIndex(
     (item) => item.slug === lesson.slug,
@@ -70,16 +74,27 @@ export default function SecurityLessonPage({
             <nav className="max-h-[62vh] overflow-y-auto rounded-2xl border border-sky-200 bg-white/85 p-3 shadow-sm">
               <strong className="block px-2 pb-2 text-sm">Conteúdo do curso</strong>
               {securityCourseModules.map((module, moduleIndex) => (
-                <div className="mt-2" key={module.slug}>
-                  <p className="px-2 py-1 text-[10px] font-black uppercase tracking-wide text-slate-500">
-                    Módulo {moduleIndex + 1}
+                <div
+                  className={`mt-2 rounded-lg ${module.emphasis ? 'bg-rose-50 p-1' : ''}`}
+                  key={module.slug}
+                >
+                  <p
+                    className={`px-2 py-1 text-[10px] font-black uppercase tracking-wide ${
+                      module.emphasis ? 'text-rose-700' : 'text-slate-500'
+                    }`}
+                  >
+                    Módulo {moduleIndex + 1}{module.emphasis ? ' · destaque antifraude' : ''}
                   </p>
                   {module.lessons.map((item) => (
                     <a
                       className={`mt-1 block rounded-lg px-2 py-2 text-xs font-bold leading-5 transition ${
                         item.slug === lesson.slug
-                          ? 'bg-sky-700 text-white'
-                          : 'text-slate-700 hover:bg-sky-50 hover:text-sky-800'
+                          ? module.emphasis
+                            ? 'bg-rose-700 text-white'
+                            : 'bg-sky-700 text-white'
+                          : module.emphasis
+                            ? 'text-rose-950 hover:bg-rose-100'
+                            : 'text-slate-700 hover:bg-sky-50 hover:text-sky-800'
                       }`}
                       href={`/curso-seguranca-da-informacao/aulas/${item.slug}`}
                       key={item.slug}
@@ -101,6 +116,11 @@ export default function SecurityLessonPage({
                 <span className="inline-flex items-center gap-1.5">
                   <Clock3 size={15} /> {lesson.duration}
                 </span>
+                {lesson.module.emphasis ? (
+                  <span className="rounded-full bg-rose-100 px-3 py-1 text-rose-800">
+                    Módulo especial: prevenção a golpes bancários
+                  </span>
+                ) : null}
               </div>
               <h1 className="mt-4 text-3xl font-black leading-tight sm:text-4xl">
                 {lesson.title}

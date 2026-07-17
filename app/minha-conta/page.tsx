@@ -3,6 +3,7 @@ import { requireCustomer } from '@/lib/require-customer'
 import {
   ArrowRight,
   Bell,
+  BookOpenCheck,
   CalendarDays,
   Heart,
   LogOut,
@@ -88,6 +89,9 @@ export default async function CustomerAccountPage({
           </section>
 
           <div className="grid gap-6">
+            <section className="rounded-3xl border border-sky-400/25 bg-sky-400/10 p-6">
+              <div className="flex items-start gap-4"><span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sky-500/20 text-sky-300"><BookOpenCheck size={22} /></span><div><h2 className="text-lg font-black">Curso de Segurança da Informação</h2><p className="mt-1 text-sm leading-relaxed text-slate-400">Acesse as aulas, atividades práticas e revisões usando sua conta.</p><a href="/curso-seguranca-da-informacao" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-sky-300 hover:text-white">Continuar o curso <ArrowRight size={16} /></a></div></div>
+            </section>
             <section className="rounded-3xl border border-white/10 bg-white/[.04] p-6">
               <div className="flex items-start gap-4"><span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-rose-500/15 text-rose-300"><Heart size={22} /></span><div><h2 className="text-lg font-black">Favoritos</h2><p className="mt-1 text-sm leading-relaxed text-slate-400">Em breve você poderá salvar as ofertas que mais gostou.</p></div></div>
             </section>

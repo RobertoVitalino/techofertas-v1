@@ -105,12 +105,13 @@ export default function RegisterPage({
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-200">Conta gratuita</p>
             <h1 className="mt-4 text-4xl font-black leading-tight">Crie sua conta e aproveite mais.</h1>
             <p className="mt-5 leading-relaxed text-blue-100/70">
-              Tenha um espaço pessoal para acompanhar as novidades e organizar sua experiência na Vitalino Tech.
+              Tenha um espaço pessoal para acessar o curso de Segurança da Informação, acompanhar novidades e organizar sua experiência na Vitalino Tech.
             </p>
             <div className="mt-8 grid gap-4 text-sm text-blue-50/90">
               <p className="flex gap-3"><CheckCircle2 size={19} className="shrink-0 text-emerald-300" /> Cadastro rápido e gratuito</p>
               <p className="flex gap-3"><CheckCircle2 size={19} className="shrink-0 text-emerald-300" /> Sessão protegida por 30 dias</p>
               <p className="flex gap-3"><CheckCircle2 size={19} className="shrink-0 text-emerald-300" /> Área exclusiva do cliente</p>
+              <p className="flex gap-3"><CheckCircle2 size={19} className="shrink-0 text-emerald-300" /> Acesso às aulas do curso gratuito</p>
             </div>
           </div>
 

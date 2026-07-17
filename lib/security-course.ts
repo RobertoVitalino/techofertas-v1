@@ -19,6 +19,7 @@ export type CourseModule = {
   slug: string
   title: string
   description: string
+  emphasis?: boolean
   lessons: CourseLesson[]
 }
 
@@ -502,6 +503,225 @@ export const securityCourseModules: CourseModule[] = [
         reference: {
           label: 'CISA — segurança online',
           href: 'https://www.cisa.gov/secure-our-world',
+        },
+      },
+    ],
+  },
+  {
+    slug: 'golpes-bancarios-falso-gerente',
+    title: 'Golpes Bancários: Falso Gerente e Falsa Central',
+    description:
+      'Módulo especial para reconhecer criminosos que fingem ser gerentes ou funcionários de bancos, interromper a fraude e agir rapidamente se houver prejuízo.',
+    emphasis: true,
+    lessons: [
+      {
+        slug: 'golpe-do-falso-gerente',
+        title: 'Como funciona o golpe do falso gerente',
+        duration: '50 min',
+        summary:
+          'O criminoso usa nome, foto, logotipo, dados pessoais e linguagem bancária para construir confiança. Depois cria urgência e induz a vítima a entregar informações, instalar programas ou movimentar dinheiro.',
+        objectives: [
+          'Reconhecer as etapas e os sinais do golpe do falso gerente.',
+          'Aplicar uma regra de interrupção e confirmação por canal independente.',
+        ],
+        keyPoints: [
+          {
+            title: 'A aparência pode ser convincente',
+            description:
+              'Foto do gerente, nome da agência, número parecido com o oficial e conhecimento de dados pessoais não provam identidade. Essas informações podem vir de redes sociais, vazamentos, documentos expostos ou conversas anteriores.',
+          },
+          {
+            title: 'Urgência, medo e isolamento',
+            description:
+              'O falso gerente costuma falar em compra suspeita, invasão, bloqueio imediato ou prazo de poucos minutos. Também pode pedir segredo e insistir para que a vítima permaneça na ligação, impedindo uma confirmação tranquila.',
+          },
+          {
+            title: 'Pare e confirme fora da conversa',
+            description:
+              'Não informe senha, código, token ou leitura da tela; não faça transferências e não siga procedimentos ditados. Encerre o contato e procure o banco pelo aplicativo, pelo telefone impresso no cartão ou por outro canal oficial obtido por você.',
+          },
+        ],
+        activity: {
+          title: 'Roteiro para interromper a pressão',
+          steps: [
+            'Escreva uma frase curta: “Não realizo procedimentos em contatos recebidos. Vou procurar meu banco pelo canal oficial.”',
+            'Localize no aplicativo e no cartão os canais oficiais do seu banco e salve-os separadamente.',
+            'Pratique encerrar uma ligação mesmo quando a pessoa conhece seus dados ou diz que o caso é urgente.',
+          ],
+        },
+        quiz: {
+          question:
+            'Uma pessoa com a foto do seu gerente no WhatsApp conhece seu CPF e avisa sobre uma compra urgente. O que fazer?',
+          options: [
+            'Seguir as orientações porque ela conhece seus dados',
+            'Pedir que envie um código para provar a identidade',
+            'Encerrar o contato e confirmar pelo aplicativo ou canal oficial do banco',
+            'Transferir o dinheiro temporariamente e conferir depois',
+          ],
+          answer: 2,
+          explanation:
+            'Dados e imagens podem ser copiados. A confirmação deve ocorrer fora do contato recebido, usando um canal oficial localizado por você.',
+        },
+        reference: {
+          label: 'Banco Central — cuidado com falsas centrais de atendimento',
+          href: 'https://www.bcb.gov.br/meubc/faqs/s/golpes',
+        },
+      },
+      {
+        slug: 'falsa-central-e-acesso-remoto',
+        title: 'Falsa central, telefone mascarado e acesso remoto',
+        duration: '45 min',
+        summary:
+          'Golpistas podem simular uma central de segurança, manipular a identificação da chamada e orientar a instalação de aplicativos que permitem visualizar ou controlar o aparelho.',
+        objectives: [
+          'Identificar pedidos incompatíveis com um atendimento bancário seguro.',
+          'Saber como confirmar uma ligação sem reutilizar o canal suspeito.',
+        ],
+        keyPoints: [
+          {
+            title: 'O número exibido não basta',
+            description:
+              'A identificação de uma chamada pode ser falsificada e uma pesquisa rápida pode levar a anúncios enganosos. Mesmo que o número pareça conhecido, não trate a ligação recebida como prova de identidade.',
+          },
+          {
+            title: 'Aplicativo de acesso remoto é sinal crítico',
+            description:
+              'Desligue se pedirem instalação de programa, compartilhamento de tela, ativação de acessibilidade, leitura de códigos, aproximação do cartão ou acesso simultâneo ao aplicativo do banco. Essas ações podem entregar o controle ao criminoso.',
+          },
+          {
+            title: 'Refaça o contato com segurança',
+            description:
+              'Encerre a ligação, aguarde alguns instantes e abra diretamente o aplicativo oficial ou use o telefone impresso no cartão. Não clique no link, não ligue para o número enviado na mensagem e não aceite transferência para outro atendente.',
+          },
+        ],
+        activity: {
+          title: 'Auditoria rápida do celular',
+          steps: [
+            'Revise os aplicativos instalados e identifique ferramentas de acesso remoto que você não usa.',
+            'Confira quais aplicativos possuem permissão de acessibilidade, sobreposição de tela, câmera e microfone.',
+            'Mostre a uma pessoa de confiança onde ficam os canais oficiais e combine a quem pedir ajuda em caso de dúvida.',
+          ],
+        },
+        quiz: {
+          question: 'Qual pedido deve fazer você encerrar imediatamente uma suposta ligação do banco?',
+          options: [
+            'Confirmar apenas o primeiro nome',
+            'Instalar um aplicativo para o atendente proteger sua conta',
+            'Comparecer à agência em horário comercial',
+            'Consultar uma informação no contrato que você já possui',
+          ],
+          answer: 1,
+          explanation:
+            'A instalação de acesso remoto ou o compartilhamento da tela pode dar ao golpista visão e controle do dispositivo e das operações bancárias.',
+        },
+        reference: {
+          label: 'Banco Central — golpes e falsas centrais',
+          href: 'https://www.bcb.gov.br/meubc/faqs/s/golpes',
+        },
+      },
+      {
+        slug: 'conta-segura-pix-e-boleto-falso',
+        title: '“Conta segura”, PIX induzido e boleto falso',
+        duration: '45 min',
+        summary:
+          'Nenhuma conta fica protegida porque o dinheiro foi transferido para outra pessoa. O suposto procedimento de segurança é, na verdade, a própria operação que entrega os valores ao criminoso.',
+        objectives: [
+          'Reconhecer transferências disfarçadas de cancelamento, teste ou proteção.',
+          'Conferir destinatário, valor e tipo de pagamento antes de confirmar.',
+        ],
+        keyPoints: [
+          {
+            title: 'Não existe transferência para “conta segura”',
+            description:
+              'Desconfie de pedido para mover saldo, devolver PIX por nova transferência, pagar boleto de teste ou cancelar compra digitando códigos. Um golpista pode narrar a operação como cancelamento enquanto você realiza um pagamento real.',
+          },
+          {
+            title: 'Leia a tela antes de autorizar',
+            description:
+              'Confira nome e instituição do recebedor, CPF ou CNPJ mascarado, valor e descrição. Em documentos com QR Code, confirme se o pagamento será um PIX instantâneo. Não avance apenas porque o atendente manda ignorar avisos.',
+          },
+          {
+            title: 'Use limites como barreira',
+            description:
+              'Mantenha limites compatíveis com sua rotina, especialmente à noite, e ative alertas. Limites não substituem atenção, mas podem reduzir o prejuízo e criar tempo para interromper a fraude.',
+          },
+        ],
+        activity: {
+          title: 'Checklist antes de pagar',
+          steps: [
+            'Abra as configurações do banco e revise limites, alertas e dispositivos autorizados.',
+            'Escreva cinco dados que sempre devem ser conferidos na tela final de PIX ou boleto.',
+            'Combine uma confirmação adicional para transferências incomuns ou acima de um valor definido.',
+          ],
+        },
+        quiz: {
+          question:
+            'Um suposto gerente diz que você precisa transferir todo o saldo para uma “conta segura”. Qual é a resposta correta?',
+          options: [
+            'Fazer a transferência se a conta for do mesmo banco',
+            'Transferir apenas uma parte para testar',
+            'Não transferir, encerrar o contato e procurar o banco oficialmente',
+            'Pedir ao gerente que envie um boleto em vez de PIX',
+          ],
+          answer: 2,
+          explanation:
+            'Transferir, pagar boleto ou fazer PIX não é procedimento para proteger saldo. A operação pode enviar o dinheiro diretamente ao golpista.',
+        },
+        reference: {
+          label: 'Banco Central — Segurança no Pix',
+          href: 'https://www.bcb.gov.br/estabilidadefinanceira/pix-seguranca',
+        },
+      },
+      {
+        slug: 'o-que-fazer-apos-golpe-bancario',
+        title: 'O que fazer durante e depois de um golpe bancário',
+        duration: '50 min',
+        summary:
+          'A velocidade da reação faz diferença. Interrompa o contato, procure imediatamente o banco por canal oficial, proteja contas e dispositivos e preserve informações para a contestação e a investigação.',
+        objectives: [
+          'Executar um plano de emergência em ordem de prioridade.',
+          'Entender quando e como solicitar a contestação de um PIX pelo MED.',
+        ],
+        keyPoints: [
+          {
+            title: 'Acione o banco imediatamente',
+            description:
+              'Use o aplicativo ou outro canal oficial para bloquear acessos e cartões, contestar operações e relatar a fraude. Em caso de PIX, solicite o Mecanismo Especial de Devolução (MED) o mais rápido possível. O Banco Central informa prazo de até 80 dias, mas a devolução não é garantida e depende da análise e de recursos disponíveis.',
+          },
+          {
+            title: 'Proteja contas e dispositivo',
+            description:
+              'De um aparelho confiável, troque primeiro a senha do e-mail e depois as senhas bancárias, encerre sessões desconhecidas e remova aplicativos de acesso remoto. Se o aparelho foi controlado, peça ajuda técnica antes de voltar a usá-lo para operações sensíveis.',
+          },
+          {
+            title: 'Preserve provas e registre',
+            description:
+              'Guarde conversas, números, horários, comprovantes, chaves PIX, nomes de recebedores e protocolos. Registre boletim de ocorrência e acompanhe a contestação. Avise contatos se sua conta ou número puder ter sido usado para enganar outras pessoas.',
+          },
+        ],
+        activity: {
+          title: 'Cartão de emergência antifraude',
+          steps: [
+            'Escreva em ordem: encerrar contato, abrir o app oficial, bloquear e contestar, proteger e-mail e banco, preservar provas e registrar ocorrência.',
+            'Anote os canais oficiais, sem incluir senhas, e mantenha uma cópia acessível a uma pessoa de confiança.',
+            'Simule o caso: “Fiz um PIX há cinco minutos”. Cronometre quanto tempo leva para localizar a contestação e o atendimento oficial.',
+          ],
+        },
+        quiz: {
+          question: 'Após perceber que fez um PIX em um golpe, qual deve ser a primeira providência?',
+          options: [
+            'Continuar conversando para tentar convencer o golpista',
+            'Esperar até o dia seguinte para ver se o dinheiro volta',
+            'Contatar imediatamente o banco por canal oficial e solicitar a contestação pelo MED',
+            'Apagar todas as mensagens para esquecer o ocorrido',
+          ],
+          answer: 2,
+          explanation:
+            'Agir rapidamente aumenta a possibilidade de bloqueio dos recursos. Depois, preserve as provas, proteja as contas e registre a ocorrência.',
+        },
+        reference: {
+          label: 'Banco Central — o que fazer em caso de golpe ou fraude',
+          href: 'https://www.bcb.gov.br/meubc/faqs/p/o-que-fazer-em-caso-de-golpe-fraude-ou-um-crime',
         },
       },
     ],
@@ -1497,6 +1717,12 @@ export const securityCourseLessons = securityCourseModules.flatMap(
     })),
 )
 
+export const securityCourseStats = {
+  modules: securityCourseModules.length,
+  lessons: securityCourseLessons.length,
+  workload: '21h',
+}
+
 export function getSecurityLesson(slug: string) {
   return securityCourseLessons.find((lesson) => lesson.slug === slug)
 }
@@ -1517,5 +1743,9 @@ export const securityCourseSources = [
   {
     label: 'ANPD — materiais educativos e LGPD',
     href: 'https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes',
+  },
+  {
+    label: 'Banco Central — segurança, golpes e Pix',
+    href: 'https://www.bcb.gov.br/estabilidadefinanceira/pix-seguranca',
   },
 ]

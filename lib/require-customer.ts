@@ -5,15 +5,23 @@ import { prisma } from '@/lib/prisma'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export async function requireCustomer() {
+function getSafeDestination(destination: string) {
+  return destination.startsWith('/') &&
+    !destination.startsWith('//') &&
+    !destination.startsWith('/admin')
+    ? destination
+    : '/minha-conta'
+}
+
+export async function getCurrentCustomer() {
   const session = cookies().get(CUSTOMER_SESSION_COOKIE)?.value
   const customerId = await verifyCustomerSessionToken(session)
 
   if (!customerId) {
-    redirect('/entrar?next=%2Fminha-conta')
+    return null
   }
 
-  const customer = await prisma.customer.findUnique({
+  return prisma.customer.findUnique({
     where: { id: customerId },
     select: {
       id: true,
@@ -23,9 +31,14 @@ export async function requireCustomer() {
       createdAt: true,
     },
   })
+}
+
+export async function requireCustomer(destination = '/minha-conta') {
+  const safeDestination = getSafeDestination(destination)
+  const customer = await getCurrentCustomer()
 
   if (!customer) {
-    redirect('/entrar?erro=sessao&next=%2Fminha-conta')
+    redirect(`/entrar?next=${encodeURIComponent(safeDestination)}`)
   }
 
   return customer

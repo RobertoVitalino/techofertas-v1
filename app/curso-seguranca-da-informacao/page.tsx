@@ -4,26 +4,35 @@ import {
   securityCourseLessons,
   securityCourseModules,
   securityCourseSources,
+  securityCourseStats,
 } from '@/lib/security-course'
+import { getCurrentCustomer } from '@/lib/require-customer'
 import {
   ArrowRight,
   BookOpenCheck,
   CheckCircle2,
   Clock3,
   ExternalLink,
+  LockKeyhole,
   ShieldCheck,
+  Siren,
   Target,
+  UserPlus,
 } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata = {
   title: 'Curso de Segurança da Informação | Vitalino Tech',
   description:
-    'Curso gratuito de segurança da informação com 9 módulos, 27 aulas, atividades práticas e revisão de aprendizagem.',
+    `Curso gratuito de segurança da informação com ${securityCourseStats.modules} módulos, ${securityCourseStats.lessons} aulas, atividades práticas e revisão de aprendizagem.`,
 }
 
-export default function SecurityCoursePage() {
+export default async function SecurityCoursePage() {
+  const customer = await getCurrentCustomer()
   const lessonSlugs = securityCourseLessons.map((lesson) => lesson.slug)
   const firstLesson = securityCourseLessons[0]
+  const firstLessonHref = `/curso-seguranca-da-informacao/aulas/${firstLesson.slug}`
 
   return (
     <main className="site-light-theme min-h-screen">
@@ -34,7 +43,7 @@ export default function SecurityCoursePage() {
           <div className="grid gap-8 lg:grid-cols-[1.25fr_.75fr] lg:items-center">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full bg-sky-400/15 px-3 py-1 text-xs font-black uppercase tracking-[.16em] text-sky-200">
-                <ShieldCheck size={16} /> Curso livre e gratuito
+                <ShieldCheck size={16} /> Curso gratuito com cadastro
               </span>
               <h1 className="mt-5 max-w-4xl text-3xl font-black leading-tight sm:text-5xl">
                 Segurança da Informação: do Zero à Proteção na Prática
@@ -47,19 +56,38 @@ export default function SecurityCoursePage() {
 
               <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
                 <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2">
-                  <BookOpenCheck size={18} /> 9 módulos · 27 aulas
+                  <BookOpenCheck size={18} /> {securityCourseStats.modules} módulos ·{' '}
+                  {securityCourseStats.lessons} aulas
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2">
-                  <Clock3 size={18} /> Carga horária aproximada: 18h
+                  <Clock3 size={18} /> Carga horária aproximada:{' '}
+                  {securityCourseStats.workload}
                 </span>
               </div>
 
-              <a
-                className="mt-7 inline-flex items-center gap-2 rounded-xl bg-sky-400 px-6 py-3 font-black text-slate-950 transition hover:bg-sky-300"
-                href={`/curso-seguranca-da-informacao/aulas/${firstLesson.slug}`}
-              >
-                Começar pela primeira aula <ArrowRight size={18} />
-              </a>
+              {customer ? (
+                <a
+                  className="mt-7 inline-flex items-center gap-2 rounded-xl bg-sky-400 px-6 py-3 font-black text-slate-950 transition hover:bg-sky-300"
+                  href={firstLessonHref}
+                >
+                  Começar pela primeira aula <ArrowRight size={18} />
+                </a>
+              ) : (
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <a
+                    className="inline-flex items-center gap-2 rounded-xl bg-sky-400 px-6 py-3 font-black text-slate-950 transition hover:bg-sky-300"
+                    href={`/cadastro?next=${encodeURIComponent(firstLessonHref)}`}
+                  >
+                    <UserPlus size={18} /> Criar conta grátis e começar
+                  </a>
+                  <a
+                    className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3 font-black text-white transition hover:bg-white/15"
+                    href={`/entrar?next=${encodeURIComponent(firstLessonHref)}`}
+                  >
+                    <LockKeyhole size={18} /> Já tenho cadastro
+                  </a>
+                </div>
+              )}
             </div>
 
             <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
@@ -67,7 +95,7 @@ export default function SecurityCoursePage() {
               <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-100">
                 {[
                   'Proteger senhas, contas, computadores, celulares e redes.',
-                  'Reconhecer phishing, fraudes e técnicas de manipulação.',
+                  'Reconhecer falso gerente, falsa central e golpes bancários.',
                   'Organizar dados, backups, LGPD e resposta a incidentes.',
                   'Usar NIST CSF 2.0 e OWASP Top 10:2025 como referência.',
                 ].map((item) => (
@@ -81,7 +109,28 @@ export default function SecurityCoursePage() {
           </div>
         </section>
 
-        <CourseProgress lessonSlugs={lessonSlugs} />
+        {customer ? (
+          <CourseProgress lessonSlugs={lessonSlugs} />
+        ) : (
+          <section className="flex flex-col gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-3">
+              <LockKeyhole className="mt-0.5 shrink-0 text-amber-700" size={22} />
+              <div>
+                <h2 className="font-black text-amber-950">Cadastro gratuito necessário</h2>
+                <p className="mt-1 text-sm leading-6 text-amber-900/80">
+                  A apresentação é pública. Para abrir as aulas, fazer as atividades e
+                  acompanhar o progresso, crie sua conta ou entre com seu cadastro.
+                </p>
+              </div>
+            </div>
+            <a
+              className="shrink-0 rounded-xl bg-amber-700 px-5 py-3 text-center text-sm font-black text-white hover:bg-amber-800"
+              href={`/cadastro?next=${encodeURIComponent(firstLessonHref)}`}
+            >
+              Fazer meu cadastro
+            </a>
+          </section>
+        )}
 
         <section>
           <div className="mb-5">
@@ -98,14 +147,27 @@ export default function SecurityCoursePage() {
           <div className="grid gap-5 lg:grid-cols-2">
             {securityCourseModules.map((module, moduleIndex) => (
               <article
-                className="rounded-3xl border border-sky-200 bg-white/85 p-5 shadow-sm"
+                className={`rounded-3xl border p-5 shadow-sm ${
+                  module.emphasis
+                    ? 'border-rose-300 bg-gradient-to-br from-rose-50 via-amber-50 to-white ring-2 ring-rose-200'
+                    : 'border-sky-200 bg-white/85'
+                }`}
                 key={module.slug}
               >
                 <div className="flex items-start gap-4">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sky-700 text-sm font-black text-white">
+                  <span
+                    className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl text-sm font-black text-white ${
+                      module.emphasis ? 'bg-rose-700' : 'bg-sky-700'
+                    }`}
+                  >
                     {String(moduleIndex + 1).padStart(2, '0')}
                   </span>
                   <div>
+                    {module.emphasis ? (
+                      <span className="mb-1 inline-flex items-center gap-1 rounded-full bg-rose-700 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white">
+                        <Siren size={13} /> Módulo especial em destaque
+                      </span>
+                    ) : null}
                     <h3 className="text-lg font-black">{module.title}</h3>
                     <p className="mt-1 text-sm leading-6 text-slate-600">
                       {module.description}
@@ -116,12 +178,20 @@ export default function SecurityCoursePage() {
                 <div className="mt-5 grid gap-2">
                   {module.lessons.map((lesson, lessonIndex) => (
                     <a
-                      className="group flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-slate-50/80 p-3 transition hover:border-sky-400 hover:bg-sky-50"
+                      className={`group flex items-center justify-between gap-4 rounded-xl border p-3 transition ${
+                        module.emphasis
+                          ? 'border-rose-200 bg-white/80 hover:border-rose-400 hover:bg-rose-50'
+                          : 'border-slate-200 bg-slate-50/80 hover:border-sky-400 hover:bg-sky-50'
+                      }`}
                       href={`/curso-seguranca-da-informacao/aulas/${lesson.slug}`}
                       key={lesson.slug}
                     >
                       <div>
-                        <span className="text-[10px] font-black uppercase tracking-wide text-sky-700">
+                        <span
+                          className={`text-[10px] font-black uppercase tracking-wide ${
+                            module.emphasis ? 'text-rose-700' : 'text-sky-700'
+                          }`}
+                        >
                           Aula {moduleIndex + 1}.{lessonIndex + 1}
                         </span>
                         <strong className="mt-0.5 block text-sm leading-5">
