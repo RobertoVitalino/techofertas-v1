@@ -30,7 +30,7 @@ export function SecurityCoursePromo() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
+        <div className="rounded-2xl border border-cyan-300/30 bg-sky-900/85 p-5 shadow-lg shadow-black/20">
           <strong className="block text-lg">Acesso gratuito com cadastro</strong>
           <p className="mt-2 text-sm leading-6 text-slate-200">
             Estude no seu ritmo, faça as atividades e acompanhe o progresso no

@@ -90,8 +90,8 @@ export default async function SecurityCoursePage() {
               )}
             </div>
 
-            <div className="rounded-2xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
-              <strong className="text-lg">Você vai aprender a:</strong>
+            <div className="rounded-2xl border border-cyan-300/30 bg-sky-950/80 p-5 shadow-lg shadow-black/20">
+              <strong className="text-lg text-cyan-100">Você vai aprender a:</strong>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-100">
                 {[
                   'Proteger senhas, contas, computadores, celulares e redes.',
