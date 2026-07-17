@@ -1,9 +1,18 @@
 import {
   ADMIN_SESSION_COOKIE,
   ADMIN_SESSION_DURATION_SECONDS,
-  createAdminSessionToken,
+  isAdminMfaEnabled,
   verifyAdminCredentials,
+  verifyAdminTotp,
 } from '@/lib/admin-auth'
+import {
+  clearAuthAttempts,
+  getRequestIp,
+  isAuthRateLimited,
+  recordAuthAttempt,
+  writeSecurityEvent,
+} from '@/lib/auth-rate-limit'
+import { createAdminSession } from '@/lib/admin-session'
 import { LockKeyhole, LogIn } from 'lucide-react'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -21,23 +30,65 @@ function getSafeDestination(value: FormDataEntryValue | null) {
 async function loginAdmin(formData: FormData) {
   'use server'
 
-  const email = String(formData.get('email') || '')
+  const email = String(formData.get('email') || '').trim().toLowerCase()
   const password = String(formData.get('password') || '')
+  const mfaCode = String(formData.get('mfaCode') || '')
   const destination = getSafeDestination(formData.get('next'))
+  const ip = await getRequestIp()
+  const rateLimit = {
+    scope: 'admin-login' as const,
+    subject: email || 'empty',
+    ip,
+    limit: 5,
+    windowSeconds: 15 * 60,
+    blockSeconds: 30 * 60,
+  }
 
-  if (!(await verifyAdminCredentials(email, password))) {
+  if (await isAuthRateLimited(rateLimit)) {
+    await writeSecurityEvent({
+      kind: 'admin_login_blocked',
+      success: false,
+      subject: email,
+      ip,
+    })
+    redirect(`/login?erro=limite&next=${encodeURIComponent(destination)}`)
+  }
+
+  const mfaEnabled = isAdminMfaEnabled()
+  const [credentialsAreValid, mfaIsValid] = await Promise.all([
+    verifyAdminCredentials(email, password),
+    mfaEnabled ? verifyAdminTotp(mfaCode) : Promise.resolve(true),
+  ])
+
+  if (!credentialsAreValid || !mfaIsValid) {
+    await recordAuthAttempt(rateLimit)
+    await writeSecurityEvent({
+      kind: 'admin_login',
+      success: false,
+      subject: email,
+      ip,
+    })
     redirect(`/login?erro=credenciais&next=${encodeURIComponent(destination)}`)
   }
 
   let session: string
 
   try {
-    session = await createAdminSessionToken()
+    session = await createAdminSession()
   } catch {
     redirect('/login?erro=configuracao')
   }
 
-  cookies().set(ADMIN_SESSION_COOKIE, session, {
+  await clearAuthAttempts(rateLimit)
+  await writeSecurityEvent({
+    kind: 'admin_login',
+    success: true,
+    subject: email,
+    ip,
+  })
+
+  const cookieStore = await cookies()
+  cookieStore.set(ADMIN_SESSION_COOKIE, session, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
@@ -48,17 +99,20 @@ async function loginAdmin(formData: FormData) {
   redirect(destination)
 }
 
-export default function LoginPage({
+export default async function LoginPage({
   searchParams,
 }: {
-  searchParams?: { erro?: string; next?: string }
+  searchParams?: Promise<{ erro?: string; next?: string }>
 }) {
-  const hasInvalidCredentials = searchParams?.erro === 'credenciais'
-  const hasConfigurationError = searchParams?.erro === 'configuracao'
+  const query = await searchParams
+  const mfaEnabled = isAdminMfaEnabled()
+  const hasInvalidCredentials = query?.erro === 'credenciais'
+  const hasConfigurationError = query?.erro === 'configuracao'
+  const hasRateLimitError = query?.erro === 'limite'
   const destination =
-    searchParams?.next?.startsWith('/admin') &&
-    !searchParams.next.startsWith('//')
-      ? searchParams.next
+    query?.next?.startsWith('/admin') &&
+    !query.next.startsWith('//')
+      ? query.next
       : '/admin'
 
   return (
@@ -105,6 +159,25 @@ export default function LoginPage({
             />
           </label>
 
+          {mfaEnabled ? (
+            <label className="grid gap-2 text-sm font-bold" htmlFor="mfa-code">
+              Código do aplicativo autenticador
+              <input
+                id="mfa-code"
+                name="mfaCode"
+                type="text"
+                inputMode="numeric"
+                autoComplete="one-time-code"
+                pattern="[0-9]{6}"
+                minLength={6}
+                maxLength={6}
+                required
+                className="rounded-xl border border-white/10 bg-black/40 px-4 py-3 font-normal tracking-[.35em] outline-none transition focus:border-brand-500"
+                placeholder="000000"
+              />
+            </label>
+          ) : null}
+
           {hasInvalidCredentials ? (
             <p
               className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200"
@@ -121,6 +194,16 @@ export default function LoginPage({
             >
               O acesso ainda não foi configurado. Tente novamente em alguns
               instantes.
+            </p>
+          ) : null}
+
+          {hasRateLimitError ? (
+            <p
+              className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100"
+              role="alert"
+            >
+              Muitas tentativas de acesso. Aguarde 30 minutos antes de tentar
+              novamente.
             </p>
           ) : null}
 

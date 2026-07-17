@@ -15,7 +15,7 @@ Portal de tecnologia, ofertas, afiliados e serviços de TI desenvolvido com Next
 
 ## Tecnologias
 
-- Next.js 14 e React 18
+- Next.js 16 e React 19
 - TypeScript e Tailwind CSS
 - Prisma ORM 6
 - PostgreSQL
@@ -69,3 +69,17 @@ Acesse `http://localhost:3000`.
 5. Execute `npm run db:seed` uma vez usando a mesma `DATABASE_URL` para importar os produtos existentes.
 
 Nunca envie o arquivo `.env` ao GitHub.
+
+## Segurança e privacidade
+
+- Senhas de clientes são derivadas com PBKDF2-HMAC-SHA256 e 600 mil iterações.
+- Sessões são aleatórias, registradas no banco, expiram e podem ser revogadas.
+- Logins e cadastros têm limitação de tentativas persistida no PostgreSQL.
+- O site envia CSP, HSTS, proteção contra iframe, política de permissões e outros cabeçalhos de segurança.
+- Eventos de autenticação guardam somente identificadores pseudonimizados e são eliminados após 90 dias.
+- O cliente pode baixar seus dados e excluir permanentemente a conta pela Área do Cliente.
+- A auditoria das dependências de produção deve ser executada regularmente com `npm audit --omit=dev`.
+
+Para ativar o segundo fator do painel, execute `npm run mfa:setup`, cadastre a chave gerada no aplicativo autenticador e salve-a como `ADMIN_TOTP_SECRET` nas variáveis do Vercel. Não envie essa chave ao GitHub.
+
+Confirme também no console do provedor PostgreSQL se backups automáticos e restauração estão disponíveis no plano contratado. A verificação de e-mail exige um provedor transacional antes de ser ativada.

@@ -1,7 +1,7 @@
 import 'server-only'
 
-import { CUSTOMER_SESSION_COOKIE, verifyCustomerSessionToken } from '@/lib/customer-auth'
-import { prisma } from '@/lib/prisma'
+import { CUSTOMER_SESSION_COOKIE } from '@/lib/customer-auth'
+import { getCustomerFromSessionToken } from '@/lib/customer-session'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
@@ -14,23 +14,10 @@ function getSafeDestination(destination: string) {
 }
 
 export async function getCurrentCustomer() {
-  const session = cookies().get(CUSTOMER_SESSION_COOKIE)?.value
-  const customerId = await verifyCustomerSessionToken(session)
+  const cookieStore = await cookies()
+  const session = cookieStore.get(CUSTOMER_SESSION_COOKIE)?.value
 
-  if (!customerId) {
-    return null
-  }
-
-  return prisma.customer.findUnique({
-    where: { id: customerId },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      username: true,
-      createdAt: true,
-    },
-  })
+  return getCustomerFromSessionToken(session)
 }
 
 export async function requireCustomer(destination = '/minha-conta') {

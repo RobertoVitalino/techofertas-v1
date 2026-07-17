@@ -24,11 +24,59 @@ model Product {
 }
 
 model Customer {
-  id           Int      @id @default(autoincrement())
-  name         String
-  email        String   @unique
-  username     String?  @unique
-  passwordHash String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                Int               @id @default(autoincrement())
+  name              String
+  email             String            @unique
+  username          String?           @unique
+  passwordHash      String
+  termsAcceptedAt   DateTime?
+  privacyAcceptedAt DateTime?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  sessions          CustomerSession[]
+}
+
+model CustomerSession {
+  id         String    @id
+  customerId Int
+  createdAt  DateTime  @default(now())
+  lastSeenAt DateTime  @default(now())
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  customer   Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([customerId])
+  @@index([expiresAt])
+}
+
+model AdminSession {
+  id         String    @id
+  createdAt  DateTime  @default(now())
+  lastSeenAt DateTime  @default(now())
+  expiresAt  DateTime
+  revokedAt  DateTime?
+
+  @@index([expiresAt])
+}
+
+model AuthThrottle {
+  id              String    @id
+  attempts        Int       @default(0)
+  windowStartedAt DateTime
+  blockedUntil    DateTime?
+  updatedAt       DateTime  @updatedAt
+
+  @@index([blockedUntil])
+}
+
+model SecurityEvent {
+  id          String   @id @default(cuid())
+  kind        String
+  success     Boolean
+  subjectHash String?
+  ipHash      String?
+  createdAt   DateTime @default(now())
+
+  @@index([kind, createdAt])
+  @@index([createdAt])
 }

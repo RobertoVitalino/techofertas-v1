@@ -5,9 +5,9 @@ import { prisma } from '@/lib/prisma'
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: { q?: string }
+  searchParams: Promise<{ q?: string }>
 }) {
-  const q = searchParams.q || ''
+  const { q = '' } = await searchParams
 
   const allProducts = await prisma.product.findMany({
   orderBy: {

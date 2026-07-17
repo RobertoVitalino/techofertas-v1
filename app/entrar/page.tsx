@@ -1,9 +1,18 @@
 import {
   CUSTOMER_SESSION_COOKIE,
   CUSTOMER_SESSION_DURATION_SECONDS,
-  createCustomerSessionToken,
+  customerPasswordNeedsRehash,
+  hashCustomerPassword,
   verifyCustomerPassword,
 } from '@/lib/customer-auth'
+import {
+  clearAuthAttempts,
+  getRequestIp,
+  isAuthRateLimited,
+  recordAuthAttempt,
+  writeSecurityEvent,
+} from '@/lib/auth-rate-limit'
+import { createCustomerSession } from '@/lib/customer-session'
 import { prisma } from '@/lib/prisma'
 import {
   ArrowLeft,
@@ -19,6 +28,9 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
+
+const dummyPasswordHash =
+  'pbkdf2_sha256$600000$c5a7561ce4f40ce816b42be60e2441e6$f8aaa827ae8284ce64f3ada1c039cec7cec05d1ed9d56413f67084af61549e6b'
 
 function getSafeDestination(value: FormDataEntryValue | string | null | undefined) {
   const destination = String(value || '/minha-conta')
@@ -36,25 +48,60 @@ async function loginCustomer(formData: FormData) {
   const identifier = String(formData.get('identifier') || '').trim().toLowerCase()
   const password = String(formData.get('password') || '')
   const destination = getSafeDestination(formData.get('next'))
+  const ip = await getRequestIp()
+  const rateLimit = {
+    scope: 'customer-login' as const,
+    subject: identifier || 'invalid',
+    ip,
+    limit: 5,
+    windowSeconds: 15 * 60,
+    blockSeconds: 15 * 60,
+  }
+
+  if (await isAuthRateLimited(rateLimit)) {
+    redirect(`/entrar?erro=limite&next=${encodeURIComponent(destination)}`)
+  }
+
   const customer = await prisma.customer.findFirst({
     where: {
       OR: [{ email: identifier }, { username: identifier }],
     },
   })
+  const passwordIsValid = await verifyCustomerPassword(
+    password,
+    customer?.passwordHash || dummyPasswordHash,
+  )
 
-  if (!customer || !(await verifyCustomerPassword(password, customer.passwordHash))) {
+  if (!customer || !passwordIsValid) {
+    await recordAuthAttempt(rateLimit)
+    await writeSecurityEvent({
+      kind: 'customer_login',
+      success: false,
+      subject: identifier,
+      ip,
+    }).catch(() => undefined)
     redirect(`/entrar?erro=credenciais&next=${encodeURIComponent(destination)}`)
+  }
+
+  await clearAuthAttempts(rateLimit)
+
+  if (customerPasswordNeedsRehash(customer.passwordHash)) {
+    await prisma.customer.update({
+      where: { id: customer.id },
+      data: { passwordHash: await hashCustomerPassword(password) },
+    })
   }
 
   let session: string
 
   try {
-    session = await createCustomerSessionToken(customer.id)
+    session = await createCustomerSession(customer.id)
   } catch {
     redirect('/entrar?erro=configuracao')
   }
 
-  cookies().set(CUSTOMER_SESSION_COOKIE, session, {
+  const cookieStore = await cookies()
+  cookieStore.set(CUSTOMER_SESSION_COOKIE, session, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
@@ -62,18 +109,27 @@ async function loginCustomer(formData: FormData) {
     maxAge: CUSTOMER_SESSION_DURATION_SECONDS,
   })
 
+  await writeSecurityEvent({
+    kind: 'customer_login',
+    success: true,
+    subject: String(customer.id),
+    ip,
+  }).catch(() => undefined)
+
   redirect(destination)
 }
 
-export default function CustomerLoginPage({
+export default async function CustomerLoginPage({
   searchParams,
 }: {
-  searchParams?: { erro?: string; next?: string }
+  searchParams?: Promise<{ erro?: string; next?: string }>
 }) {
-  const destination = getSafeDestination(searchParams?.next)
-  const hasInvalidCredentials = searchParams?.erro === 'credenciais'
-  const hasConfigurationError = searchParams?.erro === 'configuracao'
-  const hasExpiredSession = searchParams?.erro === 'sessao'
+  const query = await searchParams
+  const destination = getSafeDestination(query?.next)
+  const hasInvalidCredentials = query?.erro === 'credenciais'
+  const hasConfigurationError = query?.erro === 'configuracao'
+  const hasExpiredSession = query?.erro === 'sessao'
+  const hasRateLimit = query?.erro === 'limite'
 
   return (
     <main className="min-h-screen bg-grid px-4 py-8 sm:py-12">
@@ -188,6 +244,12 @@ export default function CustomerLoginPage({
               {hasExpiredSession ? (
                 <p className="rounded-xl border border-blue-500/30 bg-blue-500/10 px-4 py-3 text-sm text-blue-100" role="alert">
                   Sua sessão expirou. Entre novamente para continuar.
+                </p>
+              ) : null}
+
+              {hasRateLimit ? (
+                <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">
+                  Muitas tentativas foram realizadas. Aguarde 15 minutos antes de tentar novamente.
                 </p>
               ) : null}
 

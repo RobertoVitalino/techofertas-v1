@@ -1,15 +1,22 @@
-import { CUSTOMER_SESSION_COOKIE } from '@/lib/customer-auth'
+import {
+  CUSTOMER_SESSION_COOKIE,
+  verifyCustomerPassword,
+} from '@/lib/customer-auth'
+import { revokeCustomerSession } from '@/lib/customer-session'
+import { prisma } from '@/lib/prisma'
 import { requireCustomer } from '@/lib/require-customer'
 import {
   ArrowRight,
   Bell,
   BookOpenCheck,
   CalendarDays,
+  Download,
   Heart,
   LogOut,
   Mail,
   ShieldCheck,
   ShoppingBag,
+  Trash2,
   UserRound,
   Zap,
 } from 'lucide-react'
@@ -21,15 +28,47 @@ export const dynamic = 'force-dynamic'
 async function logoutCustomer() {
   'use server'
 
-  cookies().delete(CUSTOMER_SESSION_COOKIE)
+  const cookieStore = await cookies()
+  const token = cookieStore.get(CUSTOMER_SESSION_COOKIE)?.value
+
+  await revokeCustomerSession(token)
+  cookieStore.delete(CUSTOMER_SESSION_COOKIE)
   redirect('/')
+}
+
+async function deleteCustomerAccount(formData: FormData) {
+  'use server'
+
+  const customer = await requireCustomer('/minha-conta')
+  const password = String(formData.get('password') || '')
+  const confirmation = String(formData.get('confirmation') || '')
+
+  const record = await prisma.customer.findUnique({
+    where: { id: customer.id },
+    select: { passwordHash: true },
+  })
+
+  if (
+    confirmation !== 'EXCLUIR' ||
+    !record ||
+    !(await verifyCustomerPassword(password, record.passwordHash))
+  ) {
+    redirect('/minha-conta?erro=exclusao')
+  }
+
+  await prisma.customer.delete({ where: { id: customer.id } })
+
+  const cookieStore = await cookies()
+  cookieStore.delete(CUSTOMER_SESSION_COOKIE)
+  redirect('/?conta-excluida=1')
 }
 
 export default async function CustomerAccountPage({
   searchParams,
 }: {
-  searchParams?: { 'boas-vindas'?: string }
+  searchParams?: Promise<{ 'boas-vindas'?: string; erro?: string }>
 }) {
+  const query = await searchParams
   const customer = await requireCustomer()
   const firstName = customer.name.split(' ')[0] || customer.name
   const initials = customer.name
@@ -57,10 +96,17 @@ export default async function CustomerAccountPage({
       </header>
 
       <div className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
-        {searchParams?.['boas-vindas'] === '1' ? (
+        {query?.['boas-vindas'] === '1' ? (
           <div className="mb-7 flex items-start gap-3 rounded-2xl border border-emerald-400/25 bg-emerald-400/10 px-5 py-4 text-emerald-100">
             <ShieldCheck className="mt-0.5 shrink-0" size={21} />
             <div><strong className="block">Sua conta foi criada com sucesso!</strong><span className="text-sm text-emerald-100/75">Você já está conectado e pode aproveitar sua área de cliente.</span></div>
+          </div>
+        ) : null}
+
+        {query?.erro === 'exclusao' ? (
+          <div className="mb-7 rounded-2xl border border-red-400/25 bg-red-400/10 px-5 py-4 text-sm text-red-100" role="alert">
+            Não foi possível confirmar a exclusão. Verifique a senha e digite
+            EXCLUIR exatamente como solicitado.
           </div>
         ) : null}
 
@@ -100,6 +146,30 @@ export default async function CustomerAccountPage({
             </section>
             <section className="rounded-3xl border border-brand-500/20 bg-brand-500/10 p-6">
               <div className="flex items-start gap-4"><ShoppingBag className="mt-1 shrink-0 text-brand-300" size={23} /><div><h2 className="font-black">Continue explorando</h2><p className="mt-1 text-sm text-blue-100/70">Confira os produtos selecionados e encontre sua próxima oferta.</p><a href="/#produtos-por-categoria" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-300 hover:text-white">Ir para produtos <ArrowRight size={16} /></a></div></div>
+            </section>
+            <section className="rounded-3xl border border-white/10 bg-white/[.04] p-6">
+              <div className="flex items-start gap-4">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald-500/15 text-emerald-300"><Download size={21} /></span>
+                <div>
+                  <h2 className="text-lg font-black">Seus dados</h2>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-400">Baixe uma cópia das informações pessoais vinculadas à sua conta.</p>
+                  <a href="/minha-conta/exportar" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-emerald-300 hover:text-white">Baixar meus dados <Download size={16} /></a>
+                </div>
+              </div>
+            </section>
+            <section className="rounded-3xl border border-red-400/20 bg-red-400/[.06] p-6">
+              <div className="flex items-start gap-4">
+                <Trash2 className="mt-1 shrink-0 text-red-300" size={22} />
+                <div className="min-w-0 flex-1">
+                  <h2 className="text-lg font-black">Excluir minha conta</h2>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-400">A exclusão é permanente e remove seus dados cadastrais e sessões de acesso.</p>
+                  <form action={deleteCustomerAccount} className="mt-4 grid gap-3">
+                    <input name="password" type="password" autoComplete="current-password" required placeholder="Confirme sua senha" className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm outline-none focus:border-red-400/50" />
+                    <input name="confirmation" required placeholder="Digite EXCLUIR" className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm outline-none focus:border-red-400/50" />
+                    <button className="inline-flex items-center justify-center gap-2 rounded-xl border border-red-400/30 px-4 py-3 text-sm font-bold text-red-200 hover:bg-red-400/10"><Trash2 size={16} /> Excluir permanentemente</button>
+                  </form>
+                </div>
+              </div>
             </section>
           </div>
         </div>

@@ -8,7 +8,7 @@ import {
   verifyCustomerSessionToken,
 } from '@/lib/customer-auth'
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith('/admin')) {
     const session = request.cookies.get(ADMIN_SESSION_COOKIE)?.value
 

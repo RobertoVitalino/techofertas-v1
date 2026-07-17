@@ -1,4 +1,5 @@
 import { ADMIN_SESSION_COOKIE } from '@/lib/admin-auth'
+import { revokeAdminSession } from '@/lib/admin-session'
 import {
   BarChart3,
   ExternalLink,
@@ -29,7 +30,11 @@ const adminLinks = [
 async function logoutAdmin() {
   'use server'
 
-  cookies().delete(ADMIN_SESSION_COOKIE)
+  const cookieStore = await cookies()
+  const token = cookieStore.get(ADMIN_SESSION_COOKIE)?.value
+
+  await revokeAdminSession(token)
+  cookieStore.delete(ADMIN_SESSION_COOKIE)
   redirect('/login')
 }
 

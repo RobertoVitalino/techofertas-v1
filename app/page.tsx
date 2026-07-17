@@ -68,9 +68,12 @@ export default async function Home() {
 
           <div>
             <strong>Links</strong>
-            <p className="mt-3 text-sm text-slate-400">
-              Produtos • Curso • Notícias • Serviços • Painel Admin
-            </p>
+            <nav className="mt-3 grid gap-2 text-sm text-slate-400" aria-label="Links institucionais">
+              <a href="/#produtos-por-categoria" className="transition hover:text-white">Produtos e ofertas</a>
+              <a href="/curso-seguranca-da-informacao" className="transition hover:text-white">Curso gratuito</a>
+              <a href="/privacidade" className="transition hover:text-white">Política de Privacidade</a>
+              <a href="/termos" className="transition hover:text-white">Termos de Uso</a>
+            </nav>
           </div>
 
           <div>

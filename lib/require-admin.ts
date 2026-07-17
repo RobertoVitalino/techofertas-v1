@@ -2,15 +2,14 @@ import 'server-only'
 
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import {
-  ADMIN_SESSION_COOKIE,
-  verifyAdminSessionToken,
-} from '@/lib/admin-auth'
+import { ADMIN_SESSION_COOKIE } from '@/lib/admin-auth'
+import { isAdminSessionActive } from '@/lib/admin-session'
 
 export async function requireAdmin() {
-  const session = cookies().get(ADMIN_SESSION_COOKIE)?.value
+  const cookieStore = await cookies()
+  const session = cookieStore.get(ADMIN_SESSION_COOKIE)?.value
 
-  if (!(await verifyAdminSessionToken(session))) {
+  if (!(await isAdminSessionActive(session))) {
     redirect('/login?next=%2Fadmin')
   }
 }

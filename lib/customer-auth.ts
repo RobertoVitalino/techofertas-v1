@@ -1,8 +1,21 @@
 export const CUSTOMER_SESSION_COOKIE = 'vitalino_customer_session'
-export const CUSTOMER_SESSION_DURATION_SECONDS = 60 * 60 * 24 * 30
+export const CUSTOMER_SESSION_DURATION_SECONDS = 60 * 60 * 24 * 7
+export const CUSTOMER_SESSION_IDLE_SECONDS = 60 * 60 * 12
 
-const PBKDF2_ITERATIONS = 210_000
+const PBKDF2_ITERATIONS = 600_000
+const LEGACY_PBKDF2_ITERATIONS = 210_000
+const MINIMUM_PASSWORD_LENGTH = 15
 const encoder = new TextEncoder()
+
+const blockedPasswords = new Set([
+  '123456789012345',
+  'administrador',
+  'administrator',
+  'passwordpassword',
+  'qwertyqwertyqwerty',
+  'senha1234567890',
+  'vitalinotech',
+])
 
 function getAuthSecret() {
   const secret = process.env.AUTH_SECRET
@@ -18,6 +31,10 @@ function toHex(bytes: ArrayBuffer | Uint8Array) {
   const view = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes)
 
   return Array.from(view, (byte) => byte.toString(16).padStart(2, '0')).join('')
+}
+
+async function sha256(value: string) {
+  return toHex(await crypto.subtle.digest('SHA-256', encoder.encode(value)))
 }
 
 function fromHex(value: string) {
@@ -62,12 +79,29 @@ export function normalizeCustomerEmail(email: string) {
   return email.trim().toLowerCase()
 }
 
+export function isValidCustomerEmail(email: string) {
+  return (
+    email.length <= 254 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)
+  )
+}
+
 export function normalizeCustomerUsername(username: string) {
   return username.trim().toLowerCase()
 }
 
 export function isValidCustomerUsername(username: string) {
   return /^[a-z0-9._-]{3,30}$/.test(username)
+}
+
+export function isAcceptableCustomerPassword(password: string) {
+  const normalized = password.trim().toLowerCase()
+
+  return (
+    password.length >= MINIMUM_PASSWORD_LENGTH &&
+    password.length <= 128 &&
+    !blockedPasswords.has(normalized)
+  )
 }
 
 export async function hashCustomerPassword(password: string) {
@@ -105,7 +139,9 @@ export async function verifyCustomerPassword(
   if (
     extraPart !== undefined ||
     algorithm !== 'pbkdf2_sha256' ||
-    iterations !== PBKDF2_ITERATIONS ||
+    !Number.isSafeInteger(iterations) ||
+    iterations < LEGACY_PBKDF2_ITERATIONS ||
+    iterations > PBKDF2_ITERATIONS ||
     !salt ||
     !expectedHash
   ) {
@@ -133,25 +169,47 @@ export async function verifyCustomerPassword(
   return safeEqual(toHex(derivedKey), expectedHash)
 }
 
+export function customerPasswordNeedsRehash(storedHash: string) {
+  const [algorithm, iterationsValue] = storedHash.split('$')
+
+  return (
+    algorithm !== 'pbkdf2_sha256' ||
+    Number(iterationsValue) !== PBKDF2_ITERATIONS
+  )
+}
+
 export async function createCustomerSessionToken(customerId: number) {
   const expiresAt =
     Math.floor(Date.now() / 1000) + CUSTOMER_SESSION_DURATION_SECONDS
-  const payload = `${customerId}.${expiresAt}`
+  const sessionId = toHex(crypto.getRandomValues(new Uint8Array(32)))
+  const payload = `${customerId}.${expiresAt}.${sessionId}`
   const signature = await sign(payload)
 
-  return `${payload}.${signature}`
+  return {
+    expiresAt: new Date(expiresAt * 1000),
+    sessionHash: await sha256(sessionId),
+    token: `${payload}.${signature}`,
+  }
 }
 
 export async function verifyCustomerSessionToken(token?: string) {
   if (!token) return null
 
-  const [customerIdValue, expiresAtValue, receivedSignature, extraPart] =
+  const [
+    customerIdValue,
+    expiresAtValue,
+    sessionId,
+    receivedSignature,
+    extraPart,
+  ] =
     token.split('.')
   const customerId = Number(customerIdValue)
   const expiresAt = Number(expiresAtValue)
 
   if (
     extraPart !== undefined ||
+    !sessionId ||
+    !/^[a-f0-9]{64}$/i.test(sessionId) ||
     !receivedSignature ||
     !Number.isSafeInteger(customerId) ||
     customerId <= 0 ||
@@ -162,11 +220,24 @@ export async function verifyCustomerSessionToken(token?: string) {
   }
 
   try {
-    const payload = `${customerId}.${expiresAt}`
+    const payload = `${customerId}.${expiresAt}.${sessionId}`
     const expectedSignature = await sign(payload)
 
-    return safeEqual(receivedSignature, expectedSignature) ? customerId : null
+    return safeEqual(receivedSignature, expectedSignature)
+      ? {
+          customerId,
+          expiresAt: new Date(expiresAt * 1000),
+          sessionHash: await sha256(sessionId),
+        }
+      : null
   } catch {
     return null
   }
+}
+
+export async function hashSensitiveAuthValue(
+  purpose: string,
+  value: string,
+) {
+  return sign(`${purpose}:${value.trim().toLowerCase()}`)
 }

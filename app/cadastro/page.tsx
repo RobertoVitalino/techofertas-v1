@@ -1,12 +1,20 @@
 import {
   CUSTOMER_SESSION_COOKIE,
   CUSTOMER_SESSION_DURATION_SECONDS,
-  createCustomerSessionToken,
   hashCustomerPassword,
+  isAcceptableCustomerPassword,
+  isValidCustomerEmail,
   isValidCustomerUsername,
   normalizeCustomerEmail,
   normalizeCustomerUsername,
 } from '@/lib/customer-auth'
+import {
+  getRequestIp,
+  isAuthRateLimited,
+  recordAuthAttempt,
+  writeSecurityEvent,
+} from '@/lib/auth-rate-limit'
+import { createCustomerSession } from '@/lib/customer-session'
 import { prisma } from '@/lib/prisma'
 import { ArrowLeft, CheckCircle2, ShieldCheck, UserPlus, Zap } from 'lucide-react'
 import { cookies } from 'next/headers'
@@ -35,16 +43,36 @@ async function registerCustomer(formData: FormData) {
   const acceptedTerms = formData.get('terms') === 'on'
   const destination = getSafeDestination(formData.get('next'))
   const nextParam = `next=${encodeURIComponent(destination)}`
+  const ip = await getRequestIp()
+  const rateLimit = {
+    scope: 'registration' as const,
+    subject: email || username || 'invalid',
+    ip,
+    limit: 5,
+    windowSeconds: 60 * 60,
+    blockSeconds: 60 * 60,
+  }
+
+  if (await isAuthRateLimited(rateLimit)) {
+    redirect(`/cadastro?erro=limite&${nextParam}`)
+  }
+
+  await recordAuthAttempt(rateLimit)
 
   if (
     name.length < 2 ||
     name.length > 80 ||
-    !email.includes('@') ||
+    !isValidCustomerEmail(email) ||
     !isValidCustomerUsername(username) ||
-    password.length < 8 ||
-    password.length > 128 ||
+    !isAcceptableCustomerPassword(password) ||
     !acceptedTerms
   ) {
+    await writeSecurityEvent({
+      kind: 'registration_rejected',
+      success: false,
+      subject: email || username,
+      ip,
+    }).catch(() => undefined)
     redirect(`/cadastro?erro=dados&${nextParam}`)
   }
 
@@ -59,23 +87,45 @@ async function registerCustomer(formData: FormData) {
   })
 
   if (existingCustomer) {
-    redirect(`/cadastro?erro=email&${nextParam}`)
+    await writeSecurityEvent({
+      kind: 'registration_rejected',
+      success: false,
+      subject: email || username,
+      ip,
+    }).catch(() => undefined)
+    redirect(`/cadastro?erro=indisponivel&${nextParam}`)
   }
 
   try {
     const passwordHash = await hashCustomerPassword(password)
+    const acceptedAt = new Date()
     const customer = await prisma.customer.create({
-      data: { name, email, username, passwordHash },
+      data: {
+        name,
+        email,
+        username,
+        passwordHash,
+        privacyAcceptedAt: acceptedAt,
+        termsAcceptedAt: acceptedAt,
+      },
     })
-    const session = await createCustomerSessionToken(customer.id)
+    const session = await createCustomerSession(customer.id)
+    const cookieStore = await cookies()
 
-    cookies().set(CUSTOMER_SESSION_COOKIE, session, {
+    cookieStore.set(CUSTOMER_SESSION_COOKIE, session, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
       maxAge: CUSTOMER_SESSION_DURATION_SECONDS,
     })
+
+    await writeSecurityEvent({
+      kind: 'registration_completed',
+      success: true,
+      subject: String(customer.id),
+      ip,
+    }).catch(() => undefined)
   } catch {
     redirect(`/cadastro?erro=configuracao&${nextParam}`)
   }
@@ -84,12 +134,13 @@ async function registerCustomer(formData: FormData) {
   redirect(`${destination}${separator}boas-vindas=1`)
 }
 
-export default function RegisterPage({
+export default async function RegisterPage({
   searchParams,
 }: {
-  searchParams?: { erro?: string; next?: string }
+  searchParams?: Promise<{ erro?: string; next?: string }>
 }) {
-  const destination = getSafeDestination(searchParams?.next)
+  const query = await searchParams
+  const destination = getSafeDestination(query?.next)
 
   return (
     <main className="min-h-screen bg-grid px-4 py-8 sm:py-12">
@@ -109,7 +160,7 @@ export default function RegisterPage({
             </p>
             <div className="mt-8 grid gap-4 text-sm text-blue-50/90">
               <p className="flex gap-3"><CheckCircle2 size={19} className="shrink-0 text-emerald-300" /> Cadastro rápido e gratuito</p>
-              <p className="flex gap-3"><CheckCircle2 size={19} className="shrink-0 text-emerald-300" /> Sessão protegida por 30 dias</p>
+              <p className="flex gap-3"><CheckCircle2 size={19} className="shrink-0 text-emerald-300" /> Sessão protegida por até 7 dias</p>
               <p className="flex gap-3"><CheckCircle2 size={19} className="shrink-0 text-emerald-300" /> Área exclusiva do cliente</p>
               <p className="flex gap-3"><CheckCircle2 size={19} className="shrink-0 text-emerald-300" /> Acesso às aulas do curso gratuito</p>
             </div>
@@ -146,22 +197,23 @@ export default function RegisterPage({
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="grid gap-2 text-sm font-bold" htmlFor="register-password">
                   Senha
-                  <input id="register-password" name="password" type="password" autoComplete="new-password" minLength={8} maxLength={128} required className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" placeholder="Mínimo 8 caracteres" />
+                  <input id="register-password" name="password" type="password" autoComplete="new-password" minLength={15} maxLength={128} required className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" placeholder="Use uma frase com 15 caracteres ou mais" />
                 </label>
                 <label className="grid gap-2 text-sm font-bold" htmlFor="password-confirmation">
                   Confirmar senha
-                  <input id="password-confirmation" name="passwordConfirmation" type="password" autoComplete="new-password" minLength={8} maxLength={128} required className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" placeholder="Repita a senha" />
+                  <input id="password-confirmation" name="passwordConfirmation" type="password" autoComplete="new-password" minLength={15} maxLength={128} required className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" placeholder="Repita a senha" />
                 </label>
               </div>
 
-              {searchParams?.erro === 'dados' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Confira os dados, o nome de usuário e a senha. A senha deve ter pelo menos 8 caracteres e os termos precisam ser aceitos.</p> : null}
-              {searchParams?.erro === 'senhas' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">As senhas informadas não são iguais.</p> : null}
-              {searchParams?.erro === 'email' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Este e-mail ou nome de usuário já possui uma conta. Entre com sua senha.</p> : null}
-              {searchParams?.erro === 'configuracao' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Não foi possível criar sua conta agora. Tente novamente em instantes.</p> : null}
+              {query?.erro === 'dados' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Confira os dados e o nome de usuário. Use uma frase-senha com pelo menos 15 caracteres, evite senhas comuns e aceite os termos.</p> : null}
+              {query?.erro === 'senhas' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">As senhas informadas não são iguais.</p> : null}
+              {query?.erro === 'indisponivel' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Não foi possível concluir o cadastro com esses dados. Se você já tiver uma conta, entre com sua senha.</p> : null}
+              {query?.erro === 'limite' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Muitas tentativas de cadastro foram realizadas. Aguarde uma hora antes de tentar novamente.</p> : null}
+              {query?.erro === 'configuracao' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Não foi possível criar sua conta agora. Tente novamente em instantes.</p> : null}
 
               <label className="flex items-start gap-3 text-sm leading-relaxed text-slate-400">
                 <input name="terms" type="checkbox" required className="mt-1 h-4 w-4 accent-blue-600" />
-                <span>Concordo com os termos de uso e com o tratamento dos meus dados para criação da conta.</span>
+                <span>Li e concordo com os <a className="font-bold text-brand-400 hover:text-brand-300" href="/termos" target="_blank">Termos de Uso</a> e com a <a className="font-bold text-brand-400 hover:text-brand-300" href="/privacidade" target="_blank">Política de Privacidade</a>.</span>
               </label>
 
               <button className="flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-4 py-3.5 font-bold transition hover:bg-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-[#080c14]">

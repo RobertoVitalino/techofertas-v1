@@ -20,12 +20,13 @@ import { notFound } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string }
-}): Metadata {
-  const lesson = getSecurityLesson(params.slug)
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const lesson = getSecurityLesson(slug)
 
   return lesson
     ? {
@@ -38,9 +39,10 @@ export function generateMetadata({
 export default async function SecurityLessonPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const lesson = getSecurityLesson(params.slug)
+  const { slug } = await params
+  const lesson = getSecurityLesson(slug)
 
   if (!lesson) notFound()
 
