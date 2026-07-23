@@ -4,7 +4,6 @@ import {
   BarChart3,
   ExternalLink,
   Image as ImageIcon,
-  LayoutDashboard,
   LogOut,
   Newspaper,
   Package,
@@ -17,7 +16,6 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 const adminLinks = [
-  { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { label: 'Produtos', href: '/admin/produtos', icon: Package },
   { label: 'Categorias', href: '/admin/categorias', icon: Tags },
   { label: 'Artigos', href: '/admin/artigos', icon: Newspaper },
@@ -42,7 +40,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-[#05070b] lg:grid lg:grid-cols-[270px_1fr]">
       <aside className="border-b border-white/10 bg-[#080c14] p-4 lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-r lg:p-5">
-        <a href="/admin" className="flex items-center gap-3 rounded-2xl px-2 py-3">
+        <a href="/admin/produtos" className="flex items-center gap-3 rounded-2xl px-2 py-3">
           <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-600"><Zap size={23} /></span>
           <span><strong className="block text-lg">Vitalino Tech</strong><span className="text-xs text-slate-400">Painel Administrativo</span></span>
         </a>

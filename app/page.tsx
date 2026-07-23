@@ -1,7 +1,6 @@
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { Categories, News, Products, Services } from '@/components/Sections'
-import { AdminPreview } from '@/components/AdminPreview'
 import { SecurityCoursePromo } from '@/components/SecurityCoursePromo'
 import { prisma } from '@/lib/prisma'
 import { Github, Mail, MapPin, Phone } from 'lucide-react'
@@ -26,7 +25,6 @@ export default async function Home() {
         <News />
         <Categories />
         <Products products={dbProducts} variant="featured" />
-        <AdminPreview />
       </div>
 
       <footer id="contato" className="mt-12 scroll-mt-36 border-t border-white/10 bg-black/30">
