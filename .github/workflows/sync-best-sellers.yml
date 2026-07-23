@@ -14,6 +14,13 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      MERCADO_LIVRE_CLIENT_ID: ${{ secrets.MERCADO_LIVRE_CLIENT_ID }}
+      MERCADO_LIVRE_CLIENT_SECRET: ${{ secrets.MERCADO_LIVRE_CLIENT_SECRET }}
+      MERCADO_LIVRE_REFRESH_TOKEN: ${{ secrets.MERCADO_LIVRE_REFRESH_TOKEN }}
+      MERCADO_LIVRE_MATT_WORD: ${{ secrets.MERCADO_LIVRE_MATT_WORD }}
+      MERCADO_LIVRE_MATT_TOOL: ${{ secrets.MERCADO_LIVRE_MATT_TOOL }}
     steps:
       - uses: actions/checkout@v4
 
@@ -24,14 +31,5 @@ jobs:
       - run: npm ci
 
       - run: npx prisma migrate deploy
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - run: npm run bestsellers:sync -- ${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.dry_run == 'true') && '--dry-run' || '' }}
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          MERCADO_LIVRE_CLIENT_ID: ${{ secrets.MERCADO_LIVRE_CLIENT_ID }}
-          MERCADO_LIVRE_CLIENT_SECRET: ${{ secrets.MERCADO_LIVRE_CLIENT_SECRET }}
-          MERCADO_LIVRE_REFRESH_TOKEN: ${{ secrets.MERCADO_LIVRE_REFRESH_TOKEN }}
-          MERCADO_LIVRE_MATT_WORD: ${{ secrets.MERCADO_LIVRE_MATT_WORD }}
-          MERCADO_LIVRE_MATT_TOOL: ${{ secrets.MERCADO_LIVRE_MATT_TOOL }}
