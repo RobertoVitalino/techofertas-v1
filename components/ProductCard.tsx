@@ -1,4 +1,5 @@
 import { ExternalLink, Store } from 'lucide-react'
+import { TrackedLink } from './TrackedLink'
 
 type Product = {
   id: number
@@ -62,14 +63,16 @@ export function ProductCard({ product }: { product: Product }) {
       )}
 
       <div className="mt-auto pt-3">
-        <a
+        <TrackedLink
+          eventName="affiliate_click"
+          eventData={{ product: product.title, store: product.store ?? '' }}
           href={product.affiliate}
           target="_blank"
           rel="sponsored noopener noreferrer"
           className="flex items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-3 py-2.5 text-center text-xs font-bold transition hover:bg-brand-500"
         >
           Ver preço atualizado <ExternalLink size={14} />
-        </a>
+        </TrackedLink>
       </div>
     </article>
   )

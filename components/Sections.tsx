@@ -1,5 +1,6 @@
 import { categories } from '@/lib/data'
 import { ProductCard } from './ProductCard'
+import { TrackedLink } from './TrackedLink'
 import {
   ArrowRight,
   ArrowUpRight,
@@ -33,9 +34,11 @@ export function Categories() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-7">
         {categories.map(({ name, offers, icon: Icon, affiliate }) => (
-          <a
+          <TrackedLink
             aria-label={`Ver ofertas de ${name} no Mercado Livre`}
             className="card-hover group relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/[.075] to-white/[.025] p-5 text-center"
+            eventName="category_click"
+            eventData={{ category: name }}
             href={affiliate}
             key={name}
             rel="sponsored noopener noreferrer"
@@ -56,7 +59,7 @@ export function Categories() {
             <span className="mt-3 block text-xs font-bold text-brand-500">
               Ver no Mercado Livre
             </span>
-          </a>
+          </TrackedLink>
         ))}
       </div>
     </section>
