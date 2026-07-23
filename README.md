@@ -59,6 +59,22 @@ Acesse `http://localhost:3000`.
 - `npm run db:deploy`: aplica migrações pendentes
 - `npm run db:seed`: sincroniza os produtos iniciais
 - `npm run db:studio`: abre o Prisma Studio
+- `npm run bestsellers:sync`: busca os 20 mais vendidos no Mercado Livre e substitui o catálogo (use `--dry-run` para simular)
+
+## Sincronização automática dos mais vendidos
+
+Toda segunda, quarta e sexta, um workflow do GitHub Actions
+(`.github/workflows/sync-best-sellers.yml`) busca os 20 produtos mais vendidos
+no Mercado Livre (via API oficial `/highlights`, sem login nem scraping),
+seleciona os de menor preço entre eles e substitui o catálogo do site, já com
+o link de afiliado aplicado.
+
+Configuração necessária (uma única vez):
+
+1. Crie um aplicativo em [developers.mercadolivre.com.br](https://developers.mercadolivre.com.br/apps) para obter `client_id` e `client_secret`.
+2. Autorize o aplicativo uma vez (fluxo OAuth) para obter o `refresh_token` inicial — depois disso o próprio script renova o token sozinho e guarda o novo refresh token no banco (tabela `MercadoLivreToken`).
+3. Pegue seus parâmetros de afiliado (`matt_word` e `matt_tool`) resolvendo um link `meli.la` já gerado, ou criando um novo em [mercadolivre.com.br/l/afiliados-home](https://www.mercadolivre.com.br/l/afiliados-home).
+4. Cadastre `DATABASE_URL`, `MERCADO_LIVRE_CLIENT_ID`, `MERCADO_LIVRE_CLIENT_SECRET`, `MERCADO_LIVRE_REFRESH_TOKEN`, `MERCADO_LIVRE_MATT_WORD` e `MERCADO_LIVRE_MATT_TOOL` como *secrets* do repositório no GitHub.
 
 ## Publicação na Vercel
 

@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import { PrismaClient } from '@prisma/client'
+import { formatBRL, runPool } from './lib/marketplace-utils.mjs'
 
 const prisma = new PrismaClient()
 const dryRun = process.argv.includes('--dry-run')
@@ -67,16 +68,6 @@ function hasIdentifier(receivedWords, identifier) {
       (word) => word.startsWith(identifier) || identifier.startsWith(word),
     )
   )
-}
-
-function formatBRL(value) {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-    minimumFractionDigits: 2,
-  })
-    .format(value)
-    .replace(/\u00a0/g, ' ')
 }
 
 function parseCard(card) {
@@ -215,22 +206,6 @@ async function fetchMarketplacePage(affiliate) {
   }
 
   throw lastError
-}
-
-async function runPool(items, concurrency, worker) {
-  let nextIndex = 0
-
-  async function runWorker() {
-    while (nextIndex < items.length) {
-      const item = items[nextIndex]
-      nextIndex += 1
-      await worker(item)
-    }
-  }
-
-  await Promise.all(
-    Array.from({ length: Math.min(concurrency, items.length) }, runWorker),
-  )
 }
 
 async function main() {

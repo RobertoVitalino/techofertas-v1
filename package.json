@@ -11,7 +11,8 @@
     "db:deploy": "prisma migrate deploy",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
-    "prices:sync": "node scripts/sync-mercado-livre-prices.mjs"
+    "prices:sync": "node scripts/sync-mercado-livre-prices.mjs",
+    "bestsellers:sync": "node scripts/sync-best-sellers.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
