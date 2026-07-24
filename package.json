@@ -12,7 +12,6 @@
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "prices:sync": "node scripts/sync-mercado-livre-prices.mjs",
-    "bestsellers:discover": "node scripts/discover-best-sellers.mjs",
     "bestsellers:apply": "node scripts/apply-best-sellers.mjs"
   },
   "dependencies": {

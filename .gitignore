@@ -23,6 +23,5 @@ npm-debug.log*
 .vercel
 .env*
 
-# Arquivos de trabalho da sincronização de mais vendidos
-bestsellers-candidates.txt
+# Arquivo de trabalho da sincronização de mais vendidos
 bestsellers-links.txt

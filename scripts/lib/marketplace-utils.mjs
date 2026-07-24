@@ -161,6 +161,19 @@ function extractCards(html) {
     .filter(Boolean)
 }
 
+// Um link de afiliado recém-gerado sempre lista o produto compartilhado
+// primeiro (posição 0), então dá para extrair sem precisar de um título
+// esperado para casar por similaridade.
+export function parsePrimaryProductCard(html) {
+  const [primary] = extractCards(html)
+
+  if (!primary) {
+    throw new Error('Produto não encontrado no link informado')
+  }
+
+  return primary
+}
+
 export function parseMarketplacePage(html, expectedTitle) {
   const cards = extractCards(html)
 

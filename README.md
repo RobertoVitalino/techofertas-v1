@@ -59,30 +59,23 @@ Acesse `http://localhost:3000`.
 - `npm run db:deploy`: aplica migrações pendentes
 - `npm run db:seed`: sincroniza os produtos iniciais
 - `npm run db:studio`: abre o Prisma Studio
-- `npm run bestsellers:discover`: busca os mais vendidos no Mercado Livre e salva uma lista de candidatos em `bestsellers-candidates.txt`
 - `npm run bestsellers:apply`: lê `bestsellers-links.txt` e substitui o catálogo pelos 20 produtos informados (use `--dry-run` para simular)
 
 ## Atualização dos mais vendidos
 
 A API do Mercado Livre não permite consultar preço/título de itens de outros
 vendedores nem raspar as páginas automaticamente (ambos são bloqueados), então
-o processo tem uma etapa manual curta. Roda localmente (não em CI, pois o
-Mercado Livre e o Prisma Postgres bloqueiam conexões vindas do GitHub Actions):
+a escolha dos produtos é manual, usando o próprio painel de afiliados:
 
-1. `npm run bestsellers:discover` — busca os mais vendidos por categoria (API oficial `/highlights`) e salva até ~40 candidatos em `bestsellers-candidates.txt`, cada um com um link para visualizar o produto.
-2. Abra os links, escolha 20, e gere o link de afiliado de cada um no [painel do Mercado Livre](https://www.mercadolivre.com.br/l/afiliados-home). Cole no arquivo `bestsellers-links.txt` (na raiz do projeto), uma linha por produto, no formato:
+1. Acesse o [painel de afiliados do Mercado Livre](https://www.mercadolivre.com.br/l/afiliados-home), use o filtro **Mais vendidos** e escolha os produtos.
+2. Gere o link de afiliado de cada um e cole no arquivo `bestsellers-links.txt` (na raiz do projeto), uma URL por linha (sem título, só o link):
 
    ```
-   Título do produto | https://meli.la/xxxxx
+   https://meli.la/xxxxx
+   https://meli.la/yyyyy
    ```
 
-3. `npm run bestsellers:apply` — busca preço, imagem e parcelamento reais de cada link e substitui o catálogo do site pelos 20 produtos.
-
-Configuração necessária (uma única vez), só para a etapa de descoberta:
-
-1. Crie um aplicativo em [developers.mercadolivre.com.br](https://developers.mercadolivre.com.br/apps) para obter `client_id` e `client_secret`.
-2. Autorize o aplicativo uma vez (fluxo OAuth) para obter o `refresh_token` inicial — depois disso o próprio script renova o token sozinho e guarda o novo refresh token no banco (tabela `MercadoLivreToken`).
-3. Cadastre `MERCADO_LIVRE_CLIENT_ID`, `MERCADO_LIVRE_CLIENT_SECRET` e `MERCADO_LIVRE_REFRESH_TOKEN` no `.env` local.
+3. Rode `npm run bestsellers:apply` — busca título, preço, imagem e parcelamento reais de cada link (o produto compartilhado é sempre o primeiro item da página) e substitui o catálogo do site pelos 20 de menor preço entre os informados.
 
 ## Publicação na Vercel
 

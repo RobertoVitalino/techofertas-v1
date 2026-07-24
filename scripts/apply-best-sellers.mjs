@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client'
 import {
   fetchMarketplacePage,
   formatBRL,
-  parseMarketplacePage,
+  parsePrimaryProductCard,
   runPool,
 } from './lib/marketplace-utils.mjs'
 
@@ -13,22 +13,10 @@ const dryRun = process.argv.includes('--dry-run')
 const TARGET_COUNT = 20
 const INPUT_FILE = new URL('../bestsellers-links.txt', import.meta.url)
 
-function parseInputLine(line, lineNumber) {
-  const [title, affiliate] = line.split('|').map((part) => part.trim())
-
-  if (!title || !affiliate) {
-    throw new Error(
-      `Linha ${lineNumber} inválida. Use o formato "Título do produto | link de afiliado".`,
-    )
-  }
-
-  return { title, affiliate }
-}
-
-async function readEntries() {
+async function readAffiliateLinks() {
   const content = await readFile(INPUT_FILE, 'utf8').catch(() => {
     throw new Error(
-      `Arquivo não encontrado: ${INPUT_FILE.pathname}. Crie-o com uma linha por produto: "Título | link de afiliado".`,
+      `Arquivo não encontrado: ${INPUT_FILE.pathname}. Crie-o com uma URL de afiliado por linha.`,
     )
   })
 
@@ -36,17 +24,16 @@ async function readEntries() {
     .split('\n')
     .map((line) => line.trim())
     .filter(Boolean)
-    .map((line, index) => parseInputLine(line, index + 1))
 }
 
 async function main() {
-  const entries = await readEntries()
+  const affiliateLinks = await readAffiliateLinks()
   const rows = []
 
-  await runPool(entries, 4, async (entry) => {
+  await runPool(affiliateLinks, 4, async (affiliate) => {
     try {
-      const html = await fetchMarketplacePage(entry.affiliate)
-      const marketplace = parseMarketplacePage(html, entry.title)
+      const html = await fetchMarketplacePage(affiliate)
+      const marketplace = parsePrimaryProductCard(html)
 
       rows.push({
         title: marketplace.title,
@@ -59,20 +46,20 @@ async function main() {
         store: 'Mercado Livre',
         installments: marketplace.installments || 'Consulte o parcelamento no anúncio',
         shipping: 'Consulte o frete no anúncio',
-        affiliate: entry.affiliate,
+        affiliate,
       })
 
       console.log(`[ok] ${marketplace.title} — ${formatBRL(marketplace.currentPrice)}`)
     } catch (error) {
       console.error(
-        `[falha] "${entry.title}": ${error instanceof Error ? error.message : error}`,
+        `[falha] ${affiliate}: ${error instanceof Error ? error.message : error}`,
       )
     }
   })
 
   if (rows.length < TARGET_COUNT) {
     throw new Error(
-      `Apenas ${rows.length} de ${entries.length} produtos foram lidos com sucesso (esperado ${TARGET_COUNT}). Catálogo não foi alterado.`,
+      `Apenas ${rows.length} de ${affiliateLinks.length} produtos foram lidos com sucesso (esperado ${TARGET_COUNT}). Catálogo não foi alterado.`,
     )
   }
 
