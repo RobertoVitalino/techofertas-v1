@@ -59,22 +59,30 @@ Acesse `http://localhost:3000`.
 - `npm run db:deploy`: aplica migrações pendentes
 - `npm run db:seed`: sincroniza os produtos iniciais
 - `npm run db:studio`: abre o Prisma Studio
-- `npm run bestsellers:sync`: busca os 20 mais vendidos no Mercado Livre e substitui o catálogo (use `--dry-run` para simular)
+- `npm run bestsellers:discover`: busca os mais vendidos no Mercado Livre e salva uma lista de candidatos em `bestsellers-candidates.txt`
+- `npm run bestsellers:apply`: lê `bestsellers-links.txt` e substitui o catálogo pelos 20 produtos informados (use `--dry-run` para simular)
 
-## Sincronização automática dos mais vendidos
+## Atualização dos mais vendidos
 
-Toda segunda, quarta e sexta, um workflow do GitHub Actions
-(`.github/workflows/sync-best-sellers.yml`) busca os 20 produtos mais vendidos
-no Mercado Livre (via API oficial `/highlights`, sem login nem scraping),
-seleciona os de menor preço entre eles e substitui o catálogo do site, já com
-o link de afiliado aplicado.
+A API do Mercado Livre não permite consultar preço/título de itens de outros
+vendedores nem raspar as páginas automaticamente (ambos são bloqueados), então
+o processo tem uma etapa manual curta. Roda localmente (não em CI, pois o
+Mercado Livre e o Prisma Postgres bloqueiam conexões vindas do GitHub Actions):
 
-Configuração necessária (uma única vez):
+1. `npm run bestsellers:discover` — busca os mais vendidos por categoria (API oficial `/highlights`) e salva até ~40 candidatos em `bestsellers-candidates.txt`, cada um com um link para visualizar o produto.
+2. Abra os links, escolha 20, e gere o link de afiliado de cada um no [painel do Mercado Livre](https://www.mercadolivre.com.br/l/afiliados-home). Cole no arquivo `bestsellers-links.txt` (na raiz do projeto), uma linha por produto, no formato:
+
+   ```
+   Título do produto | https://meli.la/xxxxx
+   ```
+
+3. `npm run bestsellers:apply` — busca preço, imagem e parcelamento reais de cada link e substitui o catálogo do site pelos 20 produtos.
+
+Configuração necessária (uma única vez), só para a etapa de descoberta:
 
 1. Crie um aplicativo em [developers.mercadolivre.com.br](https://developers.mercadolivre.com.br/apps) para obter `client_id` e `client_secret`.
 2. Autorize o aplicativo uma vez (fluxo OAuth) para obter o `refresh_token` inicial — depois disso o próprio script renova o token sozinho e guarda o novo refresh token no banco (tabela `MercadoLivreToken`).
-3. Pegue seus parâmetros de afiliado (`matt_word` e `matt_tool`) resolvendo um link `meli.la` já gerado, ou criando um novo em [mercadolivre.com.br/l/afiliados-home](https://www.mercadolivre.com.br/l/afiliados-home).
-4. Cadastre `DATABASE_URL`, `MERCADO_LIVRE_CLIENT_ID`, `MERCADO_LIVRE_CLIENT_SECRET`, `MERCADO_LIVRE_REFRESH_TOKEN`, `MERCADO_LIVRE_MATT_WORD` e `MERCADO_LIVRE_MATT_TOOL` como *secrets* do repositório no GitHub.
+3. Cadastre `MERCADO_LIVRE_CLIENT_ID`, `MERCADO_LIVRE_CLIENT_SECRET` e `MERCADO_LIVRE_REFRESH_TOKEN` no `.env` local.
 
 ## Publicação na Vercel
 
