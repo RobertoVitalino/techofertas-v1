@@ -87,6 +87,14 @@ a escolha dos produtos é manual, usando o próprio painel de afiliados:
 
 Nunca envie o arquivo `.env` ao GitHub.
 
+## SEO
+
+O site gera `sitemap.xml` e `robots.txt` automaticamente (`app/sitemap.ts` e
+`app/robots.ts`), incluindo todas as páginas de produto, e as páginas têm
+metadados para Open Graph/Twitter Card (imagem e texto ao compartilhar o
+link). Defina `NEXT_PUBLIC_SITE_URL` nas variáveis de ambiente da Vercel com
+o domínio real do site para que essas URLs fiquem corretas.
+
 ## Segurança e privacidade
 
 - Senhas de clientes são derivadas com PBKDF2-HMAC-SHA256 e 600 mil iterações.

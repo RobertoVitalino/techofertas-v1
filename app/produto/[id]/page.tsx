@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header'
 import { prisma } from '@/lib/prisma'
 import { CheckCircle2, ExternalLink, Store } from 'lucide-react'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 function isImagePath(value: string) {
@@ -9,6 +10,37 @@ function isImagePath(value: string) {
     value.startsWith('http://') ||
     value.startsWith('https://')
   )
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>
+}): Promise<Metadata> {
+  const { id } = await params
+  const product = await prisma.product.findUnique({
+    where: { id: Number(id) },
+  })
+
+  if (!product) return {}
+
+  const description = `${product.title} — ${product.category}. Confira o preço atualizado no Mercado Livre.`
+  const image = isImagePath(product.image) ? product.image : undefined
+
+  return {
+    title: product.title,
+    description,
+    openGraph: {
+      title: product.title,
+      description,
+      images: image ? [{ url: image }] : undefined,
+    },
+    twitter: {
+      title: product.title,
+      description,
+      images: image ? [image] : undefined,
+    },
+  }
 }
 
 export default async function ProductPage({

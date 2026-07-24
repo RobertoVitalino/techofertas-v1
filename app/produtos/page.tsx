@@ -2,8 +2,15 @@ import { Header } from '@/components/Header'
 import { Products } from '@/components/Sections'
 import { prisma } from '@/lib/prisma'
 import { ArrowLeft } from 'lucide-react'
+import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  title: 'Catálogo completo de produtos',
+  description:
+    'Todos os produtos de informática selecionados pela Vitalino Tech, com acesso direto aos anúncios no Mercado Livre.',
+}
 
 export default async function ProductsPage() {
   const products = await prisma.product.findMany({
