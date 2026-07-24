@@ -1,5 +1,6 @@
 import { CourseProgress } from '@/components/CourseProgress'
 import { Header } from '@/components/Header'
+import { getCompletedLessonSlugs } from '@/lib/course-progress'
 import {
   securityCourseLessons,
   securityCourseModules,
@@ -23,13 +24,16 @@ import {
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Curso de Segurança da Informação | Vitalino Tech',
+  title: 'Curso de Segurança da Informação',
   description:
     `Curso gratuito de segurança da informação com ${securityCourseStats.modules} módulos, ${securityCourseStats.lessons} aulas, atividades práticas e revisão de aprendizagem.`,
 }
 
 export default async function SecurityCoursePage() {
   const customer = await getCurrentCustomer()
+  const completedLessons = customer
+    ? await getCompletedLessonSlugs(customer.id)
+    : []
   const lessonSlugs = securityCourseLessons.map((lesson) => lesson.slug)
   const firstLesson = securityCourseLessons[0]
   const firstLessonHref = `/curso-seguranca-da-informacao/aulas/${firstLesson.slug}`
@@ -110,7 +114,10 @@ export default async function SecurityCoursePage() {
         </section>
 
         {customer ? (
-          <CourseProgress lessonSlugs={lessonSlugs} />
+          <CourseProgress
+            initialCompleted={completedLessons}
+            lessonSlugs={lessonSlugs}
+          />
         ) : (
           <section className="flex flex-col gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-3">

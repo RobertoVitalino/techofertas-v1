@@ -1,8 +1,9 @@
 'use client'
 
+import { markLessonCompleteAction } from '@/lib/course-progress-actions'
 import { CheckCircle2, CircleAlert } from 'lucide-react'
 import { useState } from 'react'
-import { markSecurityLessonComplete } from './CourseProgress'
+import { notifyLessonCompleted } from './CourseProgress'
 
 type LessonQuizProps = {
   lessonSlug: string
@@ -21,13 +22,18 @@ export function LessonQuiz({
   const [selected, setSelected] = useState<number | null>(null)
   const [result, setResult] = useState<'correct' | 'incorrect' | null>(null)
 
-  function checkAnswer() {
+  async function checkAnswer() {
     if (selected === null) return
     const isCorrect = selected === answer
     setResult(isCorrect ? 'correct' : 'incorrect')
 
     if (isCorrect) {
-      markSecurityLessonComplete(lessonSlug)
+      notifyLessonCompleted(lessonSlug)
+      try {
+        await markLessonCompleteAction(lessonSlug)
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 

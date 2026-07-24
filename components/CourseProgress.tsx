@@ -2,39 +2,30 @@
 
 import { useEffect, useState } from 'react'
 
-const storageKey = 'vitalino-security-course-progress'
 const progressEvent = 'vitalino-course-progress'
 
-function readProgress() {
-  if (typeof window === 'undefined') return []
-
-  try {
-    const saved = JSON.parse(window.localStorage.getItem(storageKey) || '[]')
-    return Array.isArray(saved) ? saved.filter((item) => typeof item === 'string') : []
-  } catch {
-    return []
-  }
-}
-export function markSecurityLessonComplete(slug: string) {
-  const completed = readProgress()
-  const next = completed.includes(slug) ? completed : [...completed, slug]
-  window.localStorage.setItem(storageKey, JSON.stringify(next))
-  window.dispatchEvent(new Event(progressEvent))
+export function notifyLessonCompleted(slug: string) {
+  window.dispatchEvent(new CustomEvent(progressEvent, { detail: { slug } }))
 }
 
-export function CourseProgress({ lessonSlugs }: { lessonSlugs: string[] }) {
-  const [completed, setCompleted] = useState<string[]>([])
+export function CourseProgress({
+  lessonSlugs,
+  initialCompleted,
+}: {
+  lessonSlugs: string[]
+  initialCompleted: string[]
+}) {
+  const [completed, setCompleted] = useState<string[]>(initialCompleted)
 
   useEffect(() => {
-    const refresh = () => setCompleted(readProgress())
-    refresh()
-    window.addEventListener(progressEvent, refresh)
-    window.addEventListener('storage', refresh)
-
-    return () => {
-      window.removeEventListener(progressEvent, refresh)
-      window.removeEventListener('storage', refresh)
+    function handleProgressEvent(event: Event) {
+      const slug = (event as CustomEvent<{ slug: string }>).detail?.slug
+      if (!slug) return
+      setCompleted((current) => (current.includes(slug) ? current : [...current, slug]))
     }
+
+    window.addEventListener(progressEvent, handleProgressEvent)
+    return () => window.removeEventListener(progressEvent, handleProgressEvent)
   }, [])
 
   const completedCount = lessonSlugs.filter((slug) => completed.includes(slug)).length
@@ -45,7 +36,7 @@ export function CourseProgress({ lessonSlugs }: { lessonSlugs: string[] }) {
   return (
     <div className="rounded-2xl border border-sky-200 bg-white/85 p-4 shadow-sm">
       <div className="flex items-center justify-between gap-4 text-sm">
-        <strong>Seu progresso neste dispositivo</strong>
+        <strong>Seu progresso no curso</strong>
         <span className="font-black text-sky-700">{percentage}%</span>
       </div>
       <div
@@ -62,8 +53,8 @@ export function CourseProgress({ lessonSlugs }: { lessonSlugs: string[] }) {
         />
       </div>
       <p className="mt-2 text-xs text-slate-500">
-        {completedCount} de {lessonSlugs.length} aulas concluídas. O progresso fica
-        salvo somente neste navegador.
+        {completedCount} de {lessonSlugs.length} aulas concluídas. Seu progresso fica
+        salvo na sua conta e acompanha você em qualquer dispositivo.
       </p>
     </div>
   )

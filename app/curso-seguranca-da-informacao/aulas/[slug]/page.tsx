@@ -1,6 +1,7 @@
 import { CourseProgress } from '@/components/CourseProgress'
 import { Header } from '@/components/Header'
 import { LessonQuiz } from '@/components/LessonQuiz'
+import { getCompletedLessonSlugs } from '@/lib/course-progress'
 import {
   getSecurityLesson,
   securityCourseLessons,
@@ -30,7 +31,7 @@ export async function generateMetadata({
 
   return lesson
     ? {
-        title: `${lesson.title} | Curso Vitalino Tech`,
+        title: lesson.title,
         description: lesson.summary,
       }
     : {}
@@ -46,9 +47,10 @@ export default async function SecurityLessonPage({
 
   if (!lesson) notFound()
 
-  await requireCustomer(
+  const customer = await requireCustomer(
     `/curso-seguranca-da-informacao/aulas/${lesson.slug}`,
   )
+  const completedLessons = await getCompletedLessonSlugs(customer.id)
 
   const currentIndex = securityCourseLessons.findIndex(
     (item) => item.slug === lesson.slug,
@@ -71,7 +73,10 @@ export default async function SecurityLessonPage({
 
         <div className="mt-6 grid gap-6 lg:grid-cols-[270px_1fr]">
           <aside className="space-y-4 lg:sticky lg:top-36 lg:self-start">
-            <CourseProgress lessonSlugs={lessonSlugs} />
+            <CourseProgress
+              initialCompleted={completedLessons}
+              lessonSlugs={lessonSlugs}
+            />
 
             <nav className="max-h-[62vh] overflow-y-auto rounded-2xl border border-sky-200 bg-white/85 p-3 shadow-sm">
               <strong className="block px-2 pb-2 text-sm">Conteúdo do curso</strong>
