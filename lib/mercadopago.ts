@@ -74,8 +74,10 @@ export async function createCertificatePreference({
   })
 
   if (!response.ok) {
+    const bodyText = await response.text()
+
     throw new Error(
-      `Mercado Pago preference creation failed with status ${response.status}`,
+      `Mercado Pago preference creation failed with status ${response.status}: ${bodyText}`,
     )
   }
 

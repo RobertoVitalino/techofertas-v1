@@ -13,6 +13,7 @@ import {
 import { getCurrentCustomer } from '@/lib/require-customer'
 import {
   ArrowRight,
+  Award,
   BookOpenCheck,
   CheckCircle2,
   Clock3,
@@ -80,7 +81,14 @@ export default async function SecurityCoursePage() {
                   <Clock3 size={18} /> Carga horária aproximada:{' '}
                   {securityCourseStats.workload}
                 </span>
+                <span className="inline-flex items-center gap-2 rounded-xl border border-amber-300/40 bg-amber-950/40 px-4 py-2 shadow-sm shadow-black/20">
+                  <Award size={18} /> Certificado ao final por R$ {certificatePriceLabel}
+                </span>
               </div>
+              <p className="mt-3 text-xs font-bold text-cyan-100/80">
+                O curso é 100% gratuito. O certificado de conclusão é opcional e
+                pago à parte, emitido só depois que você concluir as 31 aulas.
+              </p>
 
               {customer ? (
                 <a
