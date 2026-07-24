@@ -370,49 +370,48 @@ export function Services() {
 
 const featuredNews = [
   {
-    title: 'Chuva forte ou tempo seco? Veja como ficará cada região',
-    category: 'Ciência e Espaço',
-    summary:
-      'Ventos fortes devem provocar chuva, granizo, frio e períodos de ar seco em diferentes regiões do Brasil.',
-    image:
-      'https://olhardigital.com.br/wp-content/uploads/2025/12/previsao-do-tempo-chuva.jpg',
-    href: 'https://olhardigital.com.br/2026/07/17/ciencia-e-espaco/chuva-forte-ou-tempo-seco-veja-como-ficara-cada-regiao/',
-  },
-  {
-    title: 'Google vai restringir anúncios financeiros; veja o que muda',
-    category: 'Pro',
-    summary:
-      'Acordo com o Ministério da Justiça exigirá verificação de anunciantes para reforçar o combate a fraudes financeiras.',
-    image:
-      'https://olhardigital.com.br/wp-content/uploads/2026/07/iStock-2242188458.jpg',
-    href: 'https://olhardigital.com.br/2026/07/17/pro/google-vai-restringir-anuncios-financeiros-veja-o-que-muda/',
-  },
-  {
-    title: 'Lua hoje: confira a fase da Lua desta sexta-feira 17/07/2026',
-    category: 'Ciência e Espaço',
-    summary:
-      'Veja a fase atual da Lua e consulte o calendário lunar completo de julho de 2026.',
-    image:
-      'https://img.odcdn.com.br/wp-content/uploads/2026/06/fases-da-lua-4.jpg',
-    href: 'https://olhardigital.com.br/2026/07/17/ciencia-e-espaco/lua-hoje-confira-a-fase-da-lua-desta-sexta-feira-17-07-2026/',
-  },
-  {
-    title: 'Jogos de hoje (17/07/26): onde assistir futebol ao vivo e horários',
-    category: 'Internet e Redes',
-    summary:
-      'Confira os horários e as opções de transmissão das partidas desta sexta-feira.',
-    image:
-      'https://img.odcdn.com.br/wp-content/uploads/2024/06/futebol-streaming.jpg',
-    href: 'https://olhardigital.com.br/2026/07/17/internet-e-redes-sociais/jogos-de-hoje-17-07-26-onde-assistir-futebol-ao-vivo-e-horarios-das-partidas/',
-  },
-  {
-    title: 'A China acaba de lançar o maior modelo aberto de IA do mundo',
+    title: 'Anthropic lança Claude Opus 5, IA com foco em custo-benefício e tarefas do dia a dia',
     category: 'Inteligência Artificial',
     summary:
-      'A startup Moonshot AI apresentou o Kimi K3 e reduziu a distância para as principais empresas dos Estados Unidos.',
+      'A Anthropic anunciou, nesta sexta-feira (24), o lançamento do Claude Opus 5, seu mais novo modelo de inteligência artificial (IA).',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/anthropic.jpg',
+    href: 'https://olhardigital.com.br/2026/07/24/inteligencia-artificial/anthropic-lanca-claude-opus-5-ia-com-foco-em-custo-beneficio-e-tarefas-do-dia-a-dia/',
+  },
+  {
+    title: 'Cientistas criam aparelho portátil que detecta queima de gordura no corpo',
+    category: 'Ciência e Espaço',
+    summary:
+      'Estudo mostra avanço no monitoramento corporal e levanta novas possibilidades para entender como o organismo transforma energia.',
     image:
-      'https://olhardigital.com.br/wp-content/uploads/2026/03/ia-china.jpg',
-    href: 'https://olhardigital.com.br/2026/07/17/inteligencia-artificial/o-maior-modelo-aberto-de-ia-do-mundo-acaba-de-ser-lancado/',
+      'https://olhardigital.com.br/wp-content/uploads/2026/07/dispositivo-movel-portatil-detecta-se-o-corpo-esta-usando-a-gordura-como-fonte-de-energia-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/07/24/ciencia-e-espaco/cientistas-criam-aparelho-portatil-que-detecta-queima-de-gordura-no-corpo/',
+  },
+  {
+    title: 'Liga GG abre inscrições para qualificatória da VPL e oferece caminho para o competitivo de VALORANT',
+    category: 'Games e Consoles',
+    summary:
+      'Liga GG está com inscrições abertas para a qualificatória da VPL, torneio que garante vaga no semiprofissional de VALORANT.',
+    image:
+      'https://olhardigital.com.br/wp-content/uploads/2026/07/Captura-de-tela-2026-07-24-142646-1.png',
+    href: 'https://olhardigital.com.br/2026/07/24/games-e-consoles/liga-gg-abre-inscricoes-para-a-vpl/',
+  },
+  {
+    title: 'Qual é o máximo que um ser humano pode viver?',
+    category: 'Ciência e Espaço',
+    summary:
+      'Estudo revela que mutações no DNA podem limitar a vida humana mesmo sem doenças, com estimativa de longevidade entre 146 e 194 anos.',
+    image:
+      'https://olhardigital.com.br/wp-content/uploads/2026/05/imagem_2026-05-20T01-59-39.jpg',
+    href: 'https://olhardigital.com.br/2026/07/24/ciencia-e-espaco/qual-e-o-maximo-que-um-ser-humano-pode-viver/',
+  },
+  {
+    title: 'Entenda: Como funciona um campeonato de eSports',
+    category: 'Games e Consoles',
+    summary:
+      'Esportes eletrônicos, ou eSports, são competições profissionais de games. Veja como funcionam e o que as diferencia dos jogos tradicionais.',
+    image:
+      'https://olhardigital.com.br/wp-content/uploads/2026/07/esport-que-sport-e-esse-202003181234.jpg',
+    href: 'https://olhardigital.com.br/2026/07/24/games-e-consoles/entenda-como-funciona-um-campeonato-de-esports/',
   },
 ]
 
@@ -423,7 +422,7 @@ export function News() {
         <div>
           <h2 className="text-2xl font-black">Notícias em destaque</h2>
           <p className="mt-1 text-sm text-slate-400">
-            As cinco notícias mais lidas no Olhar Digital em 17 de julho de 2026.
+            As cinco notícias mais lidas no Olhar Digital em 24 de julho de 2026.
           </p>
         </div>
 
