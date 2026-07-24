@@ -37,7 +37,7 @@ export function SecurityCoursePromo() {
             próprio navegador. A conta gratuita protege o acesso às aulas.
           </p>
           <a
-            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-sky-500 px-5 py-3 text-sm font-black text-slate-950 transition hover:bg-sky-400"
+            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-sky-500 px-5 py-3 text-sm font-black text-white transition hover:bg-sky-400"
             href="/curso-seguranca-da-informacao"
           >
             Acessar o curso <ArrowRight size={17} />
