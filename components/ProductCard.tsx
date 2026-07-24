@@ -8,6 +8,10 @@ type Product = {
   image: string
   affiliate: string
   store?: string
+  price: string
+  oldPrice: string
+  discount: string
+  installments: string
 }
 
 function isImagePath(value: string) {
@@ -20,6 +24,7 @@ function isImagePath(value: string) {
 
 export function ProductCard({ product }: { product: Product }) {
   const detailsUrl = `/produto/${product.id}`
+  const hasDiscount = product.discount && product.discount !== '-0%'
 
   return (
     <article className="card-hover relative flex h-full flex-col rounded-xl border border-white/10 bg-gradient-to-br from-white/[.08] to-white/[.03] p-3">
@@ -51,9 +56,26 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="text-[10px] font-black uppercase tracking-wide text-sky-800">
           Preço e disponibilidade
         </p>
-        <p className="mt-1 text-xs font-bold text-slate-700">
-          Consulte os valores atualizados no anúncio
-        </p>
+        <div className="mt-1 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+          {hasDiscount && (
+            <span className="text-xs text-slate-500 line-through">
+              {product.oldPrice}
+            </span>
+          )}
+          <span className="text-lg font-black text-slate-900">
+            {product.price}
+          </span>
+          {hasDiscount && (
+            <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-black text-emerald-700">
+              {product.discount}
+            </span>
+          )}
+        </div>
+        {product.installments && (
+          <p className="mt-0.5 text-[11px] text-slate-600">
+            {product.installments}
+          </p>
+        )}
       </div>
 
       {product.store && (

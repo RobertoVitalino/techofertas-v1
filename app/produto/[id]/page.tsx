@@ -25,6 +25,8 @@ export default async function ProductPage({
     notFound()
   }
 
+  const hasDiscount = product.discount && product.discount !== '-0%'
+
   return (
     <main className="site-light-theme min-h-screen">
       <Header />
@@ -58,16 +60,32 @@ export default async function ProductPage({
           </h1>
 
           <div className="mt-7 rounded-2xl border border-sky-200 bg-white/80 p-5 shadow-sm">
-            <p className="text-xs font-black uppercase tracking-[.14em] text-sky-700">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              {hasDiscount && (
+                <span className="text-base text-slate-400 line-through">
+                  {product.oldPrice}
+                </span>
+              )}
+              <span className="text-3xl font-black text-slate-900">
+                {product.price}
+              </span>
+              {hasDiscount && (
+                <span className="rounded bg-emerald-100 px-2 py-0.5 text-xs font-black text-emerald-700">
+                  {product.discount}
+                </span>
+              )}
+            </div>
+            {product.installments && (
+              <p className="mt-1 text-sm text-slate-600">{product.installments}</p>
+            )}
+
+            <p className="mt-4 text-xs font-black uppercase tracking-[.14em] text-sky-700">
               Consulte as condições atuais
             </p>
-            <h2 className="mt-2 text-xl font-black">
-              Preço atualizado no Mercado Livre
-            </h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Para garantir que você veja o valor correto, o preço, os descontos
-              e as condições de pagamento são apresentados diretamente no
-              anúncio original do produto.
+              O preço acima é o de quando o anúncio foi sincronizado. Para
+              garantir o valor exato, o desconto e as condições de pagamento
+              atuais, confira diretamente no anúncio original do produto.
             </p>
 
             <ul className="mt-4 space-y-2 text-sm text-slate-700">

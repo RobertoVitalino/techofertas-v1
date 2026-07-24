@@ -24,7 +24,7 @@ export default async function Home() {
         <SecurityCoursePromo />
         <News />
         <Categories />
-        <Products products={dbProducts} variant="featured" />
+        <Products products={dbProducts} variant="catalog" />
       </div>
 
       <footer id="contato" className="mt-12 scroll-mt-36 border-t border-white/10 bg-black/30">
