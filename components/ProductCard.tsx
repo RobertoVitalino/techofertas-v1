@@ -29,12 +29,12 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <article className="card-hover relative flex h-full flex-col rounded-xl border border-white/10 bg-gradient-to-br from-white/[.08] to-white/[.03] p-3">
       <a href={detailsUrl} aria-label={`Ver detalhes de ${product.title}`}>
-        <div className="grid h-36 place-items-center overflow-hidden rounded-lg bg-white/5">
+        <div className="grid h-40 place-items-center overflow-hidden rounded-lg bg-white/5">
           {isImagePath(product.image) ? (
             <img
               src={product.image}
               alt={product.title}
-              className="h-full w-full object-contain p-2"
+              className="h-full w-full object-cover"
             />
           ) : (
             <span className="text-5xl" role="img" aria-label={product.title}>
@@ -48,7 +48,7 @@ export function ProductCard({ product }: { product: Product }) {
         {product.category}
       </p>
 
-      <h3 className="mt-1 min-h-[52px] text-sm font-bold leading-[1.15rem] hover:text-brand-500">
+      <h3 className="mt-1 line-clamp-2 h-[2.3rem] text-sm font-bold leading-[1.15rem] hover:text-brand-500">
         <a href={detailsUrl}>{product.title}</a>
       </h3>
 
@@ -72,7 +72,7 @@ export function ProductCard({ product }: { product: Product }) {
           )}
         </div>
         {product.installments && (
-          <p className="mt-0.5 text-[11px] text-slate-600">
+          <p className="mt-0.5 truncate text-[11px] text-slate-600">
             {product.installments}
           </p>
         )}
@@ -93,7 +93,7 @@ export function ProductCard({ product }: { product: Product }) {
           rel="sponsored noopener noreferrer"
           className="flex items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-3 py-2.5 text-center text-xs font-bold transition hover:bg-brand-500"
         >
-          Ver preço atualizado <ExternalLink size={14} />
+          Comprar <ExternalLink size={14} />
         </TrackedLink>
       </div>
     </article>
