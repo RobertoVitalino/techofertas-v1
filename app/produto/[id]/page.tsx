@@ -145,7 +145,7 @@ export default async function ProductPage({
               href={product.affiliate}
               target="_blank"
               rel="sponsored noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-4 text-center font-black hover:bg-brand-500"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-4 text-center font-black text-white hover:bg-brand-500"
             >
               Ver preço atualizado <ExternalLink size={18} />
             </a>
