@@ -1,6 +1,9 @@
+import { CertificateCta } from '@/components/CertificateCta'
 import { CourseProgress } from '@/components/CourseProgress'
 import { Header } from '@/components/Header'
+import { getCertificateStatus, isCourseFullyCompleted } from '@/lib/certificates'
 import { getCompletedLessonSlugs } from '@/lib/course-progress'
+import { getCertificatePriceCents } from '@/lib/mercadopago'
 import {
   securityCourseLessons,
   securityCourseModules,
@@ -37,6 +40,16 @@ export default async function SecurityCoursePage() {
   const lessonSlugs = securityCourseLessons.map((lesson) => lesson.slug)
   const firstLesson = securityCourseLessons[0]
   const firstLessonHref = `/curso-seguranca-da-informacao/aulas/${firstLesson.slug}`
+  const eligibleForCertificate = customer
+    ? await isCourseFullyCompleted(customer.id)
+    : false
+  const certificateStatus = customer
+    ? await getCertificateStatus(customer.id)
+    : ({ state: 'none' } as const)
+  const certificatePriceLabel = (getCertificatePriceCents() / 100).toLocaleString(
+    'pt-BR',
+    { minimumFractionDigits: 2 },
+  )
 
   return (
     <main className="site-light-theme min-h-screen">
@@ -114,10 +127,22 @@ export default async function SecurityCoursePage() {
         </section>
 
         {customer ? (
-          <CourseProgress
-            initialCompleted={completedLessons}
-            lessonSlugs={lessonSlugs}
-          />
+          <>
+            <CourseProgress
+              initialCompleted={completedLessons}
+              lessonSlugs={lessonSlugs}
+            />
+            <CertificateCta
+              eligible={eligibleForCertificate}
+              priceLabel={certificatePriceLabel}
+              status={certificateStatus.state}
+              verificationCode={
+                certificateStatus.state === 'issued'
+                  ? certificateStatus.verificationCode
+                  : undefined
+              }
+            />
+          </>
         ) : (
           <section className="flex flex-col gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-3">
@@ -238,8 +263,10 @@ export default async function SecurityCoursePage() {
             <h2 className="text-xl font-black">Aviso importante</h2>
             <p className="mt-2 text-sm leading-7 text-slate-700">
               Este é um curso livre de caráter educacional. Ele não substitui
-              análise técnica, jurídica ou resposta profissional a incidentes. Não
-              concede certificação oficial ou reconhecimento acadêmico.
+              análise técnica, jurídica ou resposta profissional a incidentes.
+              O certificado de conclusão, quando emitido, atesta apenas a
+              conclusão do conteúdo do curso — não é um reconhecimento
+              acadêmico oficial.
             </p>
           </div>
         </section>

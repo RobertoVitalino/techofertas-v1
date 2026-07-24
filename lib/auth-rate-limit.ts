@@ -5,7 +5,7 @@ import { prisma } from '@/lib/prisma'
 import { headers } from 'next/headers'
 
 export type AuthRateLimitConfig = {
-  scope: 'admin-login' | 'customer-login' | 'registration'
+  scope: 'admin-login' | 'customer-login' | 'registration' | 'mp-webhook'
   subject: string
   ip: string
   limit: number
