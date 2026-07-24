@@ -60,6 +60,17 @@ Acesse `http://localhost:3000`.
 - `npm run db:seed`: sincroniza os produtos iniciais
 - `npm run db:studio`: abre o Prisma Studio
 - `npm run bestsellers:apply`: lê `bestsellers-links.txt` e substitui o catálogo pelos 20 produtos informados (use `--dry-run` para simular)
+- `npm run news:update`: busca as 5 notícias mais lidas do dia no Olhar Digital e atualiza a seção "Notícias em destaque"
+
+## Notícias em destaque
+
+Um workflow do GitHub Actions (`.github/workflows/update-news.yml`) roda
+todos os dias às 9h (horário de MS) e busca as 5 matérias mais lidas do dia
+no Olhar Digital, atualizando automaticamente o bloco `featuredNews` em
+`components/Sections.tsx` (entre os marcadores `AUTO-NEWS-START`/`AUTO-NEWS-END`)
+e enviando o commit direto para o repositório, o que dispara um novo deploy
+na Vercel. Não precisa de nenhuma variável de ambiente além do `DATABASE_URL`
+já configurado (necessário só para o `prisma generate`, sem acessar o banco).
 
 ## Atualização dos mais vendidos
 

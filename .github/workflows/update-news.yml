@@ -1,0 +1,38 @@
+name: Atualizar notícias em destaque
+
+on:
+  schedule:
+    # 13:00 UTC = 09:00 em Mato Grosso do Sul (UTC-4), todos os dias.
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - run: npm run news:update
+
+      - name: Commit e push se houver mudanças
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- components/Sections.tsx; then
+            echo "Notícias já estavam atualizadas."
+          else
+            git add components/Sections.tsx
+            git commit -m "Atualiza notícias em destaque automaticamente"
+            git push
+          fi

@@ -368,61 +368,60 @@ export function Services() {
   )
 }
 
+// AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
     title: 'Anthropic lança Claude Opus 5, IA com foco em custo-benefício e tarefas do dia a dia',
     category: 'Inteligência Artificial',
-    summary:
-      'A Anthropic anunciou, nesta sexta-feira (24), o lançamento do Claude Opus 5, seu mais novo modelo de inteligência artificial (IA).',
+    summary: 'A Anthropic anunciou, nesta sexta-feira (24), o lançamento do Claude Opus 5, seu mais novo modelo de inteligência artificial (IA)',
     image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/anthropic.jpg',
     href: 'https://olhardigital.com.br/2026/07/24/inteligencia-artificial/anthropic-lanca-claude-opus-5-ia-com-foco-em-custo-beneficio-e-tarefas-do-dia-a-dia/',
   },
   {
     title: 'Cientistas criam aparelho portátil que detecta queima de gordura no corpo',
     category: 'Ciência e Espaço',
-    summary:
-      'Estudo mostra avanço no monitoramento corporal e levanta novas possibilidades para entender como o organismo transforma energia.',
-    image:
-      'https://olhardigital.com.br/wp-content/uploads/2026/07/dispositivo-movel-portatil-detecta-se-o-corpo-esta-usando-a-gordura-como-fonte-de-energia-scaled.jpg',
+    summary: 'Estudo mostra avanço no monitoramento corporal e levanta novas possibilidades para entender como o organismo transforma energia',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/dispositivo-movel-portatil-detecta-se-o-corpo-esta-usando-a-gordura-como-fonte-de-energia-scaled.jpg',
     href: 'https://olhardigital.com.br/2026/07/24/ciencia-e-espaco/cientistas-criam-aparelho-portatil-que-detecta-queima-de-gordura-no-corpo/',
   },
   {
     title: 'Liga GG abre inscrições para qualificatória da VPL e oferece caminho para o competitivo de VALORANT',
     category: 'Games e Consoles',
-    summary:
-      'Liga GG está com inscrições abertas para a qualificatória da VPL, torneio que garante vaga no semiprofissional de VALORANT.',
-    image:
-      'https://olhardigital.com.br/wp-content/uploads/2026/07/Captura-de-tela-2026-07-24-142646-1.png',
+    summary: 'Liga GG está com inscrições abertas para a qualificatória da VPL, torneio que garante vaga no semiprofissional de VALORANT. Saiba como participar.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/Captura-de-tela-2026-07-24-142646-1.png',
     href: 'https://olhardigital.com.br/2026/07/24/games-e-consoles/liga-gg-abre-inscricoes-para-a-vpl/',
   },
   {
     title: 'Qual é o máximo que um ser humano pode viver?',
     category: 'Ciência e Espaço',
-    summary:
-      'Estudo revela que mutações no DNA podem limitar a vida humana mesmo sem doenças, com estimativa de longevidade entre 146 e 194 anos.',
-    image:
-      'https://olhardigital.com.br/wp-content/uploads/2026/05/imagem_2026-05-20T01-59-39.jpg',
+    summary: 'Estudo revela que mutações no DNA podem limitar a vida humana mesmo sem doenças, com uma estimativa de longevidade entre 146 e 194 anos.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/05/imagem_2026-05-20T01-59-39.jpg',
     href: 'https://olhardigital.com.br/2026/07/24/ciencia-e-espaco/qual-e-o-maximo-que-um-ser-humano-pode-viver/',
   },
   {
     title: 'Entenda: Como funciona um campeonato de eSports',
     category: 'Games e Consoles',
-    summary:
-      'Esportes eletrônicos, ou eSports, são competições profissionais de games. Veja como funcionam e o que as diferencia dos jogos tradicionais.',
-    image:
-      'https://olhardigital.com.br/wp-content/uploads/2026/07/esport-que-sport-e-esse-202003181234.jpg',
+    summary: 'Esportes eletrônicos, ou eSports, são competições profissionais de games. Veja como funcionam e o que as diferencia dos jogos tradicionais.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/esport-que-sport-e-esse-202003181234.jpg',
     href: 'https://olhardigital.com.br/2026/07/24/games-e-consoles/entenda-como-funciona-um-campeonato-de-esports/',
   },
 ]
+// AUTO-NEWS-END
 
 export function News() {
+  const today = new Intl.DateTimeFormat('pt-BR', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date())
+
   return (
     <section id="noticias" className="scroll-mt-36">
       <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h2 className="text-2xl font-black">Notícias em destaque</h2>
           <p className="mt-1 text-sm text-slate-400">
-            As cinco notícias mais lidas no Olhar Digital em 24 de julho de 2026.
+            As cinco notícias mais lidas no Olhar Digital em {today}.
           </p>
         </div>
 
