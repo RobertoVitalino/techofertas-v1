@@ -115,7 +115,7 @@ export default function CoursesHubPage() {
                 </div>
 
                 <a
-                  className={`mt-6 inline-flex items-center justify-center gap-2 rounded-xl ${accent.button} px-6 py-3 text-sm font-black text-white transition`}
+                  className={`mt-auto pt-6 inline-flex items-center justify-center gap-2 rounded-xl ${accent.button} px-6 py-3 text-sm font-black text-white transition`}
                   href={config.landingHref}
                 >
                   Conhecer o curso <ArrowRight size={18} />
