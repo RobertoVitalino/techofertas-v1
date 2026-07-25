@@ -35,6 +35,7 @@ export function ProductCard({ product }: { product: Product }) {
               src={product.image}
               alt={product.title}
               className="h-full w-full object-cover"
+              loading="lazy"
             />
           ) : (
             <span className="text-5xl" role="img" aria-label={product.title}>
