@@ -1,12 +1,10 @@
 import { Header } from '@/components/Header'
 import { getCertificateByVerificationCode } from '@/lib/certificates'
+import { getCourseConfig } from '@/lib/courses-config'
 import { CheckCircle2, XCircle } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
-
-const COURSE_TITLE =
-  'Segurança da Informação: do Zero à Proteção na Prática'
 
 export const metadata: Metadata = {
   title: 'Verificar certificado',
@@ -27,6 +25,9 @@ export default async function VerifyCertificatePage({
 }) {
   const { code } = await params
   const certificate = await getCertificateByVerificationCode(code)
+  const courseTitle = certificate
+    ? getCourseConfig(certificate.courseSlug).title
+    : null
 
   return (
     <main className="site-light-theme min-h-screen">
@@ -56,7 +57,7 @@ export default async function VerifyCertificatePage({
                     Curso
                   </dt>
                   <dd className="mt-1 font-bold text-slate-900">
-                    {COURSE_TITLE}
+                    {courseTitle}
                   </dd>
                 </div>
                 <div className="grid grid-cols-2 gap-3">

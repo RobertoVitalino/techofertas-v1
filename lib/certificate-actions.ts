@@ -1,20 +1,23 @@
 'use server'
 
-import { getCertificateStatus, isCourseFullyCompleted } from '@/lib/certificates'
 import {
-  createCertificatePreference,
-  getCertificatePriceCents,
-} from '@/lib/mercadopago'
+  getCertificateStatus,
+  hasPassedFinalExam,
+  isCourseFullyCompleted,
+} from '@/lib/certificates'
+import { getCourseConfig } from '@/lib/courses-config'
+import { createCertificatePreference } from '@/lib/mercadopago'
 import { prisma } from '@/lib/prisma'
 import { requireCustomer } from '@/lib/require-customer'
 
-export async function createCertificateCheckoutAction(): Promise<
-  | { error: string }
-  | { checkoutUrl: string }
-> {
-  const customer = await requireCustomer('/curso-seguranca-da-informacao')
+export async function createCertificateCheckoutAction(
+  courseSlug: string,
+  lessonSlugs: string[],
+): Promise<{ error: string } | { checkoutUrl: string }> {
+  const config = getCourseConfig(courseSlug)
+  const customer = await requireCustomer(config.landingHref)
 
-  const completed = await isCourseFullyCompleted(customer.id)
+  const completed = await isCourseFullyCompleted(customer.id, lessonSlugs)
 
   if (!completed) {
     return {
@@ -22,7 +25,17 @@ export async function createCertificateCheckoutAction(): Promise<
     }
   }
 
-  const status = await getCertificateStatus(customer.id)
+  if (config.requiresFinalExam) {
+    const passedExam = await hasPassedFinalExam(customer.id, courseSlug)
+
+    if (!passedExam) {
+      return {
+        error: 'Você precisa passar na prova final antes de emitir o certificado.',
+      }
+    }
+  }
+
+  const status = await getCertificateStatus(customer.id, courseSlug)
 
   if (status.state === 'issued') {
     return { error: 'Você já possui um certificado emitido.' }
@@ -37,8 +50,9 @@ export async function createCertificateCheckoutAction(): Promise<
   const purchase = await prisma.certificatePurchase.create({
     data: {
       customerId: customer.id,
+      courseSlug,
       externalReference,
-      amountCents: getCertificatePriceCents(),
+      amountCents: config.priceCents,
     },
   })
 
@@ -47,6 +61,9 @@ export async function createCertificateCheckoutAction(): Promise<
       externalReference,
       payerEmail: customer.email,
       payerName: customer.name,
+      title: `Certificado - ${config.title}`,
+      amountCents: config.priceCents,
+      returnPath: `${config.landingHref}/certificado`,
     })
 
     await prisma.certificatePurchase.update({

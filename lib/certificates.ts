@@ -2,12 +2,22 @@ import 'server-only'
 
 import { getCompletedLessonSlugs } from '@/lib/course-progress'
 import { prisma } from '@/lib/prisma'
-import { securityCourseLessons } from '@/lib/security-course'
 
-export async function isCourseFullyCompleted(customerId: number) {
+export async function isCourseFullyCompleted(
+  customerId: number,
+  lessonSlugs: string[],
+) {
   const completedSlugs = new Set(await getCompletedLessonSlugs(customerId))
 
-  return securityCourseLessons.every((lesson) => completedSlugs.has(lesson.slug))
+  return lessonSlugs.every((slug) => completedSlugs.has(slug))
+}
+
+export async function hasPassedFinalExam(customerId: number, courseSlug: string) {
+  const attempt = await prisma.examAttempt.findFirst({
+    where: { customerId, courseSlug, passed: true },
+  })
+
+  return attempt !== null
 }
 
 export type CertificateStatus =
@@ -17,9 +27,10 @@ export type CertificateStatus =
 
 export async function getCertificateStatus(
   customerId: number,
+  courseSlug: string,
 ): Promise<CertificateStatus> {
   const certificate = await prisma.certificate.findFirst({
-    where: { customerId },
+    where: { customerId, courseSlug },
     select: { verificationCode: true },
   })
 
@@ -28,7 +39,7 @@ export async function getCertificateStatus(
   }
 
   const pendingPurchase = await prisma.certificatePurchase.findFirst({
-    where: { customerId, status: 'pending' },
+    where: { customerId, courseSlug, status: 'pending' },
     orderBy: { createdAt: 'desc' },
     select: { checkoutUrl: true },
   })

@@ -1,7 +1,6 @@
 import 'server-only'
 
 const MERCADOPAGO_API = 'https://api.mercadopago.com'
-const DEFAULT_CERTIFICATE_PRICE_CENTS = 2990
 
 function getAccessToken() {
   const token = process.env.MERCADOPAGO_ACCESS_TOKEN
@@ -27,22 +26,20 @@ function getSiteUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 }
 
-export function getCertificatePriceCents() {
-  const raw = Number(process.env.CERTIFICATE_PRICE_CENTS)
-
-  return Number.isSafeInteger(raw) && raw > 0
-    ? raw
-    : DEFAULT_CERTIFICATE_PRICE_CENTS
-}
-
 export async function createCertificatePreference({
   externalReference,
   payerEmail,
   payerName,
+  title,
+  amountCents,
+  returnPath,
 }: {
   externalReference: string
   payerEmail: string
   payerName: string
+  title: string
+  amountCents: number
+  returnPath: string
 }) {
   const siteUrl = getSiteUrl()
 
@@ -55,18 +52,18 @@ export async function createCertificatePreference({
     body: JSON.stringify({
       items: [
         {
-          title: 'Certificado - Curso de Segurança da Informação',
+          title,
           quantity: 1,
           currency_id: 'BRL',
-          unit_price: getCertificatePriceCents() / 100,
+          unit_price: amountCents / 100,
         },
       ],
       payer: { email: payerEmail, name: payerName },
       external_reference: externalReference,
       back_urls: {
-        success: `${siteUrl}/curso-seguranca-da-informacao/certificado?status=success`,
-        pending: `${siteUrl}/curso-seguranca-da-informacao/certificado?status=pending`,
-        failure: `${siteUrl}/curso-seguranca-da-informacao/certificado?status=failure`,
+        success: `${siteUrl}${returnPath}?status=success`,
+        pending: `${siteUrl}${returnPath}?status=pending`,
+        failure: `${siteUrl}${returnPath}?status=failure`,
       },
       auto_return: 'approved',
       notification_url: `${siteUrl}/api/mercadopago/webhook`,

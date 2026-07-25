@@ -1,18 +1,30 @@
 'use client'
 
 import { createCertificateCheckoutAction } from '@/lib/certificate-actions'
-import { Award, Download, Loader2 } from 'lucide-react'
+import { Award, Download, GraduationCap, Loader2 } from 'lucide-react'
 import { useState, useTransition } from 'react'
 
 type Props = {
-  eligible: boolean
+  courseSlug: string
+  lessonSlugs: string[]
+  totalLessons: number
+  lessonsComplete: boolean
+  examRequired: boolean
+  examPassed: boolean
+  examHref?: string
   status: 'none' | 'pending' | 'issued'
   verificationCode?: string
   priceLabel: string
 }
 
 export function CertificateCta({
-  eligible,
+  courseSlug,
+  lessonSlugs,
+  totalLessons,
+  lessonsComplete,
+  examRequired,
+  examPassed,
+  examHref,
   status,
   verificationCode,
   priceLabel,
@@ -23,7 +35,7 @@ export function CertificateCta({
   function handleCheckout() {
     setError(null)
     startTransition(async () => {
-      const result = await createCertificateCheckoutAction()
+      const result = await createCertificateCheckoutAction(courseSlug, lessonSlugs)
 
       if ('error' in result) {
         setError(result.error)
@@ -34,7 +46,7 @@ export function CertificateCta({
     })
   }
 
-  if (!eligible) {
+  if (!lessonsComplete) {
     return (
       <section className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
         <div className="flex items-start gap-4">
@@ -46,9 +58,38 @@ export function CertificateCta({
               Certificado de conclusão
             </h2>
             <p className="mt-1 text-sm leading-6 text-slate-600">
-              Conclua as <strong>31 aulas</strong> do curso para liberar a
-              emissão do certificado (R$ {priceLabel}).
+              Conclua as <strong>{totalLessons} aulas</strong> do curso para
+              liberar a emissão do certificado (R$ {priceLabel}).
             </p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  if (examRequired && !examPassed) {
+    return (
+      <section className="rounded-3xl border border-amber-200 bg-amber-50 p-6">
+        <div className="flex items-start gap-4">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-amber-600 text-white">
+            <GraduationCap size={22} />
+          </span>
+          <div>
+            <h2 className="text-lg font-black text-amber-950">
+              Prova final pendente
+            </h2>
+            <p className="mt-1 text-sm leading-6 text-amber-900/80">
+              Você concluiu todas as aulas! Agora faça a prova final (nota
+              mínima 70%) para liberar a emissão do certificado (R$ {priceLabel}).
+            </p>
+            {examHref ? (
+              <a
+                className="mt-4 inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-3 text-sm font-black text-white transition hover:bg-amber-700"
+                href={examHref}
+              >
+                <GraduationCap size={16} /> Fazer a prova final
+              </a>
+            ) : null}
           </div>
         </div>
       </section>

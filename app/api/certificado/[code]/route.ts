@@ -1,9 +1,7 @@
 import { getCertificateForCustomer } from '@/lib/certificates'
+import { getCourseConfig } from '@/lib/courses-config'
 import { requireCustomer } from '@/lib/require-customer'
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib'
-
-const COURSE_TITLE =
-  'Segurança da Informação: do Zero à Proteção na Prática'
 
 function formatDate(date: Date) {
   return new Intl.DateTimeFormat('pt-BR', {
@@ -26,6 +24,7 @@ export async function GET(
     return new Response('Certificado não encontrado.', { status: 404 })
   }
 
+  const courseConfig = getCourseConfig(certificate.courseSlug)
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
   const verificationUrl = `${siteUrl}/verificar-certificado/${certificate.verificationCode}`
 
@@ -87,7 +86,7 @@ export async function GET(
     color: muted,
   })
 
-  page.drawText(COURSE_TITLE, {
+  page.drawText(courseConfig.title, {
     x: 60,
     y: 290,
     size: 18,

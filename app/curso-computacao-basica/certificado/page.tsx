@@ -9,16 +9,16 @@ export const metadata = {
   title: 'Certificado do curso',
 }
 
-export default async function CertificateReturnPage({
+export default async function ComputingCertificateReturnPage({
   searchParams,
 }: {
   searchParams: Promise<{ status?: string }>
 }) {
   const { status: statusParam } = await searchParams
-  const customer = await requireCustomer('/curso-seguranca-da-informacao/certificado')
+  const customer = await requireCustomer('/curso-computacao-basica/certificado')
   const certificateStatus = await getCertificateStatus(
     customer.id,
-    'seguranca-da-informacao',
+    'computacao-basica',
   )
 
   return (
@@ -26,7 +26,7 @@ export default async function CertificateReturnPage({
       <Header />
 
       <div className="mx-auto max-w-2xl px-4 py-16">
-        <section className="rounded-3xl border border-sky-200 bg-white/85 p-8 text-center shadow-sm">
+        <section className="rounded-3xl border border-emerald-200 bg-white/85 p-8 text-center shadow-sm">
           {certificateStatus.state === 'issued' ? (
             <>
               <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-emerald-600 text-white">
@@ -60,10 +60,10 @@ export default async function CertificateReturnPage({
             </>
           ) : (
             <>
-              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-sky-700 text-white">
+              <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-emerald-700 text-white">
                 <Clock3 size={28} />
               </span>
-              <h1 className="mt-5 text-2xl font-black text-sky-950">
+              <h1 className="mt-5 text-2xl font-black text-emerald-950">
                 Processando pagamento
               </h1>
               <p className="mt-2 text-sm leading-6 text-slate-600">
@@ -75,8 +75,8 @@ export default async function CertificateReturnPage({
           )}
 
           <a
-            className="mt-8 inline-block text-sm font-bold text-sky-700 hover:text-sky-900"
-            href="/curso-seguranca-da-informacao"
+            className="mt-8 inline-block text-sm font-bold text-emerald-700 hover:text-emerald-900"
+            href="/curso-computacao-basica"
           >
             Voltar para o curso
           </a>

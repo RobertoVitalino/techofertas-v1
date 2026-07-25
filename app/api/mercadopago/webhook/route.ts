@@ -4,6 +4,7 @@ import {
   recordAuthAttempt,
   writeSecurityEvent,
 } from '@/lib/auth-rate-limit'
+import { getCourseConfig } from '@/lib/courses-config'
 import {
   fetchMercadoPagoPayment,
   verifyMercadoPagoWebhookSignature,
@@ -112,11 +113,15 @@ export async function POST(request: Request) {
       })
 
       if (!existingCertificate) {
+        const config = getCourseConfig(purchase.courseSlug)
+
         await prisma.certificate.create({
           data: {
             customerId: purchase.customerId,
             purchaseId: purchase.id,
             verificationCode: generateVerificationCode(),
+            courseSlug: config.slug,
+            hoursTotal: config.hoursTotal,
           },
         })
       }

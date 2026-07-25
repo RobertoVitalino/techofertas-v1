@@ -1,14 +1,19 @@
-import { getCertificateStatus, isCourseFullyCompleted } from '@/lib/certificates'
+import {
+  getCertificateStatus,
+  hasPassedFinalExam,
+  isCourseFullyCompleted,
+} from '@/lib/certificates'
+import { computingCourseLessons } from '@/lib/computing-course'
+import { getCourseConfig } from '@/lib/courses-config'
 import {
   CUSTOMER_SESSION_COOKIE,
   verifyCustomerPassword,
 } from '@/lib/customer-auth'
 import { revokeCustomerSession } from '@/lib/customer-session'
-import { getCertificatePriceCents } from '@/lib/mercadopago'
 import { prisma } from '@/lib/prisma'
+import { securityCourseLessons } from '@/lib/security-course'
 import { requireCustomer } from '@/lib/require-customer'
 import {
-  Award,
   ArrowRight,
   Bell,
   BookOpenCheck,
@@ -74,14 +79,38 @@ export default async function CustomerAccountPage({
   const query = await searchParams
   const customer = await requireCustomer()
   const firstName = customer.name.split(' ')[0] || customer.name
-  const [eligibleForCertificate, certificateStatus] = await Promise.all([
-    isCourseFullyCompleted(customer.id),
-    getCertificateStatus(customer.id),
-  ])
-  const certificatePriceLabel = (getCertificatePriceCents() / 100).toLocaleString(
-    'pt-BR',
-    { minimumFractionDigits: 2 },
+
+  const coursesForAccount = [
+    {
+      name: 'Curso de Segurança da Informação',
+      slug: 'seguranca-da-informacao',
+      lessonSlugs: securityCourseLessons.map((lesson) => lesson.slug),
+    },
+    {
+      name: 'Curso de Computação Básica',
+      slug: 'computacao-basica',
+      lessonSlugs: computingCourseLessons.map((lesson) => lesson.slug),
+    },
+  ]
+
+  const courseCards = await Promise.all(
+    coursesForAccount.map(async (course) => {
+      const config = getCourseConfig(course.slug)
+      const [lessonsComplete, certificateStatus, examPassed] = await Promise.all([
+        isCourseFullyCompleted(customer.id, course.lessonSlugs),
+        getCertificateStatus(customer.id, course.slug),
+        config.requiresFinalExam
+          ? hasPassedFinalExam(customer.id, course.slug)
+          : Promise.resolve(true),
+      ])
+      const priceLabel = (config.priceCents / 100).toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+      })
+
+      return { ...course, config, lessonsComplete, certificateStatus, examPassed, priceLabel }
+    }),
   )
+
   const initials = customer.name
     .split(' ')
     .filter(Boolean)
@@ -146,31 +175,43 @@ export default async function CustomerAccountPage({
           </section>
 
           <div className="grid gap-6">
-            <section className="rounded-3xl border border-sky-400/25 bg-sky-400/10 p-6">
-              <div className="flex items-start gap-4"><span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sky-500/20 text-sky-300"><BookOpenCheck size={22} /></span><div><h2 className="text-lg font-black">Curso de Segurança da Informação</h2><p className="mt-1 text-sm leading-relaxed text-slate-400">Acesse as aulas, atividades práticas e revisões usando sua conta.</p><a href="/curso-seguranca-da-informacao" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-sky-300 hover:text-white">Continuar o curso <ArrowRight size={16} /></a></div></div>
-            </section>
-            <section className="rounded-3xl border border-violet-400/25 bg-violet-400/10 p-6">
-              <div className="flex items-start gap-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-violet-500/20 text-violet-300"><Award size={22} /></span>
-                <div>
-                  <h2 className="text-lg font-black">Meu Certificado</h2>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-400">
-                    {certificateStatus.state === 'issued'
-                      ? 'Seu certificado de conclusão já foi emitido.'
-                      : eligibleForCertificate
-                        ? `Você concluiu o curso! Emita seu certificado por R$ ${certificatePriceLabel}.`
-                        : 'Conclua todas as aulas do curso para liberar o certificado.'}
-                  </p>
-                  {certificateStatus.state === 'issued' ? (
-                    <a href={`/api/certificado/${certificateStatus.verificationCode}`} className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-violet-300 hover:text-white">Baixar certificado <Download size={16} /></a>
-                  ) : (
-                    <a href="/curso-seguranca-da-informacao" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-violet-300 hover:text-white">
-                      {eligibleForCertificate ? 'Emitir certificado' : 'Ir para o curso'} <ArrowRight size={16} />
-                    </a>
-                  )}
+            {courseCards.map((course) => (
+              <section
+                className="rounded-3xl border border-sky-400/25 bg-sky-400/10 p-6"
+                key={course.slug}
+              >
+                <div className="flex items-start gap-4">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sky-500/20 text-sky-300"><BookOpenCheck size={22} /></span>
+                  <div>
+                    <h2 className="text-lg font-black">{course.name}</h2>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-400">Acesse as aulas, atividades práticas e revisões usando sua conta.</p>
+                    <a href={course.config.landingHref} className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-sky-300 hover:text-white">Continuar o curso <ArrowRight size={16} /></a>
+
+                    <div className="mt-4 border-t border-white/10 pt-4">
+                      <p className="text-xs font-bold uppercase tracking-wider text-violet-300">Certificado</p>
+                      <p className="mt-1 text-sm leading-relaxed text-slate-400">
+                        {course.certificateStatus.state === 'issued'
+                          ? 'Seu certificado de conclusão já foi emitido.'
+                          : !course.lessonsComplete
+                            ? 'Conclua todas as aulas do curso para liberar o certificado.'
+                            : course.config.requiresFinalExam && !course.examPassed
+                              ? 'Aulas concluídas! Falta passar na prova final.'
+                              : `Você concluiu o curso! Emita seu certificado por R$ ${course.priceLabel}.`}
+                      </p>
+                      {course.certificateStatus.state === 'issued' ? (
+                        <a href={`/api/certificado/${course.certificateStatus.verificationCode}`} className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-violet-300 hover:text-white">Baixar certificado <Download size={16} /></a>
+                      ) : course.lessonsComplete && course.config.requiresFinalExam && !course.examPassed ? (
+                        <a href={course.config.examHref} className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-violet-300 hover:text-white">Fazer a prova final <ArrowRight size={16} /></a>
+                      ) : (
+                        <a href={course.config.landingHref} className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-violet-300 hover:text-white">
+                          {course.lessonsComplete ? 'Emitir certificado' : 'Ir para o curso'} <ArrowRight size={16} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            ))}
             <section className="rounded-3xl border border-white/10 bg-white/[.04] p-6">
               <div className="flex items-start gap-4"><span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-rose-500/15 text-rose-300"><Heart size={22} /></span><div><h2 className="text-lg font-black">Favoritos</h2><p className="mt-1 text-sm leading-relaxed text-slate-400">Em breve você poderá salvar as ofertas que mais gostou.</p></div></div>
             </section>

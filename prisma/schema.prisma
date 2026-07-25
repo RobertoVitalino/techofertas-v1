@@ -37,6 +37,7 @@ model Customer {
   lessonProgress       LessonProgress[]
   certificatePurchases CertificatePurchase[]
   certificates         Certificate[]
+  examAttempts         ExamAttempt[]
 }
 
 model LessonProgress {
@@ -98,6 +99,7 @@ model SecurityEvent {
 model CertificatePurchase {
   id                Int          @id @default(autoincrement())
   customerId        Int
+  courseSlug        String       @default("seguranca-da-informacao")
   externalReference String       @unique
   status            String       @default("pending")
   amountCents       Int
@@ -125,4 +127,17 @@ model Certificate {
   purchase         CertificatePurchase @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
 
   @@index([customerId])
+}
+
+model ExamAttempt {
+  id             Int      @id @default(autoincrement())
+  customerId     Int
+  courseSlug     String
+  score          Int
+  totalQuestions Int
+  passed         Boolean
+  completedAt    DateTime @default(now())
+  customer       Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([customerId, courseSlug])
 }

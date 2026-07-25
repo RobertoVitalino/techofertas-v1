@@ -1,15 +1,15 @@
 import { CertificateCta } from '@/components/CertificateCta'
 import { CourseProgress } from '@/components/CourseProgress'
 import { Header } from '@/components/Header'
-import { getCertificateStatus, isCourseFullyCompleted } from '@/lib/certificates'
+import { getCertificateStatus, hasPassedFinalExam, isCourseFullyCompleted } from '@/lib/certificates'
+import {
+  computingCourseLessons,
+  computingCourseModules,
+  computingCourseSources,
+  computingCourseStats,
+} from '@/lib/computing-course'
 import { getCompletedLessonSlugs } from '@/lib/course-progress'
 import { getCourseConfig } from '@/lib/courses-config'
-import {
-  securityCourseLessons,
-  securityCourseModules,
-  securityCourseSources,
-  securityCourseStats,
-} from '@/lib/security-course'
 import { getCurrentCustomer } from '@/lib/require-customer'
 import {
   ArrowRight,
@@ -18,34 +18,37 @@ import {
   CheckCircle2,
   Clock3,
   ExternalLink,
+  GraduationCap,
   LockKeyhole,
-  ShieldCheck,
-  Siren,
+  Laptop,
   Target,
   UserPlus,
 } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
+const COURSE_SLUG = 'computacao-basica'
+
 export const metadata = {
-  title: 'Curso de Segurança da Informação',
+  title: 'Curso de Computação Básica',
   description:
-    `Curso gratuito de segurança da informação com ${securityCourseStats.modules} módulos, ${securityCourseStats.lessons} aulas, atividades práticas e revisão de aprendizagem.`,
+    `Curso gratuito de computação básica com ${computingCourseStats.modules} módulos, ${computingCourseStats.lessons} aulas em vídeo, atividades práticas e prova final.`,
 }
 
-const COURSE_SLUG = 'seguranca-da-informacao'
-
-export default async function SecurityCoursePage() {
+export default async function ComputingCoursePage() {
   const customer = await getCurrentCustomer()
   const completedLessons = customer
     ? await getCompletedLessonSlugs(customer.id)
     : []
-  const lessonSlugs = securityCourseLessons.map((lesson) => lesson.slug)
-  const firstLesson = securityCourseLessons[0]
-  const firstLessonHref = `/curso-seguranca-da-informacao/aulas/${firstLesson.slug}`
+  const lessonSlugs = computingCourseLessons.map((lesson) => lesson.slug)
+  const firstLesson = computingCourseLessons[0]
+  const firstLessonHref = `/curso-computacao-basica/aulas/${firstLesson.slug}`
   const courseConfig = getCourseConfig(COURSE_SLUG)
-  const eligibleForCertificate = customer
+  const lessonsComplete = customer
     ? await isCourseFullyCompleted(customer.id, lessonSlugs)
+    : false
+  const examPassed = customer
+    ? await hasPassedFinalExam(customer.id, COURSE_SLUG)
     : false
   const certificateStatus = customer
     ? await getCertificateStatus(customer.id, COURSE_SLUG)
@@ -60,42 +63,45 @@ export default async function SecurityCoursePage() {
       <Header />
 
       <div className="mx-auto max-w-7xl space-y-10 px-4 py-8">
-        <section className="overflow-hidden rounded-3xl border border-sky-200 bg-gradient-to-br from-slate-950 via-indigo-950 to-sky-900 p-7 text-white shadow-2xl shadow-sky-950/20 sm:p-10">
+        <section className="overflow-hidden rounded-3xl border border-emerald-200 bg-gradient-to-br from-slate-950 via-emerald-950 to-teal-900 p-7 text-white shadow-2xl shadow-emerald-950/20 sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.25fr_.75fr] lg:items-center">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-sky-950/80 px-3 py-1 text-xs font-black uppercase tracking-[.16em] text-cyan-100 shadow-sm shadow-black/20">
-                <ShieldCheck size={16} /> Curso gratuito com cadastro
+              <span className="inline-flex items-center gap-2 rounded-full border border-teal-300/30 bg-emerald-950/80 px-3 py-1 text-xs font-black uppercase tracking-[.16em] text-teal-100 shadow-sm shadow-black/20">
+                <Laptop size={16} /> Curso gratuito com cadastro
               </span>
               <h1 className="mt-5 max-w-4xl text-3xl font-black leading-tight sm:text-5xl">
-                Segurança da Informação: do Zero à Proteção na Prática
+                Computação Básica: do Zero ao Dia a Dia Digital
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-8 text-slate-200 sm:text-lg">
-                Uma formação introdutória e prática para proteger pessoas,
-                computadores, pequenos negócios e dados. Aprenda no seu ritmo com
-                atividades aplicáveis, perguntas de revisão e referências oficiais.
+                Uma formação introdutória e prática para usar o computador com
+                confiança: sistema operacional, arquivos, internet, e-mail,
+                Word, Excel, PowerPoint e muito mais. Com vídeos, atividades e
+                prova final.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">
-                <span className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/30 bg-sky-950/80 px-4 py-2 shadow-sm shadow-black/20">
-                  <BookOpenCheck size={18} /> {securityCourseStats.modules} módulos ·{' '}
-                  {securityCourseStats.lessons} aulas
+                <span className="inline-flex items-center gap-2 rounded-xl border border-teal-300/30 bg-emerald-950/80 px-4 py-2 shadow-sm shadow-black/20">
+                  <BookOpenCheck size={18} /> {computingCourseStats.modules} módulos ·{' '}
+                  {computingCourseStats.lessons} aulas
                 </span>
-                <span className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/30 bg-sky-950/80 px-4 py-2 shadow-sm shadow-black/20">
+                <span className="inline-flex items-center gap-2 rounded-xl border border-teal-300/30 bg-emerald-950/80 px-4 py-2 shadow-sm shadow-black/20">
                   <Clock3 size={18} /> Carga horária aproximada:{' '}
-                  {securityCourseStats.workload}
+                  {computingCourseStats.workload}
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-xl border border-amber-300/40 bg-amber-950/40 px-4 py-2 shadow-sm shadow-black/20">
                   <Award size={18} /> Certificado ao final por R$ {certificatePriceLabel}
                 </span>
               </div>
-              <p className="mt-3 text-xs font-bold text-cyan-100/80">
-                O curso é 100% gratuito. O certificado de conclusão é opcional e
-                pago à parte, emitido só depois que você concluir as 31 aulas.
+              <p className="mt-3 text-xs font-bold text-teal-100/80">
+                O curso é 100% gratuito. Para emitir o certificado é preciso
+                concluir as {computingCourseStats.lessons} aulas e passar na
+                prova final (70% de acerto). O certificado é opcional e pago à
+                parte.
               </p>
 
               {customer ? (
                 <a
-                  className="mt-7 inline-flex items-center gap-2 rounded-xl bg-sky-400 px-6 py-3 font-black text-slate-950 transition hover:bg-sky-300"
+                  className="mt-7 inline-flex items-center gap-2 rounded-xl bg-emerald-400 px-6 py-3 font-black text-slate-950 transition hover:bg-emerald-300"
                   href={firstLessonHref}
                 >
                   Começar pela primeira aula <ArrowRight size={18} />
@@ -103,13 +109,13 @@ export default async function SecurityCoursePage() {
               ) : (
                 <div className="mt-7 flex flex-wrap gap-3">
                   <a
-                    className="inline-flex items-center gap-2 rounded-xl bg-sky-400 px-6 py-3 font-black text-slate-950 transition hover:bg-sky-300"
+                    className="inline-flex items-center gap-2 rounded-xl bg-emerald-400 px-6 py-3 font-black text-slate-950 transition hover:bg-emerald-300"
                     href={`/cadastro?next=${encodeURIComponent(firstLessonHref)}`}
                   >
                     <UserPlus size={18} /> Criar conta grátis e começar
                   </a>
                   <a
-                    className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/30 bg-sky-950/80 px-6 py-3 font-black text-cyan-50 shadow-sm shadow-black/20 transition hover:bg-sky-900"
+                    className="inline-flex items-center gap-2 rounded-xl border border-teal-300/30 bg-emerald-950/80 px-6 py-3 font-black text-teal-50 shadow-sm shadow-black/20 transition hover:bg-emerald-900"
                     href={`/entrar?next=${encodeURIComponent(firstLessonHref)}`}
                   >
                     <LockKeyhole size={18} /> Já tenho cadastro
@@ -118,17 +124,17 @@ export default async function SecurityCoursePage() {
               )}
             </div>
 
-            <div className="rounded-2xl border border-cyan-300/30 bg-sky-950/80 p-5 shadow-lg shadow-black/20">
-              <strong className="text-lg text-cyan-100">Você vai aprender a:</strong>
+            <div className="rounded-2xl border border-teal-300/30 bg-emerald-950/80 p-5 shadow-lg shadow-black/20">
+              <strong className="text-lg text-teal-100">Você vai aprender a:</strong>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-100">
                 {[
-                  'Proteger senhas, contas, computadores, celulares e redes.',
-                  'Reconhecer falso gerente, falsa central e golpes bancários.',
-                  'Organizar dados, backups, LGPD e resposta a incidentes.',
-                  'Usar NIST CSF 2.0 e OWASP Top 10:2025 como referência.',
+                  'Usar o sistema operacional, arquivos e pastas com confiança.',
+                  'Navegar na internet e usar e-mail com segurança.',
+                  'Criar documentos, planilhas e apresentações.',
+                  'Guardar e compartilhar arquivos na nuvem.',
                 ].map((item) => (
                   <li className="flex items-start gap-2" key={item}>
-                    <CheckCircle2 className="mt-1 shrink-0 text-sky-300" size={17} />
+                    <CheckCircle2 className="mt-1 shrink-0 text-emerald-300" size={17} />
                     {item}
                   </li>
                 ))}
@@ -145,10 +151,11 @@ export default async function SecurityCoursePage() {
             />
             <CertificateCta
               courseSlug={COURSE_SLUG}
-              examPassed={true}
-              examRequired={false}
+              examHref={courseConfig.examHref}
+              examPassed={examPassed}
+              examRequired={courseConfig.requiresFinalExam}
               lessonSlugs={lessonSlugs}
-              lessonsComplete={eligibleForCertificate}
+              lessonsComplete={lessonsComplete}
               priceLabel={certificatePriceLabel}
               status={certificateStatus.state}
               totalLessons={lessonSlugs.length}
@@ -182,40 +189,27 @@ export default async function SecurityCoursePage() {
 
         <section>
           <div className="mb-5">
-            <p className="text-xs font-black uppercase tracking-[.18em] text-sky-700">
+            <p className="text-xs font-black uppercase tracking-[.18em] text-emerald-700">
               Programa completo
             </p>
             <h2 className="mt-2 text-3xl font-black">Módulos e aulas</h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
-              Siga a ordem sugerida ou abra diretamente o assunto que deseja
-              estudar. Cada aula inclui conceitos, atividade e revisão.
+              Cada módulo inclui um vídeo introdutório e três aulas com
+              conceitos, atividade prática e revisão.
             </p>
           </div>
 
           <div className="grid gap-5 lg:grid-cols-2">
-            {securityCourseModules.map((module, moduleIndex) => (
+            {computingCourseModules.map((module, moduleIndex) => (
               <article
-                className={`rounded-3xl border p-5 shadow-sm ${
-                  module.emphasis
-                    ? 'border-rose-300 bg-gradient-to-br from-rose-50 via-amber-50 to-white ring-2 ring-rose-200'
-                    : 'border-sky-200 bg-white/85'
-                }`}
+                className="rounded-3xl border border-emerald-200 bg-white/85 p-5 shadow-sm"
                 key={module.slug}
               >
                 <div className="flex items-start gap-4">
-                  <span
-                    className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl text-sm font-black text-white ${
-                      module.emphasis ? 'bg-rose-700' : 'bg-sky-700'
-                    }`}
-                  >
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald-700 text-sm font-black text-white">
                     {String(moduleIndex + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    {module.emphasis ? (
-                      <span className="mb-1 inline-flex items-center gap-1 rounded-full bg-rose-700 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white">
-                        <Siren size={13} /> Módulo especial em destaque
-                      </span>
-                    ) : null}
                     <h3 className="text-lg font-black">{module.title}</h3>
                     <p className="mt-1 text-sm leading-6 text-slate-600">
                       {module.description}
@@ -226,20 +220,12 @@ export default async function SecurityCoursePage() {
                 <div className="mt-5 grid gap-2">
                   {module.lessons.map((lesson, lessonIndex) => (
                     <a
-                      className={`group flex items-center justify-between gap-4 rounded-xl border p-3 transition ${
-                        module.emphasis
-                          ? 'border-rose-200 bg-white/80 hover:border-rose-400 hover:bg-rose-50'
-                          : 'border-slate-200 bg-slate-50/80 hover:border-sky-400 hover:bg-sky-50'
-                      }`}
-                      href={`/curso-seguranca-da-informacao/aulas/${lesson.slug}`}
+                      className="group flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-slate-50/80 p-3 transition hover:border-emerald-400 hover:bg-emerald-50"
+                      href={`/curso-computacao-basica/aulas/${lesson.slug}`}
                       key={lesson.slug}
                     >
                       <div>
-                        <span
-                          className={`text-[10px] font-black uppercase tracking-wide ${
-                            module.emphasis ? 'text-rose-700' : 'text-sky-700'
-                          }`}
-                        >
+                        <span className="text-[10px] font-black uppercase tracking-wide text-emerald-700">
                           Aula {moduleIndex + 1}.{lessonIndex + 1}
                         </span>
                         <strong className="mt-0.5 block text-sm leading-5">
@@ -268,34 +254,36 @@ export default async function SecurityCoursePage() {
             </span>
             <h2 className="mt-4 text-xl font-black">Para quem é este curso?</h2>
             <p className="mt-2 text-sm leading-7 text-slate-700">
-              Pessoas que desejam se proteger, profissionais iniciantes de TI,
-              equipes administrativas, prestadores de serviço, empreendedores e
-              pequenos negócios que ainda não possuem um programa formal de
-              segurança.
+              Pessoas que estão começando com computadores, buscando o
+              primeiro emprego, voltando ao mercado de trabalho ou que
+              simplesmente querem ganhar confiança no dia a dia digital.
             </p>
           </div>
 
           <div className="rounded-3xl border border-amber-200 bg-amber-50 p-6">
-            <h2 className="text-xl font-black">Aviso importante</h2>
+            <span className="grid h-11 w-11 place-items-center rounded-xl bg-amber-600 text-white">
+              <GraduationCap size={22} />
+            </span>
+            <h2 className="mt-4 text-xl font-black">Como funciona a prova final</h2>
             <p className="mt-2 text-sm leading-7 text-slate-700">
-              Este é um curso livre de caráter educacional. Ele não substitui
-              análise técnica, jurídica ou resposta profissional a incidentes.
-              O certificado de conclusão, quando emitido, atesta apenas a
-              conclusão do conteúdo do curso — não é um reconhecimento
-              acadêmico oficial.
+              Depois de concluir as {computingCourseStats.lessons} aulas, você
+              libera uma prova com 20 questões sobre todo o conteúdo do curso.
+              É preciso acertar pelo menos 70% para aprovar — e pode refazer
+              quantas vezes precisar. Aprovação libera a emissão do
+              certificado.
             </p>
           </div>
         </section>
 
-        <section className="rounded-3xl border border-sky-200 bg-white/85 p-6">
+        <section className="rounded-3xl border border-emerald-200 bg-white/85 p-6">
           <h2 className="text-xl font-black">Referências principais</h2>
           <p className="mt-2 text-sm text-slate-600">
             O conteúdo foi estruturado a partir de materiais oficiais e públicos.
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {securityCourseSources.map((source) => (
+            {computingCourseSources.map((source) => (
               <a
-                className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 p-3 text-sm font-bold text-sky-700 transition hover:border-sky-400 hover:bg-sky-50"
+                className="flex items-center justify-between gap-3 rounded-xl border border-slate-200 p-3 text-sm font-bold text-emerald-700 transition hover:border-emerald-400 hover:bg-emerald-50"
                 href={source.href}
                 key={source.href}
                 rel="noopener noreferrer"
