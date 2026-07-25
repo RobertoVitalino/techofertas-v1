@@ -13,13 +13,13 @@ export type CourseLesson = {
     explanation: string
   }
   reference: { label: string; href: string }
+  video?: { youtubeId: string; title: string }
 }
 
 export type CourseModule = {
   slug: string
   title: string
   description: string
-  video?: { youtubeId: string; title: string }
   lessons: CourseLesson[]
 }
 
@@ -29,13 +29,10 @@ export const computingCourseModules: CourseModule[] = [
     title: 'Introdução à Informática',
     description:
       'Entenda o que é um computador, suas partes principais e como hardware e software trabalham juntos no dia a dia.',
-    video: {
-      youtubeId: 'aXC_K67RiL4',
-      title: 'Quer conhecer os principais componentes do computador?',
-    },
     lessons: [
       {
         slug: 'o-que-e-um-computador',
+        video: { youtubeId: 'aXC_K67RiL4', title: 'Quer conhecer os principais componentes do computador?' },
         title: 'O que é um computador e para que serve',
         duration: '30 min',
         summary:
@@ -88,6 +85,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'hardware-partes-fisicas',
+        video: { youtubeId: 'ZSIrMa7JYc8', title: 'Informática Básica: Principais hardwares do computador!' },
         title: 'Hardware: as partes físicas do computador',
         duration: '35 min',
         summary:
@@ -141,6 +139,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'software-sistema-operacional-e-programas',
+        video: { youtubeId: 'yjfB-asZVF4', title: 'O que é um sistema operacional e exemplos (Informática Básica)' },
         title: 'Software: sistema operacional e programas',
         duration: '35 min',
         summary:
@@ -199,13 +198,10 @@ export const computingCourseModules: CourseModule[] = [
     title: 'Usando o Sistema Operacional',
     description:
       'Aprenda a navegar pela área de trabalho, controlar janelas com atalhos de teclado e ajustar as configurações básicas do sistema.',
-    video: {
-      youtubeId: 'lMiNoxWPx3c',
-      title: 'Como deixar a barra de tarefas centralizada e transparente',
-    },
     lessons: [
       {
         slug: 'area-de-trabalho-icones-barra-de-tarefas',
+        video: { youtubeId: 'lMiNoxWPx3c', title: 'Como deixar a barra de tarefas centralizada e transparente' },
         title: 'Área de trabalho, ícones e barra de tarefas',
         duration: '30 min',
         summary:
@@ -253,6 +249,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'janelas-menus-atalhos-de-teclado',
+        video: { youtubeId: 'NbFEt-gFaUE', title: 'Todas Teclas de Atalho do Windows que Você Precisa Conhecer' },
         title: 'Janelas, menus e atalhos de teclado',
         duration: '40 min',
         summary:
@@ -301,6 +298,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'configuracoes-basicas-do-sistema',
+        video: { youtubeId: '4NJU1BrButk', title: 'Como usar o painel de controle do Windows' },
         title: 'Configurações básicas do sistema',
         duration: '35 min',
         summary:
@@ -359,13 +357,10 @@ export const computingCourseModules: CourseModule[] = [
     title: 'Arquivos e Pastas',
     description:
       'Aprenda a organizar seus documentos em pastas, manipular arquivos com segurança e fazer cópias de backup simples.',
-    video: {
-      youtubeId: 'posSwdbk1jU',
-      title: 'Como criar uma pasta no Windows para salvar arquivos',
-    },
     lessons: [
       {
         slug: 'criando-e-organizando-pastas',
+        video: { youtubeId: 'posSwdbk1jU', title: 'Como criar uma pasta no Windows para salvar arquivos' },
         title: 'Criando e organizando pastas',
         duration: '35 min',
         summary:
@@ -418,6 +413,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'copiar-mover-renomear-excluir-arquivos',
+        video: { youtubeId: 'WtSEZCVwYHI', title: 'Domine seu computador: criar, mover e excluir arquivos e pastas' },
         title: 'Copiar, mover, renomear e excluir arquivos',
         duration: '35 min',
         summary:
@@ -470,6 +466,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'pen-drive-hd-externo-e-backup-simples',
+        video: { youtubeId: 'DfLTZDULlXM', title: 'Como transferir arquivos do PC para o pen drive' },
         title: 'Pen drive, HD externo e backup simples',
         duration: '40 min',
         summary:
@@ -527,13 +524,10 @@ export const computingCourseModules: CourseModule[] = [
     title: 'Internet e Navegador',
     description:
       'Entenda como a internet funciona, navegue com segurança e aprenda a pesquisar informações de forma eficiente.',
-    video: {
-      youtubeId: 'j4gsQNZrnjE',
-      title: 'Como mudar as abas do navegador sem precisar clicar',
-    },
     lessons: [
       {
         slug: 'como-funciona-a-internet',
+        video: { youtubeId: 'j4gsQNZrnjE', title: 'Como mudar as abas do navegador sem precisar clicar' },
         title: 'Como funciona a internet',
         duration: '30 min',
         summary:
@@ -586,6 +580,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'navegando-com-seguranca',
+        video: { youtubeId: 'xxq2mCvN6AM', title: 'Como fazer uma confirmação de segurança no navegador Google Chrome' },
         title: 'Navegando com segurança (abas, favoritos, downloads)',
         duration: '40 min',
         summary:
@@ -638,6 +633,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'pesquisando-informacoes-com-eficiencia',
+        video: { youtubeId: 'VzmOeNY14bc', title: 'Como pesquisar no Google: pesquisas eficientes' },
         title: 'Pesquisando informações com eficiência',
         duration: '35 min',
         summary:
@@ -695,13 +691,10 @@ export const computingCourseModules: CourseModule[] = [
     title: 'E-mail e Comunicação',
     description:
       'Crie e configure uma conta de e-mail, escreva mensagens profissionais e reconheça golpes comuns por e-mail.',
-    video: {
-      youtubeId: 'MdzplvOipXI',
-      title: 'Como criar uma conta de e-mail do Gmail',
-    },
     lessons: [
       {
         slug: 'criando-e-configurando-conta-de-email',
+        video: { youtubeId: 'MdzplvOipXI', title: 'Como criar uma conta de e-mail do Gmail' },
         title: 'Criando e configurando uma conta de e-mail',
         duration: '40 min',
         summary:
@@ -754,6 +747,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'escrevendo-emails-profissionais',
+        video: { youtubeId: '3lKZHQHY9Qc', title: 'Correio eletrônico: escrever um e-mail corretamente' },
         title: 'Escrevendo e enviando e-mails profissionais',
         duration: '40 min',
         summary:
@@ -806,6 +800,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'anexos-spam-e-golpes-por-email',
+        video: { youtubeId: 'VigeShqHL54', title: 'Como proteger o seu e-mail contra golpes virtuais' },
         title: 'Anexos, spam e golpes por e-mail',
         duration: '40 min',
         summary:
@@ -863,13 +858,10 @@ export const computingCourseModules: CourseModule[] = [
     title: 'Editor de Texto (Word/LibreOffice Writer)',
     description:
       'Aprenda a criar, formatar e organizar documentos de texto usando o Microsoft Word ou o LibreOffice Writer.',
-    video: {
-      youtubeId: 'y6xnCNwsR0Q',
-      title: 'Como dimensionar uma imagem no Word corretamente',
-    },
     lessons: [
       {
         slug: 'criando-e-formatando-documentos',
+        video: { youtubeId: 'y6xnCNwsR0Q', title: 'Como dimensionar uma imagem no Word corretamente' },
         title: 'Criando e formatando documentos',
         duration: '40 min',
         summary:
@@ -917,6 +909,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'imagens-tabelas-e-listas',
+        video: { youtubeId: '8_9oAm7Vh1k', title: 'Como inserir imagem no Word' },
         title: 'Inserindo imagens, tabelas e listas',
         duration: '40 min',
         summary:
@@ -970,6 +963,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'salvando-exportando-e-imprimindo',
+        video: { youtubeId: 'PyWIgfN2R-s', title: 'Como imprimir um documento do Microsoft Word' },
         title: 'Salvando, exportando e imprimindo',
         duration: '35 min',
         summary:
@@ -1027,13 +1021,10 @@ export const computingCourseModules: CourseModule[] = [
     title: 'Planilhas (Excel/LibreOffice Calc)',
     description:
       'Organize dados em células, aplique fórmulas básicas de cálculo e crie gráficos simples usando o Excel ou o LibreOffice Calc.',
-    video: {
-      youtubeId: 'lGTkb9qrO60',
-      title: 'Como somar automaticamente no Excel',
-    },
     lessons: [
       {
         slug: 'celulas-linhas-e-colunas',
+        video: { youtubeId: 'lGTkb9qrO60', title: 'Como somar automaticamente no Excel' },
         title: 'Células, linhas e colunas',
         duration: '35 min',
         summary:
@@ -1086,6 +1077,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'formulas-e-calculos-basicos',
+        video: { youtubeId: 'oY8GsAA_k00', title: 'Excel: como usar a fórmula SOMA' },
         title: 'Fórmulas e cálculos básicos',
         duration: '45 min',
         summary:
@@ -1133,6 +1125,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'graficos-simples',
+        video: { youtubeId: '6XOLj8xlohA', title: 'Gráfico de colunas no LibreOffice Calc' },
         title: 'Gráficos simples',
         duration: '40 min',
         summary:
@@ -1186,13 +1179,10 @@ export const computingCourseModules: CourseModule[] = [
     title: 'Apresentações (PowerPoint/Impress)',
     description:
       'Crie slides organizados, aplique um design visual claro e desenvolva confiança para apresentar usando o PowerPoint ou o LibreOffice Impress.',
-    video: {
-      youtubeId: 't0MNW1wQDhc',
-      title: 'Como fazer um slide no PowerPoint',
-    },
     lessons: [
       {
         slug: 'criando-slides',
+        video: { youtubeId: 't0MNW1wQDhc', title: 'Como fazer um slide no PowerPoint' },
         title: 'Criando slides',
         duration: '35 min',
         summary:
@@ -1245,6 +1235,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'design-e-organizacao-visual',
+        video: { youtubeId: 'g0qBWZpk60g', title: 'Apresentação de slides profissional em poucos minutos' },
         title: 'Design e organização visual',
         duration: '35 min',
         summary:
@@ -1297,6 +1288,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'apresentando-com-confianca',
+        video: { youtubeId: '7WWSeHy9lQ0', title: 'Adicionar anotações do orador aos slides no PowerPoint' },
         title: 'Apresentando com confiança',
         duration: '35 min',
         summary:
@@ -1354,13 +1346,10 @@ export const computingCourseModules: CourseModule[] = [
     title: 'Nuvem e Aplicativos Online',
     description:
       'Descubra como guardar e compartilhar arquivos na nuvem e conheça aplicativos essenciais para o dia a dia digital.',
-    video: {
-      youtubeId: 'hiwTQNSz-mQ',
-      title: 'Google Drive: como usar a nuvem e abrir arquivos de qualquer lugar',
-    },
     lessons: [
       {
         slug: 'google-drive-onedrive-e-nuvem',
+        video: { youtubeId: 'hiwTQNSz-mQ', title: 'Google Drive: como usar a nuvem e abrir arquivos de qualquer lugar' },
         title: 'Google Drive, OneDrive e armazenamento em nuvem',
         duration: '35 min',
         summary:
@@ -1414,6 +1403,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'compartilhando-e-colaborando',
+        video: { youtubeId: 'gm2LmELpBG8', title: 'Como compartilhar arquivos e pastas do Google Drive' },
         title: 'Compartilhando arquivos e colaborando',
         duration: '35 min',
         summary:
@@ -1466,6 +1456,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'aplicativos-essenciais-no-dia-a-dia',
+        video: { youtubeId: 'KfykMDUI1O8', title: '7 aplicativos essenciais para qualquer celular' },
         title: 'Aplicativos essenciais no dia a dia',
         duration: '30 min',
         summary:
@@ -1523,13 +1514,10 @@ export const computingCourseModules: CourseModule[] = [
     title: 'Manutenção Básica e Boas Práticas',
     description:
       'Aprenda a manter o computador rápido e seguro, resolver problemas comuns sozinho e planejar os próximos passos da sua jornada digital.',
-    video: {
-      youtubeId: '6AJg-VISYOE',
-      title: 'Computador lento ou travando: o que fazer',
-    },
     lessons: [
       {
         slug: 'mantendo-o-computador-rapido-e-seguro',
+        video: { youtubeId: '6AJg-VISYOE', title: 'Computador lento ou travando: o que fazer' },
         title: 'Mantendo o computador rápido e seguro',
         duration: '40 min',
         summary:
@@ -1582,6 +1570,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'resolvendo-problemas-comuns',
+        video: { youtubeId: 'Pvvl1G7vlSA', title: 'Como corrigir problemas comuns no Windows' },
         title: 'Resolvendo problemas comuns',
         duration: '40 min',
         summary:
@@ -1634,6 +1623,7 @@ export const computingCourseModules: CourseModule[] = [
       },
       {
         slug: 'proximos-passos-no-mundo-digital',
+        video: { youtubeId: 'sEQ8qdP6O2Y', title: 'Melhores sites de cursos gratuitos para continuar aprendendo' },
         title: 'Próximos passos no mundo digital',
         duration: '35 min',
         summary:

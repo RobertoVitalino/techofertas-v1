@@ -59,7 +59,7 @@ export default async function ComputingLessonPage({
   const previousLesson = computingCourseLessons[currentIndex - 1]
   const nextLesson = computingCourseLessons[currentIndex + 1]
   const lessonSlugs = computingCourseLessons.map((item) => item.slug)
-  const moduleVideo = lesson.lessonIndex === 0 ? lesson.module.video : undefined
+  const lessonVideo = lesson.video
 
   return (
     <main className="site-light-theme min-h-screen">
@@ -123,7 +123,7 @@ export default async function ComputingLessonPage({
               </p>
             </header>
 
-            {moduleVideo ? (
+            {lessonVideo ? (
               <section className="overflow-hidden rounded-2xl border border-emerald-200 bg-black shadow-sm">
                 <div className="aspect-video w-full">
                   <iframe
@@ -131,12 +131,12 @@ export default async function ComputingLessonPage({
                     allowFullScreen
                     className="h-full w-full"
                     referrerPolicy="strict-origin-when-cross-origin"
-                    src={`https://www.youtube.com/embed/${moduleVideo.youtubeId}`}
-                    title={moduleVideo.title}
+                    src={`https://www.youtube.com/embed/${lessonVideo.youtubeId}`}
+                    title={lessonVideo.title}
                   />
                 </div>
                 <p className="bg-white/95 px-4 py-3 text-xs font-bold text-slate-600">
-                  Vídeo do módulo: {moduleVideo.title}
+                  Vídeo da aula: {lessonVideo.title}
                 </p>
               </section>
             ) : null}

@@ -195,8 +195,8 @@ export default async function ComputingCoursePage() {
             </p>
             <h2 className="mt-2 text-3xl font-black">Módulos e aulas</h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
-              Cada módulo inclui um vídeo introdutório e três aulas com
-              conceitos, atividade prática e revisão.
+              Cada aula inclui um vídeo, conceitos, atividade prática e
+              revisão.
             </p>
           </div>
 
