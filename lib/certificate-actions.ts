@@ -67,7 +67,8 @@ export async function createCertificateCheckoutAction(): Promise<
     })
 
     return {
-      error: `[diagnóstico temporário] ${error instanceof Error ? error.message : String(error)}`,
+      error:
+        'Não foi possível iniciar o pagamento agora. Tente novamente em instantes.',
     }
   }
 }
