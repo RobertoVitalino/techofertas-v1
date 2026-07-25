@@ -38,6 +38,7 @@ model Customer {
   certificatePurchases CertificatePurchase[]
   certificates         Certificate[]
   examAttempts         ExamAttempt[]
+  lessonQuestions      LessonQuestion[]
 }
 
 model LessonProgress {
@@ -140,4 +141,19 @@ model ExamAttempt {
   customer       Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
 
   @@index([customerId, courseSlug])
+}
+
+model LessonQuestion {
+  id         Int       @id @default(autoincrement())
+  customerId Int
+  courseSlug String
+  lessonSlug String
+  question   String
+  resolved   Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  customer   Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([customerId])
+  @@index([courseSlug, lessonSlug])
+  @@index([createdAt])
 }

@@ -5,6 +5,7 @@ import {
   ExternalLink,
   Image as ImageIcon,
   LogOut,
+  MessageCircleQuestion,
   Newspaper,
   Package,
   Settings,
@@ -21,6 +22,7 @@ const adminLinks = [
   { label: 'Artigos', href: '/admin/artigos', icon: Newspaper },
   { label: 'Banners', href: '/admin/banners', icon: ImageIcon },
   { label: 'Usuários', href: '/admin/usuarios', icon: Users },
+  { label: 'Dúvidas', href: '/admin/duvidas', icon: MessageCircleQuestion },
   { label: 'Estatísticas', href: '/admin/estatisticas', icon: BarChart3 },
   { label: 'Configurações', href: '/admin/configuracoes', icon: Settings },
 ]

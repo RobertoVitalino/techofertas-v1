@@ -1,5 +1,6 @@
 import { CourseProgress } from '@/components/CourseProgress'
 import { Header } from '@/components/Header'
+import { LessonQuestionForm } from '@/components/LessonQuestionForm'
 import { LessonQuiz } from '@/components/LessonQuiz'
 import { getCompletedLessonSlugs } from '@/lib/course-progress'
 import {
@@ -213,6 +214,11 @@ export default async function ComputingLessonPage({
             >
               Referência: {lesson.reference.label} <ExternalLink size={16} />
             </a>
+
+            <LessonQuestionForm
+              courseSlug="computacao-basica"
+              lessonSlug={lesson.slug}
+            />
 
             <nav className="grid gap-3 border-t border-emerald-200 pt-6 sm:grid-cols-2">
               {previousLesson ? (

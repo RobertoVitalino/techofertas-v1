@@ -1,5 +1,6 @@
 import { CourseProgress } from '@/components/CourseProgress'
 import { Header } from '@/components/Header'
+import { LessonQuestionForm } from '@/components/LessonQuestionForm'
 import { LessonQuiz } from '@/components/LessonQuiz'
 import { getCompletedLessonSlugs } from '@/lib/course-progress'
 import {
@@ -210,6 +211,11 @@ export default async function SecurityLessonPage({
             >
               Referência: {lesson.reference.label} <ExternalLink size={16} />
             </a>
+
+            <LessonQuestionForm
+              courseSlug="seguranca-da-informacao"
+              lessonSlug={lesson.slug}
+            />
 
             <nav className="grid gap-3 border-t border-sky-200 pt-6 sm:grid-cols-2">
               {previousLesson ? (

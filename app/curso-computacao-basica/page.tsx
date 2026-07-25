@@ -18,6 +18,7 @@ import {
   CheckCircle2,
   Clock3,
   ExternalLink,
+  FileDown,
   GraduationCap,
   LockKeyhole,
   Laptop,
@@ -242,6 +243,15 @@ export default async function ComputingCoursePage() {
                     </a>
                   ))}
                 </div>
+
+                <a
+                  className="mt-3 inline-flex items-center gap-2 text-xs font-black text-emerald-700 hover:text-emerald-900"
+                  href={`/resumos-computacao-basica/modulo-${String(moduleIndex + 1).padStart(2, '0')}.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FileDown size={14} /> Baixar resumo em PDF
+                </a>
               </article>
             ))}
           </div>
