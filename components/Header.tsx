@@ -1,3 +1,4 @@
+import { courseRegistry } from '@/lib/courses-config'
 import { Heart, Menu, Search, UserRound, Zap } from 'lucide-react'
 
 const links = [
@@ -9,6 +10,8 @@ const links = [
   { label: 'Serviços', href: '/#serviços' },
   { label: 'Contato', href: '/#contato' },
 ]
+
+const courses = Object.values(courseRegistry)
 
 export function Header() {
   return (
@@ -100,15 +103,34 @@ export function Header() {
 
       <nav className="hidden border-t border-sky-200 md:block">
         <div className="mx-auto flex max-w-7xl gap-6 px-4 py-3 text-xs font-bold uppercase tracking-wide text-slate-600">
-          {links.map((link, index) => (
-            <a
-              className={index === 0 ? 'text-sky-700' : 'hover:text-sky-800'}
-              href={link.href}
-              key={link.href}
-            >
-              {link.label}
-            </a>
-          ))}
+          {links.map((link, index) =>
+            link.href === '/cursos' ? (
+              <div className="group relative -my-3 py-3" key={link.href}>
+                <a className="hover:text-sky-800" href={link.href}>
+                  {link.label}
+                </a>
+                <div className="invisible absolute left-0 top-full z-10 w-64 rounded-xl border border-sky-200 bg-white p-2 opacity-0 shadow-xl shadow-sky-900/10 transition group-hover:visible group-hover:opacity-100">
+                  {courses.map((course) => (
+                    <a
+                      className="block rounded-lg px-3 py-2 text-xs font-bold normal-case tracking-normal text-slate-700 hover:bg-sky-50 hover:text-sky-800"
+                      href={course.landingHref}
+                      key={course.slug}
+                    >
+                      {course.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a
+                className={index === 0 ? 'text-sky-700' : 'hover:text-sky-800'}
+                href={link.href}
+                key={link.href}
+              >
+                {link.label}
+              </a>
+            ),
+          )}
         </div>
       </nav>
     </header>

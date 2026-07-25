@@ -1,3 +1,4 @@
+import { ComputingCoursePromo } from '@/components/ComputingCoursePromo'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { Categories, News, Products, Services } from '@/components/Sections'
@@ -21,7 +22,10 @@ export default async function Home() {
       <div className="mx-auto max-w-7xl space-y-12 px-4 py-8">
         <Hero />
         <Services />
-        <SecurityCoursePromo />
+        <div className="grid gap-4 md:grid-cols-2">
+          <ComputingCoursePromo />
+          <SecurityCoursePromo />
+        </div>
         <News />
         <Categories />
         <Products products={dbProducts} variant="catalog" />
