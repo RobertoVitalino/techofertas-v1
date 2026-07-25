@@ -30,8 +30,8 @@ export const computingCourseModules: CourseModule[] = [
     description:
       'Entenda o que é um computador, suas partes principais e como hardware e software trabalham juntos no dia a dia.',
     video: {
-      youtubeId: 'GLcZsyTh-T8',
-      title: 'A verdade sobre gabinete aberto: componentes do computador',
+      youtubeId: 'aXC_K67RiL4',
+      title: 'Quer conhecer os principais componentes do computador?',
     },
     lessons: [
       {
@@ -200,8 +200,8 @@ export const computingCourseModules: CourseModule[] = [
     description:
       'Aprenda a navegar pela área de trabalho, controlar janelas com atalhos de teclado e ajustar as configurações básicas do sistema.',
     video: {
-      youtubeId: 'GgKqk88OwH8',
-      title: 'Como deixar a área de trabalho do Windows mais bonita',
+      youtubeId: 'lMiNoxWPx3c',
+      title: 'Como deixar a barra de tarefas centralizada e transparente',
     },
     lessons: [
       {
@@ -528,8 +528,8 @@ export const computingCourseModules: CourseModule[] = [
     description:
       'Entenda como a internet funciona, navegue com segurança e aprenda a pesquisar informações de forma eficiente.',
     video: {
-      youtubeId: 'kjj5pwjh_SQ',
-      title: 'Como adicionar um site na barra de favoritos do navegador',
+      youtubeId: 'j4gsQNZrnjE',
+      title: 'Como mudar as abas do navegador sem precisar clicar',
     },
     lessons: [
       {
