@@ -74,13 +74,13 @@ export default async function ComputingLessonPage({
         </a>
 
         <div className="mt-6 grid gap-6 lg:grid-cols-[270px_1fr]">
-          <aside className="space-y-4 lg:sticky lg:top-36 lg:self-start">
+          <aside className="order-2 space-y-4 lg:order-none lg:sticky lg:top-36 lg:self-start">
             <CourseProgress
               initialCompleted={completedLessons}
               lessonSlugs={lessonSlugs}
             />
 
-            <nav className="max-h-[62vh] overflow-y-auto rounded-2xl border border-emerald-200 bg-white/85 p-3 shadow-sm">
+            <nav className="rounded-2xl border border-emerald-200 bg-white/85 p-3 shadow-sm lg:max-h-[62vh] lg:overflow-y-auto">
               <strong className="block px-2 pb-2 text-sm">Conteúdo do curso</strong>
               {computingCourseModules.map((module, moduleIndex) => (
                 <div className="mt-2 rounded-lg" key={module.slug}>
@@ -105,7 +105,7 @@ export default async function ComputingLessonPage({
             </nav>
           </aside>
 
-          <article className="space-y-6">
+          <article className="order-1 space-y-6 lg:order-none">
             <header className="rounded-3xl border border-emerald-200 bg-gradient-to-br from-white via-emerald-50 to-teal-50 p-6 shadow-sm sm:p-8">
               <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-emerald-700">
                 <span className="rounded-full bg-emerald-100 px-3 py-1">
