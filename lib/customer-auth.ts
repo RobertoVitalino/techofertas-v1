@@ -4,15 +4,21 @@ export const CUSTOMER_SESSION_IDLE_SECONDS = 60 * 60 * 12
 
 const PBKDF2_ITERATIONS = 600_000
 const LEGACY_PBKDF2_ITERATIONS = 210_000
-const MINIMUM_PASSWORD_LENGTH = 15
+const MINIMUM_PASSWORD_LENGTH = 8
 const encoder = new TextEncoder()
 
 const blockedPasswords = new Set([
+  '12345678',
   '123456789012345',
+  '11111111',
+  '87654321',
   'administrador',
   'administrator',
+  'password',
   'passwordpassword',
+  'qwertyui',
   'qwertyqwertyqwerty',
+  'senha123',
   'senha1234567890',
   'vitalinotech',
 ])

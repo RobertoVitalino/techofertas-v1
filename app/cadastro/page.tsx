@@ -197,15 +197,15 @@ export default async function RegisterPage({
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="grid gap-2 text-sm font-bold" htmlFor="register-password">
                   Senha
-                  <input id="register-password" name="password" type="password" autoComplete="new-password" minLength={15} maxLength={128} required className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" placeholder="Use uma frase com 15 caracteres ou mais" />
+                  <input id="register-password" name="password" type="password" autoComplete="new-password" minLength={8} maxLength={128} required className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" placeholder="Use pelo menos 8 caracteres" />
                 </label>
                 <label className="grid gap-2 text-sm font-bold" htmlFor="password-confirmation">
                   Confirmar senha
-                  <input id="password-confirmation" name="passwordConfirmation" type="password" autoComplete="new-password" minLength={15} maxLength={128} required className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" placeholder="Repita a senha" />
+                  <input id="password-confirmation" name="passwordConfirmation" type="password" autoComplete="new-password" minLength={8} maxLength={128} required className="rounded-xl border border-white/10 bg-black/30 px-4 py-3.5 font-normal outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20" placeholder="Repita a senha" />
                 </label>
               </div>
 
-              {query?.erro === 'dados' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Confira os dados e o nome de usuário. Use uma frase-senha com pelo menos 15 caracteres, evite senhas comuns e aceite os termos.</p> : null}
+              {query?.erro === 'dados' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Confira os dados e o nome de usuário. Use uma senha com pelo menos 8 caracteres, evite senhas comuns e aceite os termos.</p> : null}
               {query?.erro === 'senhas' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">As senhas informadas não são iguais.</p> : null}
               {query?.erro === 'indisponivel' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Não foi possível concluir o cadastro com esses dados. Se você já tiver uma conta, entre com sua senha.</p> : null}
               {query?.erro === 'limite' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Muitas tentativas de cadastro foram realizadas. Aguarde uma hora antes de tentar novamente.</p> : null}
