@@ -1,4 +1,5 @@
 import { ComputingCoursePromo } from '@/components/ComputingCoursePromo'
+import { DealAlertSignup } from '@/components/DealAlertSignup'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { Categories, News, Products, Services } from '@/components/Sections'
@@ -28,6 +29,7 @@ export default async function Home() {
         </div>
         <News />
         <Categories />
+        <DealAlertSignup />
         <Products products={dbProducts} variant="catalog" />
       </div>
 

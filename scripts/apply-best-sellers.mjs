@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import { readFile } from 'node:fs/promises'
 import { PrismaClient } from '@prisma/client'
+import { sendDealAlertToSubscribers } from './lib/deal-alert-utils.mjs'
 import {
   fetchMarketplacePage,
   formatBRL,
@@ -79,6 +80,12 @@ async function main() {
   ])
 
   console.log(`Catálogo atualizado com ${selected.length} produtos.`)
+
+  await sendDealAlertToSubscribers(prisma).catch((error) => {
+    console.error(
+      `Catálogo atualizado, mas o envio dos alertas falhou: ${error instanceof Error ? error.message : error}`,
+    )
+  })
 }
 
 main()
