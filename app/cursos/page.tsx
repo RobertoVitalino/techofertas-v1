@@ -1,12 +1,14 @@
 import { Header } from '@/components/Header'
 import { computingCourseStats } from '@/lib/computing-course'
 import { courseRegistry } from '@/lib/courses-config'
+import { excelCourseStats } from '@/lib/excel-course'
 import { securityCourseStats } from '@/lib/security-course'
 import {
   ArrowRight,
   Award,
   BookOpenCheck,
   Clock3,
+  FileSpreadsheet,
   GraduationCap,
   ShieldCheck,
 } from 'lucide-react'
@@ -14,7 +16,7 @@ import {
 export const metadata = {
   title: 'Cursos gratuitos',
   description:
-    'Cursos gratuitos de segurança da informação e computação básica, com certificado pago opcional.',
+    'Cursos gratuitos de segurança da informação, computação básica e Excel, com certificado pago opcional.',
 }
 
 const courses = [
@@ -34,6 +36,14 @@ const courses = [
     summary:
       'Do zero ao dia a dia digital: sistema operacional, arquivos, internet, e-mail, Word, Excel, PowerPoint e nuvem.',
   },
+  {
+    slug: 'excel',
+    icon: FileSpreadsheet,
+    accent: 'violet' as const,
+    stats: excelCourseStats,
+    summary:
+      'Fórmulas, funções essenciais, PROCV/PROCX, gráficos e tabelas dinâmicas, com um projeto prático de painel financeiro.',
+  },
 ]
 
 const accentClasses = {
@@ -48,6 +58,12 @@ const accentClasses = {
     badgeBg: 'bg-emerald-700',
     text: 'text-emerald-700',
     button: 'bg-emerald-700 hover:bg-emerald-800',
+  },
+  violet: {
+    border: 'border-violet-200',
+    badgeBg: 'bg-violet-700',
+    text: 'text-violet-700',
+    button: 'bg-violet-700 hover:bg-violet-800',
   },
 }
 
@@ -71,7 +87,7 @@ export default function CoursesHubPage() {
           </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {courses.map((course) => {
             const config = courseRegistry[course.slug]
             const Icon = course.icon

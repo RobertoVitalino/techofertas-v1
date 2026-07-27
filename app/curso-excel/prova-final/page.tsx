@@ -1,29 +1,29 @@
 import { FinalExamForm } from '@/components/FinalExamForm'
 import { Header } from '@/components/Header'
 import { hasPassedFinalExam, isCourseFullyCompleted } from '@/lib/certificates'
+import { excelCourseLessons } from '@/lib/excel-course'
 import {
-  COMPUTING_FINAL_EXAM_PASSING_SCORE,
-  computingFinalExamQuestions,
-} from '@/lib/computing-final-exam'
-import { computingCourseLessons } from '@/lib/computing-course'
+  EXCEL_FINAL_EXAM_PASSING_SCORE,
+  excelFinalExamQuestions,
+} from '@/lib/excel-final-exam'
 import { requireCustomer } from '@/lib/require-customer'
 import { CheckCircle2, GraduationCap, LockKeyhole } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Prova final — Computação Básica',
+  title: 'Prova final — Excel',
 }
 
-export default async function ComputingFinalExamPage() {
-  const customer = await requireCustomer('/curso-computacao-basica/prova-final')
-  const lessonSlugs = computingCourseLessons.map((lesson) => lesson.slug)
+export default async function ExcelFinalExamPage() {
+  const customer = await requireCustomer('/curso-excel/prova-final')
+  const lessonSlugs = excelCourseLessons.map((lesson) => lesson.slug)
   const [lessonsComplete, alreadyPassed] = await Promise.all([
     isCourseFullyCompleted(customer.id, lessonSlugs),
-    hasPassedFinalExam(customer.id, 'computacao-basica'),
+    hasPassedFinalExam(customer.id, 'excel'),
   ])
 
-  const questionsForClient = computingFinalExamQuestions.map((question) => ({
+  const questionsForClient = excelFinalExamQuestions.map((question) => ({
     id: question.id,
     question: question.question,
     options: question.options,
@@ -35,12 +35,12 @@ export default async function ComputingFinalExamPage() {
 
       <div className="mx-auto max-w-3xl px-4 py-8">
         <div className="mb-6 flex items-center gap-3">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald-700 text-white">
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-violet-700 text-white">
             <GraduationCap size={22} />
           </span>
           <div>
-            <p className="text-xs font-black uppercase tracking-[.16em] text-emerald-700">
-              Computação Básica
+            <p className="text-xs font-black uppercase tracking-[.16em] text-violet-700">
+              Excel na Prática
             </p>
             <h1 className="text-2xl font-black">Prova final</h1>
           </div>
@@ -58,7 +58,7 @@ export default async function ComputingFinalExamPage() {
             </p>
             <a
               className="mt-5 inline-flex items-center gap-2 rounded-xl bg-amber-700 px-5 py-3 text-sm font-black text-white hover:bg-amber-800"
-              href="/curso-computacao-basica"
+              href="/curso-excel"
             >
               Voltar para o curso
             </a>
@@ -74,7 +74,7 @@ export default async function ComputingFinalExamPage() {
             </p>
             <a
               className="mt-5 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-5 py-3 text-sm font-black text-white hover:bg-emerald-800"
-              href="/curso-computacao-basica"
+              href="/curso-excel"
             >
               Ir para o curso
             </a>
@@ -84,13 +84,13 @@ export default async function ComputingFinalExamPage() {
             <p className="mb-6 text-sm leading-6 text-slate-600">
               {questionsForClient.length} questões sobre todo o conteúdo do
               curso. É preciso acertar pelo menos{' '}
-              {COMPUTING_FINAL_EXAM_PASSING_SCORE} para aprovar. Você pode
-              refazer a prova quantas vezes precisar.
+              {EXCEL_FINAL_EXAM_PASSING_SCORE} para aprovar. Você pode refazer
+              a prova quantas vezes precisar.
             </p>
             <FinalExamForm
-              courseHref="/curso-computacao-basica"
-              courseSlug="computacao-basica"
-              passingScore={COMPUTING_FINAL_EXAM_PASSING_SCORE}
+              courseHref="/curso-excel"
+              courseSlug="excel"
+              passingScore={EXCEL_FINAL_EXAM_PASSING_SCORE}
               questions={questionsForClient}
             />
           </>

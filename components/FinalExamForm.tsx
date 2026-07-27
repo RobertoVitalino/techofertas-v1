@@ -13,9 +13,13 @@ type Question = {
 type Result = { score: number; total: number; passed: boolean }
 
 export function FinalExamForm({
+  courseSlug,
+  courseHref,
   questions,
   passingScore,
 }: {
+  courseSlug: 'computacao-basica' | 'excel'
+  courseHref: string
   questions: Question[]
   passingScore: number
 }) {
@@ -30,7 +34,7 @@ export function FinalExamForm({
   function handleSubmit() {
     setError(null)
     startTransition(async () => {
-      const response = await submitFinalExamAction(answers)
+      const response = await submitFinalExamAction(courseSlug, answers)
 
       if ('error' in response) {
         setError(response.error)
@@ -67,7 +71,7 @@ export function FinalExamForm({
         {result.passed ? (
           <a
             className="mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-black text-white transition hover:bg-emerald-700"
-            href="/curso-computacao-basica"
+            href={courseHref}
           >
             Ir emitir meu certificado
           </a>

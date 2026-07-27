@@ -26,6 +26,15 @@ export const courseRegistry: Record<string, CourseConfig> = {
     landingHref: '/curso-computacao-basica',
     examHref: '/curso-computacao-basica/prova-final',
   },
+  excel: {
+    slug: 'excel',
+    title: 'Excel na Prática: do Básico às Tabelas Dinâmicas',
+    hoursTotal: '18h',
+    priceCents: 3990,
+    requiresFinalExam: true,
+    landingHref: '/curso-excel',
+    examHref: '/curso-excel/prova-final',
+  },
 }
 
 export function getCourseConfig(courseSlug: string) {
