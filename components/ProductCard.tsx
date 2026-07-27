@@ -29,12 +29,12 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <article className="card-hover relative flex h-full flex-col rounded-xl border border-white/10 bg-gradient-to-br from-white/[.08] to-white/[.03] p-3">
       <a href={detailsUrl} aria-label={`Ver detalhes de ${product.title}`}>
-        <div className="grid h-40 place-items-center overflow-hidden rounded-lg bg-white/5">
+        <div className="grid h-40 place-items-center overflow-hidden rounded-lg bg-white/5 p-2">
           {isImagePath(product.image) ? (
             <img
               src={product.image}
               alt={product.title}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
               loading="lazy"
             />
           ) : (
