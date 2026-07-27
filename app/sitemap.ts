@@ -1,3 +1,4 @@
+import { articles } from '@/lib/blog'
 import { computingCourseLessons } from '@/lib/computing-course'
 import { prisma } from '@/lib/prisma'
 import { securityCourseLessons } from '@/lib/security-course'
@@ -7,6 +8,7 @@ import type { MetadataRoute } from 'next'
 const staticRoutes = [
   { path: '', priority: 1, changeFrequency: 'daily' as const },
   { path: '/produtos', priority: 0.9, changeFrequency: 'daily' as const },
+  { path: '/artigos', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/cursos', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-seguranca-da-informacao', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-computacao-basica', priority: 0.6, changeFrequency: 'monthly' as const },
@@ -40,6 +42,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${SITE_URL}/curso-computacao-basica/aulas/${lesson.slug}`,
       changeFrequency: 'monthly' as const,
       priority: 0.4,
+    })),
+    ...articles.map((article) => ({
+      url: `${SITE_URL}/artigos/${article.slug}`,
+      lastModified: article.publishedAt,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
     })),
   ]
 }
