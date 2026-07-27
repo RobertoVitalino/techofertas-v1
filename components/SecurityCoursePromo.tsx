@@ -3,7 +3,7 @@ import { securityCourseStats } from '@/lib/security-course'
 
 export function SecurityCoursePromo() {
   return (
-    <section className="overflow-hidden rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-950 via-slate-950 to-sky-950 p-5 text-white shadow-lg shadow-indigo-950/15">
+    <section className="flex h-full flex-col overflow-hidden rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-950 via-slate-950 to-sky-950 p-5 text-white shadow-lg shadow-indigo-950/15">
       <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-sky-900/85 px-3 py-1 text-[11px] font-black uppercase tracking-[.14em] text-cyan-100">
         <ShieldCheck size={14} /> Curso gratuito
       </span>
@@ -25,12 +25,14 @@ export function SecurityCoursePromo() {
         </span>
       </div>
 
-      <a
-        className="mt-4 inline-flex items-center gap-2 rounded-lg bg-sky-500 px-4 py-2.5 text-xs font-black text-white transition hover:bg-sky-400"
-        href="/curso-seguranca-da-informacao"
-      >
-        Acessar o curso <ArrowRight size={15} />
-      </a>
+      <div className="mt-auto pt-4">
+        <a
+          className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-4 py-2.5 text-xs font-black text-white transition hover:bg-sky-400"
+          href="/curso-seguranca-da-informacao"
+        >
+          Acessar o curso <ArrowRight size={15} />
+        </a>
+      </div>
     </section>
   )
 }

@@ -3,7 +3,7 @@ import { computingCourseStats } from '@/lib/computing-course'
 
 export function ComputingCoursePromo() {
   return (
-    <section className="overflow-hidden rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-950 via-slate-950 to-teal-950 p-5 text-white shadow-lg shadow-emerald-950/15">
+    <section className="flex h-full flex-col overflow-hidden rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-950 via-slate-950 to-teal-950 p-5 text-white shadow-lg shadow-emerald-950/15">
       <span className="inline-flex items-center gap-2 rounded-full border border-teal-300/30 bg-emerald-900/85 px-3 py-1 text-[11px] font-black uppercase tracking-[.14em] text-teal-100">
         <Laptop size={14} /> Curso gratuito
       </span>
@@ -25,12 +25,14 @@ export function ComputingCoursePromo() {
         </span>
       </div>
 
-      <a
-        className="mt-4 inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2.5 text-xs font-black text-white transition hover:bg-emerald-400"
-        href="/curso-computacao-basica"
-      >
-        Acessar o curso <ArrowRight size={15} />
-      </a>
+      <div className="mt-auto pt-4">
+        <a
+          className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2.5 text-xs font-black text-white transition hover:bg-emerald-400"
+          href="/curso-computacao-basica"
+        >
+          Acessar o curso <ArrowRight size={15} />
+        </a>
+      </div>
     </section>
   )
 }
