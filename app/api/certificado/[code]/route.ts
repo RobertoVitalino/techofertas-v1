@@ -1,6 +1,8 @@
 import { getCertificateForCustomer } from '@/lib/certificates'
 import { getCourseConfig } from '@/lib/courses-config'
 import { requireCustomer } from '@/lib/require-customer'
+import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib'
 
 function formatDate(date: Date) {
@@ -35,7 +37,15 @@ export async function GET(
 
   const ink = rgb(0.06, 0.09, 0.16)
   const accent = rgb(0.03, 0.42, 0.68)
+  const brandDark = rgb(0, 0.278, 0.643)
   const muted = rgb(0.4, 0.44, 0.52)
+  const white = rgb(1, 1, 1)
+  const whiteMuted = rgb(0.85, 0.9, 0.98)
+
+  const logoBytes = await readFile(
+    path.join(process.cwd(), 'app', 'apple-icon.png'),
+  )
+  const logoImage = await pdfDoc.embedPng(logoBytes)
 
   page.drawRectangle({
     x: 24,
@@ -46,25 +56,53 @@ export async function GET(
     borderWidth: 2,
   })
 
+  const headerHeight = 74
+  const headerY = 595 - 24 - headerHeight
+
+  page.drawRectangle({
+    x: 24,
+    y: headerY,
+    width: 842 - 48,
+    height: headerHeight,
+    color: brandDark,
+  })
+
+  const logoSize = 42
+
+  page.drawImage(logoImage, {
+    x: 55,
+    y: headerY + (headerHeight - logoSize) / 2,
+    width: logoSize,
+    height: logoSize,
+  })
+
   page.drawText('Vitalino Tech', {
-    x: 60,
-    y: 500,
-    size: 16,
+    x: 55 + logoSize + 16,
+    y: headerY + headerHeight / 2 + 2,
+    size: 22,
     font: boldFont,
-    color: accent,
+    color: white,
+  })
+
+  page.drawText('Transformando ideias em soluções digitais.', {
+    x: 55 + logoSize + 16,
+    y: headerY + headerHeight / 2 - 16,
+    size: 10,
+    font,
+    color: whiteMuted,
   })
 
   page.drawText('Certificado de Conclusão', {
     x: 60,
-    y: 440,
-    size: 32,
+    y: headerY - 40,
+    size: 30,
     font: boldFont,
     color: ink,
   })
 
   page.drawText('Certificamos que', {
     x: 60,
-    y: 390,
+    y: headerY - 78,
     size: 14,
     font,
     color: muted,
@@ -72,7 +110,7 @@ export async function GET(
 
   page.drawText(customer.name, {
     x: 60,
-    y: 355,
+    y: headerY - 113,
     size: 26,
     font: boldFont,
     color: ink,
@@ -80,7 +118,7 @@ export async function GET(
 
   page.drawText('concluiu com êxito o curso', {
     x: 60,
-    y: 320,
+    y: headerY - 148,
     size: 14,
     font,
     color: muted,
@@ -88,7 +126,7 @@ export async function GET(
 
   page.drawText(courseConfig.title, {
     x: 60,
-    y: 290,
+    y: headerY - 178,
     size: 18,
     font: boldFont,
     color: ink,
@@ -96,8 +134,18 @@ export async function GET(
 
   page.drawText(
     `Carga horária: ${certificate.hoursTotal}   •   Emitido em: ${formatDate(certificate.issuedAt)}`,
-    { x: 60, y: 250, size: 12, font, color: muted },
+    { x: 60, y: headerY - 218, size: 12, font, color: muted },
   )
+
+  const sealSize = 56
+
+  page.drawImage(logoImage, {
+    x: 842 - 24 - 30 - sealSize,
+    y: 55,
+    width: sealSize,
+    height: sealSize,
+    opacity: 0.9,
+  })
 
   page.drawText(`Código de verificação: ${certificate.verificationCode}`, {
     x: 60,
