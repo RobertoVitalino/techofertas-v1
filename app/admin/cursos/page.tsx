@@ -163,7 +163,7 @@ export default async function AdminCoursesPage() {
 
           return (
             <article
-              className={`rounded-3xl border ${course.color.border} bg-white/[.04] p-6`}
+              className={`flex h-full flex-col rounded-3xl border ${course.color.border} bg-white/[.04] p-6`}
               key={course.slug}
             >
               <div className="flex items-start gap-3">
@@ -219,19 +219,21 @@ export default async function AdminCoursesPage() {
                 </div>
               </dl>
 
-              <div className="mt-4 flex items-center justify-between rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3">
-                <span className="text-xs font-bold text-emerald-300">Receita de certificados</span>
-                <strong className="text-emerald-200">{formatBRL(course.revenueCents)}</strong>
-              </div>
+              <div className="mt-auto pt-4">
+                <div className="flex items-center justify-between rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3">
+                  <span className="text-xs font-bold text-emerald-300">Receita de certificados</span>
+                  <strong className="text-emerald-200">{formatBRL(course.revenueCents)}</strong>
+                </div>
 
-              <a
-                className={`mt-4 flex items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-xs font-bold text-slate-300 transition hover:border-white/20 hover:text-white`}
-                href={course.config.landingHref}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Ver página do curso
-              </a>
+                <a
+                  className="mt-4 flex items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-xs font-bold text-slate-300 transition hover:border-white/20 hover:text-white"
+                  href={course.config.landingHref}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Ver página do curso
+                </a>
+              </div>
             </article>
           )
         })}
