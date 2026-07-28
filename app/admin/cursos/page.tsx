@@ -13,6 +13,7 @@ import {
   GraduationCap,
   ShieldCheck,
   UserCheck,
+  UserPlus,
   Users,
   Wrench,
 } from 'lucide-react'
@@ -76,13 +77,14 @@ function formatBRL(cents: number) {
 export default async function AdminCoursesPage() {
   await requireAdmin()
 
-  const [lessonProgress, certificates, examAttempts] = await Promise.all([
+  const [lessonProgress, certificates, examAttempts, enrollments] = await Promise.all([
     prisma.lessonProgress.findMany({ select: { customerId: true, lessonSlug: true } }),
     prisma.certificate.findMany({ select: { customerId: true, courseSlug: true } }),
     prisma.examAttempt.findMany({
       where: { passed: true },
       select: { customerId: true, courseSlug: true },
     }),
+    prisma.courseEnrollment.findMany({ select: { customerId: true, courseSlug: true } }),
   ])
 
   const completedByCustomer = new Map<number, Set<string>>()
@@ -112,6 +114,9 @@ export default async function AdminCoursesPage() {
         .filter((attempt) => attempt.courseSlug === course.slug)
         .map((attempt) => attempt.customerId),
     ).size
+    const enrolledCount = enrollments.filter(
+      (enrollment) => enrollment.courseSlug === course.slug,
+    ).length
     const completionRate = started > 0 ? Math.round((finished / started) * 100) : 0
     const revenueCents = certificatesIssued * config.priceCents
 
@@ -123,11 +128,13 @@ export default async function AdminCoursesPage() {
       completionRate,
       certificatesIssued,
       examPassedCount,
+      enrolledCount,
       revenueCents,
     }
   })
 
   const totalStarted = new Set(completedByCustomer.keys()).size
+  const totalEnrolled = new Set(enrollments.map((enrollment) => enrollment.customerId)).size
   const totalCertificates = certificates.length
   const totalRevenueCents = courses.reduce((sum, course) => sum + course.revenueCents, 0)
 
@@ -139,7 +146,12 @@ export default async function AdminCoursesPage() {
         Desempenho de cada curso: quem começou, quem concluiu, certificados e receita.
       </p>
 
-      <section className="mt-8 grid gap-4 sm:grid-cols-3">
+      <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="rounded-2xl border border-white/10 bg-white/[.04] p-5">
+          <UserPlus className="text-sky-400" />
+          <p className="mt-4 text-sm text-slate-400">Inscritos em algum curso</p>
+          <strong className="text-3xl">{totalEnrolled}</strong>
+        </div>
         <div className="rounded-2xl border border-white/10 bg-white/[.04] p-5">
           <Users className="text-brand-400" />
           <p className="mt-4 text-sm text-slate-400">Alunos ativos em algum curso</p>
@@ -193,6 +205,12 @@ export default async function AdminCoursesPage() {
               </div>
 
               <dl className="mt-5 grid grid-cols-2 gap-3 text-sm">
+                <div className="rounded-xl bg-black/20 p-3">
+                  <dt className="flex items-center gap-1.5 text-xs font-bold text-slate-400">
+                    <UserPlus size={13} /> Inscritos
+                  </dt>
+                  <dd className="mt-1 text-xl font-black">{course.enrolledCount}</dd>
+                </div>
                 <div className="rounded-xl bg-black/20 p-3">
                   <dt className="flex items-center gap-1.5 text-xs font-bold text-slate-400">
                     <UserCheck size={13} /> Começaram

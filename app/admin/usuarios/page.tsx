@@ -6,7 +6,7 @@ import { hardwareCourseLessons } from '@/lib/hardware-course'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/require-admin'
 import { securityCourseLessons } from '@/lib/security-course'
-import { Award, CalendarPlus, Users } from 'lucide-react'
+import { Award, CalendarPlus, UserPlus, Users } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -44,7 +44,7 @@ const courseDefs = [
 export default async function AdminUsersPage() {
   await requireAdmin()
 
-  const [customers, lessonProgress, certificates] = await Promise.all([
+  const [customers, lessonProgress, certificates, enrollments] = await Promise.all([
     prisma.customer.findMany({
       orderBy: { createdAt: 'desc' },
       select: { id: true, name: true, email: true, username: true, createdAt: true },
@@ -53,6 +53,9 @@ export default async function AdminUsersPage() {
       select: { customerId: true, lessonSlug: true },
     }),
     prisma.certificate.findMany({
+      select: { customerId: true, courseSlug: true },
+    }),
+    prisma.courseEnrollment.findMany({
       select: { customerId: true, courseSlug: true },
     }),
   ])
@@ -71,6 +74,13 @@ export default async function AdminUsersPage() {
     certifiedByCustomer.set(row.customerId, set)
   }
 
+  const enrolledByCustomer = new Map<number, Set<string>>()
+  for (const row of enrollments) {
+    const set = enrolledByCustomer.get(row.customerId) ?? new Set<string>()
+    set.add(row.courseSlug)
+    enrolledByCustomer.set(row.customerId, set)
+  }
+
   const newThisWeek = customers.filter(
     (customer) => customer.createdAt >= getSevenDaysAgo(),
   ).length
@@ -83,7 +93,7 @@ export default async function AdminUsersPage() {
         Cadastros, progresso nos cursos e certificados emitidos.
       </p>
 
-      <section className="mt-8 grid gap-4 sm:grid-cols-3">
+      <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-2xl border border-white/10 bg-white/[.04] p-5">
           <Users className="text-brand-400" />
           <p className="mt-4 text-sm text-slate-400">Usuários cadastrados</p>
@@ -93,6 +103,11 @@ export default async function AdminUsersPage() {
           <CalendarPlus className="text-emerald-400" />
           <p className="mt-4 text-sm text-slate-400">Novos nos últimos 7 dias</p>
           <strong className="text-3xl">{newThisWeek}</strong>
+        </div>
+        <div className="rounded-2xl border border-white/10 bg-white/[.04] p-5">
+          <UserPlus className="text-sky-400" />
+          <p className="mt-4 text-sm text-slate-400">Inscritos em algum curso</p>
+          <strong className="text-3xl">{enrolledByCustomer.size}</strong>
         </div>
         <div className="rounded-2xl border border-white/10 bg-white/[.04] p-5">
           <Award className="text-amber-400" />
@@ -119,6 +134,7 @@ export default async function AdminUsersPage() {
                 {customers.map((customer) => {
                   const completed = completedByCustomer.get(customer.id) ?? new Set()
                   const certified = certifiedByCustomer.get(customer.id) ?? new Set()
+                  const enrolledSlugs = enrolledByCustomer.get(customer.id) ?? new Set()
 
                   return (
                     <tr className="border-t border-white/10" key={customer.id}>
@@ -133,14 +149,29 @@ export default async function AdminUsersPage() {
                         {new Intl.DateTimeFormat('pt-BR').format(customer.createdAt)}
                       </td>
                       {courseDefs.map((course) => {
+                        const isEnrolled = enrolledSlugs.has(course.slug)
                         const done = course.lessonSlugs.filter((slug) =>
                           completed.has(slug),
                         ).length
                         const total = course.lessonSlugs.length
                         const hasCertificate = certified.has(course.slug)
 
+                        if (!isEnrolled) {
+                          return (
+                            <td className="whitespace-nowrap text-slate-600" key={course.slug}>
+                              Não inscrito
+                            </td>
+                          )
+                        }
+
                         return (
                           <td className="whitespace-nowrap" key={course.slug}>
+                            <span
+                              className={`inline-flex items-center gap-1 text-[10px] font-black uppercase ${course.accent}`}
+                            >
+                              <UserPlus size={11} /> inscrito
+                            </span>
+                            <br />
                             <span className={done === total && total > 0 ? 'font-bold text-white' : ''}>
                               {done}/{total}
                             </span>
