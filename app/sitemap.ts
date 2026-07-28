@@ -16,6 +16,7 @@ const staticRoutes = [
   { path: '/curso-computacao-basica', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-excel', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-montagem-manutencao', priority: 0.6, changeFrequency: 'monthly' as const },
+  { path: '/sobre', priority: 0.4, changeFrequency: 'monthly' as const },
   { path: '/privacidade', priority: 0.2, changeFrequency: 'yearly' as const },
   { path: '/termos', priority: 0.2, changeFrequency: 'yearly' as const },
 ]
