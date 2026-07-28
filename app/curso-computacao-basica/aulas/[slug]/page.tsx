@@ -8,6 +8,7 @@ import {
   computingCourseModules,
   getComputingLesson,
 } from '@/lib/computing-course'
+import { isEnrolledInCourse } from '@/lib/enrollment'
 import { requireCustomer } from '@/lib/require-customer'
 import {
   ArrowLeft,
@@ -18,7 +19,7 @@ import {
   ListChecks,
 } from 'lucide-react'
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
@@ -51,6 +52,10 @@ export default async function ComputingLessonPage({
   const customer = await requireCustomer(
     `/curso-computacao-basica/aulas/${lesson.slug}`,
   )
+
+  const enrolled = await isEnrolledInCourse(customer.id, 'computacao-basica')
+  if (!enrolled) redirect('/curso-computacao-basica')
+
   const completedLessons = await getCompletedLessonSlugs(customer.id)
 
   const currentIndex = computingCourseLessons.findIndex(

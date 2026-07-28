@@ -3,6 +3,7 @@ import { Header } from '@/components/Header'
 import { LessonQuestionForm } from '@/components/LessonQuestionForm'
 import { LessonQuiz } from '@/components/LessonQuiz'
 import { getCompletedLessonSlugs } from '@/lib/course-progress'
+import { isEnrolledInCourse } from '@/lib/enrollment'
 import {
   getSecurityLesson,
   securityCourseLessons,
@@ -18,7 +19,7 @@ import {
   ListChecks,
 } from 'lucide-react'
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
@@ -51,6 +52,10 @@ export default async function SecurityLessonPage({
   const customer = await requireCustomer(
     `/curso-seguranca-da-informacao/aulas/${lesson.slug}`,
   )
+
+  const enrolled = await isEnrolledInCourse(customer.id, 'seguranca-da-informacao')
+  if (!enrolled) redirect('/curso-seguranca-da-informacao')
+
   const completedLessons = await getCompletedLessonSlugs(customer.id)
 
   const currentIndex = securityCourseLessons.findIndex(

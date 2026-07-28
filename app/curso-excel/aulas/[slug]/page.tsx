@@ -3,6 +3,7 @@ import { Header } from '@/components/Header'
 import { LessonQuestionForm } from '@/components/LessonQuestionForm'
 import { LessonQuiz } from '@/components/LessonQuiz'
 import { getCompletedLessonSlugs } from '@/lib/course-progress'
+import { isEnrolledInCourse } from '@/lib/enrollment'
 import {
   excelCourseLessons,
   excelCourseModules,
@@ -18,7 +19,7 @@ import {
   ListChecks,
 } from 'lucide-react'
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
@@ -49,6 +50,10 @@ export default async function ExcelLessonPage({
   if (!lesson) notFound()
 
   const customer = await requireCustomer(`/curso-excel/aulas/${lesson.slug}`)
+
+  const enrolled = await isEnrolledInCourse(customer.id, 'excel')
+  if (!enrolled) redirect('/curso-excel')
+
   const completedLessons = await getCompletedLessonSlugs(customer.id)
 
   const currentIndex = excelCourseLessons.findIndex(

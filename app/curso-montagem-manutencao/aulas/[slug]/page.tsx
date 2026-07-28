@@ -3,6 +3,7 @@ import { Header } from '@/components/Header'
 import { LessonQuestionForm } from '@/components/LessonQuestionForm'
 import { LessonQuiz } from '@/components/LessonQuiz'
 import { getCompletedLessonSlugs } from '@/lib/course-progress'
+import { isEnrolledInCourse } from '@/lib/enrollment'
 import {
   getHardwareLesson,
   hardwareCourseLessons,
@@ -18,7 +19,7 @@ import {
   ListChecks,
 } from 'lucide-react'
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
@@ -49,6 +50,10 @@ export default async function HardwareLessonPage({
   if (!lesson) notFound()
 
   const customer = await requireCustomer(`/curso-montagem-manutencao/aulas/${lesson.slug}`)
+
+  const enrolled = await isEnrolledInCourse(customer.id, 'montagem-manutencao')
+  if (!enrolled) redirect('/curso-montagem-manutencao')
+
   const completedLessons = await getCompletedLessonSlugs(customer.id)
 
   const currentIndex = hardwareCourseLessons.findIndex(

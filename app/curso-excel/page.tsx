@@ -4,6 +4,8 @@ import { Header } from '@/components/Header'
 import { getCertificateStatus, hasPassedFinalExam, isCourseFullyCompleted } from '@/lib/certificates'
 import { getCompletedLessonSlugs } from '@/lib/course-progress'
 import { getCourseConfig } from '@/lib/courses-config'
+import { enrollInCourseAction } from '@/lib/enrollment-actions'
+import { isEnrolledInCourse } from '@/lib/enrollment'
 import {
   excelCourseLessons,
   excelCourseModules,
@@ -43,6 +45,9 @@ export default async function ExcelCoursePage() {
   const firstLesson = excelCourseLessons[0]
   const firstLessonHref = `/curso-excel/aulas/${firstLesson.slug}`
   const courseConfig = getCourseConfig(COURSE_SLUG)
+  const enrolled = customer
+    ? await isEnrolledInCourse(customer.id, COURSE_SLUG)
+    : false
   const lessonsComplete = customer
     ? await isCourseFullyCompleted(customer.id, lessonSlugs)
     : false
@@ -98,12 +103,23 @@ export default async function ExcelCoursePage() {
               </p>
 
               {customer ? (
-                <a
-                  className="mt-7 inline-flex items-center gap-2 rounded-xl bg-violet-400 px-6 py-3 font-black text-slate-950 transition hover:bg-violet-300"
-                  href={firstLessonHref}
-                >
-                  Começar pela primeira aula <ArrowRight size={18} />
-                </a>
+                enrolled ? (
+                  <a
+                    className="mt-7 inline-flex items-center gap-2 rounded-xl bg-violet-400 px-6 py-3 font-black text-slate-950 transition hover:bg-violet-300"
+                    href={firstLessonHref}
+                  >
+                    Começar pela primeira aula <ArrowRight size={18} />
+                  </a>
+                ) : (
+                  <form action={enrollInCourseAction.bind(null, COURSE_SLUG)}>
+                    <button
+                      className="mt-7 inline-flex items-center gap-2 rounded-xl bg-violet-400 px-6 py-3 font-black text-slate-950 transition hover:bg-violet-300"
+                      type="submit"
+                    >
+                      Inscrever-me no curso <ArrowRight size={18} />
+                    </button>
+                  </form>
+                )
               ) : (
                 <div className="mt-7 flex flex-wrap gap-3">
                   <a
@@ -142,28 +158,51 @@ export default async function ExcelCoursePage() {
         </section>
 
         {customer ? (
-          <>
-            <CourseProgress
-              initialCompleted={completedLessons}
-              lessonSlugs={lessonSlugs}
-            />
-            <CertificateCta
-              courseSlug={COURSE_SLUG}
-              examHref={courseConfig.examHref}
-              examPassed={examPassed}
-              examRequired={courseConfig.requiresFinalExam}
-              lessonSlugs={lessonSlugs}
-              lessonsComplete={lessonsComplete}
-              priceLabel={certificatePriceLabel}
-              status={certificateStatus.state}
-              totalLessons={lessonSlugs.length}
-              verificationCode={
-                certificateStatus.state === 'issued'
-                  ? certificateStatus.verificationCode
-                  : undefined
-              }
-            />
-          </>
+          enrolled ? (
+            <>
+              <CourseProgress
+                initialCompleted={completedLessons}
+                lessonSlugs={lessonSlugs}
+              />
+              <CertificateCta
+                courseSlug={COURSE_SLUG}
+                examHref={courseConfig.examHref}
+                examPassed={examPassed}
+                examRequired={courseConfig.requiresFinalExam}
+                lessonSlugs={lessonSlugs}
+                lessonsComplete={lessonsComplete}
+                priceLabel={certificatePriceLabel}
+                status={certificateStatus.state}
+                totalLessons={lessonSlugs.length}
+                verificationCode={
+                  certificateStatus.state === 'issued'
+                    ? certificateStatus.verificationCode
+                    : undefined
+                }
+              />
+            </>
+          ) : (
+            <section className="flex flex-col gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-3">
+                <GraduationCap className="mt-0.5 shrink-0 text-amber-700" size={22} />
+                <div>
+                  <h2 className="font-black text-amber-950">Inscrição necessária</h2>
+                  <p className="mt-1 text-sm leading-6 text-amber-900/80">
+                    Antes de abrir as aulas, faça sua inscrição gratuita no
+                    curso para começar a acompanhar seu progresso.
+                  </p>
+                </div>
+              </div>
+              <form action={enrollInCourseAction.bind(null, COURSE_SLUG)}>
+                <button
+                  className="shrink-0 rounded-xl bg-amber-700 px-5 py-3 text-center text-sm font-black text-white hover:bg-amber-800"
+                  type="submit"
+                >
+                  Inscrever-me no curso
+                </button>
+              </form>
+            </section>
+          )
         ) : (
           <section className="flex flex-col gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-3">
