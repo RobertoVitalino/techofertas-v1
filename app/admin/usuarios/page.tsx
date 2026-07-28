@@ -2,6 +2,7 @@ import { AdminUserActions } from '@/components/AdminUserActions'
 import { computingCourseLessons } from '@/lib/computing-course'
 import { courseRegistry } from '@/lib/courses-config'
 import { excelCourseLessons } from '@/lib/excel-course'
+import { hardwareCourseLessons } from '@/lib/hardware-course'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/require-admin'
 import { securityCourseLessons } from '@/lib/security-course'
@@ -31,6 +32,12 @@ const courseDefs = [
     title: courseRegistry.excel.title,
     lessonSlugs: excelCourseLessons.map((lesson) => lesson.slug),
     accent: 'text-violet-400',
+  },
+  {
+    slug: 'montagem-manutencao',
+    title: courseRegistry['montagem-manutencao'].title,
+    lessonSlugs: hardwareCourseLessons.map((lesson) => lesson.slug),
+    accent: 'text-orange-400',
   },
 ]
 
@@ -97,7 +104,7 @@ export default async function AdminUsersPage() {
       <section className="mt-8 rounded-2xl border border-white/10 bg-white/[.04] p-5">
         {customers.length ? (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[900px] text-left text-sm">
+            <table className="w-full min-w-[1050px] text-left text-sm">
               <thead className="text-slate-400">
                 <tr>
                   <th className="py-3">Cliente</th>

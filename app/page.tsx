@@ -1,6 +1,7 @@
 import { ComputingCoursePromo } from '@/components/ComputingCoursePromo'
 import { DealAlertSignup } from '@/components/DealAlertSignup'
 import { ExcelCoursePromo } from '@/components/ExcelCoursePromo'
+import { HardwareCoursePromo } from '@/components/HardwareCoursePromo'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
 import { Categories, News, Products, Services } from '@/components/Sections'
@@ -24,10 +25,11 @@ export default async function Home() {
       <div className="mx-auto max-w-7xl space-y-12 px-4 py-8">
         <Hero />
         <Services />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <ComputingCoursePromo />
           <SecurityCoursePromo />
           <ExcelCoursePromo />
+          <HardwareCoursePromo />
         </div>
         <News />
         <Categories />

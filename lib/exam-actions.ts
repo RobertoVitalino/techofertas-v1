@@ -11,6 +11,11 @@ import {
   EXCEL_FINAL_EXAM_PASSING_SCORE,
   excelFinalExamQuestions,
 } from '@/lib/excel-final-exam'
+import { hardwareCourseLessons } from '@/lib/hardware-course'
+import {
+  HARDWARE_FINAL_EXAM_PASSING_SCORE,
+  hardwareFinalExamQuestions,
+} from '@/lib/hardware-final-exam'
 import { prisma } from '@/lib/prisma'
 import { requireCustomer } from '@/lib/require-customer'
 
@@ -30,6 +35,12 @@ const examRegistry = {
     questions: excelFinalExamQuestions,
     passingScore: EXCEL_FINAL_EXAM_PASSING_SCORE,
     redirectPath: '/curso-excel/prova-final',
+  },
+  'montagem-manutencao': {
+    lessonSlugs: hardwareCourseLessons.map((lesson) => lesson.slug),
+    questions: hardwareFinalExamQuestions,
+    passingScore: HARDWARE_FINAL_EXAM_PASSING_SCORE,
+    redirectPath: '/curso-montagem-manutencao/prova-final',
   },
 } as const
 

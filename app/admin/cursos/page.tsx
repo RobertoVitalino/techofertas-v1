@@ -1,6 +1,7 @@
 import { computingCourseLessons } from '@/lib/computing-course'
 import { courseRegistry } from '@/lib/courses-config'
 import { excelCourseLessons } from '@/lib/excel-course'
+import { hardwareCourseLessons } from '@/lib/hardware-course'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/require-admin'
 import { securityCourseLessons } from '@/lib/security-course'
@@ -13,6 +14,7 @@ import {
   ShieldCheck,
   UserCheck,
   Users,
+  Wrench,
 } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
@@ -50,6 +52,17 @@ const courseDefs = [
       border: 'border-violet-500/20',
     },
     lessonSlugs: excelCourseLessons.map((lesson) => lesson.slug),
+  },
+  {
+    slug: 'montagem-manutencao',
+    icon: Wrench,
+    color: {
+      text: 'text-orange-400',
+      bg: 'bg-orange-500/15',
+      bar: 'from-orange-500 to-amber-400',
+      border: 'border-orange-500/20',
+    },
+    lessonSlugs: hardwareCourseLessons.map((lesson) => lesson.slug),
   },
 ]
 
@@ -144,7 +157,7 @@ export default async function AdminCoursesPage() {
         </div>
       </section>
 
-      <section className="mt-8 grid gap-5 lg:grid-cols-3">
+      <section className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
         {courses.map((course) => {
           const Icon = course.icon
 

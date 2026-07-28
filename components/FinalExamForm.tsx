@@ -18,7 +18,7 @@ export function FinalExamForm({
   questions,
   passingScore,
 }: {
-  courseSlug: 'computacao-basica' | 'excel'
+  courseSlug: 'computacao-basica' | 'excel' | 'montagem-manutencao'
   courseHref: string
   questions: Question[]
   passingScore: number

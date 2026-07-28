@@ -35,6 +35,15 @@ export const courseRegistry: Record<string, CourseConfig> = {
     landingHref: '/curso-excel',
     examHref: '/curso-excel/prova-final',
   },
+  'montagem-manutencao': {
+    slug: 'montagem-manutencao',
+    title: 'Montagem e Manutenção de Computadores e Notebooks',
+    hoursTotal: '19h',
+    priceCents: 3990,
+    requiresFinalExam: true,
+    landingHref: '/curso-montagem-manutencao',
+    examHref: '/curso-montagem-manutencao/prova-final',
+  },
 }
 
 export function getCourseConfig(courseSlug: string) {

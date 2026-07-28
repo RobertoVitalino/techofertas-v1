@@ -2,6 +2,7 @@ import { Header } from '@/components/Header'
 import { computingCourseStats } from '@/lib/computing-course'
 import { courseRegistry } from '@/lib/courses-config'
 import { excelCourseStats } from '@/lib/excel-course'
+import { hardwareCourseStats } from '@/lib/hardware-course'
 import { securityCourseStats } from '@/lib/security-course'
 import {
   ArrowRight,
@@ -11,12 +12,13 @@ import {
   FileSpreadsheet,
   GraduationCap,
   ShieldCheck,
+  Wrench,
 } from 'lucide-react'
 
 export const metadata = {
   title: 'Cursos gratuitos',
   description:
-    'Cursos gratuitos de segurança da informação, computação básica e Excel, com certificado pago opcional.',
+    'Cursos gratuitos de segurança da informação, computação básica, Excel e montagem e manutenção de computadores, com certificado pago opcional.',
 }
 
 const courses = [
@@ -44,6 +46,14 @@ const courses = [
     summary:
       'Fórmulas, funções essenciais, PROCV/PROCX, gráficos e tabelas dinâmicas, com um projeto prático de painel financeiro.',
   },
+  {
+    slug: 'montagem-manutencao',
+    icon: Wrench,
+    accent: 'orange' as const,
+    stats: hardwareCourseStats,
+    summary:
+      'Monte um PC do zero, configure a BIOS, faça manutenção preventiva, diagnostique problemas comuns e cuide de notebooks.',
+  },
 ]
 
 const accentClasses = {
@@ -64,6 +74,12 @@ const accentClasses = {
     badgeBg: 'bg-violet-700',
     text: 'text-violet-700',
     button: 'bg-violet-700 hover:bg-violet-800',
+  },
+  orange: {
+    border: 'border-orange-200',
+    badgeBg: 'bg-orange-700',
+    text: 'text-orange-700',
+    button: 'bg-orange-700 hover:bg-orange-800',
   },
 }
 
@@ -87,7 +103,7 @@ export default function CoursesHubPage() {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {courses.map((course) => {
             const config = courseRegistry[course.slug]
             const Icon = course.icon
