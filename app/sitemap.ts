@@ -5,6 +5,7 @@ import { hardwareCourseLessons } from '@/lib/hardware-course'
 import { prisma } from '@/lib/prisma'
 import { securityCourseLessons } from '@/lib/security-course'
 import { SITE_URL } from '@/lib/site'
+import { typingCourseLessons } from '@/lib/typing-course'
 import type { MetadataRoute } from 'next'
 
 const staticRoutes = [
@@ -16,6 +17,7 @@ const staticRoutes = [
   { path: '/curso-computacao-basica', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-excel', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-montagem-manutencao', priority: 0.6, changeFrequency: 'monthly' as const },
+  { path: '/curso-digitacao', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/sobre', priority: 0.4, changeFrequency: 'monthly' as const },
   { path: '/privacidade', priority: 0.2, changeFrequency: 'yearly' as const },
   { path: '/termos', priority: 0.2, changeFrequency: 'yearly' as const },
@@ -55,6 +57,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...hardwareCourseLessons.map((lesson) => ({
       url: `${SITE_URL}/curso-montagem-manutencao/aulas/${lesson.slug}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.4,
+    })),
+    ...typingCourseLessons.map((lesson) => ({
+      url: `${SITE_URL}/curso-digitacao/aulas/${lesson.slug}`,
       changeFrequency: 'monthly' as const,
       priority: 0.4,
     })),

@@ -6,6 +6,7 @@ import { hardwareCourseLessons } from '@/lib/hardware-course'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/require-admin'
 import { securityCourseLessons } from '@/lib/security-course'
+import { typingCourseLessons } from '@/lib/typing-course'
 import { Award, CalendarPlus, UserPlus, Users } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
@@ -38,6 +39,12 @@ const courseDefs = [
     title: courseRegistry['montagem-manutencao'].title,
     lessonSlugs: hardwareCourseLessons.map((lesson) => lesson.slug),
     accent: 'text-orange-400',
+  },
+  {
+    slug: 'digitacao',
+    title: courseRegistry.digitacao.title,
+    lessonSlugs: typingCourseLessons.map((lesson) => lesson.slug),
+    accent: 'text-rose-400',
   },
 ]
 
@@ -119,7 +126,7 @@ export default async function AdminUsersPage() {
       <section className="mt-8 rounded-2xl border border-white/10 bg-white/[.04] p-5">
         {customers.length ? (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[1050px] text-left text-sm">
+            <table className="w-full min-w-[1200px] text-left text-sm">
               <thead className="text-slate-400">
                 <tr>
                   <th className="py-3">Cliente</th>

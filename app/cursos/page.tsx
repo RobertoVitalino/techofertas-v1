@@ -4,6 +4,7 @@ import { courseRegistry } from '@/lib/courses-config'
 import { excelCourseStats } from '@/lib/excel-course'
 import { hardwareCourseStats } from '@/lib/hardware-course'
 import { securityCourseStats } from '@/lib/security-course'
+import { typingCourseStats } from '@/lib/typing-course'
 import {
   ArrowRight,
   Award,
@@ -11,6 +12,7 @@ import {
   Clock3,
   FileSpreadsheet,
   GraduationCap,
+  Keyboard,
   ShieldCheck,
   Wrench,
 } from 'lucide-react'
@@ -18,7 +20,7 @@ import {
 export const metadata = {
   title: 'Cursos gratuitos',
   description:
-    'Cursos gratuitos de segurança da informação, computação básica, Excel e montagem e manutenção de computadores, com certificado pago opcional.',
+    'Cursos gratuitos de segurança da informação, computação básica, Excel, montagem e manutenção de computadores e digitação, com certificado pago opcional.',
 }
 
 const courses = [
@@ -54,6 +56,14 @@ const courses = [
     summary:
       'Monte um PC do zero, configure a BIOS, faça manutenção preventiva, diagnostique problemas comuns e cuide de notebooks.',
   },
+  {
+    slug: 'digitacao',
+    icon: Keyboard,
+    accent: 'rose' as const,
+    stats: typingCourseStats,
+    summary:
+      'Aprenda a digitar sem olhar para o teclado, com exercícios de velocidade e precisão medidos em tempo real em cada aula.',
+  },
 ]
 
 const accentClasses = {
@@ -81,6 +91,12 @@ const accentClasses = {
     text: 'text-orange-700',
     button: 'bg-orange-700 hover:bg-orange-800',
   },
+  rose: {
+    border: 'border-rose-200',
+    badgeBg: 'bg-rose-700',
+    text: 'text-rose-700',
+    button: 'bg-rose-700 hover:bg-rose-800',
+  },
 }
 
 export default function CoursesHubPage() {
@@ -103,7 +119,7 @@ export default function CoursesHubPage() {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {courses.map((course) => {
             const config = courseRegistry[course.slug]
             const Icon = course.icon

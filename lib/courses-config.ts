@@ -44,6 +44,14 @@ export const courseRegistry: Record<string, CourseConfig> = {
     landingHref: '/curso-montagem-manutencao',
     examHref: '/curso-montagem-manutencao/prova-final',
   },
+  digitacao: {
+    slug: 'digitacao',
+    title: 'Digitação: Curso de Digitação por Toque do Zero',
+    hoursTotal: '6h',
+    priceCents: 3990,
+    requiresFinalExam: false,
+    landingHref: '/curso-digitacao',
+  },
 }
 
 export function getCourseConfig(courseSlug: string) {

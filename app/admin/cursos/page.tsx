@@ -5,12 +5,14 @@ import { hardwareCourseLessons } from '@/lib/hardware-course'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/require-admin'
 import { securityCourseLessons } from '@/lib/security-course'
+import { typingCourseLessons } from '@/lib/typing-course'
 import {
   Award,
   BookOpenCheck,
   Coins,
   FileSpreadsheet,
   GraduationCap,
+  Keyboard,
   ShieldCheck,
   UserCheck,
   UserPlus,
@@ -64,6 +66,17 @@ const courseDefs = [
       border: 'border-orange-500/20',
     },
     lessonSlugs: hardwareCourseLessons.map((lesson) => lesson.slug),
+  },
+  {
+    slug: 'digitacao',
+    icon: Keyboard,
+    color: {
+      text: 'text-rose-400',
+      bg: 'bg-rose-500/15',
+      bar: 'from-rose-500 to-pink-400',
+      border: 'border-rose-500/20',
+    },
+    lessonSlugs: typingCourseLessons.map((lesson) => lesson.slug),
   },
 ]
 
@@ -169,7 +182,7 @@ export default async function AdminCoursesPage() {
         </div>
       </section>
 
-      <section className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
+      <section className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
         {courses.map((course) => {
           const Icon = course.icon
 
