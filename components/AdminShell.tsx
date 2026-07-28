@@ -3,6 +3,7 @@ import { revokeAdminSession } from '@/lib/admin-session'
 import {
   BarChart3,
   ExternalLink,
+  GraduationCap,
   Image as ImageIcon,
   LogOut,
   MessageCircleQuestion,
@@ -19,6 +20,7 @@ import { redirect } from 'next/navigation'
 const adminLinks = [
   { label: 'Produtos', href: '/admin/produtos', icon: Package },
   { label: 'Categorias', href: '/admin/categorias', icon: Tags },
+  { label: 'Cursos', href: '/admin/cursos', icon: GraduationCap },
   { label: 'Artigos', href: '/admin/artigos', icon: Newspaper },
   { label: 'Banners', href: '/admin/banners', icon: ImageIcon },
   { label: 'Usuários', href: '/admin/usuarios', icon: Users },
