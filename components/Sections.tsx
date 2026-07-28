@@ -371,39 +371,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Buraco negro vizinho pode ser alvo de uma das maiores missões da humanidade',
-    category: 'Ciência e Espaço',
-    summary: 'Uma microssonda impulsionada por laser é a aposta teórica para alcançar regiões onde nenhuma nave humana chegou antes',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/buraco_negro.jpg',
-    href: 'https://olhardigital.com.br/2026/07/27/ciencia-e-espaco/buraco-negro-vizinho-pode-ser-alvo-de-uma-das-maiores-missoes-da-humanidade/',
-  },
-  {
-    title: 'Estudante revela nova forma de detectar civilizações alienígenas',
-    category: 'Ciência e Espaço',
-    summary: 'Estudante cria nova teoria para buscar vida alienígena usando estrelas com rotação incomum e propõe um novo tipo de tecnossinal.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/iStock-1406066710.jpg',
-    href: 'https://olhardigital.com.br/2026/07/27/ciencia-e-espaco/estudante-revela-nova-forma-de-detectar-civilizacoes-alienigenas/',
-  },
-  {
-    title: 'Júpiter vai ‘desaparecer’ do céu nesta semana; entenda',
-    category: 'Ciência e Espaço',
-    summary: 'O maior planeta do Sistema Solar atinge sua distância máxima da Terra na quarta-feira (29); saiba quando o astro volta a aparecer',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/Destaque-Jupiter-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/07/27/ciencia-e-espaco/jupiter-vai-desaparecer-do-ceu-nesta-semana/',
-  },
-  {
-    title: 'Formato Geoide: parece uma batata, mas é a Terra revelada pela força invisível da gravidade',
-    category: 'Ciência e Espaço',
-    summary: 'Modelo criado com dados de missões espaciais revela como diferenças mínimas na distribuição de massa alteram o campo gravitacional terrestre',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/terra-formato-geoide-nasa-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/07/27/ciencia-e-espaco/formato-geoide-parece-uma-batata-mas-e-a-terra-revelada-pela-forca-invisivel-da-gravidade/',
-  },
-  {
-    title: 'Corrida da IA vira batalha com acusações de roubo entre China e EUA',
+    title: 'China abre seus modelos de IA e acende um alerta em Silicon Valley',
     category: 'Inteligência Artificial',
-    summary: 'China e EUA entram em novo embate pela inteligência artificial, com acusações de roubo de dados e disputa pelo controle dos modelos de IA.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2025/10/ia_chip_eua_china.jpg',
-    href: 'https://olhardigital.com.br/2026/07/27/inteligencia-artificial/corrida-da-ia-vira-batalha-com-acusacoes-de-roubo-entre-china-e-eua/',
+    summary: 'Empresas chinesas apostam em ecossistemas abertos para ampliar influência, reduzir custos e conquistar desenvolvedores ao redor do mundo',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/kimi-moonshot-inteligencia-artificial-ia-ai-china-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/07/28/inteligencia-artificial/china-abre-seus-modelos-de-ia-e-acende-um-alerta-em-silicon-valley/',
+  },
+  {
+    title: 'Xbox explica causa da instabilidade global e promete mudanças para evitar novas falhas',
+    category: 'Games e Consoles',
+    summary: 'Microsoft explica que a instabilidade da Xbox foi causada por uma falha em um serviço de licenciamento e promete mudanças para evitar novos problemas.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/xbox-2.jpg',
+    href: 'https://olhardigital.com.br/2026/07/28/games-e-consoles/xbox-revela-causa-da-instabilidade/',
+  },
+  {
+    title: 'BYD lança minicarro elétrico no Japão e desafia gigantes locais com preço agressivo',
+    category: 'Veículos e Tecnologia',
+    summary: 'Modelo foi criado para atender às regras dos kei cars e aposta em espaço interno, autonomia elétrica e praticidade para famílias japonesas',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/BYD-Racco1-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/07/28/carros-e-tecnologia/byd-lanca-minicarro-eletrico-no-japao-e-desafia-gigantes-locais-com-preco-agressivo/',
+  },
+  {
+    title: 'Duas estrelas podem estar (teoricamente) abastecendo energia alienígena',
+    category: 'Exploração Espacial',
+    summary: 'Astrônomos buscaram pistas de esferas de Dyson em estrelas da Via Láctea, mas encontraram um fenômeno inesperado no brilho infravermelho.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2024/05/dyson-esfera.webp',
+    href: 'https://olhardigital.com.br/2026/07/28/ciencia-e-espaco/exploracao-espacial/duas-estrelas-podem-estar-teoricamente-abastecendo-energia-alienigena/',
+  },
+  {
+    title: 'Alerta vermelho: chuva pode passar de 100 mm no Rio Grande do Sul',
+    category: 'Ciência e Espaço',
+    summary: 'Inmet alerta para chuva intensa, granizo e tempestades no Sul, enquanto áreas do Brasil enfrentam calor e baixa umidade nos próximos dias.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/iStock-2071010545.jpg',
+    href: 'https://olhardigital.com.br/2026/07/28/ciencia-e-espaco/alerta-vermelho-chuva-pode-passar-de-100-mm-no-rio-grande-do-sul/',
   },
 ]
 // AUTO-NEWS-END
