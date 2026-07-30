@@ -1,3 +1,4 @@
+import { AdminShortcutLink } from '@/components/AdminShortcutLink'
 import { courseRegistry } from '@/lib/courses-config'
 import { Heart, Menu, Search, UserRound, Zap } from 'lucide-react'
 
@@ -51,6 +52,7 @@ export function Header() {
         </form>
 
         <div className="hidden items-center gap-4 md:flex">
+          <AdminShortcutLink variant="desktop" />
           <a
             href="/minha-conta"
             className="flex items-center gap-2 rounded-lg px-2 py-2 text-sm font-bold text-slate-700 transition hover:bg-sky-100 hover:text-sky-800"
@@ -83,6 +85,7 @@ export function Header() {
               </button>
             </form>
             <nav className="mt-3 grid gap-1">
+              <AdminShortcutLink variant="mobile" />
               <a
                 className="mb-2 flex items-center gap-2 rounded-lg bg-brand-600/15 px-3 py-2.5 text-sm font-bold text-brand-300 hover:bg-brand-600/25 hover:text-white"
                 href="/minha-conta"
