@@ -11,6 +11,7 @@ import {
 } from '@/lib/customer-auth'
 import { revokeCustomerSession } from '@/lib/customer-session'
 import { prisma } from '@/lib/prisma'
+import { SESSION_COOKIE_DOMAIN } from '@/lib/site'
 import { securityCourseLessons } from '@/lib/security-course'
 import { requireCustomer } from '@/lib/require-customer'
 import {
@@ -40,7 +41,11 @@ async function logoutCustomer() {
   const token = cookieStore.get(CUSTOMER_SESSION_COOKIE)?.value
 
   await revokeCustomerSession(token)
-  cookieStore.delete(CUSTOMER_SESSION_COOKIE)
+  cookieStore.delete({
+    name: CUSTOMER_SESSION_COOKIE,
+    path: '/',
+    domain: SESSION_COOKIE_DOMAIN,
+  })
   redirect('/')
 }
 
@@ -67,7 +72,11 @@ async function deleteCustomerAccount(formData: FormData) {
   await prisma.customer.delete({ where: { id: customer.id } })
 
   const cookieStore = await cookies()
-  cookieStore.delete(CUSTOMER_SESSION_COOKIE)
+  cookieStore.delete({
+    name: CUSTOMER_SESSION_COOKIE,
+    path: '/',
+    domain: SESSION_COOKIE_DOMAIN,
+  })
   redirect('/?conta-excluida=1')
 }
 

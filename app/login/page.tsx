@@ -13,6 +13,7 @@ import {
   writeSecurityEvent,
 } from '@/lib/auth-rate-limit'
 import { createAdminSession } from '@/lib/admin-session'
+import { SESSION_COOKIE_DOMAIN } from '@/lib/site'
 import { LockKeyhole, LogIn } from 'lucide-react'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -93,6 +94,7 @@ async function loginAdmin(formData: FormData) {
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     path: '/',
+    domain: SESSION_COOKIE_DOMAIN,
     maxAge: ADMIN_SESSION_DURATION_SECONDS,
   })
 

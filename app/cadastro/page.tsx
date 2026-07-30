@@ -16,6 +16,7 @@ import {
 } from '@/lib/auth-rate-limit'
 import { createCustomerSession } from '@/lib/customer-session'
 import { prisma } from '@/lib/prisma'
+import { SESSION_COOKIE_DOMAIN } from '@/lib/site'
 import { ArrowLeft, CheckCircle2, ShieldCheck, UserPlus, Zap } from 'lucide-react'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -117,6 +118,7 @@ async function registerCustomer(formData: FormData) {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
+      domain: SESSION_COOKIE_DOMAIN,
       maxAge: CUSTOMER_SESSION_DURATION_SECONDS,
     })
 

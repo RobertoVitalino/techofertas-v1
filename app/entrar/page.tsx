@@ -14,6 +14,7 @@ import {
 } from '@/lib/auth-rate-limit'
 import { createCustomerSession } from '@/lib/customer-session'
 import { prisma } from '@/lib/prisma'
+import { SESSION_COOKIE_DOMAIN } from '@/lib/site'
 import {
   ArrowLeft,
   CheckCircle2,
@@ -106,6 +107,7 @@ async function loginCustomer(formData: FormData) {
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     path: '/',
+    domain: SESSION_COOKIE_DOMAIN,
     maxAge: CUSTOMER_SESSION_DURATION_SECONDS,
   })
 
