@@ -5,13 +5,19 @@ import { isAdminSessionActive } from '@/lib/admin-session'
 import { getRequestIp, writeSecurityEvent } from '@/lib/auth-rate-limit'
 import { revokeAllCustomerSessions } from '@/lib/customer-session'
 import { prisma } from '@/lib/prisma'
-import { cookies } from 'next/headers'
+import { extractCookieValues, findFirstValidCookieValue } from '@/lib/session-cookie'
+import { headers } from 'next/headers'
 
 async function isRequestFromAdmin() {
-  const cookieStore = await cookies()
-  const session = cookieStore.get(ADMIN_SESSION_COOKIE)?.value
+  const headerStore = await headers()
+  const candidates = extractCookieValues(
+    headerStore.get('cookie'),
+    ADMIN_SESSION_COOKIE,
+  )
 
-  return isAdminSessionActive(session)
+  return Boolean(
+    await findFirstValidCookieValue(candidates, isAdminSessionActive),
+  )
 }
 
 type AdminActionResult = { error: string } | { success: true }

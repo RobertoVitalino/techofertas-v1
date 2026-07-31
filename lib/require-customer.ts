@@ -2,7 +2,8 @@ import 'server-only'
 
 import { CUSTOMER_SESSION_COOKIE } from '@/lib/customer-auth'
 import { getCustomerFromSessionToken } from '@/lib/customer-session'
-import { cookies } from 'next/headers'
+import { extractCookieValues, findFirstValidCookieValue } from '@/lib/session-cookie'
+import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 function getSafeDestination(destination: string) {
@@ -14,10 +15,13 @@ function getSafeDestination(destination: string) {
 }
 
 export async function getCurrentCustomer() {
-  const cookieStore = await cookies()
-  const session = cookieStore.get(CUSTOMER_SESSION_COOKIE)?.value
+  const headerStore = await headers()
+  const candidates = extractCookieValues(
+    headerStore.get('cookie'),
+    CUSTOMER_SESSION_COOKIE,
+  )
 
-  return getCustomerFromSessionToken(session)
+  return findFirstValidCookieValue(candidates, getCustomerFromSessionToken)
 }
 
 export async function requireCustomer(destination = '/minha-conta') {

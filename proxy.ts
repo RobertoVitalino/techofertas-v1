@@ -7,12 +7,15 @@ import {
   CUSTOMER_SESSION_COOKIE,
   verifyCustomerSessionToken,
 } from '@/lib/customer-auth'
+import { extractCookieValues, findFirstValidCookieValue } from '@/lib/session-cookie'
 
 export async function proxy(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith('/admin')) {
-    const session = request.cookies.get(ADMIN_SESSION_COOKIE)?.value
+  const cookieHeader = request.headers.get('cookie')
 
-    if (await verifyAdminSessionToken(session)) {
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    const candidates = extractCookieValues(cookieHeader, ADMIN_SESSION_COOKIE)
+
+    if (await findFirstValidCookieValue(candidates, verifyAdminSessionToken)) {
       return NextResponse.next()
     }
 
@@ -25,9 +28,14 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(loginUrl)
   }
 
-  const customerSession = request.cookies.get(CUSTOMER_SESSION_COOKIE)?.value
+  const customerCandidates = extractCookieValues(
+    cookieHeader,
+    CUSTOMER_SESSION_COOKIE,
+  )
 
-  if (await verifyCustomerSessionToken(customerSession)) {
+  if (
+    await findFirstValidCookieValue(customerCandidates, verifyCustomerSessionToken)
+  ) {
     return NextResponse.next()
   }
 

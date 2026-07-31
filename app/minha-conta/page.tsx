@@ -11,6 +11,7 @@ import {
 } from '@/lib/customer-auth'
 import { revokeCustomerSession } from '@/lib/customer-session'
 import { prisma } from '@/lib/prisma'
+import { extractCookieValues } from '@/lib/session-cookie'
 import { SESSION_COOKIE_DOMAIN } from '@/lib/site'
 import { securityCourseLessons } from '@/lib/security-course'
 import { requireCustomer } from '@/lib/require-customer'
@@ -29,7 +30,7 @@ import {
   UserRound,
   Zap,
 } from 'lucide-react'
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
@@ -37,10 +38,15 @@ export const dynamic = 'force-dynamic'
 async function logoutCustomer() {
   'use server'
 
-  const cookieStore = await cookies()
-  const token = cookieStore.get(CUSTOMER_SESSION_COOKIE)?.value
+  const headerStore = await headers()
+  const candidates = extractCookieValues(
+    headerStore.get('cookie'),
+    CUSTOMER_SESSION_COOKIE,
+  )
 
-  await revokeCustomerSession(token)
+  await Promise.all(candidates.map((token) => revokeCustomerSession(token)))
+
+  const cookieStore = await cookies()
   cookieStore.delete({
     name: CUSTOMER_SESSION_COOKIE,
     path: '/',
