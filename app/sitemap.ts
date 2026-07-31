@@ -1,5 +1,6 @@
 import { articles } from '@/lib/blog'
 import { computingCourseLessons } from '@/lib/computing-course'
+import { englishCourseLessons } from '@/lib/english-course'
 import { excelCourseLessons } from '@/lib/excel-course'
 import { hardwareCourseLessons } from '@/lib/hardware-course'
 import { prisma } from '@/lib/prisma'
@@ -18,6 +19,7 @@ const staticRoutes = [
   { path: '/curso-excel', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-montagem-manutencao', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-digitacao', priority: 0.6, changeFrequency: 'monthly' as const },
+  { path: '/curso-ingles-basico', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/sobre', priority: 0.4, changeFrequency: 'monthly' as const },
   { path: '/privacidade', priority: 0.2, changeFrequency: 'yearly' as const },
   { path: '/termos', priority: 0.2, changeFrequency: 'yearly' as const },
@@ -62,6 +64,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...typingCourseLessons.map((lesson) => ({
       url: `${SITE_URL}/curso-digitacao/aulas/${lesson.slug}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.4,
+    })),
+    ...englishCourseLessons.map((lesson) => ({
+      url: `${SITE_URL}/curso-ingles-basico/aulas/${lesson.slug}`,
       changeFrequency: 'monthly' as const,
       priority: 0.4,
     })),

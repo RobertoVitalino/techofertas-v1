@@ -1,7 +1,11 @@
 import { requireAdmin } from '@/lib/require-admin'
 import { prisma } from '@/lib/prisma'
 import { getComputingLesson } from '@/lib/computing-course'
+import { getEnglishLesson } from '@/lib/english-course'
+import { getExcelLesson } from '@/lib/excel-course'
+import { getHardwareLesson } from '@/lib/hardware-course'
 import { getSecurityLesson } from '@/lib/security-course'
+import { getTypingLesson } from '@/lib/typing-course'
 import { revalidatePath } from 'next/cache'
 import { MessageCircleQuestion } from 'lucide-react'
 
@@ -10,13 +14,23 @@ export const dynamic = 'force-dynamic'
 const courseTitles: Record<string, string> = {
   'seguranca-da-informacao': 'Segurança da Informação',
   'computacao-basica': 'Computação Básica',
+  excel: 'Excel',
+  'montagem-manutencao': 'Montagem e Manutenção',
+  digitacao: 'Digitação',
+  'ingles-basico': 'Inglês Básico',
+}
+
+const lessonGetters: Record<string, (slug: string) => { title: string } | undefined> = {
+  'computacao-basica': getComputingLesson,
+  excel: getExcelLesson,
+  'montagem-manutencao': getHardwareLesson,
+  digitacao: getTypingLesson,
+  'ingles-basico': getEnglishLesson,
+  'seguranca-da-informacao': getSecurityLesson,
 }
 
 function getLessonTitle(courseSlug: string, lessonSlug: string) {
-  const lesson =
-    courseSlug === 'computacao-basica'
-      ? getComputingLesson(lessonSlug)
-      : getSecurityLesson(lessonSlug)
+  const lesson = lessonGetters[courseSlug]?.(lessonSlug)
 
   return lesson?.title ?? lessonSlug
 }

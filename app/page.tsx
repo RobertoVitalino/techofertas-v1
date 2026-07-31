@@ -1,5 +1,6 @@
 import { ComputingCoursePromo } from '@/components/ComputingCoursePromo'
 import { DealAlertSignup } from '@/components/DealAlertSignup'
+import { EnglishCoursePromo } from '@/components/EnglishCoursePromo'
 import { ExcelCoursePromo } from '@/components/ExcelCoursePromo'
 import { HardwareCoursePromo } from '@/components/HardwareCoursePromo'
 import { Header } from '@/components/Header'
@@ -32,6 +33,7 @@ export default async function Home() {
           <ExcelCoursePromo />
           <HardwareCoursePromo />
           <TypingCoursePromo />
+          <EnglishCoursePromo />
         </div>
         <News />
         <Categories />

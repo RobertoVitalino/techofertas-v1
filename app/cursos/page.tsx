@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header'
 import { computingCourseStats } from '@/lib/computing-course'
 import { courseRegistry } from '@/lib/courses-config'
+import { englishCourseStats } from '@/lib/english-course'
 import { excelCourseStats } from '@/lib/excel-course'
 import { hardwareCourseStats } from '@/lib/hardware-course'
 import { securityCourseStats } from '@/lib/security-course'
@@ -11,6 +12,7 @@ import {
   BookOpenCheck,
   Clock3,
   FileSpreadsheet,
+  Globe,
   GraduationCap,
   Keyboard,
   ShieldCheck,
@@ -20,7 +22,7 @@ import {
 export const metadata = {
   title: 'Cursos gratuitos',
   description:
-    'Cursos gratuitos de segurança da informação, computação básica, Excel, montagem e manutenção de computadores e digitação, com certificado pago opcional.',
+    'Cursos gratuitos de segurança da informação, computação básica, Excel, montagem e manutenção de computadores, digitação e inglês básico, com certificado pago opcional.',
 }
 
 const courses = [
@@ -64,6 +66,14 @@ const courses = [
     summary:
       'Aprenda a digitar sem olhar para o teclado, com exercícios de velocidade e precisão medidos em tempo real em cada aula.',
   },
+  {
+    slug: 'ingles-basico',
+    icon: Globe,
+    accent: 'blue' as const,
+    stats: englishCourseStats,
+    summary:
+      'Alfabeto, números, verbo to be, perguntas, rotina e situações práticas de viagem: restaurante, direções e aeroporto.',
+  },
 ]
 
 const accentClasses = {
@@ -96,6 +106,12 @@ const accentClasses = {
     badgeBg: 'bg-rose-700',
     text: 'text-rose-700',
     button: 'bg-rose-700 hover:bg-rose-800',
+  },
+  blue: {
+    border: 'border-blue-200',
+    badgeBg: 'bg-blue-700',
+    text: 'text-blue-700',
+    button: 'bg-blue-700 hover:bg-blue-800',
   },
 }
 

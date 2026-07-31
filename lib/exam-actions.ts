@@ -6,6 +6,11 @@ import {
   COMPUTING_FINAL_EXAM_PASSING_SCORE,
   computingFinalExamQuestions,
 } from '@/lib/computing-final-exam'
+import { englishCourseLessons } from '@/lib/english-course'
+import {
+  ENGLISH_FINAL_EXAM_PASSING_SCORE,
+  englishFinalExamQuestions,
+} from '@/lib/english-final-exam'
 import { excelCourseLessons } from '@/lib/excel-course'
 import {
   EXCEL_FINAL_EXAM_PASSING_SCORE,
@@ -41,6 +46,12 @@ const examRegistry = {
     questions: hardwareFinalExamQuestions,
     passingScore: HARDWARE_FINAL_EXAM_PASSING_SCORE,
     redirectPath: '/curso-montagem-manutencao/prova-final',
+  },
+  'ingles-basico': {
+    lessonSlugs: englishCourseLessons.map((lesson) => lesson.slug),
+    questions: englishFinalExamQuestions,
+    passingScore: ENGLISH_FINAL_EXAM_PASSING_SCORE,
+    redirectPath: '/curso-ingles-basico/prova-final',
   },
 } as const
 

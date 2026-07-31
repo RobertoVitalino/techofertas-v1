@@ -52,6 +52,15 @@ export const courseRegistry: Record<string, CourseConfig> = {
     requiresFinalExam: false,
     landingHref: '/curso-digitacao',
   },
+  'ingles-basico': {
+    slug: 'ingles-basico',
+    title: 'Inglês Básico: do Zero à Conversação do Dia a Dia',
+    hoursTotal: '16h',
+    priceCents: 3990,
+    requiresFinalExam: true,
+    landingHref: '/curso-ingles-basico',
+    examHref: '/curso-ingles-basico/prova-final',
+  },
 }
 
 export function getCourseConfig(courseSlug: string) {

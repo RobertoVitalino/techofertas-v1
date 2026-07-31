@@ -1,5 +1,6 @@
 import { computingCourseLessons } from '@/lib/computing-course'
 import { courseRegistry } from '@/lib/courses-config'
+import { englishCourseLessons } from '@/lib/english-course'
 import { excelCourseLessons } from '@/lib/excel-course'
 import { hardwareCourseLessons } from '@/lib/hardware-course'
 import { prisma } from '@/lib/prisma'
@@ -11,6 +12,7 @@ import {
   BookOpenCheck,
   Coins,
   FileSpreadsheet,
+  Globe,
   GraduationCap,
   Keyboard,
   ShieldCheck,
@@ -77,6 +79,17 @@ const courseDefs = [
       border: 'border-rose-500/20',
     },
     lessonSlugs: typingCourseLessons.map((lesson) => lesson.slug),
+  },
+  {
+    slug: 'ingles-basico',
+    icon: Globe,
+    color: {
+      text: 'text-blue-400',
+      bg: 'bg-blue-500/15',
+      bar: 'from-blue-500 to-indigo-400',
+      border: 'border-blue-500/20',
+    },
+    lessonSlugs: englishCourseLessons.map((lesson) => lesson.slug),
   },
 ]
 
