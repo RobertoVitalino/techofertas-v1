@@ -1142,5 +1142,5 @@ export function getTypingLesson(slug: string) {
 export const typingCourseStats = {
   modules: typingCourseModules.length,
   lessons: typingCourseLessons.length,
-  workload: '6h',
+  workload: '8h',
 }
