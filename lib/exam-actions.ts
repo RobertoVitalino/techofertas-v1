@@ -11,6 +11,11 @@ import {
   ENGLISH_FINAL_EXAM_PASSING_SCORE,
   englishFinalExamQuestions,
 } from '@/lib/english-final-exam'
+import { examPrepLessons } from '@/lib/exam-prep-course'
+import {
+  EXAM_PREP_FINAL_EXAM_PASSING_SCORE,
+  examPrepFinalExamQuestions,
+} from '@/lib/exam-prep-final-exam'
 import { excelCourseLessons } from '@/lib/excel-course'
 import {
   EXCEL_FINAL_EXAM_PASSING_SCORE,
@@ -52,6 +57,12 @@ const examRegistry = {
     questions: englishFinalExamQuestions,
     passingScore: ENGLISH_FINAL_EXAM_PASSING_SCORE,
     redirectPath: '/curso-ingles-basico/prova-final',
+  },
+  'informatica-concursos': {
+    lessonSlugs: examPrepLessons.map((topic) => topic.slug),
+    questions: examPrepFinalExamQuestions,
+    passingScore: EXAM_PREP_FINAL_EXAM_PASSING_SCORE,
+    redirectPath: '/curso-informatica-concursos/prova-final',
   },
 } as const
 

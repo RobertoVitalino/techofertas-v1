@@ -61,6 +61,15 @@ export const courseRegistry: Record<string, CourseConfig> = {
     landingHref: '/curso-ingles-basico',
     examHref: '/curso-ingles-basico/prova-final',
   },
+  'informatica-concursos': {
+    slug: 'informatica-concursos',
+    title: 'Informática para Concursos Públicos',
+    hoursTotal: '10h',
+    priceCents: 3990,
+    requiresFinalExam: true,
+    landingHref: '/curso-informatica-concursos',
+    examHref: '/curso-informatica-concursos/prova-final',
+  },
 }
 
 export function getCourseConfig(courseSlug: string) {

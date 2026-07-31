@@ -2,6 +2,7 @@ import { Header } from '@/components/Header'
 import { computingCourseStats } from '@/lib/computing-course'
 import { courseRegistry } from '@/lib/courses-config'
 import { englishCourseStats } from '@/lib/english-course'
+import { examPrepStats } from '@/lib/exam-prep-course'
 import { excelCourseStats } from '@/lib/excel-course'
 import { hardwareCourseStats } from '@/lib/hardware-course'
 import { securityCourseStats } from '@/lib/security-course'
@@ -15,6 +16,7 @@ import {
   Globe,
   GraduationCap,
   Keyboard,
+  Landmark,
   ShieldCheck,
   Wrench,
 } from 'lucide-react'
@@ -22,7 +24,7 @@ import {
 export const metadata = {
   title: 'Cursos gratuitos',
   description:
-    'Cursos gratuitos de segurança da informação, computação básica, Excel, montagem e manutenção de computadores, digitação e inglês básico, com certificado pago opcional.',
+    'Cursos gratuitos de segurança da informação, computação básica, Excel, montagem e manutenção de computadores, digitação, inglês básico e informática para concursos, com certificado pago opcional.',
 }
 
 const courses = [
@@ -74,6 +76,14 @@ const courses = [
     summary:
       'Alfabeto, números, verbo to be, perguntas, rotina e situações práticas de viagem: restaurante, direções e aeroporto.',
   },
+  {
+    slug: 'informatica-concursos',
+    icon: Landmark,
+    accent: 'cyan' as const,
+    stats: examPrepStats,
+    summary:
+      'Revisão direto ao ponto para concursos da área policial e em geral, com dicas de banca e questões estilo Certo/Errado.',
+  },
 ]
 
 const accentClasses = {
@@ -112,6 +122,12 @@ const accentClasses = {
     badgeBg: 'bg-blue-700',
     text: 'text-blue-700',
     button: 'bg-blue-700 hover:bg-blue-800',
+  },
+  cyan: {
+    border: 'border-cyan-200',
+    badgeBg: 'bg-cyan-700',
+    text: 'text-cyan-700',
+    button: 'bg-cyan-700 hover:bg-cyan-800',
   },
 }
 

@@ -2,6 +2,7 @@ import { requireAdmin } from '@/lib/require-admin'
 import { prisma } from '@/lib/prisma'
 import { getComputingLesson } from '@/lib/computing-course'
 import { getEnglishLesson } from '@/lib/english-course'
+import { getExamPrepTopic } from '@/lib/exam-prep-course'
 import { getExcelLesson } from '@/lib/excel-course'
 import { getHardwareLesson } from '@/lib/hardware-course'
 import { getSecurityLesson } from '@/lib/security-course'
@@ -18,6 +19,7 @@ const courseTitles: Record<string, string> = {
   'montagem-manutencao': 'Montagem e Manutenção',
   digitacao: 'Digitação',
   'ingles-basico': 'Inglês Básico',
+  'informatica-concursos': 'Informática para Concursos',
 }
 
 const lessonGetters: Record<string, (slug: string) => { title: string } | undefined> = {
@@ -27,6 +29,7 @@ const lessonGetters: Record<string, (slug: string) => { title: string } | undefi
   digitacao: getTypingLesson,
   'ingles-basico': getEnglishLesson,
   'seguranca-da-informacao': getSecurityLesson,
+  'informatica-concursos': getExamPrepTopic,
 }
 
 function getLessonTitle(courseSlug: string, lessonSlug: string) {

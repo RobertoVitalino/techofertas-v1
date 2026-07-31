@@ -1,6 +1,7 @@
 import { computingCourseLessons } from '@/lib/computing-course'
 import { courseRegistry } from '@/lib/courses-config'
 import { englishCourseLessons } from '@/lib/english-course'
+import { examPrepLessons } from '@/lib/exam-prep-course'
 import { excelCourseLessons } from '@/lib/excel-course'
 import { hardwareCourseLessons } from '@/lib/hardware-course'
 import { prisma } from '@/lib/prisma'
@@ -15,6 +16,7 @@ import {
   Globe,
   GraduationCap,
   Keyboard,
+  Landmark,
   ShieldCheck,
   UserCheck,
   UserPlus,
@@ -90,6 +92,17 @@ const courseDefs = [
       border: 'border-blue-500/20',
     },
     lessonSlugs: englishCourseLessons.map((lesson) => lesson.slug),
+  },
+  {
+    slug: 'informatica-concursos',
+    icon: Landmark,
+    color: {
+      text: 'text-cyan-400',
+      bg: 'bg-cyan-500/15',
+      bar: 'from-cyan-500 to-sky-400',
+      border: 'border-cyan-500/20',
+    },
+    lessonSlugs: examPrepLessons.map((topic) => topic.slug),
   },
 ]
 
