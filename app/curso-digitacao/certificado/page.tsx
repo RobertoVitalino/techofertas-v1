@@ -1,5 +1,7 @@
+import { CertificatePurchaseTracker } from '@/components/CertificatePurchaseTracker'
 import { Header } from '@/components/Header'
 import { getCertificateStatus } from '@/lib/certificates'
+import { courseRegistry } from '@/lib/courses-config'
 import { requireCustomer } from '@/lib/require-customer'
 import { CheckCircle2, Clock3, Download, XCircle } from 'lucide-react'
 
@@ -26,6 +28,10 @@ export default async function TypingCertificateReturnPage({
         <section className="rounded-3xl border border-rose-200 bg-white/85 p-8 text-center shadow-sm">
           {certificateStatus.state === 'issued' ? (
             <>
+              <CertificatePurchaseTracker
+                valueCents={courseRegistry.digitacao.priceCents}
+                verificationCode={certificateStatus.verificationCode}
+              />
               <span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-emerald-600 text-white">
                 <CheckCircle2 size={28} />
               </span>
