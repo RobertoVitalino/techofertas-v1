@@ -101,7 +101,7 @@ export async function adminResetCustomerPasswordAction(
 
   await prisma.customer.update({
     where: { id: customerId },
-    data: { passwordHash },
+    data: { passwordHash, mustChangePassword: true },
   })
 
   await revokeAllCustomerSessions(customerId)

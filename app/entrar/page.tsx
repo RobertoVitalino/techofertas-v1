@@ -118,6 +118,10 @@ async function loginCustomer(formData: FormData) {
     ip,
   }).catch(() => undefined)
 
+  if (customer.mustChangePassword) {
+    redirect(`/minha-conta/trocar-senha?next=${encodeURIComponent(destination)}`)
+  }
+
   redirect(destination)
 }
 

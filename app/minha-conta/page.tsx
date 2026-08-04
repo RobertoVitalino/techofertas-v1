@@ -22,8 +22,10 @@ import {
   CalendarDays,
   Download,
   Heart,
+  KeyRound,
   LogOut,
   Mail,
+  ShieldAlert,
   ShieldCheck,
   ShoppingBag,
   Trash2,
@@ -89,7 +91,11 @@ async function deleteCustomerAccount(formData: FormData) {
 export default async function CustomerAccountPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ 'boas-vindas'?: string; erro?: string }>
+  searchParams?: Promise<{
+    'boas-vindas'?: string
+    'senha-alterada'?: string
+    erro?: string
+  }>
 }) {
   const query = await searchParams
   const customer = await requireCustomer()
@@ -165,6 +171,34 @@ export default async function CustomerAccountPage({
           </div>
         ) : null}
 
+        {query?.['senha-alterada'] === '1' ? (
+          <div className="mb-7 flex items-start gap-3 rounded-2xl border border-emerald-400/25 bg-emerald-400/10 px-5 py-4 text-emerald-100">
+            <ShieldCheck className="mt-0.5 shrink-0" size={21} />
+            <div>
+              <strong className="block">Senha alterada com sucesso!</strong>
+              <span className="text-sm text-emerald-100/75">Use a nova senha da próxima vez que entrar.</span>
+            </div>
+          </div>
+        ) : null}
+
+        {customer.mustChangePassword ? (
+          <div className="mb-7 flex items-start gap-3 rounded-2xl border border-amber-400/25 bg-amber-400/10 px-5 py-4 text-amber-100">
+            <ShieldAlert className="mt-0.5 shrink-0" size={21} />
+            <div>
+              <strong className="block">Você está usando uma senha temporária.</strong>
+              <span className="text-sm text-amber-100/75">
+                Defina uma senha definitiva para continuar usando sua conta com segurança.
+              </span>
+              <a
+                href="/minha-conta/trocar-senha"
+                className="mt-3 inline-flex items-center gap-2 rounded-xl bg-amber-400/20 px-4 py-2 text-sm font-bold text-amber-100 hover:bg-amber-400/30"
+              >
+                <KeyRound size={16} /> Definir nova senha
+              </a>
+            </div>
+          </div>
+        ) : null}
+
         <section className="grid gap-6 rounded-3xl border border-white/10 bg-gradient-to-br from-brand-700/30 via-white/[.04] to-transparent p-6 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:p-8">
           <div className="grid h-20 w-20 place-items-center rounded-2xl bg-brand-600 text-2xl font-black shadow-xl shadow-brand-900/30">{initials || <UserRound />}</div>
           <div>
@@ -187,6 +221,12 @@ export default async function CustomerAccountPage({
               <div className="rounded-2xl border border-white/10 bg-black/20 p-4"><dt className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500"><Mail size={14} /> E-mail</dt><dd className="mt-1 break-all font-bold">{customer.email}</dd></div>
               <div className="rounded-2xl border border-white/10 bg-black/20 p-4"><dt className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500"><CalendarDays size={14} /> Cliente desde</dt><dd className="mt-1 font-bold">{new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long' }).format(customer.createdAt)}</dd></div>
             </dl>
+            <a
+              href="/minha-conta/trocar-senha"
+              className="mt-5 inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2.5 text-sm font-bold text-slate-300 hover:border-brand-500/40 hover:text-brand-300"
+            >
+              <KeyRound size={16} /> Alterar senha
+            </a>
           </section>
 
           <div className="grid gap-6">

@@ -12,6 +12,7 @@ const sessionCustomerSelect = {
   name: true,
   email: true,
   username: true,
+  mustChangePassword: true,
   termsAcceptedAt: true,
   privacyAcceptedAt: true,
   createdAt: true,

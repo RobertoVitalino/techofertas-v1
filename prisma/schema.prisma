@@ -29,6 +29,7 @@ model Customer {
   email                String                @unique
   username             String?               @unique
   passwordHash         String
+  mustChangePassword   Boolean               @default(false)
   termsAcceptedAt      DateTime?
   privacyAcceptedAt    DateTime?
   createdAt            DateTime              @default(now())
