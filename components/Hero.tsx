@@ -54,7 +54,7 @@ export function Hero() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href="#produtos-por-categoria"
+              href="#categorias"
               className="inline-flex items-center gap-2 rounded-xl bg-sky-700 px-6 py-3 font-bold text-white shadow-lg shadow-sky-700/20 transition hover:bg-sky-600"
             >
               Explorar ofertas <ArrowRight size={18} />

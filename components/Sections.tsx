@@ -23,13 +23,6 @@ export function Categories() {
             Encontre rapidamente os produtos mais procurados.
           </p>
         </div>
-
-        <a
-          className="hidden text-sm font-bold text-brand-500 md:block"
-          href="#produtos-por-categoria"
-        >
-          Ver produtos do site →
-        </a>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-7">

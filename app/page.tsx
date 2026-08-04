@@ -6,21 +6,12 @@ import { ExcelCoursePromo } from '@/components/ExcelCoursePromo'
 import { HardwareCoursePromo } from '@/components/HardwareCoursePromo'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
-import { Categories, News, Products, Services } from '@/components/Sections'
+import { Categories, News, Services } from '@/components/Sections'
 import { SecurityCoursePromo } from '@/components/SecurityCoursePromo'
 import { TypingCoursePromo } from '@/components/TypingCoursePromo'
-import { prisma } from '@/lib/prisma'
 import { Github, Mail, MapPin, Phone } from 'lucide-react'
 
-export const dynamic = 'force-dynamic'
-
-export default async function Home() {
-  const dbProducts = await prisma.product.findMany({
-    orderBy: {
-      createdAt: 'desc',
-    },
-  })
-
+export default function Home() {
   return (
     <main className="site-light-theme">
       <Header />
@@ -40,7 +31,6 @@ export default async function Home() {
         <News />
         <Categories />
         <DealAlertSignup />
-        <Products products={dbProducts} variant="catalog" />
       </div>
 
       <footer id="contato" className="mt-12 scroll-mt-36 border-t border-white/10 bg-black/30">
@@ -83,7 +73,7 @@ export default async function Home() {
           <div>
             <strong>Links</strong>
             <nav className="mt-3 grid gap-2 text-sm text-slate-400" aria-label="Links institucionais">
-              <a href="/#produtos-por-categoria" className="transition hover:text-white">Produtos e ofertas</a>
+              <a href="/#categorias" className="transition hover:text-white">Produtos e ofertas</a>
               <a href="/artigos" className="transition hover:text-white">Artigos e guias</a>
               <a href="/curso-seguranca-da-informacao" className="transition hover:text-white">Curso gratuito</a>
               <a href="/sobre" className="transition hover:text-white">Sobre mim</a>
