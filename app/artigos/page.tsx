@@ -1,11 +1,14 @@
 import { Header } from '@/components/Header'
 import { articles } from '@/lib/blog'
+import { SITE_URL } from '@/lib/site'
 import { ArrowRight, Clock3, Newspaper } from 'lucide-react'
+import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Artigos e guias de compra',
   description:
     'Guias práticos de compra e manutenção de notebooks, periféricos, câmeras de segurança e mais, escritos pela Vitalino Tech.',
+  alternates: { canonical: `${SITE_URL}/artigos` },
 }
 
 export default function ArticlesPage() {

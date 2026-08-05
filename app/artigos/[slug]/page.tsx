@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header'
 import { articles, getArticle } from '@/lib/blog'
+import { SITE_NAME, SITE_OG_IMAGE, SITE_URL } from '@/lib/site'
 import { ArrowLeft, ArrowRight, CheckCircle2, Clock3, ExternalLink } from 'lucide-react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -16,9 +17,30 @@ export async function generateMetadata({
   const { slug } = await params
   const article = getArticle(slug)
 
-  return article
-    ? { title: article.title, description: article.excerpt }
-    : {}
+  if (!article) return {}
+
+  const url = `${SITE_URL}/artigos/${article.slug}`
+
+  return {
+    title: article.title,
+    description: article.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      title: article.title,
+      description: article.excerpt,
+      url,
+      publishedTime: article.publishedAt,
+      siteName: SITE_NAME,
+      images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [SITE_OG_IMAGE],
+    },
+  }
 }
 
 function formatDate(value: string) {
@@ -39,8 +61,30 @@ export default async function ArticlePage({
 
   if (!article) notFound()
 
+  const articleUrl = `${SITE_URL}/artigos/${article.slug}`
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.excerpt,
+    datePublished: article.publishedAt,
+    dateModified: article.publishedAt,
+    author: { '@type': 'Organization', name: SITE_NAME },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      logo: { '@type': 'ImageObject', url: SITE_OG_IMAGE },
+    },
+    image: [SITE_OG_IMAGE],
+    mainEntityOfPage: { '@type': 'WebPage', '@id': articleUrl },
+  }
+
   return (
     <main className="site-light-theme min-h-screen">
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        type="application/ld+json"
+      />
       <Header />
 
       <div className="mx-auto max-w-3xl px-4 py-8">

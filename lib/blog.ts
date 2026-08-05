@@ -66,6 +66,8 @@ export const articles: Article[] = [
     ],
     ctaLabel: 'Ver ofertas de notebooks no Mercado Livre',
     ctaHref: 'https://meli.la/1gdYbd7',
+    relatedLabel: 'Comprou o notebook? Aprenda a tirar o máximo dele no curso gratuito de Computação Básica',
+    relatedHref: '/curso-computacao-basica',
   },
   {
     slug: 'mouse-teclado-gamer-sem-gastar-muito',
@@ -107,6 +109,8 @@ export const articles: Article[] = [
     ],
     ctaLabel: 'Ver ofertas de periféricos gamer no Mercado Livre',
     ctaHref: 'https://meli.la/28K9h8j',
+    relatedLabel: 'Quer digitar mais rápido no teclado novo? Faça o curso gratuito de Digitação',
+    relatedHref: '/curso-digitacao',
   },
   {
     slug: 'camera-seguranca-wifi-vale-a-pena',
@@ -203,6 +207,8 @@ export const articles: Article[] = [
     ctaLabel: 'Pedir avaliação técnica pelo WhatsApp',
     ctaHref:
       'https://wa.me/5567984793793?text=Ol%C3%A1%2C%20li%20o%20artigo%20sobre%20manuten%C3%A7%C3%A3o%20e%20gostaria%20de%20uma%20avalia%C3%A7%C3%A3o.',
+    relatedLabel: 'Quer aprender a fazer manutenção você mesmo? Conheça o curso de Montagem e Manutenção',
+    relatedHref: '/curso-montagem-manutencao',
   },
 ]
 
