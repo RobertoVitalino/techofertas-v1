@@ -206,7 +206,7 @@ export default async function CustomerAccountPage({
             <h1 className="mt-2 text-3xl font-black sm:text-4xl">Olá, {firstName}!</h1>
             <p className="mt-2 text-slate-400">Gerencie seus dados e acompanhe sua experiência na Vitalino Tech.</p>
           </div>
-          <a href="/#categorias" className="flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 font-bold hover:bg-brand-500">Ver ofertas <ArrowRight size={18} /></a>
+          <a href="/#produtos-por-categoria" className="flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 font-bold hover:bg-brand-500">Ver ofertas <ArrowRight size={18} /></a>
         </section>
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
@@ -274,7 +274,7 @@ export default async function CustomerAccountPage({
               <div className="flex items-start gap-4"><span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-amber-500/15 text-amber-300"><Bell size={22} /></span><div><h2 className="text-lg font-black">Alertas de ofertas</h2><p className="mt-1 text-sm leading-relaxed text-slate-400">Novos alertas e oportunidades serão exibidos aqui.</p></div></div>
             </section>
             <section className="rounded-3xl border border-brand-500/20 bg-brand-500/10 p-6">
-              <div className="flex items-start gap-4"><ShoppingBag className="mt-1 shrink-0 text-brand-300" size={23} /><div><h2 className="font-black">Continue explorando</h2><p className="mt-1 text-sm text-blue-100/70">Confira os produtos selecionados e encontre sua próxima oferta.</p><a href="/#categorias" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-300 hover:text-white">Ir para produtos <ArrowRight size={16} /></a></div></div>
+              <div className="flex items-start gap-4"><ShoppingBag className="mt-1 shrink-0 text-brand-300" size={23} /><div><h2 className="font-black">Continue explorando</h2><p className="mt-1 text-sm text-blue-100/70">Confira os produtos selecionados e encontre sua próxima oferta.</p><a href="/#produtos-por-categoria" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-300 hover:text-white">Ir para produtos <ArrowRight size={16} /></a></div></div>
             </section>
             <section className="rounded-3xl border border-white/10 bg-white/[.04] p-6">
               <div className="flex items-start gap-4">

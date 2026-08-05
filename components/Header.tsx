@@ -5,6 +5,7 @@ import { Heart, Menu, Search, UserRound, Zap } from 'lucide-react'
 const links = [
   { label: 'Início', href: '/#início' },
   { label: 'Categorias', href: '/#categorias' },
+  { label: 'Produtos', href: '/produtos' },
   { label: 'Cursos', href: '/cursos' },
   { label: 'Artigos', href: '/artigos' },
   { label: 'Notícias', href: '/#noticias' },

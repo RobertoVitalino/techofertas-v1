@@ -3,7 +3,6 @@ import { Products } from '@/components/Sections'
 import { prisma } from '@/lib/prisma'
 import { ArrowLeft } from 'lucide-react'
 import type { Metadata } from 'next'
-import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,11 +12,7 @@ export const metadata: Metadata = {
     'Todos os produtos de informática selecionados pela Vitalino Tech, com acesso direto aos anúncios no Mercado Livre.',
 }
 
-// Catálogo temporariamente fora do ar a pedido do dono do site. Para
-// reativar, remova este redirect — o resto da página já está pronto.
 export default async function ProductsPage() {
-  redirect('/')
-
   const products = await prisma.product.findMany({
     orderBy: {
       createdAt: 'desc',
