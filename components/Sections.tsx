@@ -364,39 +364,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Sob as Cataratas de Sangue, cientistas encontram vestígios de um mundo perdido na Antártica',
+    title: 'Marvel&#8217;s Wolverine pode ter microtransações, indica classificação indicativa',
+    category: 'Games e Consoles',
+    summary: 'Classificação da ESRB indica que Marvel\'s Wolverine terá compras dentro do jogo. Microtransações devem envolver trajes, DLCs ou upgrades de edição.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/Marvels-Wolverine-Playstation.webp',
+    href: 'https://olhardigital.com.br/2026/08/05/games-e-consoles/marvels-wolverine-pode-incluir-microtransacoes/',
+  },
+  {
+    title: 'França condena streamers após morte exibida em transmissão online',
+    category: 'Internet e Redes Sociais',
+    summary: 'França condena streamers após morte de Jean Pormanove em live com violência e abre debate sobre limites das plataformas digitais.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/kick-live-streaming.jpg',
+    href: 'https://olhardigital.com.br/2026/08/05/internet-e-redes-sociais/franca-condena-streamers-apos-morte-exibida-em-transmissao-online/',
+  },
+  {
+    title: 'Lembra-se dos robôs acrobatas? Humanoides chineses agora buscam espaço nas fábricas',
+    category: 'Robótica',
+    summary: 'Por trás dos vídeos virais, a Unitree enfrenta o desafio de transformar robôs impressionantes em máquinas realmente úteis',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2025/10/unitree-g1.jpg',
+    href: 'https://olhardigital.com.br/2026/08/05/robotica/lembra-se-dos-robos-acrobatas-humanoides-chineses-agora-buscam-espaco-nas-fabricas/',
+  },
+  {
+    title: 'Vale a pena? Confira uma análise completa do Fire TV Stick HD',
+    category: 'Guia de Compras',
+    summary: 'Ele se conecta à porta HDMI da sua TV e oferece acesso aos principais streamings da atualidade; saiba mais sobre o Fire TV Stick',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/08/firetvstick.jpg',
+    href: 'https://olhardigital.com.br/2026/08/05/reviews/vale-a-pena-confira-uma-analise-completa-do-fire-tv-stick-hd/',
+  },
+  {
+    title: 'Torre de Jeddah desafia limites da engenharia e mira recorde mundial na Arábia Saudita',
     category: 'Ciência e Espaço',
-    summary: 'Pesquisa identifica comunidade de vida marinha preservada sob o gelo antártico desde uma época anterior à formação do continente congelado',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2024/06/Blood_FallS-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/08/04/ciencia-e-espaco/sob-as-cataratas-de-sangue-cientistas-encontram-vestigios-de-um-mundo-perdido-na-antartica/',
-  },
-  {
-    title: 'e-Título vira “central eleitoral” e reúne serviços no celular',
-    category: 'Pro',
-    summary: 'e-Título ganha novas funções para 2026, permitindo acompanhar pedidos, emitir certidões e resolver pendências eleitorais pelo celular.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2024/10/e-titulo-1-1.jpg',
-    href: 'https://olhardigital.com.br/2026/08/04/pro/e-titulo-vira-central-eleitoral-e-reune-servicos-no-celular/',
-  },
-  {
-    title: 'PIX no exterior: quais países aceitam pagamento?',
-    category: 'Pro',
-    summary: 'Pagamento por QR Code já está disponível em oito países para brasileiros, com conversão automática do valor e sem necessidade de cartão',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/06/pix-brasil.jpg',
-    href: 'https://olhardigital.com.br/2026/08/04/pro/pix-no-exterior-quais-paises-aceitam-pagamento/',
-  },
-  {
-    title: 'Céu da Espanha terá eclipse raro e outros fenômenos no mesmo dia',
-    category: 'Ciência e Espaço',
-    summary: 'Eclipse solar total raro vai escurecer a Espanha após mais de um século, enquanto cientistas estudam a coroa do Sol e a atmosfera.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/eclipse-solar.jpg',
-    href: 'https://olhardigital.com.br/2026/08/04/ciencia-e-espaco/ceu-da-espanha-tera-eclipse-raro-e-outros-fenomenos-no-mesmo-dia/',
-  },
-  {
-    title: 'Unicamp transforma bactéria em aliada para destravar o etanol do futuro',
-    category: 'Ciência e Espaço',
-    summary: 'Estudo combina microrganismos e inovação metabólica para aproveitar resíduos da cana e ampliar a eficiência de combustíveis renováveis',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/unicamp-modifica-bacterias-para-criar-etanol-de-2-geracao-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/08/04/ciencia-e-espaco/unicamp-transforma-bacteria-em-aliada-para-destravar-o-etanol-do-futuro/',
+    summary: 'Atualmente com 107 andares, a construção na cidade de Jeddah reúne hotel, residências e escritórios num dos projetos mais ambiciosos do mundo',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/torre-de-jeddah-na-arabia-saudita-3.jpg',
+    href: 'https://olhardigital.com.br/2026/08/05/ciencia-e-espaco/torre-de-jeddah-desafia-limites-da-engenharia-e-mira-recorde-mundial-na-arabia-saudita/',
   },
 ]
 // AUTO-NEWS-END
