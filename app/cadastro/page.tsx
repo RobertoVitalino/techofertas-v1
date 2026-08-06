@@ -9,6 +9,7 @@ import {
   normalizeCustomerUsername,
 } from '@/lib/customer-auth'
 import {
+  clearAuthAttempts,
   getRequestIp,
   isAuthRateLimited,
   recordAuthAttempt,
@@ -45,20 +46,6 @@ async function registerCustomer(formData: FormData) {
   const destination = getSafeDestination(formData.get('next'))
   const nextParam = `next=${encodeURIComponent(destination)}`
   const ip = await getRequestIp()
-  const rateLimit = {
-    scope: 'registration' as const,
-    subject: email || username || 'invalid',
-    ip,
-    limit: 5,
-    windowSeconds: 60 * 60,
-    blockSeconds: 60 * 60,
-  }
-
-  if (await isAuthRateLimited(rateLimit)) {
-    redirect(`/cadastro?erro=limite&${nextParam}`)
-  }
-
-  await recordAuthAttempt(rateLimit)
 
   if (
     name.length < 2 ||
@@ -81,6 +68,23 @@ async function registerCustomer(formData: FormData) {
     redirect(`/cadastro?erro=senhas&${nextParam}`)
   }
 
+  // A partir daqui os dados já passaram por validação básica, então o
+  // "subject" é sempre um e-mail/usuário real — só agora vale a pena contar
+  // como tentativa para o limitador (evita bloquear gente por erro de
+  // digitação ou por cair no mesmo "balde" compartilhado de dados inválidos).
+  const rateLimit = {
+    scope: 'registration' as const,
+    subject: email || username,
+    ip,
+    limit: 20,
+    windowSeconds: 60 * 60,
+    blockSeconds: 60 * 60,
+  }
+
+  if (await isAuthRateLimited(rateLimit)) {
+    redirect(`/cadastro?erro=limite&${nextParam}`)
+  }
+
   const existingCustomer = await prisma.customer.findFirst({
     where: {
       OR: [{ email }, { username }],
@@ -88,6 +92,7 @@ async function registerCustomer(formData: FormData) {
   })
 
   if (existingCustomer) {
+    await recordAuthAttempt(rateLimit)
     await writeSecurityEvent({
       kind: 'registration_rejected',
       success: false,
@@ -112,6 +117,8 @@ async function registerCustomer(formData: FormData) {
     })
     const session = await createCustomerSession(customer.id)
     const cookieStore = await cookies()
+
+    await clearAuthAttempts(rateLimit)
 
     cookieStore.set(CUSTOMER_SESSION_COOKIE, session, {
       httpOnly: true,
