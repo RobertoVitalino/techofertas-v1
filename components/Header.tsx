@@ -16,6 +16,10 @@ const links = [
 ]
 
 const courses = Object.values(courseRegistry)
+const concursoCourses = [
+  courseRegistry['informatica-concursos'],
+  courseRegistry['matematica-concursos'],
+]
 
 export function Header() {
   return (
@@ -117,6 +121,23 @@ export function Header() {
                 </a>
                 <div className="invisible absolute left-0 top-full z-10 w-64 rounded-xl border border-sky-200 bg-white p-2 opacity-0 shadow-xl shadow-sky-900/10 transition group-hover:visible group-hover:opacity-100">
                   {courses.map((course) => (
+                    <a
+                      className="block rounded-lg px-3 py-2 text-xs font-bold normal-case tracking-normal text-slate-700 hover:bg-sky-50 hover:text-sky-800"
+                      href={course.landingHref}
+                      key={course.slug}
+                    >
+                      {course.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : link.href === '/concursos-publicos' ? (
+              <div className="group relative -my-3 py-3" key={link.href}>
+                <a className="hover:text-sky-800" href={link.href}>
+                  {link.label}
+                </a>
+                <div className="invisible absolute left-0 top-full z-10 w-64 rounded-xl border border-sky-200 bg-white p-2 opacity-0 shadow-xl shadow-sky-900/10 transition group-hover:visible group-hover:opacity-100">
+                  {concursoCourses.map((course) => (
                     <a
                       className="block rounded-lg px-3 py-2 text-xs font-bold normal-case tracking-normal text-slate-700 hover:bg-sky-50 hover:text-sky-800"
                       href={course.landingHref}
