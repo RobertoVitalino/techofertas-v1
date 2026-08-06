@@ -5,6 +5,7 @@ import { getEnglishLesson } from '@/lib/english-course'
 import { getExamPrepTopic } from '@/lib/exam-prep-course'
 import { getExcelLesson } from '@/lib/excel-course'
 import { getHardwareLesson } from '@/lib/hardware-course'
+import { getMathExamTopic } from '@/lib/math-exam-course'
 import { getSecurityLesson } from '@/lib/security-course'
 import { getTypingLesson } from '@/lib/typing-course'
 import { revalidatePath } from 'next/cache'
@@ -20,6 +21,7 @@ const courseTitles: Record<string, string> = {
   digitacao: 'Digitação',
   'ingles-basico': 'Inglês Básico',
   'informatica-concursos': 'Informática para Concursos',
+  'matematica-concursos': 'Matemática Básica para Concursos Públicos',
 }
 
 const lessonGetters: Record<string, (slug: string) => { title: string } | undefined> = {
@@ -30,6 +32,7 @@ const lessonGetters: Record<string, (slug: string) => { title: string } | undefi
   'ingles-basico': getEnglishLesson,
   'seguranca-da-informacao': getSecurityLesson,
   'informatica-concursos': getExamPrepTopic,
+  'matematica-concursos': getMathExamTopic,
 }
 
 function getLessonTitle(courseSlug: string, lessonSlug: string) {

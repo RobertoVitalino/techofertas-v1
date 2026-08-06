@@ -4,6 +4,7 @@ import { englishCourseLessons } from '@/lib/english-course'
 import { examPrepLessons } from '@/lib/exam-prep-course'
 import { excelCourseLessons } from '@/lib/excel-course'
 import { hardwareCourseLessons } from '@/lib/hardware-course'
+import { mathExamLessons } from '@/lib/math-exam-course'
 import { prisma } from '@/lib/prisma'
 import { securityCourseLessons } from '@/lib/security-course'
 import { SITE_URL } from '@/lib/site'
@@ -22,6 +23,8 @@ const staticRoutes = [
   { path: '/curso-digitacao', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-ingles-basico', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-informatica-concursos', priority: 0.6, changeFrequency: 'monthly' as const },
+  { path: '/curso-matematica-concursos', priority: 0.6, changeFrequency: 'monthly' as const },
+  { path: '/concursos-publicos', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/sobre', priority: 0.4, changeFrequency: 'monthly' as const },
   { path: '/privacidade', priority: 0.2, changeFrequency: 'yearly' as const },
   { path: '/termos', priority: 0.2, changeFrequency: 'yearly' as const },
@@ -76,6 +79,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...examPrepLessons.map((topic) => ({
       url: `${SITE_URL}/curso-informatica-concursos/aulas/${topic.slug}`,
+      changeFrequency: 'monthly' as const,
+      priority: 0.4,
+    })),
+    ...mathExamLessons.map((topic) => ({
+      url: `${SITE_URL}/curso-matematica-concursos/aulas/${topic.slug}`,
       changeFrequency: 'monthly' as const,
       priority: 0.4,
     })),

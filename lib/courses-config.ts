@@ -70,6 +70,15 @@ export const courseRegistry: Record<string, CourseConfig> = {
     landingHref: '/curso-informatica-concursos',
     examHref: '/curso-informatica-concursos/prova-final',
   },
+  'matematica-concursos': {
+    slug: 'matematica-concursos',
+    title: 'Matemática Básica para Concursos Públicos',
+    hoursTotal: '10h',
+    priceCents: 3990,
+    requiresFinalExam: true,
+    landingHref: '/curso-matematica-concursos',
+    examHref: '/curso-matematica-concursos/prova-final',
+  },
 }
 
 export function getCourseConfig(courseSlug: string) {

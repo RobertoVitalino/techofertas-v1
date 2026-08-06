@@ -5,6 +5,7 @@ import { englishCourseLessons } from '@/lib/english-course'
 import { examPrepLessons } from '@/lib/exam-prep-course'
 import { excelCourseLessons } from '@/lib/excel-course'
 import { hardwareCourseLessons } from '@/lib/hardware-course'
+import { mathExamLessons } from '@/lib/math-exam-course'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/require-admin'
 import { securityCourseLessons } from '@/lib/security-course'
@@ -59,6 +60,12 @@ const courseDefs = [
     title: courseRegistry['informatica-concursos'].title,
     lessonSlugs: examPrepLessons.map((topic) => topic.slug),
     accent: 'text-cyan-400',
+  },
+  {
+    slug: 'matematica-concursos',
+    title: courseRegistry['matematica-concursos'].title,
+    lessonSlugs: mathExamLessons.map((topic) => topic.slug),
+    accent: 'text-indigo-400',
   },
 ]
 
@@ -140,7 +147,7 @@ export default async function AdminUsersPage() {
       <section className="mt-8 rounded-2xl border border-white/10 bg-white/[.04] p-5">
         {customers.length ? (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[1500px] text-left text-sm">
+            <table className="w-full min-w-[1650px] text-left text-sm">
               <thead className="text-slate-400">
                 <tr>
                   <th className="py-3">Cliente</th>

@@ -5,12 +5,14 @@ import { englishCourseStats } from '@/lib/english-course'
 import { examPrepStats } from '@/lib/exam-prep-course'
 import { excelCourseStats } from '@/lib/excel-course'
 import { hardwareCourseStats } from '@/lib/hardware-course'
+import { mathExamStats } from '@/lib/math-exam-course'
 import { securityCourseStats } from '@/lib/security-course'
 import { typingCourseStats } from '@/lib/typing-course'
 import {
   ArrowRight,
   Award,
   BookOpenCheck,
+  Calculator,
   Clock3,
   FileSpreadsheet,
   Globe,
@@ -24,7 +26,7 @@ import {
 export const metadata = {
   title: 'Cursos gratuitos',
   description:
-    'Cursos gratuitos de segurança da informação, computação básica, Excel, montagem e manutenção de computadores, digitação, inglês básico e informática para concursos, com certificado pago opcional.',
+    'Cursos gratuitos de segurança da informação, computação básica, Excel, montagem e manutenção de computadores, digitação, inglês básico, informática e matemática para concursos, com certificado pago opcional.',
 }
 
 const courses = [
@@ -84,6 +86,14 @@ const courses = [
     summary:
       'Revisão direto ao ponto para concursos da área policial e em geral, com dicas de banca e questões estilo Certo/Errado.',
   },
+  {
+    slug: 'matematica-concursos',
+    icon: Calculator,
+    accent: 'indigo' as const,
+    stats: mathExamStats,
+    summary:
+      'Matemática básica e raciocínio lógico para concursos: frações, porcentagem, regra de três, juros, equações e lógica proposicional.',
+  },
 ]
 
 const accentClasses = {
@@ -128,6 +138,12 @@ const accentClasses = {
     badgeBg: 'bg-cyan-700',
     text: 'text-cyan-700',
     button: 'bg-cyan-700 hover:bg-cyan-800',
+  },
+  indigo: {
+    border: 'border-indigo-200',
+    badgeBg: 'bg-indigo-700',
+    text: 'text-indigo-700',
+    button: 'bg-indigo-700 hover:bg-indigo-800',
   },
 }
 

@@ -4,6 +4,7 @@ import { englishCourseLessons } from '@/lib/english-course'
 import { examPrepLessons } from '@/lib/exam-prep-course'
 import { excelCourseLessons } from '@/lib/excel-course'
 import { hardwareCourseLessons } from '@/lib/hardware-course'
+import { mathExamLessons } from '@/lib/math-exam-course'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/require-admin'
 import { securityCourseLessons } from '@/lib/security-course'
@@ -11,6 +12,7 @@ import { typingCourseLessons } from '@/lib/typing-course'
 import {
   Award,
   BookOpenCheck,
+  Calculator,
   Coins,
   FileSpreadsheet,
   Globe,
@@ -103,6 +105,17 @@ const courseDefs = [
       border: 'border-cyan-500/20',
     },
     lessonSlugs: examPrepLessons.map((topic) => topic.slug),
+  },
+  {
+    slug: 'matematica-concursos',
+    icon: Calculator,
+    color: {
+      text: 'text-indigo-400',
+      bg: 'bg-indigo-500/15',
+      bar: 'from-indigo-500 to-purple-400',
+      border: 'border-indigo-500/20',
+    },
+    lessonSlugs: mathExamLessons.map((topic) => topic.slug),
   },
 ]
 

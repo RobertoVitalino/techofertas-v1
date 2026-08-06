@@ -26,6 +26,11 @@ import {
   HARDWARE_FINAL_EXAM_PASSING_SCORE,
   hardwareFinalExamQuestions,
 } from '@/lib/hardware-final-exam'
+import { mathExamLessons } from '@/lib/math-exam-course'
+import {
+  MATH_EXAM_FINAL_EXAM_PASSING_SCORE,
+  mathExamFinalExamQuestions,
+} from '@/lib/math-exam-final-exam'
 import { prisma } from '@/lib/prisma'
 import { requireCustomer } from '@/lib/require-customer'
 
@@ -63,6 +68,12 @@ const examRegistry = {
     questions: examPrepFinalExamQuestions,
     passingScore: EXAM_PREP_FINAL_EXAM_PASSING_SCORE,
     redirectPath: '/curso-informatica-concursos/prova-final',
+  },
+  'matematica-concursos': {
+    lessonSlugs: mathExamLessons.map((topic) => topic.slug),
+    questions: mathExamFinalExamQuestions,
+    passingScore: MATH_EXAM_FINAL_EXAM_PASSING_SCORE,
+    redirectPath: '/curso-matematica-concursos/prova-final',
   },
 } as const
 

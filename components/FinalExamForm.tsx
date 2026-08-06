@@ -24,6 +24,7 @@ export function FinalExamForm({
     | 'montagem-manutencao'
     | 'ingles-basico'
     | 'informatica-concursos'
+    | 'matematica-concursos'
   courseHref: string
   questions: Question[]
   passingScore: number

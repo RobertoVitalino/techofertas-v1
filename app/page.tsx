@@ -6,6 +6,7 @@ import { ExcelCoursePromo } from '@/components/ExcelCoursePromo'
 import { HardwareCoursePromo } from '@/components/HardwareCoursePromo'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
+import { MathExamCoursePromo } from '@/components/MathExamCoursePromo'
 import { Categories, News, Products, Services } from '@/components/Sections'
 import { SecurityCoursePromo } from '@/components/SecurityCoursePromo'
 import { TypingCoursePromo } from '@/components/TypingCoursePromo'
@@ -36,6 +37,7 @@ export default async function Home() {
           <TypingCoursePromo />
           <EnglishCoursePromo />
           <ExamPrepCoursePromo />
+          <MathExamCoursePromo />
         </div>
         <News />
         <Categories />
