@@ -64,6 +64,7 @@ export default async function SecurityLessonPage({
   const previousLesson = securityCourseLessons[currentIndex - 1]
   const nextLesson = securityCourseLessons[currentIndex + 1]
   const lessonSlugs = securityCourseLessons.map((item) => item.slug)
+  const lessonVideo = lesson.video
 
   return (
     <main className="site-light-theme min-h-screen">
@@ -142,6 +143,24 @@ export default async function SecurityLessonPage({
                 {lesson.summary}
               </p>
             </header>
+
+            {lessonVideo ? (
+              <section className="overflow-hidden rounded-2xl border border-sky-200 bg-black shadow-sm">
+                <div className="aspect-video w-full">
+                  <iframe
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    src={`https://www.youtube.com/embed/${lessonVideo.youtubeId}`}
+                    title={lessonVideo.title}
+                  />
+                </div>
+                <p className="bg-white/95 px-4 py-3 text-xs font-bold text-slate-600">
+                  Vídeo da aula: {lessonVideo.title}
+                </p>
+              </section>
+            ) : null}
 
             <section className="rounded-2xl border border-sky-200 bg-white/85 p-5 shadow-sm sm:p-6">
               <h2 className="text-xl font-black">Objetivos da aula</h2>

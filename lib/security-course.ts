@@ -2,6 +2,7 @@ export type CourseLesson = {
   slug: string
   title: string
   duration: string
+  video?: { youtubeId: string; title: string }
   summary: string
   objectives: string[]
   keyPoints: Array<{ title: string; description: string }>
@@ -32,6 +33,7 @@ export const securityCourseModules: CourseModule[] = [
     lessons: [
       {
         slug: 'principios-da-seguranca',
+        video: { youtubeId: 'uL92aKf-Osk', title: 'Confidencialidade Integridade Disponibilidade e Autenticidade — Princípios da Segurança da Informação' },
         title: 'Princípios da segurança da informação',
         duration: '35 min',
         summary:
@@ -80,6 +82,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'ameacas-vulnerabilidades-e-riscos',
+        video: { youtubeId: 'F_nQpbuoJNU', title: 'Segurança da Informação — Ameaças, riscos, vulnerabilidade, falhas e desastres' },
         title: 'Ameaças, vulnerabilidades e riscos',
         duration: '40 min',
         summary:
@@ -132,6 +135,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'cultura-e-responsabilidade',
+        video: { youtubeId: 'Gfh2bxe3hGU', title: 'Aula Segurança da Informação (aprenda o essencial em 35 minutos)' },
         title: 'Cultura, ética e responsabilidade',
         duration: '35 min',
         summary:
@@ -192,6 +196,7 @@ export const securityCourseModules: CourseModule[] = [
     lessons: [
       {
         slug: 'senhas-e-gerenciadores',
+        video: { youtubeId: 'OHOlsgS-Mm8', title: 'Gerenciador de Senhas: Tutorial Passo a Passo Para Proteger Suas Informações Pessoais' },
         title: 'Senhas fortes e gerenciadores',
         duration: '40 min',
         summary:
@@ -244,6 +249,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'mfa-passkeys-e-recuperacao',
+        video: { youtubeId: 'Kn943mQsWfs', title: '2FA: tudo sobre a autenticação de dois fatores! | Locaweb' },
         title: 'MFA, passkeys e recuperação de contas',
         duration: '40 min',
         summary:
@@ -351,6 +357,7 @@ export const securityCourseModules: CourseModule[] = [
     lessons: [
       {
         slug: 'reconhecendo-phishing',
+        video: { youtubeId: 'jmdeLWhojVA', title: 'Phishing: como identificar golpes antes de clicar?' },
         title: 'Reconhecendo phishing',
         duration: '40 min',
         summary:
@@ -403,6 +410,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'tecnicas-de-manipulacao',
+        video: { youtubeId: 'iR8e7nLjpzM', title: 'Engenharia Social: você pode estar sendo manipulado! | Locaweb' },
         title: 'Técnicas de manipulação e fraude',
         duration: '35 min',
         summary:
@@ -455,6 +463,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'navegacao-e-downloads-seguros',
+        video: { youtubeId: 'Qz8593FO7Yc', title: 'Como Saber se um Link é Falso e Evitar Golpes Online' },
         title: 'Navegação, links, QR codes e downloads',
         duration: '35 min',
         summary:
@@ -516,6 +525,7 @@ export const securityCourseModules: CourseModule[] = [
     lessons: [
       {
         slug: 'golpe-do-falso-gerente',
+        video: { youtubeId: 'POYeM1-x3YY', title: 'Suspeitos se passam por gerente de banco em golpe: vítima perdeu mais de 50 mil reais' },
         title: 'Como funciona o golpe do falso gerente',
         duration: '50 min',
         summary:
@@ -569,6 +579,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'falsa-central-e-acesso-remoto',
+        video: { youtubeId: 'C6-RGQZae90', title: 'Como funciona o Golpe da Falsa Central de Atendimento | Banco do Brasil' },
         title: 'Falsa central, telefone mascarado e acesso remoto',
         duration: '45 min',
         summary:
@@ -621,6 +632,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'conta-segura-pix-e-boleto-falso',
+        video: { youtubeId: 'kKWvEDxUDl4', title: 'Golpe falso do Pix: como funciona e como se proteger?' },
         title: '“Conta segura”, PIX induzido e boleto falso',
         duration: '45 min',
         summary:
@@ -674,6 +686,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'o-que-fazer-apos-golpe-bancario',
+        video: { youtubeId: 'oEPDqMbGO08', title: 'BC te Explica #173 — A pergunta que mata qualquer golpe! | Banco Central do Brasil' },
         title: 'O que fazer durante e depois de um golpe bancário',
         duration: '50 min',
         summary:
@@ -734,6 +747,7 @@ export const securityCourseModules: CourseModule[] = [
     lessons: [
       {
         slug: 'atualizacoes-e-endpoints',
+        video: { youtubeId: 'GjFy_Q-AIFQ', title: 'Como receber atualizações de segurança para o Windows 10 até 2027' },
         title: 'Atualizações e proteção de endpoints',
         duration: '40 min',
         summary:
@@ -786,6 +800,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'wifi-roteadores-e-segmentacao',
+        video: { youtubeId: 'OI_4SuVAlHE', title: 'Como instalar e configurar um roteador Wi-Fi' },
         title: 'Wi-Fi, roteadores e segmentação',
         duration: '45 min',
         summary:
@@ -838,6 +853,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'celulares-e-trabalho-remoto',
+        video: { youtubeId: 'mWRm1pKjGFQ', title: 'Como trabalhar no home office com segurança?' },
         title: 'Celulares e trabalho remoto',
         duration: '35 min',
         summary:
@@ -950,6 +966,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'backup-e-criptografia',
+        video: { youtubeId: '2O8eUuK-bfM', title: 'Plano de Backup 3-2-1: aprenda como usar na sua empresa' },
         title: 'Backups, restauração e criptografia',
         duration: '45 min',
         summary:
@@ -1002,6 +1019,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'lgpd-na-pratica',
+        video: { youtubeId: 'EWoe_IUmd3A', title: 'LGPD explicada: entenda a Lei Geral de Proteção de Dados de forma simples' },
         title: 'LGPD na prática para pequenos negócios',
         duration: '45 min',
         summary:
@@ -1057,6 +1075,7 @@ export const securityCourseModules: CourseModule[] = [
     lessons: [
       {
         slug: 'sinais-logs-e-alertas',
+        video: { youtubeId: 'Ct6GJ87r9t0', title: '12 sinais de que seu computador foi hackeado' },
         title: 'Sinais, logs e alertas',
         duration: '40 min',
         summary:
@@ -1109,6 +1128,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'plano-de-resposta',
+        video: { youtubeId: 'oUdI59F8huU', title: 'Fui atacado. E agora? O guia prático completo de resposta a incidentes de segurança' },
         title: 'Plano de resposta a incidentes',
         duration: '50 min',
         summary:
@@ -1161,6 +1181,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'ransomware-e-recuperacao',
+        video: { youtubeId: 'XLrCQk3RvCw', title: 'Ransomware: o que é e como se proteger! | Locaweb' },
         title: 'Ransomware e recuperação',
         duration: '45 min',
         summary:
@@ -1221,6 +1242,7 @@ export const securityCourseModules: CourseModule[] = [
     lessons: [
       {
         slug: 'governar-e-identificar',
+        video: { youtubeId: 'h4IQMhYCbxY', title: 'Cyber Security | Framework NIST' },
         title: 'Governar e Identificar',
         duration: '45 min',
         summary:
@@ -1273,6 +1295,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'proteger-e-detectar',
+        video: { youtubeId: '_UDb_EZiw9c', title: 'Cyber Security | Framework NIST — Parte 2' },
         title: 'Proteger e Detectar',
         duration: '45 min',
         summary:
@@ -1325,6 +1348,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'responder-e-recuperar',
+        video: { youtubeId: 'Q8e-gM142bw', title: 'Entendendo o NIST Cybersecurity Framework' },
         title: 'Responder e Recuperar',
         duration: '40 min',
         summary:
@@ -1385,6 +1409,7 @@ export const securityCourseModules: CourseModule[] = [
     lessons: [
       {
         slug: 'owasp-top-10-2025',
+        video: { youtubeId: '3HSmlMb4o-s', title: 'OWASP Top 10: vulnerabilidades mais comuns em Web Apps e como tornar seus projetos mais seguros' },
         title: 'OWASP Top 10:2025 para todos',
         duration: '50 min',
         summary:
@@ -1437,6 +1462,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'nuvem-e-responsabilidade',
+        video: { youtubeId: 'FA4_nzMiK0g', title: 'Como funciona a Segurança de Dados na nuvem?' },
         title: 'Nuvem e responsabilidade compartilhada',
         duration: '40 min',
         summary:
@@ -1489,6 +1515,7 @@ export const securityCourseModules: CourseModule[] = [
       },
       {
         slug: 'fornecedores-e-cadeia',
+        video: { youtubeId: 'n3COOM6asWU', title: 'Segurança na Cadeia de Suprimentos (Supply Chain)' },
         title: 'Fornecedores e cadeia de software',
         duration: '40 min',
         summary:

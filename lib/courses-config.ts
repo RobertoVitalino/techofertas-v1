@@ -13,7 +13,7 @@ export const courseRegistry: Record<string, CourseConfig> = {
     slug: 'seguranca-da-informacao',
     title: 'Segurança da Informação: do Zero à Proteção na Prática',
     hoursTotal: '21h',
-    priceCents: 2990,
+    priceCents: 3990,
     requiresFinalExam: false,
     landingHref: '/curso-seguranca-da-informacao',
   },
