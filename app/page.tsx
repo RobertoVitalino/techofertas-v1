@@ -11,9 +11,17 @@ import { Categories, News, Products, Services } from '@/components/Sections'
 import { SecurityCoursePromo } from '@/components/SecurityCoursePromo'
 import { TypingCoursePromo } from '@/components/TypingCoursePromo'
 import { prisma } from '@/lib/prisma'
+import { SITE_DESCRIPTION, SITE_NAME, SITE_OG_IMAGE, SITE_URL } from '@/lib/site'
 import { Github, Mail, MapPin, Phone } from 'lucide-react'
+import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: SITE_URL,
+  },
+}
 
 export default async function Home() {
   const dbProducts = await prisma.product.findMany({
@@ -22,8 +30,39 @@ export default async function Home() {
     },
   })
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: SITE_OG_IMAGE,
+    description: SITE_DESCRIPTION,
+    email: 'devrobertovitalino@gmail.com',
+    telephone: '+5567984793793',
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: 'MS',
+      addressCountry: 'BR',
+    },
+  }
+
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: SITE_URL,
+  }
+
   return (
     <main className="site-light-theme">
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        type="application/ld+json"
+      />
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        type="application/ld+json"
+      />
       <Header />
 
       <div className="mx-auto max-w-7xl space-y-12 px-4 py-8">
