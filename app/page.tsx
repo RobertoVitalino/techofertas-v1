@@ -37,6 +37,8 @@ export default async function Home() {
     url: SITE_URL,
     logo: SITE_OG_IMAGE,
     description: SITE_DESCRIPTION,
+    legalName: '68575105 Roberto dos Santos Vitalino',
+    taxID: '68.575.105/0001-02',
     email: 'devrobertovitalino@gmail.com',
     telephone: '+5567984793793',
     address: {
@@ -91,6 +93,11 @@ export default async function Home() {
             <p className="mt-3 text-sm text-slate-400">
               Portal profissional de tecnologia, desenvolvimento de sistemas,
               aplicativos e soluções digitais.
+            </p>
+            <p className="mt-3 text-xs text-slate-500">
+              68575105 Roberto dos Santos Vitalino
+              <br />
+              CNPJ 68.575.105/0001-02
             </p>
           </div>
 

@@ -163,6 +163,11 @@ export async function GET(
     color: muted,
   })
 
+  page.drawText(
+    '68575105 Roberto dos Santos Vitalino • CNPJ 68.575.105/0001-02',
+    { x: 60, y: 45, size: 9, font, color: muted },
+  )
+
   const pdfBytes = await pdfDoc.save()
 
   return new Response(Buffer.from(pdfBytes), {

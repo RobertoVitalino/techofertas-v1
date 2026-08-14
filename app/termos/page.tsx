@@ -13,7 +13,7 @@ export default function TermsPage() {
 
         <div className="mt-8 flex items-start gap-4">
           <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-brand-600/20 text-brand-300"><Scale size={28} /></span>
-          <div><p className="text-sm font-bold uppercase tracking-[0.16em] text-brand-400">Vitalino Tech</p><h1 className="mt-2 text-3xl font-black sm:text-4xl">Termos de Uso</h1><p className="mt-2 text-sm text-slate-400">Última atualização: 17 de julho de 2026</p></div>
+          <div><p className="text-sm font-bold uppercase tracking-[0.16em] text-brand-400">Vitalino Tech</p><h1 className="mt-2 text-3xl font-black sm:text-4xl">Termos de Uso</h1><p className="mt-2 text-sm text-slate-400">Última atualização: 14 de agosto de 2026</p><p className="mt-1 text-sm text-slate-400">68575105 Roberto dos Santos Vitalino — CNPJ 68.575.105/0001-02</p></div>
         </div>
 
         <div className="mt-10 space-y-8 leading-relaxed text-slate-300">

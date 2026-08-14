@@ -5,7 +5,7 @@ export const metadata = {
   description: 'Saiba como a Vitalino Tech coleta, utiliza e protege dados pessoais.',
 }
 
-const updatedAt = '25 de julho de 2026'
+const updatedAt = '14 de agosto de 2026'
 
 export default function PrivacyPage() {
   return (
@@ -29,7 +29,7 @@ export default function PrivacyPage() {
 
           <section><h2 className="text-xl font-black text-white">Seus direitos</h2><p className="mt-3">Você pode confirmar o tratamento, acessar e baixar seus dados, solicitar correção, informação sobre compartilhamentos, revogar consentimentos aplicáveis e excluir a conta. As opções de baixar e excluir estão disponíveis em Minha Conta.</p></section>
 
-          <section><h2 className="text-xl font-black text-white">Contato do responsável</h2><p className="mt-3">Controlador: Vitalino Tech, responsável Roberto Vitalino, Mato Grosso do Sul. Para dúvidas ou solicitações sobre privacidade, envie um e-mail para <a href="mailto:devrobertovitalino@gmail.com" className="font-bold text-brand-300 hover:text-white">devrobertovitalino@gmail.com</a>.</p></section>
+          <section><h2 className="text-xl font-black text-white">Contato do responsável</h2><p className="mt-3">Controlador: Vitalino Tech, operada por 68575105 Roberto dos Santos Vitalino (CNPJ 68.575.105/0001-02), Mato Grosso do Sul. Para dúvidas ou solicitações sobre privacidade, envie um e-mail para <a href="mailto:devrobertovitalino@gmail.com" className="font-bold text-brand-300 hover:text-white">devrobertovitalino@gmail.com</a>.</p></section>
         </div>
       </article>
     </main>
