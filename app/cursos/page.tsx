@@ -5,6 +5,7 @@ import { englishCourseStats } from '@/lib/english-course'
 import { examPrepStats } from '@/lib/exam-prep-course'
 import { excelCourseStats } from '@/lib/excel-course'
 import { hardwareCourseStats } from '@/lib/hardware-course'
+import { iaCourseStats } from '@/lib/ia-no-dia-a-dia-course'
 import { mathExamStats } from '@/lib/math-exam-course'
 import { securityCourseStats } from '@/lib/security-course'
 import { typingCourseStats } from '@/lib/typing-course'
@@ -20,6 +21,7 @@ import {
   Keyboard,
   Landmark,
   ShieldCheck,
+  Sparkles,
   Wrench,
 } from 'lucide-react'
 
@@ -94,6 +96,14 @@ const courses = [
     summary:
       'Matemática básica e raciocínio lógico para concursos: frações, porcentagem, regra de três, juros, equações e lógica proposicional.',
   },
+  {
+    slug: 'ia-no-dia-a-dia',
+    icon: Sparkles,
+    accent: 'fuchsia' as const,
+    stats: iaCourseStats,
+    summary:
+      'Use ChatGPT, Gemini e Copilot no trabalho, nos estudos e na vida pessoal, com prompts melhores e segurança contra golpes com IA. Todo em texto, sem vídeo.',
+  },
 ]
 
 const accentClasses = {
@@ -144,6 +154,12 @@ const accentClasses = {
     badgeBg: 'bg-indigo-700',
     text: 'text-indigo-700',
     button: 'bg-indigo-700 hover:bg-indigo-800',
+  },
+  fuchsia: {
+    border: 'border-fuchsia-200',
+    badgeBg: 'bg-fuchsia-700',
+    text: 'text-fuchsia-700',
+    button: 'bg-fuchsia-700 hover:bg-fuchsia-800',
   },
 }
 

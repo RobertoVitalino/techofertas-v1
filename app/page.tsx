@@ -1,3 +1,4 @@
+import { AICoursePromo } from '@/components/AICoursePromo'
 import { ComputingCoursePromo } from '@/components/ComputingCoursePromo'
 import { DealAlertSignup } from '@/components/DealAlertSignup'
 import { EnglishCoursePromo } from '@/components/EnglishCoursePromo'
@@ -79,6 +80,7 @@ export default async function Home() {
           <EnglishCoursePromo />
           <ExamPrepCoursePromo />
           <MathExamCoursePromo />
+          <AICoursePromo />
         </div>
         <News />
         <Categories />

@@ -4,6 +4,7 @@ import { englishCourseLessons } from '@/lib/english-course'
 import { examPrepLessons } from '@/lib/exam-prep-course'
 import { excelCourseLessons } from '@/lib/excel-course'
 import { hardwareCourseLessons } from '@/lib/hardware-course'
+import { iaCourseLessons } from '@/lib/ia-no-dia-a-dia-course'
 import { mathExamLessons } from '@/lib/math-exam-course'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/require-admin'
@@ -20,6 +21,7 @@ import {
   Keyboard,
   Landmark,
   ShieldCheck,
+  Sparkles,
   UserCheck,
   UserPlus,
   Users,
@@ -116,6 +118,17 @@ const courseDefs = [
       border: 'border-indigo-500/20',
     },
     lessonSlugs: mathExamLessons.map((topic) => topic.slug),
+  },
+  {
+    slug: 'ia-no-dia-a-dia',
+    icon: Sparkles,
+    color: {
+      text: 'text-fuchsia-400',
+      bg: 'bg-fuchsia-500/15',
+      bar: 'from-fuchsia-500 to-violet-400',
+      border: 'border-fuchsia-500/20',
+    },
+    lessonSlugs: iaCourseLessons.map((lesson) => lesson.slug),
   },
 ]
 

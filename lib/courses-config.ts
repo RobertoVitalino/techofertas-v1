@@ -79,6 +79,14 @@ export const courseRegistry: Record<string, CourseConfig> = {
     landingHref: '/curso-matematica-concursos',
     examHref: '/curso-matematica-concursos/prova-final',
   },
+  'ia-no-dia-a-dia': {
+    slug: 'ia-no-dia-a-dia',
+    title: 'IA no Dia a Dia: ChatGPT, Gemini e Copilot na Prática',
+    hoursTotal: '7h',
+    priceCents: 3990,
+    requiresFinalExam: false,
+    landingHref: '/curso-ia-no-dia-a-dia',
+  },
 }
 
 export function getCourseConfig(courseSlug: string) {
