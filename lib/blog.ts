@@ -355,6 +355,159 @@ export const articles: Article[] = [
     relatedLabel: 'Curso gratuito e completo de Segurança da Informação — aprenda a se proteger de verdade',
     relatedHref: '/curso-seguranca-da-informacao',
   },
+  {
+    slug: 'golpe-do-pix-como-funciona-como-evitar',
+    title: 'Golpe do Pix: como funciona e como não cair em nenhuma variação dele',
+    category: 'Segurança Digital',
+    excerpt:
+      'Falso motoboy, central bancária falsa, QR Code adulterado e chave Pix trocada: veja as variações mais comuns do golpe do Pix e o que fazer se já caiu em uma.',
+    publishedAt: '2026-08-14',
+    readTimeMinutes: 6,
+    intro:
+      'O Pix é instantâneo e, por isso, irreversível na maioria dos casos — é exatamente essa característica que os golpistas exploram. Não existe um único "golpe do Pix": existem várias variações, e conhecer cada uma é o que evita cair nelas.',
+    sections: [
+      {
+        heading: 'Falsa central de atendimento do banco',
+        paragraphs: [
+          'O golpista liga se passando por funcionário do banco, avisa sobre uma "compra suspeita" e induz a vítima a fazer um Pix para uma "conta segura" ou a informar códigos recebidos por SMS. Nenhum banco pede para você transferir dinheiro para "proteger a conta" nem pede o código de confirmação que chega no seu celular — isso é sempre golpe.',
+          'Se receber uma ligação assim, desligue e ligue de volta pelo número oficial do banco (o de trás do cartão ou do aplicativo), nunca pelo número que ligou para você.',
+        ],
+      },
+      {
+        heading: 'QR Code adulterado',
+        paragraphs: [
+          'Em estabelecimentos físicos, golpistas às vezes colam um QR Code falso por cima do original, redirecionando o pagamento para outra conta. Sempre confira o nome do recebedor que aparece no aplicativo antes de confirmar o pagamento — se o nome não bate com o do estabelecimento, cancele.',
+        ],
+      },
+      {
+        heading: 'Chave Pix trocada em anúncio de venda',
+        paragraphs: [
+          'Em compras via marketplace ou redes sociais, o golpista se passa pelo vendedor real (às vezes até clonando a conversa) e manda uma chave Pix diferente da do vendedor original momentos antes do pagamento. Sempre confirme o nome do titular que aparece na tela de confirmação do Pix — se for uma pessoa física diferente do nome da loja, é sinal de alerta.',
+        ],
+      },
+      {
+        heading: 'O que fazer se você já caiu no golpe',
+        paragraphs: [
+          'Aja rápido: contate o banco imediatamente (o Pix tem um mecanismo chamado MED — Mecanismo Especial de Devolução — que pode bloquear e devolver parte do valor se acionado rapidamente após uma fraude comprovada). Registre um boletim de ocorrência, guarde prints da conversa e do comprovante, e formalize a reclamação por escrito com o banco. Quanto mais rápido agir, maior a chance de recuperar o valor.',
+        ],
+      },
+    ],
+    checklist: [
+      'Banco nunca pede Pix para "proteger a conta" nem pede código de SMS por telefone',
+      'Recebeu ligação do banco? Desligue e ligue de volta pelo número oficial',
+      'Sempre confira o nome do recebedor na tela antes de confirmar o Pix',
+      'Se for vítima, contate o banco imediatamente e peça acionamento do MED',
+    ],
+    ctaLabel: 'Falar no WhatsApp sobre segurança digital',
+    ctaHref:
+      'https://wa.me/5567984793793?text=Ol%C3%A1%2C%20li%20o%20artigo%20sobre%20o%20golpe%20do%20Pix%20e%20tenho%20uma%20d%C3%BAvida.',
+    relatedLabel: 'Curso gratuito e completo de Segurança da Informação — aprenda a se proteger de verdade',
+    relatedHref: '/curso-seguranca-da-informacao',
+  },
+  {
+    slug: 'como-proteger-wifi-de-casa',
+    title: 'Como proteger o Wi-Fi de casa contra invasão (guia simples, sem termo técnico)',
+    category: 'Segurança Digital',
+    excerpt:
+      'Vizinho usando sua internet de graça é o menor dos problemas. Veja os passos básicos para deixar seu roteador seguro contra invasão, mesmo sem entender nada de tecnologia.',
+    publishedAt: '2026-08-14',
+    readTimeMinutes: 5,
+    intro:
+      'Um Wi-Fi mal configurado não é só alguém "roubando" sua internet — é uma porta aberta para acessar câmeras, computadores e outros aparelhos conectados na sua rede. A boa notícia é que proteger o roteador leva menos de 10 minutos.',
+    sections: [
+      {
+        heading: 'Troque a senha padrão do roteador',
+        paragraphs: [
+          'Todo roteador vem com uma senha de administrador padrão (geralmente "admin" ou impressa numa etiqueta), diferente da senha do Wi-Fi. Se você nunca trocou essa senha de administração, qualquer pessoa que descubra o modelo do seu roteador pode acessar as configurações. Procure "configurar roteador" + a marca do seu aparelho para encontrar o passo a passo de troca.',
+        ],
+      },
+      {
+        heading: 'Use criptografia WPA2 ou WPA3, nunca deixe a rede aberta',
+        paragraphs: [
+          'Nas configurações de Wi-Fi do roteador, verifique se o tipo de segurança está como WPA2 ou WPA3 (não WEP, que é antigo e fácil de quebrar, nem "aberta", sem senha nenhuma). Essa opção geralmente fica no mesmo menu onde você define a senha da rede.',
+        ],
+      },
+      {
+        heading: 'Senha forte e única para o Wi-Fi',
+        paragraphs: [
+          'Evite senhas óbvias como datas de aniversário ou sequências simples. Uma senha com pelo menos 12 caracteres, misturando letras, números e algum símbolo, já dificulta bastante a invasão. Anote em um lugar seguro (não em um papel colado no roteador visível para visitas).',
+        ],
+      },
+      {
+        heading: 'Mantenha o firmware do roteador atualizado',
+        paragraphs: [
+          'Assim como celular e computador, o roteador recebe atualizações que corrigem falhas de segurança. A maioria dos aparelhos modernos permite verificar atualização direto no aplicativo do provedor ou no painel de administração — vale conferir a cada poucos meses.',
+        ],
+      },
+      {
+        heading: 'Rede de convidados para quem visita sua casa',
+        paragraphs: [
+          'Se o roteador tiver essa opção, crie uma rede separada para visitas ("rede de convidados"). Assim, quem usa sua internet ocasionalmente não tem acesso aos outros aparelhos conectados na rede principal, como computadores e câmeras de segurança.',
+        ],
+      },
+    ],
+    checklist: [
+      'Troque a senha de administrador padrão do roteador',
+      'Confirme que a segurança está em WPA2 ou WPA3, nunca rede aberta',
+      'Use senha de Wi-Fi forte, com pelo menos 12 caracteres',
+      'Verifique atualização de firmware a cada poucos meses',
+      'Crie uma rede de convidados separada, se o roteador permitir',
+    ],
+    ctaLabel: 'Falar no WhatsApp sobre segurança digital',
+    ctaHref:
+      'https://wa.me/5567984793793?text=Ol%C3%A1%2C%20li%20o%20artigo%20sobre%20como%20proteger%20o%20Wi-Fi%20de%20casa%20e%20tenho%20uma%20d%C3%BAvida.',
+    relatedLabel: 'Curso gratuito e completo de Segurança da Informação — aprenda a se proteger de verdade',
+    relatedHref: '/curso-seguranca-da-informacao',
+  },
+  {
+    slug: 'como-identificar-phishing-email-sms',
+    title: 'Como identificar phishing por e-mail e SMS antes de clicar',
+    category: 'Segurança Digital',
+    excerpt:
+      'Falso boleto vencido, falsa entrega dos Correios, falso aviso do banco: veja os detalhes que denunciam uma mensagem de phishing antes mesmo de você clicar no link.',
+    publishedAt: '2026-08-14',
+    readTimeMinutes: 5,
+    intro:
+      'Phishing é o nome técnico para mensagens falsas que imitam empresas reais (banco, Correios, Receita Federal, operadoras) para roubar dados ou instalar vírus. Elas ficaram muito mais convincentes visualmente, mas quase sempre têm detalhes que denunciam a farsa.',
+    sections: [
+      {
+        heading: 'Urgência artificial é o maior sinal de alerta',
+        paragraphs: [
+          'Mensagens de phishing quase sempre criam um senso de urgência: "sua conta será bloqueada em 24h", "pacote será devolvido hoje", "fatura vence agora". Empresas reais raramente usam esse tom de pressão para ações imediatas. Desconfie sempre que uma mensagem tentar te apressar a clicar sem pensar.',
+        ],
+      },
+      {
+        heading: 'Confira o link antes de clicar, não depois',
+        paragraphs: [
+          'No celular, segure o dedo sobre o link (sem clicar) para ver o endereço completo antes de abrir. No computador, passe o mouse por cima. Endereços com erros de escrita sutis (ex: "corre1os.com" em vez de "correios.com.br"), domínios estranhos ou muito longos são o sinal mais confiável de phishing.',
+          'Bancos, Correios e órgãos públicos usam domínios oficiais conhecidos — na dúvida, não clique no link da mensagem: abra o aplicativo oficial ou digite o endereço direto no navegador.',
+        ],
+      },
+      {
+        heading: 'Remetente parecido não é remetente verdadeiro',
+        paragraphs: [
+          'Em e-mails, o nome de exibição pode ser configurado para qualquer coisa (ex: "Banco XYZ"), mas o endereço de e-mail real por trás costuma ser bem diferente do oficial. Clique ou toque no nome do remetente para ver o endereço completo antes de confiar na mensagem.',
+        ],
+      },
+      {
+        heading: 'Nunca informe senha, código ou dados de cartão por link recebido',
+        paragraphs: [
+          'Nenhuma empresa séria pede para você "confirmar" senha, código de verificação ou número completo de cartão através de um link em e-mail ou SMS. Se a mensagem pedir isso, é phishing — sem exceção, mesmo que o site pareça idêntico ao original.',
+        ],
+      },
+    ],
+    checklist: [
+      'Desconfie de qualquer mensagem com urgência artificial ("bloqueio em 24h")',
+      'Confira o endereço do link antes de clicar, procurando erros de escrita',
+      'Verifique o e-mail real do remetente, não só o nome de exibição',
+      'Nunca informe senha, código ou dados de cartão por link recebido em mensagem',
+    ],
+    ctaLabel: 'Falar no WhatsApp sobre segurança digital',
+    ctaHref:
+      'https://wa.me/5567984793793?text=Ol%C3%A1%2C%20li%20o%20artigo%20sobre%20phishing%20por%20e-mail%20e%20SMS%20e%20tenho%20uma%20d%C3%BAvida.',
+    relatedLabel: 'Curso gratuito e completo de Segurança da Informação — aprenda a se proteger de verdade',
+    relatedHref: '/curso-seguranca-da-informacao',
+  },
 ]
 
 export function getArticle(slug: string) {
