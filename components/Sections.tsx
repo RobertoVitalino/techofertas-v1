@@ -371,39 +371,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Novo modelo de IA detecta mudanças no Sol antes de serem visíveis',
+    title: 'Eclipse, chuva de meteoros e anomalia magnética no Brasil: a semana da Ciência',
     category: 'Ciência e Espaço',
-    summary: 'Modelo EarlyDetect usa dados da NASA para antecipar regiões ativas no Sol, embora ainda não esteja pronto para alertas em tempo real.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/erupo-solar-X-scaled-1.jpeg',
-    href: 'https://olhardigital.com.br/2026/08/14/ciencia-e-espaco/novo-modelo-de-ia-detecta-mudancas-no-sol-antes-de-serem-visiveis/',
+    summary: 'Que semana! Eclipse solar total presenteou a Europa e uma belíssima chuva de meteoros cruzou os céus do planeta.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/eclipses-solares.jpeg',
+    href: 'https://olhardigital.com.br/2026/08/15/ciencia-e-espaco/eclipse-chuva-de-meteoros-e-anomalia-magnetica-no-brasil-a-semana-da-ciencia/',
   },
   {
-    title: 'IA amplia conversas entre máquinas, mas pode tornar o contato humano mais raro',
-    category: 'Inteligência Artificial',
-    summary: 'Agentes digitais já assumem tarefas em empregos, estudos e atendimentos, enquanto erros compartilhados entre sistemas levantam novos riscos',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/robo-usa-computador.jpg',
-    href: 'https://olhardigital.com.br/2026/08/14/inteligencia-artificial/ia-amplia-conversas-entre-maquinas-mas-pode-tornar-o-contato-humano-mais-raro/',
-  },
-  {
-    title: 'mRNA ganha novo papel na medicina além da vacinação',
-    category: 'Medicina e Saúde',
-    summary: 'O mRNA funciona como uma instrução temporária para as células e pode ampliar o uso da tecnologia em tratamentos além das vacinas.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/iStock-2197154058.jpg',
-    href: 'https://olhardigital.com.br/2026/08/14/medicina-e-saude/mrna-ganha-novo-papel-na-medicina-alem-da-vacinacao/',
-  },
-  {
-    title: 'Brasil supera EUA na adoção de agentes de IA pelas empresas',
-    category: 'Inteligência Artificial',
-    summary: 'Pesquisa mostra que 76% das empresas brasileiras já operam agentes de IA, mas vazamentos de dados ainda travam parte dos projetos.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/agentes-ia-dinheiro.jpg',
-    href: 'https://olhardigital.com.br/2026/08/14/inteligencia-artificial/brasil-supera-eua-na-adocao-de-agentes-de-ia-pelas-empresas/',
-  },
-  {
-    title: 'Astrônomos descobrem primeira corrente estelar fora da Via Láctea',
+    title: 'Seu gato faz cara de nojo? Entenda por que ele abre a boca após sentir cheiros',
     category: 'Ciência e Espaço',
-    summary: 'Achado permite estudar a distribuição de matéria escura em galáxias distantes com uma técnica antes restrita à Via Láctea',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/Imagem-do-Telescpio-Espacial-Hubble-revela-o-rastro-de-estrelas-deixado-por-um-aglomerado-globular.jpg',
-    href: 'https://olhardigital.com.br/2026/08/14/ciencia-e-espaco/astronomos-descobrem-primeira-corrente-estelar-fora-da-via-lactea/',
+    summary: 'O reflexo de Flehmen ajuda os felinos a interpretar sinais químicos e identificar informações do ambiente invisíveis aos humanos comuns',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/08/gato-gatinho-boca-aberta-felino-reflexo-de-Flehmen-3.jpg',
+    href: 'https://olhardigital.com.br/2026/08/15/ciencia-e-espaco/seu-gato-faz-cara-de-nojo-entenda-por-que-ele-abre-a-boca-apos-sentir-cheiros/',
+  },
+  {
+    title: 'Automação de processos não é só sobre tecnologia',
+    category: 'Colunistas',
+    summary: 'Automação nunca foi apenas sobre software. Sempre foi sobre pessoas, decisões e processos.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/05/automao-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/08/15/colunistas/automacao-de-processos-nao-e-so-sobre-tecnologia/',
+  },
+  {
+    title: 'Jogos de hoje (15/08/26): onde assistir futebol ao vivo e horários das partidas',
+    category: 'Internet e Redes Sociais',
+    summary: 'Confira aqui, no Olhar Digital, onde assistir, ao vivo, às partidas de hoje, 15 de agosto de 2026. Veja os horários dos jogos de hoje',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2024/06/futebol-streaming.jpg',
+    href: 'https://olhardigital.com.br/2026/08/15/internet-e-redes-sociais/jogos-de-hoje-15-08-26-onde-assistir-futebol-ao-vivo-e-horarios-das-partidas/',
+  },
+  {
+    title: 'Lua hoje: confira a fase da Lua deste sábado 15/08/2026',
+    category: 'Ciência e Espaço',
+    summary: 'Em qual fase a Lua está hoje, sábado, 15 de agosto de 2026? Confira e veja o calendário lunar completo deste mês',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2025/11/fases-da-lua2-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/08/15/ciencia-e-espaco/lua-hoje-confira-a-fase-da-lua-deste-sabado-15-08-2026/',
   },
 ]
 // AUTO-NEWS-END
