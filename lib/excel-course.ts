@@ -420,7 +420,7 @@ export const excelCourseModules: CourseModule[] = [
       },
       {
         slug: 'operadores-matematicos',
-        video: { youtubeId: 'hJQ_P_xA7GM', title: 'EXCEL: Operações matemáticas com fórmulas (soma, subtração, multiplicação, divisão)' },
+        video: { youtubeId: 'i7xs0TumIoA', title: 'COMO FAZER SOMA SUBTRAÇÃO MULTIPLICAÇÃO DIVISÃO MÁXIMO E MÍNIMO NO EXCEL' },
         title: 'Operadores matemáticos e ordem de cálculo',
         duration: '30 min',
         summary:

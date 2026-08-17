@@ -909,7 +909,7 @@ export const typingCourseModules: TypingModule[] = [
     lessons: [
       {
         slug: 'palavras-mais-comuns-do-portugues',
-        video: { youtubeId: 'Dr8zUZVZcyw', title: 'AS 100 PALAVRAS MAIS USADAS NO PORTUGUÊS!' },
+        video: { youtubeId: 'fkthK6lViCQ', title: '3 dicas para DIGITAR mais RÁPIDO | 130 palavras por minuto' },
         title: 'Palavras mais comuns do português',
         duration: '15 min',
         summary:
