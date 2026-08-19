@@ -371,39 +371,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'OpenAI lança ChatGPT para jovens com modo de estudo e bloqueios automáticos de conteúdo',
+    title: 'SpaceX completa 100º lançamento do ano pelo terceiro ano consecutivo',
+    category: 'Ciência e Espaço',
+    summary: 'SpaceX completou 100 missões em 2026 com lançamento de satélites Starlink. É o terceiro ano consecutivo que a empresa atinge a marca',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/spacex-100-lancamento-california-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/08/19/ciencia-e-espaco/spacex-completa-100o-lancamento-do-ano-pelo-terceiro-ano-consecutivo/',
+  },
+  {
+    title: 'Ciclone e frente fria afetam o Sul enquanto o Brasil enfrenta ar seco',
+    category: 'Ciência e Espaço',
+    summary: 'Inmet alerta para tempestades e frio de menos de 10 °C no Sul, enquanto o restante do país enfrenta ar seco e marcas acima de 40 °C',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2025/01/Destaque-Previsao-do-tempo-Chuva-e-calor-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/08/19/ciencia-e-espaco/ciclone-e-frente-fria-afetam-o-sul-enquanto-o-brasil-enfrenta-ar-seco/',
+  },
+  {
+    title: 'Vacina da Moderna contra câncer impede retorno de melanoma em estudo de fase avançada',
+    category: 'Medicina e Saúde',
+    summary: 'Moderna e Merck anunciam primeiro sucesso em vacina personalizada de mRNA contra melanoma. Medicamento pode chegar ao mercado em 2027',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/vacina-moderna-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/08/19/medicina-e-saude/vacina-da-moderna-contra-cancer-impede-retorno-de-melanoma-em-estudo-de-fase-avancada/',
+  },
+  {
+    title: 'China quer criar &#8216;fortalezas robóticas&#8217; com drones para defender ilhas',
     category: 'Inteligência Artificial',
-    summary: 'OpenAI lançou o ChatGPT para Adolescentes com modo de estudo, bloqueios automáticos de conteúdo perigoso e controles para pais',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/chatgpt-para-jovens.jpg',
-    href: 'https://olhardigital.com.br/2026/08/18/inteligencia-artificial/openai-lanca-chatgpt-para-jovens-com-modo-de-estudo-e-bloqueios-automaticos-de-conteudo/',
+    summary: 'Projeto sugere rede de robôs aéreos, marítimos e submarinos com IA para proteger ilhas sem depender de tropas no local',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/Destaque-Fortalezas-roboticas-ilhas-China-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/08/19/inteligencia-artificial/china-quer-criar-fortalezas-roboticas-com-drones-para-defender-ilhas/',
   },
   {
-    title: 'Zuckerberg no banco dos réus: o julgamento que pode mudar o Instagram',
+    title: 'Em resposta aos EUA, China exige respeito na corrida da IA',
     category: 'Pro',
-    summary: 'Ação movida por 29 estados acusa a empresa de viciar jovens e pede a proibição de recursos como a rolagem infinita e o botão de curtir',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/02/zuckerberg.jpg',
-    href: 'https://olhardigital.com.br/2026/08/18/pro/zuckerberg-no-banco-dos-reus-o-julgamento-que-pode-mudar-o-instagram/',
-  },
-  {
-    title: 'Photoshop amplia recursos de IA e transforma experiência de criação no desktop',
-    category: 'Inteligência Artificial',
-    summary: 'Nova interface busca atender desde quem está começando no app até profissionais que querem ganhar agilidade sem perder autonomia criativa',
-    image: 'https://img.odcdn.com.br/wp-content/uploads/2024/10/Destaque-Photoshop-inteligencia-artificial-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/08/18/inteligencia-artificial/photoshop-amplia-recursos-de-ia-e-transforma-experiencia-de-criacao-no-desktop/',
-  },
-  {
-    title: 'OpenAI escolhe Brasil para abrir 1º escritório das Américas fora dos EUA',
-    category: 'Pro',
-    summary: 'A dona do ChatGPT anunciou começo da operação nacional e acordos com SUS e ITA; entenda por que Brasil foi o país escolhido',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/openai.jpg',
-    href: 'https://olhardigital.com.br/2026/08/18/pro/openai-escolhe-brasil-para-abrir-1o-escritorio-das-americas-fora-dos-eua/',
-  },
-  {
-    title: 'Mais rápido que Usain Bolt! Robô chinês impressiona em vídeo',
-    category: 'Robótica',
-    summary: 'Batizado de “Superman”, o robô humanoide da chinesa Unitree atingiu 12,66 m/s e saltou dois metros de altura em demonstração',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/Destaque-Robo-Unitree-Superman-correndo-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/08/18/robotica/mais-rapido-que-usain-bolt-robo-chines-impressiona-em-video/',
+    summary: 'Pequim criticou o plano de Washington de barrar aliados que fecharem acordos com o governo chinês e defendeu a liberdade de escolha',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/Destaque-China-e-EUA-na-corrida-da-IA-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/08/19/pro/em-resposta-aos-eua-china-exige-respeito-na-corrida-da-ia/',
   },
 ]
 // AUTO-NEWS-END
