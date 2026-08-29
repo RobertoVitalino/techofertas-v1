@@ -371,39 +371,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Hackers dizem ter roubado dados de Berlim e colocam material em leilão',
-    category: 'Segurança e Privacidade',
-    summary: 'Um grupo de ransomware afirmou ter roubado 5,79 TB de dados de órgãos públicos de Berlim (Alemanha) e anunciou que vai leiloar o material',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/alemanha_hacker.jpg',
-    href: 'https://olhardigital.com.br/2026/08/28/seguranca/hackers-dizem-ter-roubado-dados-de-berlim-e-colocam-material-em-leilao/',
-  },
-  {
-    title: 'Esta água-viva consegue voltar a ser jovem depois de envelhecer',
+    title: 'Tempestade solar vai atingir a Terra nas próximas horas',
     category: 'Ciência e Espaço',
-    summary: 'Água-viva Turritopsis dohrnii consegue reverter seu ciclo de vida e retornar ao estágio de pólipo, escapando do envelhecimento.',
-    image: 'https://img.odcdn.com.br/wp-content/uploads/2025/12/style_is_candid_image_photography_with_natural__15483.jpeg',
-    href: 'https://olhardigital.com.br/2026/08/28/ciencia-e-espaco/esta-agua-viva-consegue-voltar-a-ser-jovem-depois-de-envelhecer/',
+    summary: 'Fenômeno deve ter intensidade moderada e pode causar alguns problemas para a infraestrutura de comunicação do nosso planeta.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2023/12/erupcao-solar-terra.jpg',
+    href: 'https://olhardigital.com.br/2026/08/29/ciencia-e-espaco/tempestade-solar-vai-atingir-a-terra-nas-proximas-horas/',
   },
   {
-    title: 'Você é mais alto de manhã do que à noite — e dá para medir',
-    category: 'Medicina e Saúde',
-    summary: 'Entenda por que você é mais alto de manhã do que à noite — e como a coluna vertebral explica essa variação diária de altura',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/altura.jpg',
-    href: 'https://olhardigital.com.br/2026/08/28/medicina-e-saude/voce-e-mais-alto-de-manha-do-que-a-noite-e-da-para-medir/',
-  },
-  {
-    title: 'O que você fala com o ChatGPT pode ser usado contra você?',
-    category: 'Inteligência Artificial',
-    summary: 'Conversas com o ChatGPT podem ser usadas como prova? Entenda o que dizem especialistas sobre sigilo, acesso aos dados e prints de conversas',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/chatgpt-lei.jpg',
-    href: 'https://olhardigital.com.br/2026/08/28/inteligencia-artificial/o-que-voce-fala-com-o-chatgpt-pode-ser-usado-contra-voce/',
-  },
-  {
-    title: 'Review City States Medieval: estratégia em tempo real e 4X no século XII',
+    title: 'Dia do Gamer 2026: veja as melhores promoções para aproveitar neste sábado',
     category: 'Games e Consoles',
-    summary: 'City States Medieval mistura estratégia em tempo real e 4X no século XII. Veja no review os prós e contras e se esse jogo indie vale o preço.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/CITY-keyart_logo_16-9-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/08/28/games-e-consoles/review-city-states-medieval-estrategia-em-tempo-real-e-4x-no-seculo-xii/',
+    summary: 'Dia do Gamer 2026 tem promoções em monitores, hardware e ingressos da BGS. Confira descontos e cupons disponíveis neste fim de semana.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/Dia-do-Gamer-ChatGPT-2-1024x681.png',
+    href: 'https://olhardigital.com.br/2026/08/29/games-e-consoles/dia-do-gamer-2026-melhores-promocoes/',
+  },
+  {
+    title: 'Silent Hill: Townfall revela elenco de vozes em novo trailer na Gamescom 2026',
+    category: 'Games e Consoles',
+    summary: 'Silent Hill: Townfall ganhou novo trailer na Gamescom 2026 e confirmou Jovan Adepo, Kezia Burrows e Terry O’Quinn no elenco de vozes.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/Silent-Hill-Townfall-Instagram.jpg',
+    href: 'https://olhardigital.com.br/2026/08/29/games-e-consoles/silent-hill-townfall-revela-elenco-de-vozes/',
+  },
+  {
+    title: 'Gamescom Awards 2026: The Witcher 3 e Sega lideram premiação; veja vencedores',
+    category: 'Games e Consoles',
+    summary: 'Gamescom Awards 2026 anuncia vencedores: CD Projekt Red e Sega levam três prêmios cada, enquanto Metro 2039 e Onimusha também se destacam.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/Gamescom-Awards-2026-ChatGPT-1024x683.png',
+    href: 'https://olhardigital.com.br/2026/08/29/games-e-consoles/gamescom-awards-2026-veja-todos-os-jogos-e-empresas-vencedores/',
+  },
+  {
+    title: 'Justiça marca audiência de conciliação entre governo e Discord',
+    category: 'Pro',
+    summary: 'Decisão ocorre após a ação civil pública movida para obrigar a plataforma a adotar medidas de proteção aos usuários.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/discord_processo.jpg',
+    href: 'https://olhardigital.com.br/2026/08/29/pro/justica-federal-marca-audiencia-de-conciliacao-entre-governo-e-discord/',
   },
 ]
 // AUTO-NEWS-END
