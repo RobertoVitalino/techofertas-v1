@@ -47,21 +47,35 @@ async function registerCustomer(formData: FormData) {
   const nextParam = `next=${encodeURIComponent(destination)}`
   const ip = await getRequestIp()
 
-  if (
+  const isInvalid =
     name.length < 2 ||
     name.length > 80 ||
     !isValidCustomerEmail(email) ||
     !isValidCustomerUsername(username) ||
     !isAcceptableCustomerPassword(password) ||
     !acceptedTerms
-  ) {
+
+  if (isInvalid) {
     await writeSecurityEvent({
       kind: 'registration_rejected',
       success: false,
       subject: email || username,
       ip,
     }).catch(() => undefined)
-    redirect(`/cadastro?erro=dados&${nextParam}`)
+
+    if (name.length < 2 || name.length > 80) {
+      redirect(`/cadastro?erro=nome&${nextParam}`)
+    }
+    if (!isValidCustomerEmail(email)) {
+      redirect(`/cadastro?erro=email&${nextParam}`)
+    }
+    if (!isValidCustomerUsername(username)) {
+      redirect(`/cadastro?erro=usuario&${nextParam}`)
+    }
+    if (!isAcceptableCustomerPassword(password)) {
+      redirect(`/cadastro?erro=senha&${nextParam}`)
+    }
+    redirect(`/cadastro?erro=termos&${nextParam}`)
   }
 
   if (password !== passwordConfirmation) {
@@ -214,7 +228,11 @@ export default async function RegisterPage({
                 </label>
               </div>
 
-              {query?.erro === 'dados' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Confira os dados e o nome de usuário. Use uma senha com pelo menos 8 caracteres, evite senhas comuns e aceite os termos.</p> : null}
+              {query?.erro === 'nome' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Digite seu nome completo (entre 2 e 80 caracteres).</p> : null}
+              {query?.erro === 'email' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Digite um e-mail válido, no formato nome@exemplo.com.</p> : null}
+              {query?.erro === 'usuario' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">O nome de usuário deve ter entre 3 e 30 caracteres, usando apenas letras, números, ponto, hífen ou sublinhado.</p> : null}
+              {query?.erro === 'senha' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">A senha precisa ter pelo menos 8 caracteres e não pode ser uma senha muito comum (como "12345678" ou "senha123"). Tente uma senha mais única.</p> : null}
+              {query?.erro === 'termos' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">Você precisa aceitar os Termos de Uso e a Política de Privacidade para criar a conta.</p> : null}
               {query?.erro === 'senhas' ? <p className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200" role="alert">As senhas informadas não são iguais.</p> : null}
               {query?.erro === 'indisponivel' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Não foi possível concluir o cadastro com esses dados. Se você já tiver uma conta, entre com sua senha.</p> : null}
               {query?.erro === 'limite' ? <p className="rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100" role="alert">Muitas tentativas de cadastro foram realizadas. Aguarde uma hora antes de tentar novamente.</p> : null}
