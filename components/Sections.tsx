@@ -371,39 +371,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'As maiores IAs do mundo caíram juntas. O motivo ainda é um mistério',
-    category: 'Inteligência Artificial',
-    summary: 'ChatGPT, Claude e Grok caíram juntos na quinta-feira, mas a causa da interrupção simultânea ainda é um mistério',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/chatgpt-grok-claude.jpg',
-    href: 'https://olhardigital.com.br/2026/09/04/inteligencia-artificial/as-maiores-ias-do-mundo-cairam-juntas-o-motivo-ainda-e-um-misterio/',
-  },
-  {
-    title: 'METAL GEAR SOLID: MASTER COLLECTION Vol.2 Review: dois clássicos, duas traduções',
-    category: 'Games e Consoles',
-    summary: 'Confira a review de METAL GEAR SOLID: MASTER COLLECTION Vol.2, coletânea que apresenta MGS 4 e MGS Peace Walker para a nova geração.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/capa103.png',
-    href: 'https://olhardigital.com.br/2026/09/04/games-e-consoles/metal-gear-solid-master-collection-vol-2-review-dois-classicos-duas-traducoes/',
-  },
-  {
-    title: 'Dona do TikTok pega R$ 165 bi emprestados para corrida de IA sem dar nenhuma garantia',
-    category: 'Pro',
-    summary: 'ByteDance, dona do TikTok, consegue US$ 29,6 bilhões em empréstimo com quase 30 bancos para financiar projetos de inteligência artificial.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/tiktok.jpg',
-    href: 'https://olhardigital.com.br/2026/09/04/pro/dona-do-tiktok-pega-r-165-bi-emprestados-para-corrida-de-ia-sem-dar-nenhuma-garantia/',
-  },
-  {
-    title: 'Contagem de calorias do smartwatch é confiável? Pesquisa revela margem de erro de 25% ',
-    category: 'Medicina e Saúde',
-    summary: 'De olho no pulso: pesquisa revela que smartwatches erram a conta das calorias – nutricionista faz alerta sobre o uso desses dados',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/calorias-smartwach.jpg',
-    href: 'https://olhardigital.com.br/2026/09/04/medicina-e-saude/contagem-de-calorias-do-smartwatch-e-confiavel-pesquisa-revela-margem-de-erro-de-25/',
-  },
-  {
-    title: 'Autópsia de 66 milhões de anos mostra como maior T. rex do mundo morreu',
+    title: 'Ciência revela qual é o único fator que traz felicidade real. Spoiler: não é o dinheiro',
     category: 'Ciência e Espaço',
-    summary: 'O maior T. rex conhecido tinha vasos sanguíneos fossilizados em uma costela, preservados por 66 milhões de anos após uma fratura.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/t-rex.jpg',
-    href: 'https://olhardigital.com.br/2026/09/04/ciencia-e-espaco/autopsia-de-66-milhoes-de-anos-mostra-como-maior-t-rex-do-mundo-morreu/',
+    summary: 'Pesquisadores da Universidade de Toronto descobrem que a autonomia para tomar decisões é o verdadeiro segredo da felicidade.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/felicidade.jpg',
+    href: 'https://olhardigital.com.br/2026/09/05/ciencia-e-espaco/ciencia-revela-qual-e-o-unico-fator-que-traz-felicidade-real-spoiler-nao-e-o-dinheiro/',
+  },
+  {
+    title: 'Como a lei dos data centers mudou regras para verbas municipais',
+    category: 'Pro',
+    summary: 'Projeto libera R$ 5 bilhões para data centers e muda regras fiscais que podem alcançar 5.042 municípios brasileiros em 2026.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/shutterstock_2642305555-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/09/05/pro/como-a-lei-dos-data-centers-mudou-regras-para-verbas-municipais/',
+  },
+  {
+    title: 'Por que conversar com a IA parece interagir com uma pessoa real?',
+    category: 'Inteligência Artificial',
+    summary: 'ChatGPT e Claude reacendem debate sobre consciência artificial, enquanto empresas estudam o possível bem-estar desses sistemas.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Copilot_20260905_103451-1024x683.png',
+    href: 'https://olhardigital.com.br/2026/09/05/inteligencia-artificial/por-que-conversar-com-a-ia-parece-interagir-com-uma-pessoa-real/',
+  },
+  {
+    title: 'GPT-6 Astra faz tarefas complexas e já preocupa analistas',
+    category: 'Inteligência Artificial',
+    summary: 'A OpenAI anunciou o GPT-6 Astra com promessa de IAG, mas falhas de segurança e invasões recentes acenderam o alerta de governos pelo mundo.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/inteligencia-artificial-geral.jpg',
+    href: 'https://olhardigital.com.br/2026/09/05/inteligencia-artificial/gpt-6-astra-faz-tarefas-complexas-e-ja-preocupa-analistas/',
+  },
+  {
+    title: 'Nova geração de telescópios, El Niño e Prêmio Ig Nobel nos destaques da semana em Ciência',
+    category: 'Ciência e Espaço',
+    summary: 'E mais: Sol pode “perder a memória” e asteroide batizado em homenagem a Ayrton Senna tem um “companheiro de equipe” no espaço',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/08/telescpio-roman.jpg',
+    href: 'https://olhardigital.com.br/2026/09/05/ciencia-e-espaco/nova-geracao-de-telescopios-el-nino-e-premio-ig-nobel-nos-destaques-da-semana-em-ciencia/',
   },
 ]
 // AUTO-NEWS-END
