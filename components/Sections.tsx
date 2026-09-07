@@ -371,39 +371,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Dobrável, iPhone 18 e novos Apple Watch: o que esperar do evento da Apple desta quarta (9)',
-    category: 'Produtos e Reviews',
-    summary: 'Apple prepara novos iPhones, seu primeiro dobrável e Apple Watch para o evento de 9 de setembro; veja o que esperar da apresentação',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/evento-apple.jpg',
-    href: 'https://olhardigital.com.br/2026/09/06/reviews/dobravel-iphone-18-e-novos-apple-watch-o-que-esperar-do-evento-da-apple-desta-quarta-9/',
-  },
-  {
-    title: 'Europa faz história com foguete que coloca satélites em órbita',
+    title: 'Lua vai “engolir” Júpiter nesta terça (8); veja onde o fenômeno poderá ser visto',
     category: 'Ciência e Espaço',
-    summary: 'Isar Aerospace coloca satélites em órbita no segundo voo e avança nos planos de ampliar a produção de foguetes na Europa',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/c-Isar-Aerospace-Flight-2_2026-09-05-224332_ylbv.jpg',
-    href: 'https://olhardigital.com.br/2026/09/06/ciencia-e-espaco/europa-faz-historia-com-foguete-que-coloca-satelites-em-orbita/',
+    summary: 'Lua vai “engolir” Júpiter nesta terça-feira (8) em uma ocultação visível em partes da América. Veja onde observar o fenômeno',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/lua-jupiter.jpg',
+    href: 'https://olhardigital.com.br/2026/09/07/ciencia-e-espaco/lua-vai-engolir-jupiter-nesta-terca-8-veja-onde-o-fenomeno-podera-ser-visto/',
   },
   {
-    title: 'Resultado da Quina de hoje: veja números e ganhadores do concurso 7111 (domingo, 06/09)',
-    category: 'Internet e Redes Sociais',
-    summary: 'O sorteio do concurso 7111 da Quina acontece na manhã deste domingo (6), às 11h. O prêmio está estimado em R$ 17 milhões',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/resultado_quina_7110-1.png',
-    href: 'https://olhardigital.com.br/2026/09/06/internet-e-redes-sociais/resultado-da-quina-de-hoje-veja-numeros-e-ganhadores-do-concurso-7111-domingo-06-09/',
-  },
-  {
-    title: 'Resultado da Mega-Sena de hoje: veja números e ganhadores do concurso 3054 (domingo, 06/09)',
-    category: 'Internet e Redes Sociais',
-    summary: 'O sorteio do concurso 3054 da Mega-Sena acontece na manhã deste domingo (6), às 11h. O prêmio está estimado em R$ 48 milhões',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/resultado_mega-sena_3053.jpg',
-    href: 'https://olhardigital.com.br/2026/09/06/internet-e-redes-sociais/resultado-da-mega-sena-de-hoje-veja-numeros-e-ganhadores-do-concurso-3054-domingo-06-09/',
-  },
-  {
-    title: 'Nova antena da NASA ajuda a aliviar congestionamento no espaço',
+    title: 'El Niño se intensifica e aumenta riscos para várias regiões do Brasil',
     category: 'Ciência e Espaço',
-    summary: 'NASA amplia a Deep Space Network com nova antena de 34 metros na Califórnia para atender à crescente demanda por comunicações espaciais',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/antenas-nasa.jpg',
-    href: 'https://olhardigital.com.br/2026/09/06/ciencia-e-espaco/nova-antena-da-nasa-ajuda-a-aliviar-congestionamento-no-espaco/',
+    summary: 'El Niño 2026-2027 ganha força e aumenta riscos de chuvas, secas, calor, incêndios e impactos em setores do Brasil',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/el-nino-2.jpg',
+    href: 'https://olhardigital.com.br/2026/09/07/ciencia-e-espaco/el-nino-se-intensifica-e-aumenta-riscos-para-varias-regioes-do-brasil/',
+  },
+  {
+    title: 'O dia em que uma tempestade solar quase levou à terceira guerra mundial',
+    category: 'Ciência e Espaço',
+    summary: 'Um novo modelo matemático calcula o risco de tempestades solares causarem apagões massivos e prejuízos bilionários na rede elétrica.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/tempestade-solar.jpg',
+    href: 'https://olhardigital.com.br/2026/09/07/ciencia-e-espaco/o-dia-em-que-uma-tempestade-solar-quase-levou-a-terceira-guerra-mundial/',
+  },
+  {
+    title: 'Frio perde força na terça, mas chuva continua pelo Brasil',
+    category: 'Clima',
+    summary: 'Terça-feira terá temperaturas em alta após o feriadão, mas chuva e trovoadas ainda atingem várias regiões do Brasil',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/mulher-frio.jpg',
+    href: 'https://olhardigital.com.br/2026/09/07/ciencia-e-espaco/frio-perde-forca-na-terca-mas-chuva-continua-pelo-brasil/',
+  },
+  {
+    title: 'Regulação da IA pode definir se Brasil será produtor ou consumidor de tecnologia',
+    category: 'Inteligência Artificial',
+    summary: 'Brasil busca regular a IA sem travar a inovação, em meio a diferentes modelos adotados por países como EUA, China e União Europeia',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/08/shutterstock_2682625439.jpg',
+    href: 'https://olhardigital.com.br/2026/09/07/inteligencia-artificial/regulacao-da-ia-pode-definir-se-brasil-sera-produtor-ou-consumidor-de-tecnologia/',
   },
 ]
 // AUTO-NEWS-END
