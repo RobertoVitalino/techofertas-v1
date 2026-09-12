@@ -371,39 +371,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Uber lança função para pedir viagens para a serra e praia no RJ',
+    title: 'Nvidia pode injetar bilhões na Anthropic antes de mega IPO',
     category: 'Pro',
-    summary: 'Uber lança a função Entre Cidades no Rio de Janeiro para viagens diretas até Cabo Frio, Angra e Petrópolis com preço fixo.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/mulher-uber.jpg',
-    href: 'https://olhardigital.com.br/2026/09/11/pro/uber-lanca-funcao-para-pedir-viagens-para-a-serra-e-praia-no-rj/',
+    summary: 'A Nvidia está em negociações para investir até US$ 10 bilhões na oferta pública inicial de ações da Anthropic; entenda',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/05/anthropic-scaled-e1789227972990.jpg',
+    href: 'https://olhardigital.com.br/2026/09/12/pro/nvidia-pode-injetar-bilhoes-na-anthropic-antes-de-mega-ipo/',
   },
   {
-    title: 'Sam Altman considera frear avanço da OpenAI após falhas em testes',
-    category: 'Inteligência Artificial',
-    summary: 'Sam Altman diz que a OpenAI considera reduzir o ritmo de desenvolvimento de IA após alertas e incidentes recentes de segurança.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/sam_altman_openai-scaled-1.jpg',
-    href: 'https://olhardigital.com.br/2026/09/11/inteligencia-artificial/sam-altman-considera-frear-avanco-da-openai-apos-falhas-em-testes/',
-  },
-  {
-    title: 'ChatGPT inventa testemunhas e depoimentos em recurso e advogado é punido',
-    category: 'Inteligência Artificial',
-    summary: 'ChatGPT inventou testemunhas e depoimentos em recurso criminal, levando a Suprema Corte do Novo México a punir o advogado.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Gemini_Generated_Image_b1nm7hb1nm7hb1nm.jpg',
-    href: 'https://olhardigital.com.br/2026/09/11/inteligencia-artificial/chatgpt-inventa-testemunhas-e-depoimentos-em-recurso-e-advogado-e-punido/',
-  },
-  {
-    title: '11 de Setembro: 25 anos depois, teorias da conspiração inundam redes sociais',
-    category: 'Internet e Redes Sociais',
-    summary: 'Passados 25 anos, o “11 de Setembro” ainda ecoa no imaginário popular – e nas teorias da conspiração que circulam nas redes sociais',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Destaque-Atentado-11-de-setembro-Torres-Gemeas-World-Trade-Center-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/09/11/internet-e-redes-sociais/11-de-setembro-25-anos-depois-teorias-da-conspiracao-inundam-redes-sociais/',
-  },
-  {
-    title: 'Wolverine estreia com uma das menores notas entre os jogos da Sony no PS5',
+    title: 'Celular domina entre gamers da América Latina, aponta pesquisa',
     category: 'Games e Consoles',
-    summary: 'Marvel’s Wolverine estreou com 77 no Metacritic e aparece entre os jogos first-party da Sony com menor média no PS5, ficando acima apenas de Concord no recorte.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Marvels-Wolverine-PlayStation-1-1024x576.webp',
-    href: 'https://olhardigital.com.br/2026/09/11/games-e-consoles/wolverine-tem-uma-das-menores-notas-da-sony-no-ps5/',
+    summary: 'Pesquisa Game Brasil Latam mostra força do mobile na região, liderança da Geração Z e diferenças no comportamento de homens e mulheres',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/09/Jogos-Mobile-Zoom.webp',
+    href: 'https://olhardigital.com.br/2026/09/12/games-e-consoles/pesquisa-revela-perfil-do-jogador-mobile-na-america-latina/',
+  },
+  {
+    title: 'Jogo cheio virou “pague para progredir”: a briga da EA com os próprios fãs sobre microtransações em games premium',
+    category: 'Games e Consoles',
+    summary: 'College Football 27 colocou microtransações na progressão single-player e enfrentou revolta dos fãs, reacendendo o debate sobre monetização em jogos premium.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/09/Electronic-Arts-EA-1.jpg',
+    href: 'https://olhardigital.com.br/2026/09/12/games-e-consoles/microtransacoes-da-ea-reacendem-debate-sobre-jogos-premium/',
+  },
+  {
+    title: 'IAs podem acabar com o mundo? A mensagem que você ainda não entendeu',
+    category: 'Inteligência Artificial',
+    summary: 'Esses alertas devem ser levados a sério. Mas existe outra pergunta que também merece atenção. Confira o artigo completo.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/08/protesto-ia.jpg',
+    href: 'https://olhardigital.com.br/2026/09/12/inteligencia-artificial/ias-podem-acabar-com-o-mundo-a-mensagem-que-voce-ainda-nao-entendeu/',
+  },
+  {
+    title: 'Semana da ciência tem El Niño, computação quântica e Brasil no espaço',
+    category: 'Ciência e Espaço',
+    summary: 'E ainda: recorde de calor no planeta, mistério em Marte, origem do cometa 3I/ATLAS perto de ser descoberta e mais!',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/09/computao-quntica-brasil.jpg',
+    href: 'https://olhardigital.com.br/2026/09/12/ciencia-e-espaco/semana-da-ciencia-tem-el-nino-computacao-quantica-e-brasil-no-espaco/',
   },
 ]
 // AUTO-NEWS-END
