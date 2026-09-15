@@ -371,39 +371,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Volkswagen cria elétrico que roda 1.278 km com uma recarga',
-    category: 'Veículos e Tecnologia',
-    summary: 'Conceito elétrico da Volkswagen percorreu 1.278 km com bateria de 54,9 kWh e consumo de 6,89 kWh/100 km sem perdas de recarga.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/vw-mission-efficiency-vs.-vw-xl1.webp',
-    href: 'https://olhardigital.com.br/2026/09/14/carros-e-tecnologia/volkswagen-cria-eletrico-que-roda-1-278-km-com-uma-recarga/',
-  },
-  {
-    title: 'Fãs de Professor Layton criticam Level-5 por uso de IA; estúdio se explica',
+    title: 'A invasão dos consoles portáteis chineses no mercado global',
     category: 'Games e Consoles',
-    summary: 'Fãs de Professor Layton criticaram possível uso de IA nos novos jogos da Level-5. Estúdio confirmou IA na apresentação e explicou como usa a tecnologia.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Level-5-Level-5.jpg',
-    href: 'https://olhardigital.com.br/2026/09/14/games-e-consoles/professor-layton-gera-criticas-a-level-5-por-uso-de-ia/',
+    summary: 'Anbernic, GPD e AYANEO já estão entre as cinco maiores fabricantes de portáteis do mundo. Veja como os consoles chineses mudaram o mercado.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/ayaneo-next.png',
+    href: 'https://olhardigital.com.br/2026/09/15/games-e-consoles/a-invasao-dos-consoles-portateis-chineses-no-mercado-global/',
   },
   {
-    title: 'Trump chama pedido de freio na IA de “conspiração doentia” para favorecer China',
+    title: 'Instagram pago? Meta lança planos com links em posts e mais recursos de IA',
+    category: 'Internet e Redes Sociais',
+    summary: 'Meta One chega ao Brasil com planos de R$ 7 a R$ 1.999 e oferece recursos extras para usuários, criadores e empresas',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/meta-apps-2.jpg',
+    href: 'https://olhardigital.com.br/2026/09/15/internet-e-redes-sociais/instagram-pago-meta-lanca-planos-com-links-em-posts-e-mais-recursos-de-ia/',
+  },
+  {
+    title: 'Redata: Lula sanciona incentivo para criar mega data centers no Brasil',
+    category: 'Pro',
+    summary: 'Redata suspende tributos para equipamentos de data centers e prevê R$ 5,2 bilhões em tributos suspensos em 2026 no país.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/data-center.jpg',
+    href: 'https://olhardigital.com.br/2026/09/15/pro/redata-lula-sanciona-incentivo-para-criar-mega-data-centers-no-brasil/',
+  },
+  {
+    title: 'Tokyo Game Show 2026 terá 21 estúdios brasileiros em delegação da Abragames',
+    category: 'Games e Consoles',
+    summary: 'Tokyo Game Show 2026 acontece de 17 a 21 de setembro no Japão e terá uma delegação da Abragames com 21 empresas e estúdios brasileiros.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Tokyo-Game-Show-GameBlast.webp',
+    href: 'https://olhardigital.com.br/2026/09/15/games-e-consoles/tokyo-game-show-2026-tera-21-estudios-brasileiros/',
+  },
+  {
+    title: 'ONU pede ação urgente para criar regras globais de IA',
     category: 'Inteligência Artificial',
-    summary: 'Trump critica pedidos para desacelerar a IA e afirma que a medida poderia favorecer a China na disputa tecnológica',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/03/trump.jpg',
-    href: 'https://olhardigital.com.br/2026/09/14/inteligencia-artificial/trump-chama-pedido-de-freio-na-ia-de-conspiracao-doentia-para-favorecer-china/',
-  },
-  {
-    title: 'YouTuber invade palco da Roblox para protestar por segurança infantil',
-    category: 'Games e Consoles',
-    summary: 'YouTuber Emathiio interrompeu apresentação do CEO da Roblox durante a RDC 2026 para protestar por mais segurança para crianças na plataforma.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Kids-Deserve-More-X.webp',
-    href: 'https://olhardigital.com.br/2026/09/14/games-e-consoles/youtuber-invade-evento-da-roblox-em-protesto-por-seguranca-infantil/',
-  },
-  {
-    title: 'Divulgação científica: como trazer o Universo para mais perto de quem nunca olhou por um telescópio',
-    category: 'Astronomia',
-    summary: 'Especialistas revisitaram o Astronomia ao Vivo e discutiram os desafios da divulgação científica na era da inteligência artificial',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/divulgao-cientfica2.jpg',
-    href: 'https://olhardigital.com.br/2026/09/14/ciencia-e-espaco/divulgacao-cientifica-como-trazer-o-universo-para-mais-perto-de-quem-nunca-olhou-por-um-telescopio/',
+    summary: 'Volker Türk, da ONU, pede ação urgente para regular a inteligência artificial e alerta para riscos aos direitos humanos e futuras gerações.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/ia-direitos-humanos.jpg',
+    href: 'https://olhardigital.com.br/2026/09/15/inteligencia-artificial/onu-pede-acao-urgente-para-criar-regras-globais-de-ia/',
   },
 ]
 // AUTO-NEWS-END
