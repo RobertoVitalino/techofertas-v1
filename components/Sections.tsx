@@ -371,39 +371,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'A invasão dos consoles portáteis chineses no mercado global',
-    category: 'Games e Consoles',
-    summary: 'Anbernic, GPD e AYANEO já estão entre as cinco maiores fabricantes de portáteis do mundo. Veja como os consoles chineses mudaram o mercado.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/ayaneo-next.png',
-    href: 'https://olhardigital.com.br/2026/09/15/games-e-consoles/a-invasao-dos-consoles-portateis-chineses-no-mercado-global/',
-  },
-  {
-    title: 'Instagram pago? Meta lança planos com links em posts e mais recursos de IA',
-    category: 'Internet e Redes Sociais',
-    summary: 'Meta One chega ao Brasil com planos de R$ 7 a R$ 1.999 e oferece recursos extras para usuários, criadores e empresas',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/meta-apps-2.jpg',
-    href: 'https://olhardigital.com.br/2026/09/15/internet-e-redes-sociais/instagram-pago-meta-lanca-planos-com-links-em-posts-e-mais-recursos-de-ia/',
-  },
-  {
-    title: 'Redata: Lula sanciona incentivo para criar mega data centers no Brasil',
-    category: 'Pro',
-    summary: 'Redata suspende tributos para equipamentos de data centers e prevê R$ 5,2 bilhões em tributos suspensos em 2026 no país.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/data-center.jpg',
-    href: 'https://olhardigital.com.br/2026/09/15/pro/redata-lula-sanciona-incentivo-para-criar-mega-data-centers-no-brasil/',
-  },
-  {
-    title: 'Tokyo Game Show 2026 terá 21 estúdios brasileiros em delegação da Abragames',
-    category: 'Games e Consoles',
-    summary: 'Tokyo Game Show 2026 acontece de 17 a 21 de setembro no Japão e terá uma delegação da Abragames com 21 empresas e estúdios brasileiros.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Tokyo-Game-Show-GameBlast.webp',
-    href: 'https://olhardigital.com.br/2026/09/15/games-e-consoles/tokyo-game-show-2026-tera-21-estudios-brasileiros/',
-  },
-  {
-    title: 'ONU pede ação urgente para criar regras globais de IA',
+    title: '&#8216;O mundo está certo em ter medo disso&#8217;, declara Sam Altman sobre o avanço sem freios da IA',
     category: 'Inteligência Artificial',
-    summary: 'Volker Türk, da ONU, pede ação urgente para regular a inteligência artificial e alerta para riscos aos direitos humanos e futuras gerações.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/ia-direitos-humanos.jpg',
-    href: 'https://olhardigital.com.br/2026/09/15/inteligencia-artificial/onu-pede-acao-urgente-para-criar-regras-globais-de-ia/',
+    summary: 'Sam Altman diz que acidentes com IA podem ser inevitáveis e defende transparência e aprendizado no setor de tecnologia de IA.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/04/sam-Altman-jamesonwu1972-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/09/16/inteligencia-artificial/o-mundo-esta-certo-em-ter-medo-disso-declara-sam-altman-sobre-o-avanco-sem-freios-da-ia/',
+  },
+  {
+    title: 'O espaço é “terra de ninguém”? A ausência de leis para o lixo orbital e o impasse diplomático na Lua',
+    category: 'Exploração Espacial',
+    summary: 'Com milhões de detritos em órbita, o vácuo jurídico no espaço traz riscos reais para satélites e missões na Lua',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/satlites-rbita-lua.jpg',
+    href: 'https://olhardigital.com.br/2026/09/16/ciencia-e-espaco/exploracao-espacial/o-espaco-e-terra-de-ninguem-a-ausencia-de-leis-para-o-lixo-orbital-e-o-impasse-diplomatico-na-lua/',
+  },
+  {
+    title: 'Novo mapa mostra a África maior e questiona uma visão do mundo usada há mais de quatro séculos',
+    category: 'Ciência e Espaço',
+    summary: 'Novo mapa mostra a África em proporções mais próximas da realidade e questiona a projeção de Mercator usada há séculos no mundo',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Gemini_Generated_Image_ngep4nngep4nngep.jpg',
+    href: 'https://olhardigital.com.br/2026/09/16/ciencia-e-espaco/novo-mapa-mostra-a-africa-maior-e-questiona-uma-visao-do-mundo-usada-ha-mais-de-quatro-seculos/',
+  },
+  {
+    title: 'Linha do tempo: como IA foi da aliada a ‘ameaça existencial’',
+    category: 'Inteligência Artificial',
+    summary: 'Onde essa história começa? Muita gente falou sobre isso nos últimos dias. E o Olhar Digital coloca ordem nesse caos',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Destaque-IA-fora-de-controle-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/09/16/inteligencia-artificial/linha-do-tempo-como-ia-foi-da-aliada-a-ameaca-existencial/',
+  },
+  {
+    title: 'Sony PlayStation: quanto vale um Kojima?',
+    category: 'Games e Consoles',
+    summary: 'Sony desistiu de Physint e o projeto de Hideo Kojima foi para o Xbox. Entenda como custos, vendas e estratégia podem explicar a decisão.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Sony-Sony.webp',
+    href: 'https://olhardigital.com.br/2026/09/16/games-e-consoles/por-que-a-sony-desistiu-de-physint-e-hideo-kojima-foi-para-o-xbox/',
   },
 ]
 // AUTO-NEWS-END
