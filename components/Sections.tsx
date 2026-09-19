@@ -371,39 +371,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Cuidado! Seu carro já pode ser hackeado',
-    category: 'Segurança e Privacidade',
-    summary: 'Conversamos com especialistas em tecnologia sobre o 1º vírus criado para infectar centrais multimídia de carros que usam Android',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Destaque-Carro-hackeado-Virus-em-multimidia-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/09/18/seguranca/seu-carro-ja-pode-ser-hackeado/',
-  },
-  {
-    title: 'Pesquisadores usam inteligência artificial para encontrar falhas no TikTok que permitiam acessar câmera e fotos',
-    category: 'Segurança e Privacidade',
-    summary: 'IA gratuita encontrou falhas no TikTok que permitiram acessar remotamente a câmera e o rolo de fotos de um celular usado no app.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/tiktok-1.jpg',
-    href: 'https://olhardigital.com.br/2026/09/18/seguranca/pesquisadores-usam-inteligencia-artificial-para-encontrar-falhas-no-tiktok-que-permitiam-acessar-camera-e-fotos/',
-  },
-  {
-    title: 'Xbox na Tokyo Game Show 2026: Kojima, Persona 4 e mais anúncios',
-    category: 'Games e Consoles',
-    summary: 'Xbox apresentou novidades de Physint, Persona 4 Revival, Modern Warfare 4, Wo Long 2 e mais durante a Tokyo Game Show 2026.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Tokyo-Game-Show-2026-xBOX-1024x576.jpg',
-    href: 'https://olhardigital.com.br/2026/09/18/games-e-consoles/xbox-na-tokyo-game-show-2026-veja-os-principais-anuncios/',
-  },
-  {
-    title: 'EUA vão usar inteligência artificial para ajudar a controlar o tráfego aéreo e reduzir atrasos e cancelamentos',
+    title: 'Bilhões investidos em IA que aprende sozinha aproximam a tecnologia da mente humana e acendem alerta ético ',
     category: 'Inteligência Artificial',
-    summary: 'Estados Unidos preparam estreia de sistema de IA de US$ 875 milhões para otimizar o controle de tráfego aéreo na região de Washington.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/trafego-aereo.jpg',
-    href: 'https://olhardigital.com.br/2026/09/18/inteligencia-artificial/eua-vao-usar-inteligencia-artificial-para-ajudar-a-controlar-o-trafego-aereo-e-reduzir-atrasos-e-cancelamentos/',
+    summary: 'Startups e gigantes globais aceleram a IA autônoma. Descubra os avanços científicos e os temores sobre a falta de controle',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/IA-aprende-sozinha.jpg',
+    href: 'https://olhardigital.com.br/2026/09/19/inteligencia-artificial/bilhoes-investidos-em-ia-que-aprende-sozinha-aproximam-a-tecnologia-da-mente-humana-e-acendem-alerta-etico/',
   },
   {
-    title: 'CEO da Twitch diz que multiplayer de GTA 6 será lançado em 2027',
+    title: 'Sol está sem manchas pela primeira vez em mais de seis meses',
+    category: 'Ciência e Espaço',
+    summary: 'Desde fevereiro o Sol não ficava tão limpo – sem manchas ativas capazes de ejetar material que possa atingir a Terra',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/sol-sem-manchas2.jpg',
+    href: 'https://olhardigital.com.br/2026/09/19/ciencia-e-espaco/sol-esta-sem-manchas-pela-primeira-vez-em-mais-de-seis-meses/',
+  },
+  {
+    title: 'O preço dos consoles disparou em 2026 — e a culpa também é da IA',
     category: 'Games e Consoles',
-    summary: 'CEO da Twitch afirma que multiplayer de GTA 6 chega em 2027 e revela conversas com a Rockstar sobre criadores de conteúdo.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/GTA-6-Rockstar-3.webp',
-    href: 'https://olhardigital.com.br/2026/09/18/games-e-consoles/gta-6-multiplayer-sera-lancado-em-2027/',
+    summary: 'PS5 e Xbox ficaram mais caros em 2026, e o boom da inteligência artificial está pressionando componentes essenciais para fabricar consoles.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/09/Playstation-6-2-ChatGPT-1.png',
+    href: 'https://olhardigital.com.br/2026/09/19/games-e-consoles/por-que-ps5-e-xbox-ficaram-tao-caros-em-20260-ia-ajuda-a-explicar/',
+  },
+  {
+    title: 'Brecha técnica permite transmissões ao vivo no Discord no Brasil após proibição',
+    category: 'Pro',
+    summary: 'Discord ignora bloqueio de vídeo no Brasil devido a falhas internas. Autoridades exigem explicações e ameaçam aplicar multas',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/discord_processo.jpg',
+    href: 'https://olhardigital.com.br/2026/09/19/pro/brecha-tecnica-permite-transmissoes-ao-vivo-no-discord-no-brasil-apos-proibicao/',
+  },
+  {
+    title: '‘Bola de cristal’ do tempo, explosão de satélite, futuro do Roman e Starship nos destaques da semana',
+    category: 'Ciência e Espaço',
+    summary: 'Veja também: cratera gigante na Lua, Vênus aparece diferente no céu, oceano escondido dentro da Terra e mais!',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/09/DESTAQUES-DA-SEMANA-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/09/19/ciencia-e-espaco/bola-de-cristal-do-tempo-explosao-de-satelite-futuro-do-roman-e-starship-nos-destaques-da-semana/',
   },
 ]
 // AUTO-NEWS-END
