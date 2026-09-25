@@ -5,10 +5,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
-  Laptop,
   MessageCircle,
-  Monitor,
-  Printer,
   ShieldCheck,
   Wrench,
 } from 'lucide-react'
@@ -234,7 +231,6 @@ export function Services() {
         'Upgrades e substituição de componentes',
       ],
       image: '/produtos/Placa-Mae-Gigabyte-B760M-Aorus.webp',
-      icon: Monitor,
     },
     {
       title: 'Manutenção de notebooks',
@@ -246,7 +242,6 @@ export function Services() {
         'Correção de lentidão e falhas do sistema',
       ],
       image: '/produtos/Notebook-ASUS-Vivobook-Go-15.webp',
-      icon: Laptop,
     },
     {
       title: 'Manutenção de impressoras',
@@ -258,7 +253,6 @@ export function Services() {
         'Avaliação de cabeçote, roletes e alimentação',
       ],
       image: '/produtos/Impressora-multifuncional-Epson-L3250.jpg',
-      icon: Printer,
     },
   ]
 
@@ -306,7 +300,7 @@ export function Services() {
 
         <div className="mt-7 grid gap-4 lg:grid-cols-3">
           {maintenanceServices.map(
-            ({ title, description, bullets, image, icon: Icon }) => (
+            ({ title, description, bullets, image }) => (
               <article
                 className="flex h-full flex-col rounded-2xl border border-sky-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
                 key={title}
@@ -320,9 +314,6 @@ export function Services() {
                       src={image}
                     />
                   </div>
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sky-100 text-sky-700">
-                    <Icon size={22} />
-                  </span>
                 </div>
 
                 <h3 className="mt-4 text-lg font-black text-slate-900">{title}</h3>
