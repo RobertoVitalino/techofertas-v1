@@ -11,7 +11,7 @@ import {
 
 const prisma = new PrismaClient()
 const dryRun = process.argv.includes('--dry-run')
-const TARGET_COUNT = 20
+const MIN_COUNT = 20
 const INPUT_FILE = new URL('../bestsellers-links.txt', import.meta.url)
 
 async function readAffiliateLinks() {
@@ -58,15 +58,15 @@ async function main() {
     }
   })
 
-  if (rows.length < TARGET_COUNT) {
+  if (rows.length < MIN_COUNT) {
     throw new Error(
-      `Apenas ${rows.length} de ${affiliateLinks.length} produtos foram lidos com sucesso (esperado ${TARGET_COUNT}). Catálogo não foi alterado.`,
+      `Apenas ${rows.length} de ${affiliateLinks.length} produtos foram lidos com sucesso (mínimo ${MIN_COUNT}). Catálogo não foi alterado.`,
     )
   }
 
-  const selected = rows
-    .sort((a, b) => Number(a.price.replace(/\D/g, '')) - Number(b.price.replace(/\D/g, '')))
-    .slice(0, TARGET_COUNT)
+  const selected = rows.sort(
+    (a, b) => Number(a.price.replace(/\D/g, '')) - Number(b.price.replace(/\D/g, '')),
+  )
 
   if (dryRun) {
     console.log(JSON.stringify(selected, null, 2))
