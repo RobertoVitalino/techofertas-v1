@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Saturno em oposição: estamos no melhor momento para observar o planeta dos anéis',
-    category: 'Astronomia',
-    summary: 'Saturno atinge a oposição e fica mais brilhante e próximo da Terra. Saiba como localizar o planeta no céu e quem sabe até observar seus anéis',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2025/09/saturno-tit-1-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/09/30/ciencia-e-espaco/saturno-em-oposicao-estamos-no-melhor-momento-para-observar-o-planeta-dos-aneis/',
-  },
-  {
-    title: 'Multa de R$ 100 mil por dia: Justiça manda Discord proteger crianças e adolescentes',
+    title: 'Redes sociais são vistas como ameaça à democracia por número crescente de pessoas',
     category: 'Internet e Redes Sociais',
-    summary: 'Decisão da Justiça Federal sobre Discord atende a pedido feito pela AGU numa ação civil pública apresentada em 25 de agosto',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/08/discord_processo-e1790787173464.jpg',
-    href: 'https://olhardigital.com.br/2026/09/30/internet-e-redes-sociais/justica-manda-discord-proteger-criancas-e-adolescentes/',
+    summary: 'Um número crescente de pessoas acredita que as redes sociais manipulam e dividem a população e prejudicam a democracia, segundo pesquisa',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/redes-sociais.jpg',
+    href: 'https://olhardigital.com.br/2026/10/01/internet-e-redes-sociais/redes-sociais-sao-vistas-como-ameaca-a-democracia-por-numero-crescente-de-pessoas/',
   },
   {
-    title: 'Tempestade pode ter desenterrado restos de navio que naufragou há 140 anos',
-    category: 'Ciência e Espaço',
-    summary: 'Restos de madeira apareceram na praia de Nantucket, nos EUA; ilha é conhecida como um dos "cemitérios do Atlântico"',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Destaque-Restos-de-navio-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/09/30/ciencia-e-espaco/tempestade-pode-ter-desenterrado-restos-de-navio-que-naufragou-ha-140-anos/',
-  },
-  {
-    title: 'WhatsApp: pais e responsáveis ganham recursos para ajustar como adolescentes usam o app',
-    category: 'Internet e Redes Sociais',
-    summary: 'O WhatsApp anunciou novos recursos de controle parental nesta quarta-feira (30); saiba as novidades que chegam ao aplicativo',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Destaque-Controle-parental-WhatsApp.jpg',
-    href: 'https://olhardigital.com.br/2026/09/30/internet-e-redes-sociais/whatsapp-pais-e-responsaveis-ganham-recursos-para-ajustar-como-adolescentes-usam-o-app/',
-  },
-  {
-    title: 'Pesquisadora demitida pelo Google ganha prêmio ‘Nobel alternativo’',
+    title: 'Enquanto IA consome nossa atenção, uma ameaça maior fica em segundo plano',
     category: 'Inteligência Artificial',
-    summary: 'Timnit Gebru, ex-pesquisadora do Google, vence o Right Livelihood por questionar preconceitos e concentração de poder na tecnologia.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/shutterstock_2373612181-1.jpg',
-    href: 'https://olhardigital.com.br/2026/09/30/inteligencia-artificial/pesquisadora-demitida-pelo-google-ganha-premio-nobel-alternativo/',
+    summary: 'IA e mudanças climáticas estão entre as questões existenciais mais importantes da humanidade, mas só uma delas tem recebido atenção',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/Destaque-IA-do-mal-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/10/01/inteligencia-artificial/mudancas-climaticas-ameacam-a-humanidade-mas-ia-esta-consumindo-nossa-atencao/',
+  },
+  {
+    title: 'Veja Andrômeda brilhar mais alto no céu esta noite!',
+    category: 'Astronomia',
+    summary: 'Andrômeda atinge o ponto mais alto no céu e garante uma das melhores visões do ano – confira dicas para tentar observar a galáxia',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/andromeda.jpg',
+    href: 'https://olhardigital.com.br/2026/10/01/ciencia-e-espaco/veja-andromeda-brilhar-mais-alto-no-ceu-esta-noite/',
+  },
+  {
+    title: 'Não abra! Caixas misteriosas chegam a lojas da Apple',
+    category: 'Produtos e Reviews',
+    summary: 'Caixas com aviso de não abrir chegam às Apple Stores, enquanto a empresa prepara possíveis novidades para a casa inteligente.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/apple-3-e1778067118635.jpg',
+    href: 'https://olhardigital.com.br/2026/10/01/reviews/nao-abra-caixas-misteriosas-chegam-a-lojas-da-apple/',
+  },
+  {
+    title: 'Caetano, Neymar e Tony Ramos: IA transforma famosos em armas de desinformação e golpes financeiros',
+    category: 'Inteligência Artificial',
+    summary: 'Vídeos falsos criados por IA misturam fatos reais e mentiras para enganar você – saiba como enfrentar o problema e combater a desinformação',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/caetano-neymar-tony-ramos.gif',
+    href: 'https://olhardigital.com.br/2026/10/01/inteligencia-artificial/caetano-neymar-e-tony-ramos-ia-transforma-famosos-em-armas-de-desinformacao-e-golpes-financeiros/',
   },
 ]
 // AUTO-NEWS-END
