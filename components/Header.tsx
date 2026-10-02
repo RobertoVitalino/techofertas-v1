@@ -1,4 +1,5 @@
 import { AdminShortcutLink } from '@/components/AdminShortcutLink'
+import { CourseReminderBanner } from '@/components/CourseReminderBanner'
 import { courseRegistry } from '@/lib/courses-config'
 import { Heart, Menu, Search, UserRound, Zap } from 'lucide-react'
 
@@ -24,6 +25,8 @@ const concursoCourses = [
 export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-sky-200 bg-sky-50/95 text-slate-900 shadow-sm shadow-sky-900/5 backdrop-blur-xl">
+      <CourseReminderBanner />
+
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4">
         <a href="/" className="flex shrink-0 items-center gap-3" aria-label="Vitalino Tech - Página inicial">
           <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-600">

@@ -14,7 +14,8 @@
     "prices:sync": "node scripts/sync-mercado-livre-prices.mjs",
     "bestsellers:apply": "node scripts/apply-best-sellers.mjs",
     "news:update": "node scripts/update-news.mjs",
-    "alerts:send": "node scripts/send-deal-alert.mjs"
+    "alerts:send": "node scripts/send-deal-alert.mjs",
+    "course-reminders:send": "node scripts/send-course-reminders.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
