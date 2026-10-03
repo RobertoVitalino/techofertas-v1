@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Ser bom no League of Legends não basta: o que transforma um jogador em profissional?',
+    title: 'Eleições 2026: o que os candidatos propõem para terras raras e minerais críticos',
+    category: 'Pro',
+    summary: 'O Olhar Digital examinou as propostas de seis candidatos à Presidência para entender seus planos sobre terras raras e minerais críticos',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/09/candidatos.png',
+    href: 'https://olhardigital.com.br/2026/10/03/pro/eleicoes-2026-o-que-os-candidatos-propoem-para-terras-raras-e-minerais-criticos/',
+  },
+  {
+    title: 'Os planos de 6 candidatos à Presidência para IA, data centers e soberania digital',
+    category: 'Pro',
+    summary: 'O Olhar Digital mergulhou em planos de governo para checar o que seis candidatos à presidência propõem em temas caros para a tecnologia',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/09/Chip-do-Brasil-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/10/03/pro/os-planos-de-6-candidatos-a-presidencia-para-ia-data-centers-e-soberania-digital/',
+  },
+  {
+    title: 'Eleições 2026: o que os candidatos propõem para clima e energia ',
+    category: 'Pro',
+    summary: 'O Olhar Digital examinou os planos de governo de seis candidatos à Presidência para entender suas propostas sobre clima e energia',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/09/candidatos.png',
+    href: 'https://olhardigital.com.br/2026/10/03/pro/eleicoes-2026-o-que-os-candidatos-propoem-para-clima-e-energia/',
+  },
+  {
+    title: 'Veja onde consultar dados oficiais das eleições 2026',
+    category: 'Pro',
+    summary: 'O TSE reúne ferramentas oficiais para consultar candidaturas, contas de campanha, propostas e estatísticas das eleições de 2026.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/10/tse-1.jpg',
+    href: 'https://olhardigital.com.br/2026/10/03/pro/veja-onde-consultar-dados-oficiais-das-eleicoes-2026/',
+  },
+  {
+    title: 'Upscaling por IA (DLSS, FSR, XeSS): explicando sem jargão técnico',
     category: 'Games e Consoles',
-    summary: 'Coach da LOS Academy explica o que diferencia um bom jogador de League of Legends de um profissional e o papel do Tier 3 na formação de talentos.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/LigaGG-CELOL-A-23_09-MVP-da-Semana-X.png',
-    href: 'https://olhardigital.com.br/2026/10/02/games-e-consoles/como-um-jogador-de-league-of-legends-se-torna-profissional/',
-  },
-  {
-    title: '&#8216;Czar&#8217; de IA: Trump nomeia diretor de espionagem para a função',
-    category: 'Inteligência Artificial',
-    summary: 'Trump deve nomear Jay Clayton como czar de IA e colocá-lo à frente de uma nova força-tarefa da Casa Branca nos Estados Unidos.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/donald-trump-3.jpg',
-    href: 'https://olhardigital.com.br/2026/10/02/inteligencia-artificial/czar-de-ia-trump-nomeia-diretor-de-espionagem-para-a-funcao/',
-  },
-  {
-    title: 'Telescópio gigante no Chile conta com participação brasileira',
-    category: 'Ciência e Espaço',
-    summary: 'GMT terá sete espelhos de 8,4 metros e poderá ampliar a capacidade de observação do Universo; pesquisadores brasileiros participam do projeto',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2024/01/telescopio-gigante-de-magalhaes.jpg',
-    href: 'https://olhardigital.com.br/2026/10/02/ciencia-e-espaco/telescopio-gigante-no-chile-conta-com-participacao-brasileira/',
-  },
-  {
-    title: 'Veja uma galáxia satélite da Via Láctea brilhando no céu; saiba como',
-    category: 'Astronomia',
-    summary: 'A Pequena Nuvem de Magalhães atinge o ponto mais alto no céu – saiba como observar essa incrível galáxia satélite da Via Láctea',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2025/10/pequena-nuvem-de-magalhes-1-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/10/02/ciencia-e-espaco/veja-uma-galaxia-satelite-da-via-lactea-brilhando-no-ceu-saiba-como/',
-  },
-  {
-    title: 'Robô humanoide acerta até 90% dos chutes ao gol em testes reais',
-    category: 'Robótica',
-    summary: 'Pesquisadores da Universidade Tsinghua ensinaram um robô humanoide a jogar futebol e vencer dois torneios internacionais em 2025.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/robo-humanoide-futebol.jpg',
-    href: 'https://olhardigital.com.br/2026/10/02/robotica/robo-humanoide-acerta-ate-90-dos-chutes-ao-gol-em-testes-reais/',
+    summary: 'Entenda de forma simples como funcionam o DLSS, o FSR e o XeSS, tecnologias que aumentam o FPS nos jogos, e descubra qual usar.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/10/capa114.png',
+    href: 'https://olhardigital.com.br/2026/10/03/games-e-consoles/upscaling-por-ia-dlss-fsr-xess-explicando-sem-jargao-tecnico/',
   },
 ]
 // AUTO-NEWS-END
