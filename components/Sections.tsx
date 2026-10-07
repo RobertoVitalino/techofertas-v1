@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'OpenAI pede desculpas e admite falha na resposta a ataque de agentes de IA',
+    title: 'Google Maps ajuda homem a encontrar cratera de 390 milhões de anos',
+    category: 'Ciência e Espaço',
+    summary: 'Ao buscar um local para acampar no Google Maps, um homem descobriu uma cratera de meteorito de 15 km e 390 milhões de anos no Canadá.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/cratera-lake-marsal.webp',
+    href: 'https://olhardigital.com.br/2026/10/07/ciencia-e-espaco/google-maps-ajuda-homem-a-encontrar-cratera-de-390-milhoes-de-anos/',
+  },
+  {
+    title: 'ChatGPT ganha interface que cria gráficos, mapas e ferramentas interativas',
     category: 'Inteligência Artificial',
-    summary: 'OpenAI admite falha após agentes de IA acessarem sites do governo australiano e demora de três meses para comunicar o caso.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/gpt-hack.png',
-    href: 'https://olhardigital.com.br/2026/10/06/inteligencia-artificial/openai-pede-desculpas-e-admite-falha-na-resposta-a-ataque-de-agentes-de-ia/',
+    summary: 'A OpenAI está mudando a forma como o ChatGPT apresenta respostas com a nova interface chamada Intelligent UI',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/09/chatgpt3-e1737636498885.jpg',
+    href: 'https://olhardigital.com.br/2026/10/07/inteligencia-artificial/chatgpt-ganha-interface-que-cria-graficos-mapas-e-ferramentas-interativas/',
   },
   {
-    title: 'Depois do Webb e do Roman, NASA prepara novo telescópio espacial',
+    title: 'SynthID: Google libera ferramenta que revela se conteúdo foi feito por IA',
+    category: 'Inteligência Artificial',
+    summary: 'Google libera o SynthID ao público e amplia a verificação de imagens, vídeos e áudios gerados por inteligência artificial.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/SynthID_Detector_Homepage_Web.webp',
+    href: 'https://olhardigital.com.br/2026/10/07/inteligencia-artificial/synthid-google-libera-ferramenta-que-verifica-conteudo-feito-por-ia/',
+  },
+  {
+    title: 'Uso de IA nas empresas quase triplica em 2026, aponta levantamento',
+    category: 'Inteligência Artificial',
+    summary: 'Uso de IA nas empresas quase triplicou em 2026, enquanto consultas cresceram 240% e se espalharam pelo expediente',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/ia-empresa.jpg',
+    href: 'https://olhardigital.com.br/2026/10/07/inteligencia-artificial/uso-de-ia-nas-empresas-quase-triplica-em-2026-aponta-levantamento/',
+  },
+  {
+    title: 'E se o campo magnético da Terra desaparecesse?',
     category: 'Ciência e Espaço',
-    summary: 'Mesmo com o James Webb e o Nancy Grace Roman ampliando os limites da astronomia, a NASA está desenvolvendo novo telescópio espacial',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/prima.png',
-    href: 'https://olhardigital.com.br/2026/10/06/ciencia-e-espaco/depois-do-webb-e-do-roman-nasa-prepara-novo-telescopio-espacial/',
-  },
-  {
-    title: 'Reino Unido investiga Meta por riscos de novo recurso do Instagram',
-    category: 'Internet e Redes Sociais',
-    summary: 'Ofcom investiga se a Meta avaliou corretamente os riscos do Instagram Instants antes de lançar o recurso no Reino Unido.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/instants-2.jpg',
-    href: 'https://olhardigital.com.br/2026/10/06/internet-e-redes-sociais/reino-unido-investiga-meta-por-riscos-de-novo-recurso-do-instagram/',
-  },
-  {
-    title: 'Recarga in-game no Brasil: como funciona o caminho do seu dinheiro até virar diamantes?',
-    category: 'Games e Consoles',
-    summary: 'Entenda como funciona uma recarga in-game no Brasil, do pagamento à entrega de diamantes e moedas, e conheça alternativas como o Gamin PLUS.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Moedas-in-game-Superinteressante.jpg',
-    href: 'https://olhardigital.com.br/2026/10/06/games-e-consoles/recarga-in-game-como-seu-dinheiro-vira-diamantes-nos-jogos/',
-  },
-  {
-    title: 'O novo tipo de painel solar que pode gerar 25% mais energia',
-    category: 'Ciência e Espaço',
-    summary: 'Painéis solares tandem prometem gerar até 25% mais energia, mas ainda enfrentam desafios de custo e durabilidade',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2025/10/painel-solar.jpg',
-    href: 'https://olhardigital.com.br/2026/10/06/ciencia-e-espaco/o-novo-tipo-de-painel-solar-que-pode-gerar-25-mais-energia/',
+    summary: 'Entenda o papel do campo magnético na proteção da Terra contra ventos solares e quais seriam as consequências de seu desaparecimento',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/campo-magntico-da-Terra.jpg',
+    href: 'https://olhardigital.com.br/2026/10/07/ciencia-e-espaco/e-se-o-campo-magnetico-da-terra-desaparecesse/',
   },
 ]
 // AUTO-NEWS-END
