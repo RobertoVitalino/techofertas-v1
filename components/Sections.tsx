@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'BRAT 2026: maratona de speedrun com 24h de programação ao vivo ajuda Médicos Sem Fronteiras',
+    title: 'Stranger Than Heaven mistura combates intensos e drama histórico em novo jogo da SEGA',
     category: 'Games e Consoles',
-    summary: 'A BRAT 2026 reúne speedrunners de 14 a 18/10, com 24h de programação ao vivo na Twitch e no YouTube. Doe para o MSF e libere incentivos.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/BRAT-2026-BRAT.png',
-    href: 'https://olhardigital.com.br/2026/10/14/games-e-consoles/brat-2026-maratona-de-speedrun-com-24h-de-programacao-ao-vivo-ajuda-medicos-sem-fronteiras/',
+    summary: 'Stranger Than Heaven, novo jogo dos criadores de Yakuza, mistura drama histórico, combates e produção musical. Conheça as novidades apresentadas na BGS 2026',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Stranger-Than-Heaven-Steam-1-1.jpg',
+    href: 'https://olhardigital.com.br/2026/10/15/games-e-consoles/stranger-than-heaven-conheca-o-novo-jogo-dos-criadores-de-yakuza/',
   },
   {
-    title: 'Tripo AI apresenta tecnologia que cria modelos 3D para games com inteligência artificial',
-    category: 'Games e Consoles',
-    summary: 'Em entrevista ao Olhar Digital, Josephine Yi, da Tripo AI, apresenta a tecnologia de geração de assets 3D com inteligência artificial.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Tripo-P2.0-1-1-1.png',
-    href: 'https://olhardigital.com.br/2026/10/14/games-e-consoles/tripo-ai-conheca-a-ia-que-cria-modelos-3d-para-games-na-bgs-2026/',
-  },
-  {
-    title: 'Resultado da Mega-Sena de hoje: saiba quando acontece o sorteio',
-    category: 'Internet e Redes Sociais',
-    summary: 'O sorteio do concurso 3070 da Mega-Sena acontece na noite desta quarta-feira (14), às 21h. O prêmio está estimado em R$ 150 milhões',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/06/loterias-caixa.jpg',
-    href: 'https://olhardigital.com.br/2026/10/14/internet-e-redes-sociais/resultado-da-mega-sena-de-hoje-veja-numeros-e-ganhadores-do-concurso-3070-quarta-14-10/',
-  },
-  {
-    title: 'Alien: Isolation 2 terá Alien mais inteligente e novos cenários; testamos na BGS 2026',
-    category: 'Games e Consoles',
-    summary: 'Testamos Alien: Isolation 2 na BGS 2026 e conversamos com os desenvolvedores sobre IA aprimorada, novos cenários e terror psicológico.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Alien-Isolation-2-Steam-3.jpg',
-    href: 'https://olhardigital.com.br/2026/10/14/games-e-consoles/alien-isolation-2-tera-alien-mais-inteligente-testamos-na-bgs-2026/',
-  },
-  {
-    title: 'Meta AI apresenta resultados diferentes em pedidos com Lula e Flávio',
+    title: 'Nova York pede que Anthropic adie IPO por riscos da IA avançada',
     category: 'Pro',
-    summary: 'Meta AI bloqueou pedidos de imagens de Lula, mas gerou arte com Flávio Bolsonaro. Após questionamento, a empresa restringiu os pedidos',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Destaque-Lula-e-Flavio-Bolsonaro-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/10/14/pro/meta-ai-apresenta-resultados-diferentes-em-pedidos-com-lula-e-flavio/',
+    summary: 'Nova York pede que a Anthropic adie seu IPO até tratar riscos de segurança e governança; a empresa mira avaliação de US$ 2 trilhões.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/anthropic-2-1.jpg',
+    href: 'https://olhardigital.com.br/2026/10/15/pro/nova-york-pede-que-anthropic-adie-ipo-por-riscos-da-ia-avancada/',
+  },
+  {
+    title: '99Premier chega para disputar mercado com Uber Black; veja o que muda',
+    category: 'Pro',
+    summary: 'A 99Premier estreia em Recife com carros selecionados, critérios para motoristas e passageiros e ganhos que podem superar os da 99Pop.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/99.png',
+    href: 'https://olhardigital.com.br/2026/10/15/pro/recife-testa-99premier-veja-o-que-muda-nas-corridas-com-a-nova-categoria/',
+  },
+  {
+    title: 'A viagem até Saturno que terminou com um feito inédito: o primeiro pouso em uma lua do Sistema Solar exterior ',
+    category: 'Ciência e Espaço',
+    summary: 'A missão Cassini-Huygens foi lançada há exatos 29 anos para desvendar os maiores segredos de Saturno e pousar na lua Titã',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Cassini-Huygens-titan.jpeg',
+    href: 'https://olhardigital.com.br/2026/10/15/ciencia-e-espaco/a-viagem-ate-saturno-que-terminou-com-um-feito-inedito-o-primeiro-pouso-em-uma-lua-do-sistema-solar-exterior/',
+  },
+  {
+    title: 'Universitários conhecem bastidores da final do CBLOL 2026 em projeto da Riot Games',
+    category: 'Games e Consoles',
+    summary: 'FERJEE Academy reuniu mais de 70 jovens na Arena Carioca 1 para conhecer a operação técnica, a produção e a logística da final do CBLOL.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/CBLOL-AntiHype.jpg',
+    href: 'https://olhardigital.com.br/2026/10/15/games-e-consoles/cblol-2026-universitarios-conhecem-bastidores-da-final-com-riot-games/',
   },
 ]
 // AUTO-NEWS-END
