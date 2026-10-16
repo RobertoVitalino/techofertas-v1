@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Stranger Than Heaven mistura combates intensos e drama histórico em novo jogo da SEGA',
-    category: 'Games e Consoles',
-    summary: 'Stranger Than Heaven, novo jogo dos criadores de Yakuza, mistura drama histórico, combates e produção musical. Conheça as novidades apresentadas na BGS 2026',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Stranger-Than-Heaven-Steam-1-1.jpg',
-    href: 'https://olhardigital.com.br/2026/10/15/games-e-consoles/stranger-than-heaven-conheca-o-novo-jogo-dos-criadores-de-yakuza/',
-  },
-  {
-    title: 'Nova York pede que Anthropic adie IPO por riscos da IA avançada',
-    category: 'Pro',
-    summary: 'Nova York pede que a Anthropic adie seu IPO até tratar riscos de segurança e governança; a empresa mira avaliação de US$ 2 trilhões.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/anthropic-2-1.jpg',
-    href: 'https://olhardigital.com.br/2026/10/15/pro/nova-york-pede-que-anthropic-adie-ipo-por-riscos-da-ia-avancada/',
-  },
-  {
-    title: '99Premier chega para disputar mercado com Uber Black; veja o que muda',
-    category: 'Pro',
-    summary: 'A 99Premier estreia em Recife com carros selecionados, critérios para motoristas e passageiros e ganhos que podem superar os da 99Pop.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/99.png',
-    href: 'https://olhardigital.com.br/2026/10/15/pro/recife-testa-99premier-veja-o-que-muda-nas-corridas-com-a-nova-categoria/',
-  },
-  {
-    title: 'A viagem até Saturno que terminou com um feito inédito: o primeiro pouso em uma lua do Sistema Solar exterior ',
+    title: 'A Lua está se afastando da Terra – quando isso vai virar um problema?',
     category: 'Ciência e Espaço',
-    summary: 'A missão Cassini-Huygens foi lançada há exatos 29 anos para desvendar os maiores segredos de Saturno e pousar na lua Titã',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Cassini-Huygens-titan.jpeg',
-    href: 'https://olhardigital.com.br/2026/10/15/ciencia-e-espaco/a-viagem-ate-saturno-que-terminou-com-um-feito-inedito-o-primeiro-pouso-em-uma-lua-do-sistema-solar-exterior/',
+    summary: 'Todos os meses, a Lua atinge o ponto mais próximo (perigeu) e o mais distante (apogeu) da Terra – e essa distância tem aumentado',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2025/01/apogeu-lua-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/10/16/ciencia-e-espaco/a-lua-esta-se-afastando-da-terra-quando-isso-vai-virar-um-problema/',
   },
   {
-    title: 'Universitários conhecem bastidores da final do CBLOL 2026 em projeto da Riot Games',
+    title: 'Da escola à praça: projeto “quebra as paredes” no ensino da astronomia',
+    category: 'Ciência e Espaço',
+    summary: 'No Olhar Espacila desta noite, professor mostra como o projeto "Atronomia - Ciência na Rua" democratiza o acesso ao Universo',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/astronomia-ciencia-na-rua.jpeg',
+    href: 'https://olhardigital.com.br/2026/10/16/ciencia-e-espaco/da-escola-a-praca-projeto-quebra-as-paredes-no-ensino-da-astronomia/',
+  },
+  {
+    title: 'Estrela verde? Anã branca surpreende astrônomos com sua cor no espaço',
+    category: 'Ciência e Espaço',
+    summary: 'Astrônomos descobrem a primeira estrela verde da história e revelam que anãs brancas podem exibir tons de rosa, azul e roxo no espaço.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Gemini_Generated_Image_21fxxm21fxxm21fx.jpg',
+    href: 'https://olhardigital.com.br/2026/10/16/ciencia-e-espaco/estrela-verde-ana-branca-surpreende-astronomos-com-sua-cor-no-espaco/',
+  },
+  {
+    title: 'Qual é o papel da comunidade nos e-sports? Entenda por que ela é essencial para o cenário competitivo',
     category: 'Games e Consoles',
-    summary: 'FERJEE Academy reuniu mais de 70 jovens na Arena Carioca 1 para conhecer a operação técnica, a produção e a logística da final do CBLOL.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/CBLOL-AntiHype.jpg',
-    href: 'https://olhardigital.com.br/2026/10/15/games-e-consoles/cblol-2026-universitarios-conhecem-bastidores-da-final-com-riot-games/',
+    summary: 'Saiba como a comunidade impulsiona os e-sports, revela novos talentos, fortalece campeonatos e contribui para o crescimento do cenário competitivo.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Copy-of-HotPie-via-X.jpg',
+    href: 'https://olhardigital.com.br/2026/10/16/games-e-consoles/qual-e-a-importancia-da-comunidade-para-o-crescimento-dos-e-sports/',
+  },
+  {
+    title: 'Jogo grátis na Epic Games: Agent A e Bad Cheese',
+    category: 'Games e Consoles',
+    summary: '"Agent A: O enigma disfarçado" e Bad Cheese são os jogos grátis da Epic Games esta semana — disponíveis de 15 a 22 de outubro.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/capa120.png',
+    href: 'https://olhardigital.com.br/2026/10/16/games-e-consoles/jogos-gratis-epic-agent-a-bad-cheese/',
   },
 ]
 // AUTO-NEWS-END
