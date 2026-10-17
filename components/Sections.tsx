@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'A Lua está se afastando da Terra – quando isso vai virar um problema?',
-    category: 'Ciência e Espaço',
-    summary: 'Todos os meses, a Lua atinge o ponto mais próximo (perigeu) e o mais distante (apogeu) da Terra – e essa distância tem aumentado',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2025/01/apogeu-lua-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/10/16/ciencia-e-espaco/a-lua-esta-se-afastando-da-terra-quando-isso-vai-virar-um-problema/',
-  },
-  {
-    title: 'Da escola à praça: projeto “quebra as paredes” no ensino da astronomia',
-    category: 'Ciência e Espaço',
-    summary: 'No Olhar Espacila desta noite, professor mostra como o projeto "Atronomia - Ciência na Rua" democratiza o acesso ao Universo',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/astronomia-ciencia-na-rua.jpeg',
-    href: 'https://olhardigital.com.br/2026/10/16/ciencia-e-espaco/da-escola-a-praca-projeto-quebra-as-paredes-no-ensino-da-astronomia/',
-  },
-  {
-    title: 'Estrela verde? Anã branca surpreende astrônomos com sua cor no espaço',
-    category: 'Ciência e Espaço',
-    summary: 'Astrônomos descobrem a primeira estrela verde da história e revelam que anãs brancas podem exibir tons de rosa, azul e roxo no espaço.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Gemini_Generated_Image_21fxxm21fxxm21fx.jpg',
-    href: 'https://olhardigital.com.br/2026/10/16/ciencia-e-espaco/estrela-verde-ana-branca-surpreende-astronomos-com-sua-cor-no-espaco/',
-  },
-  {
-    title: 'Qual é o papel da comunidade nos e-sports? Entenda por que ela é essencial para o cenário competitivo',
+    title: 'LigaFest 2026 terá R$ 200 mil em premiações e entrada gratuita em São Paulo',
     category: 'Games e Consoles',
-    summary: 'Saiba como a comunidade impulsiona os e-sports, revela novos talentos, fortalece campeonatos e contribui para o crescimento do cenário competitivo.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Copy-of-HotPie-via-X.jpg',
-    href: 'https://olhardigital.com.br/2026/10/16/games-e-consoles/qual-e-a-importancia-da-comunidade-para-o-crescimento-dos-e-sports/',
+    summary: 'LigaFest 2026 acontece em 12 e 13 de dezembro, em São Paulo, com entrada gratuita, torneios de Pokémon e Magic e R$ 200 mil em premiações.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/10/LigaFest-2026-LigaFest.jpg',
+    href: 'https://olhardigital.com.br/2026/10/17/games-e-consoles/ligafest-2026-festival-de-pokemon-e-magic-tera-r200-mil-em-premios/',
   },
   {
-    title: 'Jogo grátis na Epic Games: Agent A e Bad Cheese',
+    title: 'O dia em que a rainha Elizabeth II inaugurou a primeira usina nuclear comercial do mundo e iniciou a Era Atômica do Reino Unido',
+    category: 'Ciência e Espaço',
+    summary: 'Inauguração da usina de Calder Hall pela rainha Elizabeth II marcou o início da geração de energia nuclear comercial',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Elizabeth-II-inaugurando-o-Calder-Hall.jpg',
+    href: 'https://olhardigital.com.br/2026/10/17/ciencia-e-espaco/o-dia-em-que-a-rainha-elizabeth-ii-inaugurou-a-primeira-usina-nuclear-comercial-do-mundo-e-iniciou-a-era-atomica-do-reino-unido/',
+  },
+  {
+    title: 'Mais de 85% dos desenvolvedores japoneses de games já utilizam IA generativa',
     category: 'Games e Consoles',
-    summary: '"Agent A: O enigma disfarçado" e Bad Cheese são os jogos grátis da Epic Games esta semana — disponíveis de 15 a 22 de outubro.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/capa120.png',
-    href: 'https://olhardigital.com.br/2026/10/16/games-e-consoles/jogos-gratis-epic-agent-a-bad-cheese/',
+    summary: 'Pesquisa da CESA revela que 85,8% dos profissionais japoneses de games já usam IA generativa. Entenda os benefícios e desafios da tecnologia.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/10/IA-Forbes.jpg',
+    href: 'https://olhardigital.com.br/2026/10/17/games-e-consoles/858-dos-desenvolvedores-japoneses-de-games-ja-usam-ia-generativa/',
+  },
+  {
+    title: 'Saiba como desativar os alertas da Defesa Civil no seu celular – e por que você não deve fazer isso',
+    category: 'Dicas e Tutoriais',
+    summary: 'É possível bloquear o recebimento de alertas da Defesa Civil no celular, mas o recomendável é sempre manter as notificações ativas',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/alerta-defesa-civil-1.jpg',
+    href: 'https://olhardigital.com.br/2026/10/17/dicas-e-tutoriais/saiba-como-desativar-os-alertas-da-defesa-civil-no-seu-celular-e-por-que-voce-nao-deve-fazer-isso/',
+  },
+  {
+    title: 'Sindicalização na indústria de games cresce em meio a denúncias de jornadas excessivas',
+    category: 'Games e Consoles',
+    summary: 'Entenda como jornadas excessivas, baixos salários e insegurança profissional impulsionaram a sindicalização de trabalhadores da indústria de games.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/10/SEGA-Meio-BIT.jpg',
+    href: 'https://olhardigital.com.br/2026/10/17/games-e-consoles/sindicalizacao-nos-games-por-que-desenvolvedores-buscam-melhores-condicoes/',
   },
 ]
 // AUTO-NEWS-END
