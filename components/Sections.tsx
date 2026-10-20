@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Nintendo admite que subestimou procura por Switch 2 de Zelda e promete reposição',
+    title: 'Operadoras terão de bloquear chamadas abusivas a partir de 12/11',
+    category: 'Segurança e Privacidade',
+    summary: 'A partir de 12 de novembro, operadoras bloquearão por 15 dias linhas que fizerem chamadas abusivas, segundo critérios definidos pela Anatel.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/ligacao-entrando.jpg',
+    href: 'https://olhardigital.com.br/2026/10/20/seguranca/operadoras-terao-de-bloquear-chamadas-abusivas-a-partir-de-12-11/',
+  },
+  {
+    title: 'Outubro Rosa: ela venceu um câncer de mama considerado incurável em meio à alta de casos entre jovens',
+    category: 'Medicina e Saúde',
+    summary: 'Conheça a história da jovem que venceu um câncer de mama avançado em um cenário de alta nos registros em pessoas com menos de 50 anos',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/leticia-prates-PET-CT.jpeg',
+    href: 'https://olhardigital.com.br/2026/10/20/medicina-e-saude/outubro-rosa-ela-venceu-um-cancer-de-mama-considerado-incuravel-em-meio-a-alta-de-casos-entre-jovens/',
+  },
+  {
+    title: 'TikTok é alvo de denúncias sobre exploração de menores em lives',
+    category: 'Internet e Redes Sociais',
+    summary: 'Documentos judiciais revelam que funcionários do TikTok alertaram a liderança sobre riscos a menores e falhas no controle parental.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/tiktokk-e1765884028120.jpg',
+    href: 'https://olhardigital.com.br/2026/10/20/internet-e-redes-sociais/tiktok-e-alvo-de-denuncias-sobre-exploracao-de-menores-em-lives/',
+  },
+  {
+    title: 'Comitê da Meta aponta falhas na moderação durante eleições no Brasil',
+    category: 'Internet e Redes Sociais',
+    summary: 'Comitê de Supervisão critica falhas eleitorais da Meta após restrições a contas políticas no Brasil e suspensão de perfil nos EUA.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/logo_meta.jpg',
+    href: 'https://olhardigital.com.br/2026/10/20/internet-e-redes-sociais/comite-da-meta-aponta-falhas-na-moderacao-durante-eleicoes-no-brasil/',
+  },
+  {
+    title: 'De 1975 ao cockpit na sala: como os jogos de avião viraram hobby, indústria e até treino de piloto',
     category: 'Games e Consoles',
-    summary: 'Nintendo admite que subestimou a procura pelo Switch 2 de Zelda, esgotado na pré-venda no Brasil, e promete reposição de unidades.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Nintendo-Switch-2-Zelda-Amazon-1.jpg',
-    href: 'https://olhardigital.com.br/2026/10/19/games-e-consoles/nintendo-switch-2-de-zelda-esgota-no-brasil-e-tera-reposicao-diz-nintendo/',
-  },
-  {
-    title: 'Como drones de combate estão virando cargueiros e ambulâncias aéreas',
-    category: 'Veículos e Tecnologia',
-    summary: 'Um drone pesado de seis rotores percorreu quase 64 km para retirar um soldado ferido da linha de frente na Ucrânia em missão inédita.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/ayudag-6.webp',
-    href: 'https://olhardigital.com.br/2026/10/19/carros-e-tecnologia/como-drones-de-combate-estao-virando-cargueiros-e-ambulancias-aereas/',
-  },
-  {
-    title: 'Apple prepara evento com possíveis novos MacBooks e iPad mini',
-    category: 'Produtos e Reviews',
-    summary: 'Apple confirma evento para 28 de outubro e indica o lançamento do aguardado MacBook Pro com tela sensível ao toque e painel OLED.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/apple-1.jpg',
-    href: 'https://olhardigital.com.br/2026/10/19/reviews/apple-prepara-evento-com-possiveis-novos-macbooks-e-ipad-mini/',
-  },
-  {
-    title: 'EUA mandam banir inteligência artificial DeepSeek de redes federais',
-    category: 'Inteligência Artificial',
-    summary: 'Governo dos EUA ordena remoção imediata da IA chinesa DeepSeek de sistemas federais por suspeita de vazamento e falhas de segurança',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/deepseek.jpg',
-    href: 'https://olhardigital.com.br/2026/10/19/inteligencia-artificial/eua-mandam-banir-inteligencia-artificial-deepseek-de-redes-federais/',
-  },
-  {
-    title: 'CELOL Série A define seis classificados aos playoffs; veja confrontos e datas',
-    category: 'Games e Consoles',
-    summary: 'Playoffs do CELOL Série A começam em 24 de outubro. Confira os seis times classificados, os primeiros confrontos, o calendário e onde assistir.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Copy-of-LigaGG-CELOL-A-19-10-Equipes-classificadas-X.png',
-    href: 'https://olhardigital.com.br/2026/10/19/games-e-consoles/celol-serie-a-veja-os-classificados-confrontos-e-datas-dos-playoffs/',
+    summary: 'Do Interceptor ao Microsoft Flight Simulator: a história dos jogos de avião, como eles se tornoram um mercado e parte da formação de pilotos.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/microsoft-flight-simulator-2024_1.jpg',
+    href: 'https://olhardigital.com.br/2026/10/20/games-e-consoles/de-1975-ao-cockpit-na-sala-como-os-jogos-de-aviao-viraram-hobby-industria-e-ate-treino-de-piloto/',
   },
 ]
 // AUTO-NEWS-END
