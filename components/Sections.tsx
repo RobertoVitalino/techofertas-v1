@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Amazon já vendeu toda sua capacidade de nuvem até 2027',
-    category: 'Veículos e Tecnologia',
-    summary: 'Alta demanda por infraestrutura de inteligência artificial faz a AWS comprometer a maior parte de seus servidores para os próximos anos, revelou o CEO Andy Jassy.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2025/10/AWS-2.jpg',
-    href: 'https://olhardigital.com.br/2026/10/24/carros-e-tecnologia/amazon-ja-vendeu-toda-sua-capacidade-de-nuvem-ate-2027/',
-  },
-  {
-    title: 'A rejeição do uso de IA em jogos contra seu uso no desenvolvimento de hardware',
-    category: 'Games e Consoles',
-    summary: 'Gamers rejeitam a IA generativa na arte dos jogos, mas ignoram seu uso no projeto de chips. Entenda a linha entre preconceito e qualidade.',
-    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/10/ai-powered-semiconductor-ari.jpg',
-    href: 'https://olhardigital.com.br/2026/10/24/games-e-consoles/a-rejeicao-do-uso-de-ia-em-jogos-contra-seu-uso-no-desenvolvimento-de-hardware/',
-  },
-  {
-    title: 'Eleições 2026: É possível votar sem biometria cadastrada?',
-    category: 'Pro',
-    summary: 'O TSE confirma que quem não cadastrou a biometria pode votar em 2026. Entenda o procedimento da urna se a impressão digital falhar.',
-    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/09/biometria-eleicoes.jpg',
-    href: 'https://olhardigital.com.br/2026/10/24/pro/eleicoes-2026-e-possivel-votar-sem-biometria-cadastrada/',
-  },
-  {
-    title: 'EUA pediram a Musk por anos para alterar serviço da Starlink na Ucrânia, Oriente Médio e Irã',
-    category: 'Pro',
-    summary: 'Administrações de Biden e Trump solicitaram diversas vezes que a SpaceX ativasse ou desativasse o sistema de satélites em zonas de conflito.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2025/01/silhuetas_trump_musk-e1737051190494.jpg',
-    href: 'https://olhardigital.com.br/2026/10/24/pro/eua-pediram-a-musk-por-anos-para-alterar-servico-da-starlink-na-ucrania-oriente-medio-e-ira/',
-  },
-  {
-    title: 'Anvisa restringe uso compassivo da polilaminina após óbitos e alta de pedidos',
+    title: 'Militares dos EUA dão à SpaceX, de Elon Musk, acesso a dados sigilosos de rastreamento espacial',
     category: 'Ciência e Espaço',
-    summary: 'Agência limitou o acesso à substância experimental para lesões medulares após notificações de mortes e uma explosão de procuras.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/03/Polilaminina-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/10/24/ciencia-e-espaco/anvisa-restringe-uso-compassivo-da-polilaminina-apos-obitos-e-alta-de-pedidos/',
+    summary: 'Pela primeira vez, uma empresa privada vai receber acesso à versão mais detalhada do sistema da Casa Branca que registra objetos em órbita',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/02/elon-musk-1-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/10/25/ciencia-e-espaco/militares-dos-eua-dao-a-spacex-de-elon-musk-acesso-a-dados-sigilosos-de-rastreamento-espacial/',
+  },
+  {
+    title: 'Unitree apresenta robô humanoide &#8220;guarda-costas&#8221; que executa movimentos de kung fu; veja',
+    category: 'Pro',
+    summary: 'Batizado de "Kung Fu Legend: Guardian", o robô reage a diversas situações de risco, como enfrentar um invasor armado com uma faca',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/10/robo.png',
+    href: 'https://olhardigital.com.br/2026/10/25/pro/unitree-apresenta-robo-humanoide-guarda-costas-que-executa-movimentos-de-kung-fu-veja/',
+  },
+  {
+    title: 'NASA quer levar supercomputador com IA para testar navegação autônoma na Lua',
+    category: 'Ciência e Espaço',
+    summary: 'O Spaceborne Computer-4 deverá analisar imagens da Lua, processar mapas e evitar crateras sem depender de GPS',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/shutterstock_2655764721-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/10/25/ciencia-e-espaco/nasa-quer-levar-supercomputador-com-ia-para-testar-navegacao-autonoma-na-lua/',
+  },
+  {
+    title: 'Da BGS ao Parque Olímpico: como o CBLOL virou a principal liga de League of Legends do Brasil',
+    category: 'Games e Consoles',
+    summary: 'Do campeonato de 2012 na BGS ao recorde de quase 460 mil espectadores e à final no Parque Olímpico, veja como o CBLOL virou a principal liga de LoL do Brasil',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/10/1-FONTE-LoL-Esports.jpg',
+    href: 'https://olhardigital.com.br/2026/10/25/games-e-consoles/cblol-da-bgs-ao-parque-olimpico-a-principal-liga-de-lol/',
+  },
+  {
+    title: 'Moonshot limita capacidades de seu modelo de IA mais avançado para evitar ataques hackers',
+    category: 'Inteligência Artificial',
+    summary: 'A startup chinesa Moonshot anunciou neste fim de semana que reduziu as capacidades ciberofensivas de seu mais novo modelo de IA',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/07/kimi-moonshot-inteligencia-artificial-ia-ai-china-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/10/25/inteligencia-artificial/moonshot-limita-capacidades-de-seu-modelo-de-ia-mais-avancado-para-evitar-ataques-hackers/',
   },
 ]
 // AUTO-NEWS-END
