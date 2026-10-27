@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Microsoft oferece demissão voluntária a cerca de 60 mil funcionários',
-    category: 'Pro',
-    summary: 'A Microsoft lançou um novo plano de demissão voluntária para 60 mil funcionários enquanto acelera investimentos bilionários em IA.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/microsoft-2.jpg',
-    href: 'https://olhardigital.com.br/2026/10/26/pro/microsoft-oferece-demissao-voluntaria-a-cerca-de-60-mil-funcionarios/',
-  },
-  {
-    title: 'Google exige verificação de apps no Android e enfrenta críticas',
-    category: 'Internet e Redes Sociais',
-    summary: 'Google exige verificação de desenvolvedores no Android, inclusive para apps externos à Play Store; Cade questiona os efeitos da regra.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/android_capa-scaled-1.jpg',
-    href: 'https://olhardigital.com.br/2026/10/26/internet-e-redes-sociais/google-exige-verificacao-de-apps-no-android-e-enfrenta-criticas/',
-  },
-  {
-    title: 'Instagram começa a testar vídeos longos e horizontais no Brasil',
-    category: 'Internet e Redes Sociais',
-    summary: 'Instagram testa o Features, formato de vídeos longos e horizontais nos EUA e com alguns criadores no Brasil, além de novos recursos.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/instagram.jpg',
-    href: 'https://olhardigital.com.br/2026/10/26/internet-e-redes-sociais/instagram-comeca-a-testar-videos-longos-e-horizontais-no-brasil/',
-  },
-  {
-    title: 'Tomb Raider: Legacy of Atlantis ganha novas cenas de gameplay e confirma lançamento para 2027',
-    category: 'Games e Consoles',
-    summary: 'Tomb Raider: Legacy of Atlantis ganha novas cenas de gameplay e confirma lançamento em 12 de fevereiro de 2027. Veja as novidades do remake.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Tomb-Raider-Legacy-of-Atlantis-Steam.jpg',
-    href: 'https://olhardigital.com.br/2026/10/26/games-e-consoles/tomb-raider-legacy-of-atlantis-revela-gameplay-e-data-de-lancamento/',
-  },
-  {
-    title: 'Robôs com inteligência artificial ampliam as fronteiras da exploração espacial',
+    title: 'Simulação impressionante recria os primeiros bilhões de anos do Universo',
     category: 'Ciência e Espaço',
-    summary: 'Descubra o papel essencial da inteligência artificial na preparação de futuras bases humanas e na automação de tarefas em Marte e na Lua',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/rover-IA-Marte.jpg',
-    href: 'https://olhardigital.com.br/2026/10/26/ciencia-e-espaco/robos-com-inteligencia-artificial-ampliam-as-fronteiras-da-exploracao-espacial/',
+    summary: 'Uma nova simulação computacional oferece visão detalhada de como o Universo evoluiu nos primeiros bilhões de anos após o Big Bang',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/25SCI-EARLY-UNIVERSE-01-wtvf-superJumbo.png',
+    href: 'https://olhardigital.com.br/2026/10/27/ciencia-e-espaco/simulacao-impressionante-recria-os-primeiros-bilhoes-de-anos-do-universo/',
+  },
+  {
+    title: 'Relatório da ONU revela novo recorde de gases de efeito estufa',
+    category: 'Clima',
+    summary: 'CO₂ chegou a 426,8 ppm em 2025, e metano e óxido nitroso também bateram recordes, segundo relatório da Organização Meteorológica Mundial.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/metano.jpg',
+    href: 'https://olhardigital.com.br/2026/10/27/ciencia-e-espaco/clima/relatorio-da-onu-revela-novo-recorde-de-gases-de-efeito-estufa/',
+  },
+  {
+    title: 'Crateras lunares: as marcas da história do Sistema Solar ',
+    category: 'Colunistas',
+    summary: 'As crateras da Lua registram bilhões de anos de impactos cósmicos e ajudam a desvendar a fascinante história geológica do Sistema Solar',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/lua.jpg',
+    href: 'https://olhardigital.com.br/2026/10/27/colunistas/crateras-lunares-as-marcas-da-historia-do-sistema-solar/',
+  },
+  {
+    title: 'Entenda a origem da Lua do Caçador que brilhou no céu este mês',
+    category: 'Ciência e Espaço',
+    summary: 'A Lua do Caçador apareceu em vários países no fim de semana e atingiu o ponto máximo às 1h12 de segunda-feira, no horário de Brasília.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/lua-de-cacador.jpg',
+    href: 'https://olhardigital.com.br/2026/10/27/ciencia-e-espaco/entenda-a-origem-da-lua-do-cacador-que-brilhou-no-ceu-este-mes/',
+  },
+  {
+    title: 'Nebulosas de Órion e da Tarântula nas Imagens Astronômicas da Semana',
+    category: 'Colunistas',
+    summary: 'Confira as imagens astronômicas espetaculares que foram destaque no Programa Olhar Espacial da última sexta-feira (23)',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/imagens-astronomicas.jpg',
+    href: 'https://olhardigital.com.br/2026/10/27/colunistas/nebulosas-de-orion-e-da-tarantula-nas-imagens-astronomicas-da-semana/',
   },
 ]
 // AUTO-NEWS-END
