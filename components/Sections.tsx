@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'iOS 27 permite verificar idade com selfie para acessar sites adultos',
+    title: 'China chama acusações de espionagem contra CEO da Nvidia de falsas',
+    category: 'Pro',
+    summary: 'A China negou ter espionado o CEO da Nvidia após relatório da inteligência dos EUA revelar investigação contra executiva de Singapura.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/china_nvidia.jpg',
+    href: 'https://olhardigital.com.br/2026/10/30/pro/china-chama-acusacoes-de-espionagem-contra-ceo-da-nvidia-de-falsas/',
+  },
+  {
+    title: 'Papa Leão XIV defende o desarmamento de sistemas de IA',
+    category: 'Inteligência Artificial',
+    summary: 'O papa defende regras internacionais, supervisão independente e responsabilização no desenvolvimento e no uso da inteligência artificial.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/papa-leao-xiv.jpeg',
+    href: 'https://olhardigital.com.br/2026/10/30/inteligencia-artificial/papa-leao-xiv-defende-o-desarmamento-de-sistemas-de-ia/',
+  },
+  {
+    title: 'Ataque hacker na Binance mostra ‘transformação’ nas ameaças digitais',
     category: 'Segurança e Privacidade',
-    summary: 'Atualização do iOS 27.2 traz verificação de idade por selfie ou cartão para liberar sites com conteúdo restrito no Brasil.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/shutterstock_2746260993-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/10/29/seguranca/ios-27-permite-verificar-idade-com-selfie-para-acessar-sites-adultos/',
+    summary: 'Hackers roubaram US$ 6,3 bilhões da Binance; ataque reforça tendência preocupante, segundo especialista ouvida pelo Olhar Digital',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Destaque-Binance-hacker-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/10/30/seguranca/ataque-hacker-na-binance-mostra-transformacao-nas-ameacas-digitais/',
   },
   {
-    title: 'MPT processa Meta em R$ 50 milhões por assédio eleitoral nas redes sociais',
-    category: 'Pro',
-    summary: 'O Ministério Público do Trabalho entrou com ação judicial contra a Meta, dona do Instagram, Facebook, WhatsApp e Threads',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/meta-4.jpg',
-    href: 'https://olhardigital.com.br/2026/10/29/pro/mpt-processa-meta-em-r-50-milhoes-por-assedio-eleitoral-nas-redes-sociais/',
-  },
-  {
-    title: 'De uso malicioso a perda de controle: os riscos da IA que preocupam a Anthropic',
-    category: 'Pro',
-    summary: 'O Olhar Digital mergulhou num documento protocolado pela Anthropic e conversou com especialistas para te explicar o que você precisa saber',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/dario-amodei.jpg',
-    href: 'https://olhardigital.com.br/2026/10/29/pro/os-riscos-da-ia-que-preocupam-a-anthropic/',
-  },
-  {
-    title: 'Cientistas conseguem prever efeito quântico com precisão inédita',
-    category: 'Ciência e Espaço',
-    summary: 'Método desenvolvido por pesquisadores dos EUA calcula o efeito Kondo com precisão até 100 vezes maior que outros modelos',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/MATHEUS-2000x1250-1.jpg',
-    href: 'https://olhardigital.com.br/2026/10/29/ciencia-e-espaco/cientistas-conseguem-prever-efeito-quantico-com-precisao-inedita/',
-  },
-  {
-    title: 'Jogo grátis na Epic Games: Sorry We&#8217;re Closed',
+    title: 'Escape from Playtime review: vale a pena o terror cooperativo?',
     category: 'Games e Consoles',
-    summary: 'Sorry We’re Closed é o jogo grátis da Epic Games até 5 de novembro: um survival horror retrô com visual marcante e mecânicas renovadas.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/sorry-were-closed.jpg',
-    href: 'https://olhardigital.com.br/2026/10/29/games-e-consoles/jogo-gratis-na-epic-games-sorry-were-closed/',
+    summary: 'Escape from Playtime leva o terror de Poppy Playtime para o co-op com até 8 amigos. Rende sustos e risadas em grupo, mas sozinho cansa. Vale a pena?',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/Escape-from-Playtime-Poppy-Playtime-1.webp',
+    href: 'https://olhardigital.com.br/2026/10/30/games-e-consoles/escape-from-playtime-review-vale-a-pena/',
+  },
+  {
+    title: 'Flamengo usa dados para aprimorar análise de desempenho dos jogadores',
+    category: 'Inteligência Artificial',
+    summary: 'O Flamengo adota novo sistema de dados para analisar cada lance dos jogos e melhorar o desempenho do time em campo. Confira como funciona',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/flamengo.jpg',
+    href: 'https://olhardigital.com.br/2026/10/30/inteligencia-artificial/flamengo-usa-dados-para-aprimorar-analise-de-desempenho-dos-jogadores/',
   },
 ]
 // AUTO-NEWS-END
