@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Telescópio espacial da NASA está prestes a cair na Terra – Brasil pode ser atingido?',
-    category: 'Ciência e Espaço',
-    summary: 'Desativado após mais de 20 anos em órbita, o telescópio Swift, da NASA, está prestes a cair na Terra. Entenda os riscos para o Brasil',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2025/11/swift-nasa-1-1024x576.webp',
-    href: 'https://olhardigital.com.br/2026/11/03/ciencia-e-espaco/telescopio-espacial-da-nasa-esta-prestes-a-cair-na-terra-brasil-pode-ser-atingido/',
-  },
-  {
-    title: 'Ucrânia e Rússia sofrem ataques a aplicativos de emergência',
-    category: 'Segurança e Privacidade',
-    summary: 'Aplicativos usados por moradores de Ucrânia e Rússia de alertas de emergência foram invadidos por hackers durante a madrugada de domingo (1)',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/Alerta-ciberntico-entre-Ucrnia-e-Rssia.jpg',
-    href: 'https://olhardigital.com.br/2026/11/03/seguranca/ucrania-e-russia-sofrem-ataques-a-aplicativos-de-emergencia/',
-  },
-  {
-    title: 'CELOL Série A: NKZ Vorax e Marere disputam vaga na grande final',
-    category: 'Games e Consoles',
-    summary: 'NKZ Vorax e Marere disputam vaga na final do CELOL Série A. Confira os próximos confrontos, datas, horários e onde assistir aos playoffs.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/LigaGG-CELOL-A-03_11-Bracket-X-1.png',
-    href: 'https://olhardigital.com.br/2026/11/03/games-e-consoles/celol-serie-a-nkz-vorax-e-marere-disputam-vaga-na-grande-final/',
-  },
-  {
-    title: 'Caçadores de fantasmas usam IA para criar imagens de espíritos',
+    title: 'ChatGPT ganha ferramenta para criar e editar GIFs',
     category: 'Inteligência Artificial',
-    summary: 'Aplicativos usam sensores de celulares e IA para criar imagens associadas a fantasmas, mas a tecnologia divide investigadores.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/Gemini_Generated_Image_j93v5fj93v5fj93v.jpg',
-    href: 'https://olhardigital.com.br/2026/11/03/inteligencia-artificial/cacadores-de-fantasmas-usam-ia-para-criar-imagens-de-espiritos/',
+    summary: 'O ChatGPT ganhou novidade que pode facilitar a criação de conteúdo para redes sociais: a produção de GIFs animados diretamente na plataforma',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/chatgpt.jpg',
+    href: 'https://olhardigital.com.br/2026/11/04/inteligencia-artificial/chatgpt-ganha-ferramenta-para-criar-e-editar-gifs/',
   },
   {
-    title: 'Criminosos invadem serviços de IA para usar modelos sem pagar',
+    title: 'Telescópio da NASA cai na Terra após 22 anos no espaço',
+    category: 'Ciência e Espaço',
+    summary: 'O telescópio espacial Swift, da NASA, encerrou sua trajetória de mais de duas décadas no espaço nesta quarta-feira (4)',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/10/swift.jpg',
+    href: 'https://olhardigital.com.br/2026/11/04/ciencia-e-espaco/telescopio-da-nasa-cai-na-terra-apos-22-anos-no-espaco/',
+  },
+  {
+    title: 'Filme chinês feito com IA arrecada pouco, mas atrai investidores',
+    category: 'Inteligência Artificial',
+    summary: 'A IA precisa provar que consegue conquistar o público no cinema. Na China, a primeira grande tentativa não teve o resultado esperado',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/filme.jpg',
+    href: 'https://olhardigital.com.br/2026/11/04/inteligencia-artificial/filme-chines-feito-com-ia-arrecada-pouco-mas-atrai-investidores/',
+  },
+  {
+    title: 'Ataque a sistemas de refrigeração coloca bancos de sangue em risco na Europa',
     category: 'Segurança e Privacidade',
-    summary: 'Criminosos encontraram nova maneira de lucrar com IA: roubando credenciais de empresas para utilizar serviços de IA pagos por outras pessoas',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2025/12/ciberataque_capa-scaled.jpg',
-    href: 'https://olhardigital.com.br/2026/11/03/seguranca/criminosos-invadem-servicos-de-ia-para-usar-modelos-sem-pagar/',
+    summary: 'Sabotagem cibernética eleva temperatura de freezers na França e expõe vulnerabilidade de bancos de plasma sanguíneo e redes de saúde.',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/Gemini_Generated_Image_nooynxnooynxnooy.jpg',
+    href: 'https://olhardigital.com.br/2026/11/04/seguranca/ataque-a-sistemas-de-refrigeracao-coloca-bancos-de-sangue-em-risco-na-europa/',
+  },
+  {
+    title: 'Foto com milhares de satélites no céu é confundida com imagem de IA',
+    category: 'Ciência e Espaço',
+    summary: 'Imagem mostra centenas de rastros luminosos cruzando o horizonte e algumas pessoas chegaram a acusar o autor de ter utilizado IA para criá-la',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/ceu_satelites.png',
+    href: 'https://olhardigital.com.br/2026/11/04/ciencia-e-espaco/foto-com-milhares-de-satelites-no-ceu-e-confundida-com-imagem-de-ia/',
   },
 ]
 // AUTO-NEWS-END
