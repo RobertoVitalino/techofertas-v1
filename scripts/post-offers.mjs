@@ -28,7 +28,7 @@ const SITE_URL = (process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || 'h
   .replace(/\/$/, '')
   .replace('techofertas-v1.vercel.app', 'www.vitalinotech.com.br')
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash'
+const GEMINI_MODEL = process.env.GEMINI_MODEL || ''
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN
 const TELEGRAM_CHANNEL_ID = process.env.TELEGRAM_CHANNEL_ID
 const REPOST_AFTER_DAYS = Number(process.env.OFFER_REPOST_AFTER_DAYS || 4)

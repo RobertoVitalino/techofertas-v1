@@ -43,7 +43,7 @@ async function requestGemini(model, apiKey, prompt, { lightThinking }) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
     body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig }),
-    signal: AbortSignal.timeout(90_000),
+    signal: AbortSignal.timeout(45_000),
   })
 
   if (!response.ok) {
@@ -62,40 +62,20 @@ async function requestGemini(model, apiKey, prompt, { lightThinking }) {
     .join('')
 }
 
+// Ordem de tentativa. Os modelos "lite" respondem em ~2 s no plano gratuito;
+// os maiores vivem congestionados (erro 503). GEMINI_MODEL, se definido, vai na frente.
+const DEFAULT_MODELS = ['gemini-flash-lite-latest', 'gemini-3.5-flash-lite', 'gemini-3.5-flash', 'gemini-3.8-flash']
+
 async function callGemini(model, apiKey, prompt) {
-  let lastError
-  for (let attempt = 1; attempt <= 2; attempt += 1) {
-    try {
-      return await requestGemini(model, apiKey, prompt, { lightThinking: true })
-    } catch (error) {
-      // Modelo que não aceita a opção de raciocínio: tenta sem ela.
-      if (error.status === 400 && /thinking/i.test(error.body ?? '')) {
-        return requestGemini(model, apiKey, prompt, { lightThinking: false })
-      }
-      if (error.status === 404) throw error
-      lastError = error
-      if (attempt < 2) console.warn(`[aviso] Gemini demorou ou falhou (${error.message}); tentando de novo...`)
+  try {
+    return await requestGemini(model, apiKey, prompt, { lightThinking: true })
+  } catch (error) {
+    // Modelo que não aceita a opção de raciocínio: tenta sem ela.
+    if (error.status === 400 && /thinking/i.test(error.body ?? '')) {
+      return requestGemini(model, apiKey, prompt, { lightThinking: false })
     }
+    throw error
   }
-  throw lastError
-}
-
-// Quando um modelo é aposentado (erro 404), procura um "flash" disponível na conta.
-async function findAvailableFlashModel(apiKey) {
-  const response = await fetch(`${GEMINI_ENDPOINT}?pageSize=200`, {
-    headers: { 'x-goog-api-key': apiKey },
-    signal: AbortSignal.timeout(60_000),
-  })
-  if (!response.ok) return null
-
-  const data = await response.json()
-  const candidates = (data.models ?? [])
-    .filter((model) => model.supportedGenerationMethods?.includes('generateContent'))
-    .map((model) => model.name.replace(/^models\//, ''))
-    .filter((name) => /flash/i.test(name) && !/(image|tts|audio|live|thinking|exp|preview|lite)/i.test(name))
-    .sort((a, b) => b.localeCompare(a, undefined, { numeric: true }))
-
-  return candidates[0] ?? null
 }
 
 // A IA escreve só a chamada. Preço, desconto e link vêm do banco,
@@ -104,7 +84,7 @@ export async function generateHook(product, { apiKey, model } = {}) {
   if (!apiKey) return { hook: fallbackHook(product), source: 'modelo-padrao' }
 
   const prompt = [
-    'Você escreve chamadas curtas para um canal brasileiro de ofertas de tecnologia chamado Vitalino Tech.',
+    'Você escreve chamadas curtas para um canal brasileiro de ofertas chamado Vitalino Tech.',
     'Escreva no máximo 2 linhas curtas (até 200 caracteres no total), em português do Brasil, tom animado mas honesto.',
     'Comece com 1 emoji relacionado ao produto. Destaque para quem o produto é útil.',
     'NÃO cite preço, valor, porcentagem, link, frete, estoque ou prazo. NÃO invente especificações que não estejam no título.',
@@ -114,25 +94,22 @@ export async function generateHook(product, { apiKey, model } = {}) {
     `Categoria: ${product.category}`,
   ].join('\n')
 
-  try {
-    let text
-    try {
-      text = await callGemini(model, apiKey, prompt)
-    } catch (error) {
-      if (error.status !== 404) throw error
-      const replacement = await findAvailableFlashModel(apiKey)
-      if (!replacement || replacement === model) throw error
-      console.warn(`[aviso] Modelo ${model} indisponível; usando ${replacement}. Atualize GEMINI_MODEL se quiser fixar.`)
-      text = await callGemini(replacement, apiKey, prompt)
-    }
+  const models = [...new Set([model, ...DEFAULT_MODELS].filter(Boolean))]
+  const failures = []
 
-    const hook = cleanHook(text)
-    if (!hook) throw new Error('Gemini retornou texto vazio')
-    return { hook, source: 'gemini' }
-  } catch (error) {
-    console.warn(`[aviso] IA indisponível, usando chamada padrão: ${error instanceof Error ? error.message : error}`)
-    return { hook: fallbackHook(product), source: 'modelo-padrao' }
+  for (const candidate of models) {
+    try {
+      const hook = cleanHook(await callGemini(candidate, apiKey, prompt))
+      if (!hook) throw new Error('texto vazio')
+      if (failures.length) console.warn(`[aviso] Usando ${candidate}; falharam antes: ${failures.join(' | ')}`)
+      return { hook, source: `gemini:${candidate}` }
+    } catch (error) {
+      failures.push(`${candidate}: ${error.status ?? ''} ${String(error.message).slice(0, 80)}`.trim())
+    }
   }
+
+  console.warn(`[aviso] IA indisponível, usando chamada padrão. Falhas: ${failures.join(' | ')}`)
+  return { hook: fallbackHook(product), source: 'modelo-padrao' }
 }
 
 function hasDiscount(product) {
