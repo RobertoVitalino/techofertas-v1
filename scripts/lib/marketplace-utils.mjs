@@ -5,7 +5,7 @@ export function formatBRL(value) {
     minimumFractionDigits: 2,
   })
     .format(value)
-    .replace(/ /g, ' ')
+    .replace(/[\u00a0\u202f]/g, ' ')
 }
 
 export async function runPool(items, concurrency, worker) {

@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import {
   fetchMarketplacePage,
   formatBRL,
+  parseMarketplacePage,
   parsePrimaryProductCard,
   runPool,
   titleScore,
@@ -38,11 +39,17 @@ function sleep(ms) {
 async function checkProduct(product) {
   try {
     const html = await fetchMarketplacePage(product.affiliate)
-    const card = parsePrimaryProductCard(html)
-    const score = titleScore(product.title, card.title)
+    const primary = parsePrimaryProductCard(html)
+    let card = primary
 
-    if (score < MIN_TITLE_SCORE) {
-      return { product, status: 'missing', detail: `anúncio mostrou outro item (${Math.round(score * 100)}%): ${card.title.slice(0, 60)}` }
+    // Normalmente o produto do link vem em 1º lugar, mas às vezes o Mercado Livre
+    // destaca outro item do perfil. Nesse caso, procura o produto certo na página.
+    if (titleScore(product.title, primary.title) < MIN_TITLE_SCORE) {
+      try {
+        card = parseMarketplacePage(html, product.title)
+      } catch {
+        return { product, status: 'missing', detail: `produto não está mais na página do link (1º item: ${primary.title.slice(0, 50)})` }
+      }
     }
     return { product, status: 'ok', card }
   } catch (error) {
@@ -83,7 +90,7 @@ async function main() {
     const dropped = previousPrice !== null && card.currentPrice <= previousPrice * PRICE_DROP_RATIO
     if (dropped) data.priceDroppedAt = now
 
-    const changed = ['price', 'oldPrice', 'discount', 'installments'].some((field) => product[field] !== data[field])
+    const changed = ['price', 'oldPrice', 'discount'].some((field) => product[field] !== data[field])
     if (changed) summary.atualizados += 1
     else summary.semMudanca += 1
     if (dropped) summary.baixouPreco += 1
