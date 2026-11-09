@@ -17,13 +17,13 @@ export function escapeHtml(value) {
 }
 
 function cleanHook(text) {
+  // Linhas com preço, porcentagem ou link são descartadas inteiras:
+  // esses dados sempre vêm do banco, nunca da IA.
   return String(text)
-    .replace(/https?:\/\/\S+/g, '')
-    .replace(/R\$\s?[\d.,]+/g, '')
     .replace(/[*_`#]/g, '')
     .split('\n')
     .map((line) => line.trim())
-    .filter(Boolean)
+    .filter((line) => line && !/https?:\/\/|R\$|\d+\s?%/i.test(line))
     .slice(0, 2)
     .join('\n')
     .slice(0, 220)
@@ -32,6 +32,46 @@ function cleanHook(text) {
 
 function fallbackHook(product) {
   return FALLBACK_HOOKS[product.id % FALLBACK_HOOKS.length]
+}
+
+async function callGemini(model, apiKey, prompt) {
+  const response = await fetch(`${GEMINI_ENDPOINT}/${model}:generateContent`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+    body: JSON.stringify({
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+      generationConfig: { temperature: 0.9, maxOutputTokens: 300 },
+    }),
+    signal: AbortSignal.timeout(30_000),
+  })
+
+  if (!response.ok) {
+    const body = await response.text()
+    const error = new Error(`Gemini (${model}) respondeu ${response.status}: ${body.slice(0, 300)}`)
+    error.status = response.status
+    throw error
+  }
+
+  const data = await response.json()
+  return data?.candidates?.[0]?.content?.parts?.map((part) => part.text ?? '').join('') ?? ''
+}
+
+// Quando um modelo é aposentado (erro 404), procura um "flash" disponível na conta.
+async function findAvailableFlashModel(apiKey) {
+  const response = await fetch(`${GEMINI_ENDPOINT}?pageSize=200`, {
+    headers: { 'x-goog-api-key': apiKey },
+    signal: AbortSignal.timeout(30_000),
+  })
+  if (!response.ok) return null
+
+  const data = await response.json()
+  const candidates = (data.models ?? [])
+    .filter((model) => model.supportedGenerationMethods?.includes('generateContent'))
+    .map((model) => model.name.replace(/^models\//, ''))
+    .filter((name) => /flash/i.test(name) && !/(image|tts|audio|live|thinking|exp|preview|lite)/i.test(name))
+    .sort((a, b) => b.localeCompare(a, undefined, { numeric: true }))
+
+  return candidates[0] ?? null
 }
 
 // A IA escreve só a chamada. Preço, desconto e link vêm do banco,
@@ -51,23 +91,17 @@ export async function generateHook(product, { apiKey, model } = {}) {
   ].join('\n')
 
   try {
-    const response = await fetch(`${GEMINI_ENDPOINT}/${model}:generateContent`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
-      body: JSON.stringify({
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.9, maxOutputTokens: 200 },
-      }),
-      signal: AbortSignal.timeout(30_000),
-    })
-
-    if (!response.ok) {
-      const body = await response.text()
-      throw new Error(`Gemini respondeu ${response.status}: ${body.slice(0, 300)}`)
+    let text
+    try {
+      text = await callGemini(model, apiKey, prompt)
+    } catch (error) {
+      if (error.status !== 404) throw error
+      const replacement = await findAvailableFlashModel(apiKey)
+      if (!replacement || replacement === model) throw error
+      console.warn(`[aviso] Modelo ${model} indisponível; usando ${replacement}. Atualize GEMINI_MODEL se quiser fixar.`)
+      text = await callGemini(replacement, apiKey, prompt)
     }
 
-    const data = await response.json()
-    const text = data?.candidates?.[0]?.content?.parts?.map((part) => part.text ?? '').join('') ?? ''
     const hook = cleanHook(text)
     if (!hook) throw new Error('Gemini retornou texto vazio')
     return { hook, source: 'gemini' }
