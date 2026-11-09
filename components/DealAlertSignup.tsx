@@ -1,7 +1,8 @@
 'use client'
 
 import { subscribeToDealAlertsAction } from '@/lib/deal-alerts-actions'
-import { BellRing, CheckCircle2, Loader2 } from 'lucide-react'
+import { BellRing, CheckCircle2, Loader2, Send } from 'lucide-react'
+import { TELEGRAM_CHANNEL_URL } from '@/lib/social'
 import { useState, useTransition } from 'react'
 
 export function DealAlertSignup() {
@@ -82,6 +83,15 @@ export function DealAlertSignup() {
           </p>
         </>
       )}
+
+      <a
+        className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-sky-500 px-5 py-3 text-sm font-black text-white transition hover:bg-sky-400"
+        href={TELEGRAM_CHANNEL_URL}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <Send size={16} /> Prefere no celular? Entre no canal de ofertas no Telegram
+      </a>
     </section>
   )
 }

@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header'
 import { trackedProductUrl } from '@/lib/click-tracking'
+import { TELEGRAM_CHANNEL_URL } from '@/lib/social'
 import { prisma } from '@/lib/prisma'
 import { CheckCircle2, ExternalLink, Store } from 'lucide-react'
 import type { Metadata } from 'next'
@@ -156,6 +157,15 @@ export default async function ProductPage({
               className="rounded-xl border border-white/10 px-6 py-4 text-center font-bold hover:bg-white/10"
             >
               Voltar para produtos
+            </a>
+
+            <a
+              href={TELEGRAM_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl bg-sky-500 px-6 py-4 text-center font-bold text-white hover:bg-sky-400"
+            >
+              Receber ofertas no Telegram
             </a>
           </div>
         </div>
