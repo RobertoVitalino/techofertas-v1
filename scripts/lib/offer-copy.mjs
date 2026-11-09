@@ -34,33 +34,57 @@ function fallbackHook(product) {
   return FALLBACK_HOOKS[product.id % FALLBACK_HOOKS.length]
 }
 
-async function callGemini(model, apiKey, prompt) {
+async function requestGemini(model, apiKey, prompt, { lightThinking }) {
+  const generationConfig = { temperature: 0.9, maxOutputTokens: 2048 }
+  // É só uma frase curta: pedimos raciocínio mínimo para responder rápido.
+  if (lightThinking) generationConfig.thinkingConfig = { thinkingLevel: 'low' }
+
   const response = await fetch(`${GEMINI_ENDPOINT}/${model}:generateContent`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
-    body: JSON.stringify({
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.9, maxOutputTokens: 300 },
-    }),
-    signal: AbortSignal.timeout(30_000),
+    body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig }),
+    signal: AbortSignal.timeout(90_000),
   })
 
   if (!response.ok) {
     const body = await response.text()
     const error = new Error(`Gemini (${model}) respondeu ${response.status}: ${body.slice(0, 300)}`)
     error.status = response.status
+    error.body = body
     throw error
   }
 
   const data = await response.json()
-  return data?.candidates?.[0]?.content?.parts?.map((part) => part.text ?? '').join('') ?? ''
+  // Ignora as partes de "pensamento" e fica só com a resposta final.
+  return (data?.candidates?.[0]?.content?.parts ?? [])
+    .filter((part) => !part.thought)
+    .map((part) => part.text ?? '')
+    .join('')
+}
+
+async function callGemini(model, apiKey, prompt) {
+  let lastError
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
+    try {
+      return await requestGemini(model, apiKey, prompt, { lightThinking: true })
+    } catch (error) {
+      // Modelo que não aceita a opção de raciocínio: tenta sem ela.
+      if (error.status === 400 && /thinking/i.test(error.body ?? '')) {
+        return requestGemini(model, apiKey, prompt, { lightThinking: false })
+      }
+      if (error.status === 404) throw error
+      lastError = error
+      if (attempt < 2) console.warn(`[aviso] Gemini demorou ou falhou (${error.message}); tentando de novo...`)
+    }
+  }
+  throw lastError
 }
 
 // Quando um modelo é aposentado (erro 404), procura um "flash" disponível na conta.
 async function findAvailableFlashModel(apiKey) {
   const response = await fetch(`${GEMINI_ENDPOINT}?pageSize=200`, {
     headers: { 'x-goog-api-key': apiKey },
-    signal: AbortSignal.timeout(30_000),
+    signal: AbortSignal.timeout(60_000),
   })
   if (!response.ok) return null
 
