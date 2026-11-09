@@ -51,7 +51,7 @@ function normalizeWords(value) {
   )
 }
 
-function titleScore(expectedTitle, receivedTitle) {
+export function titleScore(expectedTitle, receivedTitle) {
   const expectedWords = normalizeWords(expectedTitle)
   const receivedWords = normalizeWords(receivedTitle)
   let matchedWeight = 0

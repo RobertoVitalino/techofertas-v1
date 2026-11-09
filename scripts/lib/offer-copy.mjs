@@ -120,8 +120,9 @@ function hasInstallments(product) {
   return product.installments && !/consulte/i.test(product.installments)
 }
 
-export function buildTelegramCaption(product, hook) {
+export function buildTelegramCaption(product, hook, { priceDrop = false } = {}) {
   const lines = [`<b>${escapeHtml(hook)}</b>`, '', `📦 ${escapeHtml(product.title)}`]
+  if (priceDrop) lines.unshift('📉 <b>BAIXOU DE PREÇO!</b>')
 
   lines.push(
     hasDiscount(product)
@@ -134,8 +135,9 @@ export function buildTelegramCaption(product, hook) {
   return lines.join('\n').slice(0, 1000)
 }
 
-export function buildWhatsAppText(product, hook, link) {
+export function buildWhatsAppText(product, hook, link, { priceDrop = false } = {}) {
   const lines = [`*${hook.replace(/\*/g, '')}*`, '', `📦 ${product.title}`]
+  if (priceDrop) lines.unshift('📉 *BAIXOU DE PREÇO!*')
 
   lines.push(
     hasDiscount(product)

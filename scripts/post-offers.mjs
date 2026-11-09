@@ -43,7 +43,7 @@ function trackedLink(productId, source) {
 
 async function pickProducts() {
   const [products, recentPosts] = await Promise.all([
-    prisma.product.findMany(),
+    prisma.product.findMany({ where: { active: true } }),
     prisma.offerPost.findMany({
       where: { channel: 'telegram' },
       orderBy: { createdAt: 'desc' },
@@ -57,14 +57,29 @@ async function pickProducts() {
   }
 
   const cutoff = Date.now() - REPOST_AFTER_DAYS * 24 * 60 * 60 * 1000
+  const dropWindow = Date.now() - 48 * 60 * 60 * 1000
+  const minGap = Date.now() - 24 * 60 * 60 * 1000
 
-  // Prioridade: nunca publicados > publicados há mais tempo; dentro disso, maior desconto.
+  // "Baixou de preço" nas últimas 48 h e ainda não divulgado depois da queda
+  // (respeitando ao menos 24 h desde o último post do mesmo produto).
+  const isFreshDrop = (product) => {
+    const droppedAt = product.priceDroppedAt?.getTime()
+    if (!droppedAt || droppedAt < dropWindow) return false
+    const last = lastPostedAt.get(product.id)?.getTime()
+    return !last || (last < droppedAt && last < minGap)
+  }
+
+  // Prioridade: baixou de preço > nunca publicados > publicados há mais tempo;
+  // em cada grupo, maior desconto primeiro.
   return products
+    .map((product) => ({ ...product, priceDrop: isFreshDrop(product) }))
     .filter((product) => {
+      if (product.priceDrop) return true
       const last = lastPostedAt.get(product.id)
       return !last || last.getTime() < cutoff
     })
     .sort((a, b) => {
+      if (a.priceDrop !== b.priceDrop) return a.priceDrop ? -1 : 1
       const aLast = lastPostedAt.get(a.id)?.getTime() ?? 0
       const bLast = lastPostedAt.get(b.id)?.getTime() ?? 0
       if (aLast !== bLast) return aLast - bLast
@@ -128,8 +143,8 @@ async function main() {
 
   for (const product of products) {
     const { hook, source } = await generateHook(product, { apiKey: GEMINI_API_KEY, model: GEMINI_MODEL })
-    const caption = buildTelegramCaption(product, hook)
-    const whatsapp = buildWhatsAppText(product, hook, trackedLink(product.id, 'whatsapp'))
+    const caption = buildTelegramCaption(product, hook, { priceDrop: product.priceDrop })
+    const whatsapp = buildWhatsAppText(product, hook, trackedLink(product.id, 'whatsapp'), { priceDrop: product.priceDrop })
 
     if (dryRun) {
       console.log(`\n=== [simulação] #${product.id} (chamada: ${source}) ===`)
@@ -145,7 +160,7 @@ async function main() {
         { productId: product.id, productTitle: product.title, channel: 'whatsapp', text: whatsapp },
       ],
     })
-    console.log(`[ok] Publicado: ${product.title} (chamada: ${source})`)
+    console.log(`[ok] Publicado${product.priceDrop ? ' (baixou de preço)' : ''}: ${product.title} (chamada: ${source})`)
   }
 }
 

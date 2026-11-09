@@ -55,7 +55,7 @@ export default async function ProductPage({
     where: { id: Number(id) },
   })
 
-  if (!product) {
+  if (!product || !product.active) {
     notFound()
   }
 

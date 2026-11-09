@@ -10,6 +10,7 @@ export default async function SearchPage({
   const { q = '' } = await searchParams
 
   const allProducts = await prisma.product.findMany({
+  where: { active: true },
   orderBy: {
     createdAt: 'desc',
   },

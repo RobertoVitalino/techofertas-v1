@@ -19,11 +19,11 @@ export async function GET(
   }
 
   const product = await prisma.product
-    .findUnique({ where: { id: productId }, select: { affiliate: true } })
+    .findUnique({ where: { id: productId }, select: { affiliate: true, active: true } })
     .catch(() => null)
 
   // Produto removido do catálogo (ex.: post antigo no Telegram): manda para a vitrine.
-  if (!product?.affiliate) {
+  if (!product?.affiliate || !product.active) {
     return NextResponse.redirect(fallback, 302)
   }
 

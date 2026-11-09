@@ -26,6 +26,7 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const dbProducts = await prisma.product.findMany({
+    where: { active: true },
     orderBy: {
       createdAt: 'desc',
     },

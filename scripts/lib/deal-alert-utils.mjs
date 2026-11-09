@@ -64,6 +64,7 @@ async function sendBatch(emails) {
 
 export async function sendDealAlertToSubscribers(prisma, { dryRun = false } = {}) {
   const products = await prisma.product.findMany({
+    where: { active: true },
     orderBy: { createdAt: 'desc' },
     take: FEATURED_COUNT,
   })

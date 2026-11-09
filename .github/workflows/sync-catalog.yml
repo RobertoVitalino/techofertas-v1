@@ -1,0 +1,29 @@
+name: Atualizar catálogo (preços e estoque)
+
+on:
+  schedule:
+    # Todo dia às 06h13 em Mato Grosso do Sul (UTC-4), antes dos posts das 8h37.
+    - cron: '13 10 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: sync-catalog
+  cancel-in-progress: false
+
+jobs:
+  sync-catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run catalog:sync

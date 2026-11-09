@@ -21,6 +21,13 @@ model Product {
   shipping     String
   affiliate    String   @unique
   createdAt    DateTime @default(now())
+  // Catálogo automático (scripts/sync-catalog.mjs)
+  active         Boolean   @default(true)
+  syncFailures   Int       @default(0)
+  lastSyncedAt   DateTime?
+  priceDroppedAt DateTime?
+
+  @@index([active])
 }
 
 model Customer {

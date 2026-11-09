@@ -34,6 +34,7 @@ const staticRoutes = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const products = await prisma.product.findMany({
+    where: { active: true },
     select: { id: true, createdAt: true },
   })
 
