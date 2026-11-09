@@ -15,7 +15,8 @@
     "bestsellers:apply": "node scripts/apply-best-sellers.mjs",
     "news:update": "node scripts/update-news.mjs",
     "alerts:send": "node scripts/send-deal-alert.mjs",
-    "course-reminders:send": "node scripts/send-course-reminders.mjs"
+    "course-reminders:send": "node scripts/send-course-reminders.mjs",
+    "offers:post": "node scripts/post-offers.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

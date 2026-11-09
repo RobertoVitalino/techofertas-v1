@@ -180,3 +180,26 @@ model DealAlertSubscriber {
 
   @@index([unsubscribedAt])
 }
+
+model AffiliateClick {
+  id        Int      @id @default(autoincrement())
+  productId Int?
+  source    String   @default("site")
+  createdAt DateTime @default(now())
+
+  @@index([productId])
+  @@index([source])
+  @@index([createdAt])
+}
+
+model OfferPost {
+  id           Int      @id @default(autoincrement())
+  productId    Int
+  productTitle String
+  channel      String
+  text         String
+  createdAt    DateTime @default(now())
+
+  @@index([productId])
+  @@index([channel, createdAt])
+}

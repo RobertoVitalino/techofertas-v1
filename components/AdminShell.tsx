@@ -7,6 +7,7 @@ import {
   Image as ImageIcon,
   LogOut,
   MessageCircleQuestion,
+  Megaphone,
   Newspaper,
   Package,
   Settings,
@@ -25,6 +26,7 @@ const adminLinks = [
   { label: 'Banners', href: '/admin/banners', icon: ImageIcon },
   { label: 'Usuários', href: '/admin/usuarios', icon: Users },
   { label: 'Dúvidas', href: '/admin/duvidas', icon: MessageCircleQuestion },
+  { label: 'Ofertas e cliques', href: '/admin/ofertas', icon: Megaphone },
   { label: 'Estatísticas', href: '/admin/estatisticas', icon: BarChart3 },
   { label: 'Configurações', href: '/admin/configuracoes', icon: Settings },
 ]

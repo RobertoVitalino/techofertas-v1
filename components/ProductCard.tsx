@@ -1,5 +1,6 @@
 import { ExternalLink, Store } from 'lucide-react'
 import { TrackedLink } from './TrackedLink'
+import { trackedProductUrl } from '@/lib/click-tracking'
 
 type Product = {
   id: number
@@ -89,7 +90,7 @@ export function ProductCard({ product }: { product: Product }) {
         <TrackedLink
           eventName="affiliate_click"
           eventData={{ product: product.title, store: product.store ?? '' }}
-          href={product.affiliate}
+          href={trackedProductUrl(product.id, 'site')}
           target="_blank"
           rel="sponsored noopener noreferrer"
           className="flex items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-3 py-2.5 text-center text-xs font-bold text-white transition hover:bg-brand-500"
