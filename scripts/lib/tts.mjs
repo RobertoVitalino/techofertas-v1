@@ -13,7 +13,7 @@ export async function synthesizeSpeech(text, { apiKey, voice = 'Kore' } = {}) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: `Leia com energia e simpatia, como um anúncio curto, em português do Brasil: ${text}` }] }],
+          contents: [{ parts: [{ text: `Leia em ritmo rápido, animado e simpático, como um anúncio curto de rede social, em português do Brasil, sem pausas longas: ${text}` }] }],
           generationConfig: {
             responseModalities: ['AUDIO'],
             speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } },

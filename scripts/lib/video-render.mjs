@@ -71,8 +71,10 @@ function svg(body) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${background()}${body}</svg>`
 }
 
-export function sceneHook({ imageDataUri, hook }) {
+export function sceneHook({ imageDataUri, hook, badge }) {
   return svg(`${productCard(imageDataUri, { y: 300, size: 860 })}
+    ${badge ? `<rect x="${W / 2 - 330}" y="162" width="660" height="96" rx="48" fill="#dc2626"/>
+      ${textLines([badge], { y: 227, size: 50, weight: 900 })}` : ''}
     ${textLines(wrap(hook, 22, 4), { y: 1340, size: 66, weight: 900 })}`)
 }
 

@@ -61,6 +61,15 @@ async function pickProducts() {
     .slice(0, quantity)
 }
 
+// No vídeo, só a primeira frase da chamada (até ~90 caracteres), para ficar curto.
+function shortHook(hook) {
+  const clean = plainText(hook)
+  const first = clean.split(/(?<=[!?.])\s+/)[0] || clean
+  if (first.length <= 90) return first
+  const cut = first.slice(0, 90)
+  return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:-]$/, '') + '!'
+}
+
 function socialCaption(product, hook) {
   const hasDiscount = product.discount && product.discount !== '-0%' && product.oldPrice !== product.price
   return [
@@ -96,12 +105,13 @@ async function makeVideo(product, outputDir) {
   try {
     const { hook } = await generateHook(product, { apiKey: GEMINI_API_KEY, model: process.env.GEMINI_MODEL || '' })
     const hasDiscount = product.discount && product.discount !== '-0%' && product.oldPrice !== product.price
+    const videoHook = shortHook(hook)
     const speech = [
-      plainText(hook),
+      product.priceDrop ? `Baixou de preço! ${videoHook}` : videoHook,
       hasDiscount
         ? `De ${priceForSpeech(product.oldPrice)} por apenas ${priceForSpeech(product.price)}.`
         : `Por apenas ${priceForSpeech(product.price)}.`,
-      'O link está no canal Vitalino Tech Ofertas, no Telegram!',
+      'Link no canal Vitalino Tech Ofertas, no Telegram!',
     ].join(' ')
 
     const imageResponse = await fetch(product.image, { signal: AbortSignal.timeout(30_000) })
@@ -117,8 +127,8 @@ async function makeVideo(product, outputDir) {
       output,
       narration,
       scenes: [
-        { svg: sceneHook({ imageDataUri, hook: product.priceDrop ? `Baixou de preço! ${hook}` : hook }), weight: 35 },
-        { svg: scenePrice({ imageDataUri, ...product }), weight: 40 },
+        { svg: sceneHook({ imageDataUri, hook: videoHook, badge: product.priceDrop ? 'BAIXOU DE PREÇO!' : null }), weight: 32 },
+        { svg: scenePrice({ imageDataUri, ...product }), weight: 43 },
         { svg: sceneCta({ channelUrl: CHANNEL_URL, siteHost: SITE_HOST }), weight: 25 },
       ],
     })
