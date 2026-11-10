@@ -32,8 +32,20 @@ jobs:
           node-version: 24
           cache: npm
 
+      # Instala só o que faltar, sem pacotes extras (antes levava ~9 min).
       - name: Instalar ffmpeg e librsvg
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg librsvg2-bin fonts-dejavu-core
+        run: |
+          NEED=""
+          command -v ffmpeg >/dev/null || NEED="$NEED ffmpeg"
+          command -v rsvg-convert >/dev/null || NEED="$NEED librsvg2-bin"
+          fc-list | grep -qi dejavu || NEED="$NEED fonts-dejavu-core"
+          if [ -n "$NEED" ]; then
+            echo "Instalando:$NEED"
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq --no-install-recommends $NEED
+          else
+            echo "Tudo já instalado."
+          fi
 
       - run: npm ci
 
