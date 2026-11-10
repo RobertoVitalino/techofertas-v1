@@ -1,11 +1,14 @@
 // Monta um vídeo vertical (1080x1920, 30 fps) de oferta a partir de um produto.
-// Requer ffmpeg, ffprobe e rsvg-convert (librsvg2-bin) instalados.
+// Requer ffmpeg/ffprobe (ou FFMPEG_PATH/FFPROBE_PATH) e @resvg/resvg-js ou rsvg-convert.
 import { execFile } from 'node:child_process'
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
 
 const run = promisify(execFile)
+// No GitHub, ffmpeg/ffprobe vêm do npm (ffmpeg-static/ffprobe-static) via estas variáveis.
+const FFMPEG = process.env.FFMPEG_PATH || 'ffmpeg'
+const FFPROBE = process.env.FFPROBE_PATH || 'ffprobe'
 const W = 1080
 const H = 1920
 const FONT = "DejaVu Sans, Arial, sans-serif"
@@ -99,7 +102,17 @@ export function sceneCta({ channelUrl, siteHost }) {
     ${textLines(['Preço e estoque podem mudar a qualquer momento.'], { y: 1780, size: 34, weight: 500, fill: '#bfdbfe' })}`)
 }
 
+// Desenha o SVG em PNG: usa @resvg/resvg-js (npm) se estiver instalado; senão, rsvg-convert.
 async function svgToPng(svgText, file) {
+  const resvg = await import('@resvg/resvg-js').catch(() => null)
+  if (resvg) {
+    const image = new resvg.Resvg(svgText, {
+      fitTo: { mode: 'width', value: W },
+      font: { loadSystemFonts: true, defaultFontFamily: 'DejaVu Sans' },
+    })
+    await writeFile(file, image.render().asPng())
+    return
+  }
   const svgFile = file.replace(/\.png$/, '.svg')
   await writeFile(svgFile, svgText)
   await run('rsvg-convert', ['-w', String(W), '-h', String(H), '-o', file, svgFile])
@@ -110,12 +123,12 @@ export async function imageToDataUri(imageBuffer, dir) {
   const src = join(dir, 'produto-src')
   const out = join(dir, 'produto.png')
   await writeFile(src, imageBuffer)
-  await run('ffmpeg', ['-y', '-loglevel', 'error', '-i', src, '-vf', 'scale=900:900:force_original_aspect_ratio=decrease', out])
+  await run(FFMPEG, ['-y', '-loglevel', 'error', '-i', src, '-vf', 'scale=900:900:force_original_aspect_ratio=decrease', out])
   return `data:image/png;base64,${(await readFile(out)).toString('base64')}`
 }
 
 export async function audioDuration(file) {
-  const { stdout } = await run('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', file])
+  const { stdout } = await run(FFPROBE, ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', file])
   return Number(stdout.trim()) || 0
 }
 
@@ -129,14 +142,14 @@ export async function saveNarration(base64, mimeType, dir) {
     const rate = Number(mimeType.match(/rate=(\d+)/i)?.[1] || 24000)
     const pcm = join(dir, 'narracao.pcm')
     await writeFile(pcm, raw)
-    await run('ffmpeg', ['-y', '-loglevel', 'error', '-f', 's16le', '-ar', String(rate), '-ac', '1', '-i', pcm, out])
+    await run(FFMPEG, ['-y', '-loglevel', 'error', '-f', 's16le', '-ar', String(rate), '-ac', '1', '-i', pcm, out])
   }
   return out
 }
 
 async function encodeStill(png, seconds, file) {
   const tmp = file.replace(/\.mp4$/, '.tmp.mp4')
-  await run('ffmpeg', [
+  await run(FFMPEG, [
     '-y', '-loglevel', 'error', '-framerate', '30', '-i', png,
     '-vf', `format=yuv420p,loop=-1:1,trim=duration=${seconds.toFixed(2)},fade=t=in:st=0:d=0.25`,
     '-c:v', 'libx264', '-crf', '20', '-preset', 'veryfast', '-pix_fmt', 'yuv420p', '-r', '30', tmp,
@@ -163,17 +176,17 @@ export async function renderVideo({ dir, scenes, narration, output, minSeconds =
   const list = join(dir, 'lista.txt')
   await writeFile(list, parts.map((part) => `file '${part}'`).join('\n'))
   const silent = join(dir, 'video-mudo.mp4')
-  await run('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list, '-c', 'copy', silent])
+  await run(FFMPEG, ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', list, '-c', 'copy', silent])
 
   const tmp = output.replace(/\.mp4$/, '.tmp.mp4')
   if (narration) {
-    await run('ffmpeg', [
+    await run(FFMPEG, [
       '-y', '-loglevel', 'error', '-i', silent, '-i', narration,
       '-map', '0:v', '-map', '1:a', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '128k',
       '-af', 'adelay=300|300,apad', '-t', total.toFixed(2), '-movflags', '+faststart', tmp,
     ])
   } else {
-    await run('ffmpeg', ['-y', '-loglevel', 'error', '-i', silent, '-c', 'copy', '-movflags', '+faststart', tmp])
+    await run(FFMPEG, ['-y', '-loglevel', 'error', '-i', silent, '-c', 'copy', '-movflags', '+faststart', tmp])
   }
   await rename(tmp, output)
   return { seconds: total }
