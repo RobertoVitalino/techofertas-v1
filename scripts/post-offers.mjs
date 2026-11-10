@@ -15,6 +15,7 @@ import {
 //   npm run offers:post                 -> publica 1 oferta
 //   npm run offers:post -- --quantidade=3
 //   npm run offers:post -- --dry-run    -> só mostra, não publica nem salva
+//   npm run offers:post -- --loop       -> modo contínuo: 1 post por hora o dia todo
 
 const prisma = new PrismaClient()
 const args = process.argv.slice(2)
@@ -130,17 +131,14 @@ async function postToTelegram(product, caption) {
   })
 }
 
-async function main() {
-  if (!dryRun && (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHANNEL_ID)) {
-    throw new Error('Configure TELEGRAM_BOT_TOKEN e TELEGRAM_CHANNEL_ID no .env (ou nos Secrets do GitHub).')
-  }
-
+async function publishBatch() {
   const products = await pickProducts()
   if (products.length === 0) {
     console.log(`Nenhuma oferta disponível: todas foram publicadas nos últimos ${REPOST_AFTER_DAYS} dias.`)
-    return
+    return 0
   }
 
+  let published = 0
   for (const product of products) {
     const { hook, source } = await generateHook(product, { apiKey: GEMINI_API_KEY, model: GEMINI_MODEL })
     const caption = buildTelegramCaption(product, hook, { priceDrop: product.priceDrop })
@@ -160,8 +158,92 @@ async function main() {
         { productId: product.id, productTitle: product.title, channel: 'whatsapp', text: whatsapp },
       ],
     })
-    console.log(`[ok] Publicado${product.priceDrop ? ' (baixou de preço)' : ''}: ${product.title} (chamada: ${source})`)
+    published += 1
+    console.log(`[ok] ${new Date().toISOString()} Publicado${product.priceDrop ? ' (baixou de preço)' : ''}: ${product.title} (chamada: ${source})`)
   }
+  return published
+}
+
+// ---------- Modo contínuo (--loop) ----------
+// O agendador do GitHub atrasa ou pula execuções frequentes. No modo contínuo,
+// uma única execução publica 1 oferta por hora (às hh:37, das 8h às 22h de MS)
+// e, perto do limite de 6 h do GitHub, avisa para iniciar a próxima.
+const TIME_ZONE = 'America/Campo_Grande'
+const FIRST_HOUR = Number(process.env.OFFER_FIRST_HOUR || 8)
+const LAST_HOUR = Number(process.env.OFFER_LAST_HOUR || 22)
+const SLOT_MINUTE = 37
+const MIN_GAP_MS = 50 * 60 * 1000 // evita post duplicado se duas execuções se cruzarem
+const LOOP_BUDGET_MS = (5 * 60 + 35) * 60 * 1000
+
+function localClock(date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-GB', { timeZone: TIME_ZONE, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(date)
+  const get = (type) => Number(parts.find((part) => part.type === type)?.value)
+  return { hour: get('hour'), minute: get('minute') }
+}
+
+// Milissegundos até o próximo horário de post (hh:37), ou null se já passou o último do dia.
+function msUntilNextSlot(now = new Date()) {
+  const { hour, minute } = localClock(now)
+  let targetHour = minute < SLOT_MINUTE ? hour : hour + 1
+  if (targetHour < FIRST_HOUR) targetHour = FIRST_HOUR
+  if (targetHour > LAST_HOUR) return null
+  const minutesAhead = (targetHour - hour) * 60 + (SLOT_MINUTE - minute)
+  return Math.max(0, minutesAhead * 60 * 1000 - now.getSeconds() * 1000)
+}
+
+async function lastTelegramPostAt() {
+  const last = await prisma.offerPost.findFirst({ where: { channel: 'telegram' }, orderBy: { createdAt: 'desc' } })
+  return last?.createdAt ?? null
+}
+
+async function publishIfDue() {
+  const { hour } = localClock()
+  if (hour < FIRST_HOUR || hour > LAST_HOUR) return
+  const last = await lastTelegramPostAt()
+  if (last && Date.now() - last.getTime() < MIN_GAP_MS) {
+    console.log(`[pulo] Último post foi há ${Math.round((Date.now() - last.getTime()) / 60000)} min.`)
+    return
+  }
+  try {
+    await publishBatch()
+  } catch (error) {
+    console.error(`[falha] ${error instanceof Error ? error.message : error}`)
+  }
+}
+
+async function setOutput(name, value) {
+  if (!process.env.GITHUB_OUTPUT) return
+  const { appendFile } = await import('node:fs/promises')
+  await appendFile(process.env.GITHUB_OUTPUT, `${name}=${value}\n`)
+}
+
+async function loop() {
+  const started = Date.now()
+  await publishIfDue()
+
+  while (true) {
+    const wait = msUntilNextSlot()
+    if (wait === null) {
+      console.log('Fim dos horários de hoje. Até amanhã!')
+      return
+    }
+    if (Date.now() - started + wait > LOOP_BUDGET_MS) {
+      console.log('Perto do limite de 6 h do GitHub: pedindo uma nova execução para continuar.')
+      await setOutput('continue', 'true')
+      return
+    }
+    console.log(`Próximo post em ${Math.round(wait / 60000)} min.`)
+    await new Promise((resolve) => setTimeout(resolve, wait + 5_000))
+    await publishIfDue()
+  }
+}
+
+async function main() {
+  if (!dryRun && (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHANNEL_ID)) {
+    throw new Error('Configure TELEGRAM_BOT_TOKEN e TELEGRAM_CHANNEL_ID no .env (ou nos Secrets do GitHub).')
+  }
+  if (args.includes('--loop')) return loop()
+  await publishBatch()
 }
 
 main()

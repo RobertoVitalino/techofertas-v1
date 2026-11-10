@@ -1,25 +1,36 @@
 name: Publicar ofertas no Telegram
 
+# O agendador do GitHub atrasa ou pula execuções frequentes (de hora em hora).
+# Por isso, cada execução fica rodando em "modo contínuo": publica 1 oferta por
+# hora (8h37 às 22h37 de MS) e, perto do limite de 6 h, inicia a próxima sozinha.
+# Os horários abaixo só servem para dar a partida (e de reserva, caso a corrente
+# se quebre). Posts duplicados são evitados pelo próprio script.
+
 on:
   schedule:
-    # 1 post por hora, das 8h37 às 22h37 em Mato Grosso do Sul (UTC-4) = 15 por dia.
-    - cron: '37 12-23 * * *'
-    - cron: '37 0-2 * * *'
+    - cron: '37 10 * * *' # 06h37 MS: começa o turno do dia (espera até 8h37)
+    - cron: '7 15 * * *'  # 11h07 MS: reserva
+    - cron: '7 19 * * *'  # 15h07 MS: reserva
+    - cron: '7 23 * * *'  # 19h07 MS: reserva
   workflow_dispatch:
     inputs:
       quantidade:
-        description: 'Quantas ofertas publicar agora'
+        description: 'Publicar agora essa quantidade (deixe vazio para o modo contínuo)'
         required: false
-        default: '1'
+        default: ''
 
 concurrency:
   group: post-offers
   cancel-in-progress: false
 
+permissions:
+  contents: read
+  actions: write
+
 jobs:
   post-offers:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 350
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -37,4 +48,17 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run offers:post -- --quantidade=${{ github.event.inputs.quantidade || '1' }}
+      - name: Publicar agora (quantidade manual)
+        if: github.event_name == 'workflow_dispatch' && inputs.quantidade != ''
+        run: npm run offers:post -- --quantidade=${{ github.event.inputs.quantidade }}
+
+      - name: Modo contínuo (1 post por hora)
+        id: loop
+        if: github.event_name != 'workflow_dispatch' || inputs.quantidade == ''
+        run: npm run offers:post -- --loop
+
+      - name: Continuar em uma nova execução
+        if: steps.loop.outputs.continue == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run post-offers.yml --ref ${{ github.ref_name }}
