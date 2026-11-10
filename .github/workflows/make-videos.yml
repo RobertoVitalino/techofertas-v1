@@ -1,0 +1,49 @@
+name: Gerar vídeos curtos (Reels/TikTok/Shorts)
+
+on:
+  schedule:
+    # Todo dia às 07h07 em Mato Grosso do Sul (UTC-4), depois da atualização do catálogo.
+    - cron: '7 11 * * *'
+  workflow_dispatch:
+    inputs:
+      quantidade:
+        description: 'Quantos vídeos gerar agora (1 a 5)'
+        required: false
+        default: '3'
+
+concurrency:
+  group: make-videos
+  cancel-in-progress: false
+
+jobs:
+  make-videos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_VIDEO_CHAT_ID: ${{ secrets.TELEGRAM_VIDEO_CHAT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar ffmpeg e librsvg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg librsvg2-bin fonts-dejavu-core
+
+      - run: npm ci
+
+      - run: npm run videos:make -- --quantidade=${{ github.event.inputs.quantidade || '3' }}
+
+      - name: Guardar cópia dos vídeos (7 dias)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos
+          path: videos/*.mp4
+          retention-days: 7
+          if-no-files-found: ignore

@@ -17,7 +17,8 @@
     "alerts:send": "node scripts/send-deal-alert.mjs",
     "course-reminders:send": "node scripts/send-course-reminders.mjs",
     "offers:post": "node scripts/post-offers.mjs",
-    "catalog:sync": "node scripts/sync-catalog.mjs"
+    "catalog:sync": "node scripts/sync-catalog.mjs",
+    "videos:make": "node scripts/make-videos.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
