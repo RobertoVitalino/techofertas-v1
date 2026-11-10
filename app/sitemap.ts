@@ -1,4 +1,5 @@
 import { articles } from '@/lib/blog'
+import { guides } from '@/lib/seo-guides'
 import { computingCourseLessons } from '@/lib/computing-course'
 import { englishCourseLessons } from '@/lib/english-course'
 import { examPrepLessons } from '@/lib/exam-prep-course'
@@ -15,6 +16,7 @@ import type { MetadataRoute } from 'next'
 const staticRoutes = [
   { path: '', priority: 1, changeFrequency: 'daily' as const },
   { path: '/produtos', priority: 0.9, changeFrequency: 'daily' as const },
+  { path: '/melhores', priority: 0.8, changeFrequency: 'daily' as const },
   { path: '/artigos', priority: 0.7, changeFrequency: 'weekly' as const },
   { path: '/cursos', priority: 0.6, changeFrequency: 'monthly' as const },
   { path: '/curso-seguranca-da-informacao', priority: 0.6, changeFrequency: 'monthly' as const },
@@ -43,6 +45,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${SITE_URL}${route.path}`,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
+    })),
+    ...guides.map((guide) => ({
+      url: `${SITE_URL}/melhores/${guide.slug}`,
+      changeFrequency: 'daily' as const,
+      priority: 0.8,
     })),
     ...products.map((product) => ({
       url: `${SITE_URL}/produto/${product.id}`,

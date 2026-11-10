@@ -7,6 +7,7 @@ const links = [
   { label: 'Início', href: '/#início' },
   { label: 'Categorias', href: '/#categorias' },
   { label: 'Produtos', href: '/produtos' },
+  { label: 'Guias de compra', href: '/melhores' },
   { label: 'Cursos', href: '/cursos' },
   { label: 'Concursos Públicos', href: '/concursos-publicos' },
   { label: 'Artigos', href: '/artigos' },
