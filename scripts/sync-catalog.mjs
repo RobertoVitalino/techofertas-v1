@@ -8,6 +8,7 @@ import {
   runPool,
   titleScore,
 } from './lib/marketplace-utils.mjs'
+import { notifyPriceWatchers } from './lib/price-watch-mailer.mjs'
 
 // Catálogo automático.
 // Para cada produto, abre o link de afiliado e lê o anúncio no Mercado Livre:
@@ -71,6 +72,7 @@ async function main() {
   const failed = results.filter((r) => r.status !== 'ok')
   const blocked = ok.length === 0 || failed.length / results.length > 0.5
   const now = new Date()
+  const synced = []
   const summary = { atualizados: 0, semMudanca: 0, baixouPreco: 0, reativados: 0, falhas: failed.length, escondidos: 0 }
 
   for (const { product, card } of ok) {
@@ -88,7 +90,9 @@ async function main() {
       lastSyncedAt: now,
     }
     const dropped = previousPrice !== null && card.currentPrice <= previousPrice * PRICE_DROP_RATIO
-    if (dropped) data.priceDroppedAt = now
+    if (dropped) {
+      data.priceDroppedAt = now
+    }
 
     const changed = ['price', 'oldPrice', 'discount'].some((field) => product[field] !== data[field])
     if (changed) summary.atualizados += 1
@@ -99,6 +103,7 @@ async function main() {
     const tag = dropped ? '📉 baixou' : changed ? 'atualizado' : 'sem mudança'
     console.log(`[${tag}] #${product.id} ${product.price} -> ${data.price} | ${product.title.slice(0, 50)}`)
 
+    synced.push({ ...product, ...data })
     if (!dryRun) await prisma.product.update({ where: { id: product.id }, data })
   }
 
@@ -125,6 +130,13 @@ async function main() {
       `${summary.atualizados} atualizados, ${summary.semMudanca} sem mudança, ${summary.baixouPreco} baixaram de preço, ` +
       `${summary.reativados} reativados, ${summary.falhas} falhas, ${summary.escondidos} escondidos.`,
   )
+
+  try {
+    const sent = await notifyPriceWatchers(prisma, synced, { dryRun })
+    if (sent) console.log(`Alertas de preço enviados por e-mail: ${sent}`)
+  } catch (error) {
+    console.error(`Falha ao enviar alertas de preço: ${error instanceof Error ? error.message : error}`)
+  }
 
   if (blocked) {
     console.error(

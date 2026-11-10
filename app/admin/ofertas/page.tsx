@@ -1,7 +1,7 @@
 import { CopyButton } from '@/components/CopyButton'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/require-admin'
-import { MousePointerClick, Send, TrendingUp } from 'lucide-react'
+import { BellRing, MousePointerClick, Send, TrendingUp } from 'lucide-react'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,7 +24,7 @@ export default async function AdminOffersPage() {
 
   const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
 
-  const [totalClicks, bySource, byProduct, whatsappPosts, telegramCount] = await Promise.all([
+  const [totalClicks, bySource, byProduct, whatsappPosts, telegramCount, activeWatches] = await Promise.all([
     prisma.affiliateClick.count({ where: { createdAt: { gte: since } } }),
     prisma.affiliateClick.groupBy({
       by: ['source'],
@@ -44,6 +44,7 @@ export default async function AdminOffersPage() {
       take: 10,
     }),
     prisma.offerPost.count({ where: { channel: 'telegram', createdAt: { gte: since } } }),
+    prisma.priceWatch.count({ where: { unsubscribedAt: null } }),
   ])
 
   const productIds = byProduct.map((row) => row.productId).filter((id): id is number => id !== null)
@@ -61,7 +62,7 @@ export default async function AdminOffersPage() {
       <h1 className="mt-2 text-3xl font-black sm:text-4xl">Ofertas e cliques</h1>
       <p className="mt-2 text-slate-400">Últimos 30 dias: de onde vêm os cliques nos links de afiliado e o que o robô de ofertas publicou.</p>
 
-      <section className="mt-8 grid gap-4 sm:grid-cols-3">
+      <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-2xl border border-white/10 bg-white/[.04] p-5">
           <MousePointerClick className="text-brand-400" />
           <p className="mt-4 text-sm text-slate-400">Cliques em &quot;Comprar&quot;</p>
@@ -76,6 +77,11 @@ export default async function AdminOffersPage() {
           <Send className="text-violet-400" />
           <p className="mt-4 text-sm text-slate-400">Posts no Telegram</p>
           <strong className="text-3xl">{telegramCount}</strong>
+        </div>
+        <div className="rounded-2xl border border-white/10 bg-white/[.04] p-5">
+          <BellRing className="text-amber-400" />
+          <p className="mt-4 text-sm text-slate-400">Alertas &quot;me avise quando baixar&quot;</p>
+          <strong className="text-3xl">{activeWatches}</strong>
         </div>
       </section>
 

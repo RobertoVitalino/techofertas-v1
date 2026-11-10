@@ -210,3 +210,19 @@ model OfferPost {
   @@index([productId])
   @@index([channel, createdAt])
 }
+
+// "Me avise quando baixar" — alerta de preço por produto.
+model PriceWatch {
+  id             Int       @id @default(autoincrement())
+  productId      Int
+  email          String
+  token          String    @unique
+  priceAtSignup  String
+  createdAt      DateTime  @default(now())
+  lastNotifiedAt DateTime?
+  unsubscribedAt DateTime?
+
+  @@unique([productId, email])
+  @@index([productId])
+  @@index([email])
+}

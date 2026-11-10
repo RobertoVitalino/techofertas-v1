@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header'
 import { trackedProductUrl } from '@/lib/click-tracking'
 import { TELEGRAM_CHANNEL_URL } from '@/lib/social'
+import { PriceWatchForm } from '@/components/PriceWatchForm'
 import { prisma } from '@/lib/prisma'
 import { CheckCircle2, ExternalLink, Store } from 'lucide-react'
 import type { Metadata } from 'next'
@@ -168,6 +169,8 @@ export default async function ProductPage({
               Receber ofertas no Telegram
             </a>
           </div>
+
+          <PriceWatchForm productId={product.id} price={product.price} />
         </div>
       </section>
     </main>

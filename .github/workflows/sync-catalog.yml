@@ -16,6 +16,9 @@ jobs:
     timeout-minutes: 30
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      DEAL_ALERT_FROM_EMAIL: ${{ secrets.DEAL_ALERT_FROM_EMAIL }}
+      NEXT_PUBLIC_SITE_URL: https://www.vitalinotech.com.br
     steps:
       - uses: actions/checkout@v4
 
