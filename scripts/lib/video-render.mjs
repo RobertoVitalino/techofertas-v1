@@ -94,15 +94,14 @@ export function scenePrice({ imageDataUri, title, price, oldPrice, discount, ins
     ${installments && !/consulte/i.test(installments) ? textLines([plainText(installments)], { y: 1700, size: 44, weight: 700, fill: '#e2e8f0' }) : ''}`)
 }
 
-export function sceneCta({ channelUrl, siteHost }) {
-  return svg(`${textLines(['Link da oferta', 'no nosso canal', 'do Telegram'], { y: 640, size: 92, weight: 900 })}
-    <rect x="110" y="1000" width="860" height="140" rx="70" fill="#ffd400"/>
-    ${textLines([channelUrl.replace(/^https?:\/\//, '')], { y: 1092, size: 56, weight: 900, fill: '#062a5c' })}
-    ${textLines(['ou acesse', siteHost], { y: 1330, size: 60, weight: 800, fill: '#dbeafe' })}
+export function sceneCta({ channelUrl, linkPage }) {
+  return svg(`${textLines(['Link da oferta', 'na bio do perfil'], { y: 660, size: 96, weight: 900 })}
+    <rect x="90" y="930" width="900" height="150" rx="75" fill="#ffd400"/>
+    ${textLines([linkPage.replace(/^https?:\/\//, '')], { y: 1028, size: 54, weight: 900, fill: '#062a5c' })}
+    ${textLines(['ou no Telegram:', channelUrl.replace(/^https?:\/\//, '')], { y: 1300, size: 54, weight: 800, fill: '#dbeafe' })}
     ${textLines(['Preço e estoque podem mudar a qualquer momento.'], { y: 1780, size: 34, weight: 500, fill: '#bfdbfe' })}`)
 }
 
-// Desenha o SVG em PNG: usa @resvg/resvg-js (npm) se estiver instalado; senão, rsvg-convert.
 async function svgToPng(svgText, file) {
   const resvg = await import('@resvg/resvg-js').catch(() => null)
   if (resvg) {

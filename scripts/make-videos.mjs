@@ -31,7 +31,7 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN
 const VIDEO_CHAT_ID = process.env.TELEGRAM_VIDEO_CHAT_ID
 const CHANNEL_URL = process.env.NEXT_PUBLIC_TELEGRAM_CHANNEL_URL || 'https://t.me/vitalinotechofertas'
-const SITE_HOST = 'vitalinotech.com.br'
+const LINK_PAGE = 'vitalinotech.com.br/links'
 const REPEAT_AFTER_DAYS = 14
 
 function discountValue(product) {
@@ -78,7 +78,8 @@ function socialCaption(product, hook) {
     product.title,
     hasDiscount ? `💰 De ${product.oldPrice} por ${product.price} (${product.discount.replace('-', '')} OFF)` : `💰 Por ${product.price}`,
     '',
-    `🔗 Link da oferta no canal do Telegram: ${CHANNEL_URL.replace(/^https?:\/\//, '')} (link na bio)`,
+    '🔗 Link da oferta na bio do perfil!',
+    `📲 Ofertas todo dia no Telegram: ${CHANNEL_URL.replace(/^https?:\/\//, '')}`,
     'Preço e estoque podem mudar a qualquer momento.',
     '',
     '#ofertas #achadinhos #mercadolivre #promocao #descontos #tecnologia',
@@ -111,7 +112,7 @@ async function makeVideo(product, outputDir) {
       hasDiscount
         ? `De ${priceForSpeech(product.oldPrice)} por apenas ${priceForSpeech(product.price)}.`
         : `Por apenas ${priceForSpeech(product.price)}.`,
-      'Link no canal Vitalino Tech Ofertas, no Telegram!',
+      'O link está na bio!',
     ].join(' ')
 
     const imageResponse = await fetch(product.image, { signal: AbortSignal.timeout(30_000) })
@@ -129,7 +130,7 @@ async function makeVideo(product, outputDir) {
       scenes: [
         { svg: sceneHook({ imageDataUri, hook: videoHook, badge: product.priceDrop ? 'BAIXOU DE PREÇO!' : null }), weight: 32 },
         { svg: scenePrice({ imageDataUri, ...product }), weight: 43 },
-        { svg: sceneCta({ channelUrl: CHANNEL_URL, siteHost: SITE_HOST }), weight: 25 },
+        { svg: sceneCta({ channelUrl: CHANNEL_URL, linkPage: LINK_PAGE }), weight: 25 },
       ],
     })
     return { output, seconds, hook, voice: audio?.model ?? 'sem voz' }
