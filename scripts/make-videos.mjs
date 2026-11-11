@@ -78,7 +78,7 @@ function socialCaption(product, hook) {
     product.title,
     hasDiscount ? `💰 De ${product.oldPrice} por ${product.price} (${product.discount.replace('-', '')} OFF)` : `💰 Por ${product.price}`,
     '',
-    '🔗 Link da oferta na bio do perfil!',
+    `🔗 Link da oferta: ${LINK_PAGE.replace(/^https?:\/\//, '')}`,
     `📲 Ofertas todo dia no Telegram: ${CHANNEL_URL.replace(/^https?:\/\//, '')}`,
     'Preço e estoque podem mudar a qualquer momento.',
     '',
@@ -112,7 +112,7 @@ async function makeVideo(product, outputDir) {
       hasDiscount
         ? `De ${priceForSpeech(product.oldPrice)} por apenas ${priceForSpeech(product.price)}.`
         : `Por apenas ${priceForSpeech(product.price)}.`,
-      'O link está na bio!',
+      'Corre, que a oferta pode acabar!',
     ].join(' ')
 
     const imageResponse = await fetch(product.image, { signal: AbortSignal.timeout(30_000) })

@@ -95,7 +95,7 @@ export function scenePrice({ imageDataUri, title, price, oldPrice, discount, ins
 }
 
 export function sceneCta({ channelUrl, linkPage }) {
-  return svg(`${textLines(['Link da oferta', 'na bio do perfil'], { y: 660, size: 96, weight: 900 })}
+  return svg(`${textLines(['Garanta a sua', 'antes que acabe!'], { y: 660, size: 96, weight: 900 })}
     <rect x="90" y="930" width="900" height="150" rx="75" fill="#ffd400"/>
     ${textLines([linkPage.replace(/^https?:\/\//, '')], { y: 1028, size: 54, weight: 900, fill: '#062a5c' })}
     ${textLines(['ou no Telegram:', channelUrl.replace(/^https?:\/\//, '')], { y: 1300, size: 54, weight: 800, fill: '#dbeafe' })}
