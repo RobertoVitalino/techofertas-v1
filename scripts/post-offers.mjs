@@ -198,13 +198,17 @@ async function lastTelegramPostAt() {
 
 async function publishIfDue() {
   const { hour } = localClock()
-  if (hour < FIRST_HOUR || hour > LAST_HOUR) return
-  const last = await lastTelegramPostAt()
-  if (last && Date.now() - last.getTime() < MIN_GAP_MS) {
-    console.log(`[pulo] Último post foi há ${Math.round((Date.now() - last.getTime()) / 60000)} min.`)
+  if (hour < FIRST_HOUR || hour > LAST_HOUR) {
+    console.log('Fora do horário de posts (8h às 22h37).')
     return
   }
+  // Erros de rede/banco num horário não derrubam o turno: tenta de novo na próxima hora.
   try {
+    const last = await lastTelegramPostAt()
+    if (last && Date.now() - last.getTime() < MIN_GAP_MS) {
+      console.log(`[pulo] Último post foi há ${Math.round((Date.now() - last.getTime()) / 60000)} min.`)
+      return
+    }
     await publishBatch()
   } catch (error) {
     console.error(`[falha] ${error instanceof Error ? error.message : error}`)

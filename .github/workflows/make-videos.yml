@@ -1,9 +1,11 @@
 name: Gerar vídeos curtos (Reels/TikTok/Shorts)
 
 on:
-  schedule:
-    # Todo dia às 07h07 em Mato Grosso do Sul (UTC-4), depois da atualização do catálogo.
-    - cron: '7 11 * * *'
+  # Roda logo depois que a atualização do catálogo termina (disparada todo dia
+  # de manhã pelo cron-job.org). O agendador do GitHub atrasava horas, por isso não é usado aqui.
+  workflow_run:
+    workflows: ['Atualizar catálogo (preços e estoque)']
+    types: [completed]
   workflow_dispatch:
     inputs:
       quantidade:
@@ -17,6 +19,8 @@ concurrency:
 
 jobs:
   make-videos:
+    # Só gera vídeos depois da atualização diária do catálogo (ou quando disparado à mão).
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion != 'cancelled'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:

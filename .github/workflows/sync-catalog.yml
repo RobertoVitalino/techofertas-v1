@@ -1,9 +1,8 @@
 name: Atualizar catálogo (preços e estoque)
 
 on:
-  schedule:
-    # Todo dia às 06h13 em Mato Grosso do Sul (UTC-4), antes dos posts das 8h37.
-    - cron: '13 10 * * *'
+  # Disparado todo dia às 6h05 pelo cron-job.org (API do GitHub). O agendador
+  # do GitHub atrasava horas; ao terminar, este robô dispara o de vídeos.
   workflow_dispatch:
 
 concurrency:
