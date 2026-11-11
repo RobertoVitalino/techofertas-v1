@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Espanha exige que TikTok suspenda operações por conteúdo de abuso sexual infantil',
+    title: 'Hackers exploram brecha no Outlook para capturar credenciais do Windows',
+    category: 'Segurança e Privacidade',
+    summary: 'Uma falha de segurança no Microsoft Outlook pode expor informações de autenticação de usuários do Windows; já há correção',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/outlook.jpg',
+    href: 'https://olhardigital.com.br/2026/11/11/seguranca/hackers-exploram-brecha-no-outlook-para-capturar-credenciais-do-windows/',
+  },
+  {
+    title: 'Indústria automotiva brasileira perde espaço para veículos importados',
+    category: 'Veículos e Tecnologia',
+    summary: 'Produção e vendas de veículos no Brasil recuaram em outubro comparado com setembro, mas permaneceram no campo positivo ante outubro de 2025',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/veiculos_fabrica.jpg',
+    href: 'https://olhardigital.com.br/2026/11/11/carros-e-tecnologia/industria-automotiva-brasileira-perde-espaco-para-veiculos-importados/',
+  },
+  {
+    title: 'Como a IA deu superpoderes para hackers',
+    category: 'Segurança e Privacidade',
+    summary: 'Graças à IA, um hacker pode vale por um exército; entenda por que ciberataques ficaram mais rápidos e perigosos',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/Destaque-Hacker-e-exercito-de-agentes-de-IA-scaled.jpg',
+    href: 'https://olhardigital.com.br/2026/11/11/seguranca/como-a-ia-deu-superpoderes-para-hackers/',
+  },
+  {
+    title: 'Por que os games viraram a nova mina de ouro do cinema e do streaming',
+    category: 'Games e Consoles',
+    summary: 'Entenda por que games como Mario, Minecraft e The Last of Us conquistaram o cinema e o streaming e o que torna uma franquia valiosa.',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/11/Super-Mario-Cinebuzz-1.jpg',
+    href: 'https://olhardigital.com.br/2026/11/11/games-e-consoles/games-cinema-streaming-adaptacoes-propriedade-intelectual/',
+  },
+  {
+    title: 'Nvidia: quem é Lori Huang, esposa de Jensen Huang que ficou no centro de escândalo',
     category: 'Pro',
-    summary: 'O governo da Espanha exigiu que o TikTok suspenda suas operações no país até eliminar conteúdos de abuso sexual infantil da plataforma',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/tiktok-1.jpg',
-    href: 'https://olhardigital.com.br/2026/11/10/pro/espanha-exige-que-tiktok-suspenda-operacoes-por-conteudo-de-abuso-sexual-infantil/',
-  },
-  {
-    title: 'IA do Google analisa código do Signal em busca de falhas de segurança',
-    category: 'Inteligência Artificial',
-    summary: 'Trabalho foi conduzido pelo Google DeepMind e empregou demonstrações matemáticas para examinar partes do código do mensageiro',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/signal.jpg',
-    href: 'https://olhardigital.com.br/2026/11/10/inteligencia-artificial/ia-do-google-analisa-codigo-do-signal-em-busca-de-falhas-de-seguranca/',
-  },
-  {
-    title: 'Guerra no Irã ajuda a reduzir emissões de carbono, mas há um problema',
-    category: 'Ciência e Espaço',
-    summary: 'As emissões globais de dióxido de carbono (CO₂) provenientes da queima de combustíveis fósseis devem cair 0,4% em 2026',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2025/10/carbono.jpg',
-    href: 'https://olhardigital.com.br/2026/11/10/ciencia-e-espaco/guerra-no-ira-ajuda-a-reduzir-emissoes-de-carbono-mas-ha-um-problema/',
-  },
-  {
-    title: 'Ring, da Amazon, lança Ring Robotics com drone voador e robô de segurança',
-    category: 'Produtos e Reviews',
-    summary: 'A Ring, da Amazon, apresentou dois robôs autônomos: um drone que patrulha residências e um equipamento móvel criado para monitorar empresas.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/ringo-drone-rover-copy.jpg',
-    href: 'https://olhardigital.com.br/2026/11/10/reviews/ring-da-amazon-lanca-ring-robotics-com-drone-voador-e-robo-de-seguranca/',
-  },
-  {
-    title: 'Robô constrói estrutura no espaço sem controle humano direto pela primeira vez',
-    category: 'Ciência e Espaço',
-    summary: 'Um robô conseguiu montar, de forma autônoma, uma estrutura em órbita da Terra pela primeira vez na história',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/darpa.jpg',
-    href: 'https://olhardigital.com.br/2026/11/10/ciencia-e-espaco/robo-constroi-estrutura-no-espaco-sem-controle-humano-direto-pela-primeira-vez/',
+    summary: 'Jensen Huang, CEO da Nvidia, está no centro de polêmica que ultrapassou limites do mundo da tecnologia ao admitir que teve caso extraconjugal',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/lori_huang_jensen_huang-e1794422927609.jpg',
+    href: 'https://olhardigital.com.br/2026/11/11/pro/nvidia-quem-e-lori-huang-esposa-de-jensen-huang-que-ficou-no-centro-de-escandalo/',
   },
 ]
 // AUTO-NEWS-END
