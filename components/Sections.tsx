@@ -362,39 +362,39 @@ export function Services() {
 // AUTO-NEWS-START (gerado por scripts/update-news.mjs, não editar manualmente)
 const featuredNews = [
   {
-    title: 'Anthropic e SpaceX impuseram regras incomuns e irritaram bancos no IPO',
+    title: 'Anthropic lança IA que revisa, corrige e aprova alterações em códigos',
+    category: 'Inteligência Artificial',
+    summary: 'A Anthropic anunciou o Claude Ship, ferramenta que utiliza agentes de IA para revisar, corrigir e aprovar alterações em códigos',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/anthropic-5-e1795026144591.jpg',
+    href: 'https://olhardigital.com.br/2026/11/23/inteligencia-artificial/anthropic-lanca-ia-que-revisa-corrige-e-aprova-alteracoes-em-codigos/',
+  },
+  {
+    title: 'Disney+, HBO Max, Netflix e Prime Video: veja os lançamentos da semana (23 a 29 de novembro)',
+    category: 'Cinema e Streaming',
+    summary: 'Veja as estreias da semana nos principais streamings, incluindo Mickey: Esqueceram de Mim, Homem-Aranha: Um Novo Dia e Blade Runner 2099',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/09/lanamentos-da-semana-4.png',
+    href: 'https://olhardigital.com.br/2026/11/23/cinema-e-streaming/disney-hbo-max-netflix-e-prime-video-veja-os-lancamentos-da-semana-23-a-29-de-novembro/',
+  },
+  {
+    title: 'Resultado da Lotofácil de hoje: veja números e ganhadores do concurso 3836 (segunda, 23/11)',
+    category: 'Internet e Redes Sociais',
+    summary: 'O sorteio do concurso 3836 da Lotofácil acontece na noite desta segunda-feira (23), às 21h. O prêmio está estimado em R$ 2 milhões',
+    image: 'https://img.odcdn.com.br/wp-content/uploads/2026/11/resultado_lotofacil_concurso_3836.png',
+    href: 'https://olhardigital.com.br/2026/11/23/internet-e-redes-sociais/resultado-da-lotofacil-de-hoje-veja-numeros-e-ganhadores-do-concurso-3836-segunda-23-11/',
+  },
+  {
+    title: 'Volta de Jensen Huang à Nvidia acrescenta R$ 219 bilhões à sua fortuna',
     category: 'Pro',
-    summary: 'Impulsionadas pela demanda por IA, Anthropic e SpaceX ditaram regras rígidas e zeraram taxas sobre lotes extras em seus IPOs em Wall Street.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/montagem_anthropic_spacex_dark.jpg',
-    href: 'https://olhardigital.com.br/2026/11/22/pro/anthropic-e-spacex-impuseram-regras-incomuns-e-irritaram-bancos-no-ipo/',
+    summary: 'A fortuna de Jensen Huang, CEO da Nvidia, aumentou R$ 219 bilhões após o anúncio de seu retorno ao comando da fabricante de chips',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/jensen_huang_.jpg',
+    href: 'https://olhardigital.com.br/2026/11/23/pro/volta-de-jensen-huang-a-nvidia-acrescentar-219-bilhoes-a-sua-fortuna/',
   },
   {
-    title: 'Por que Roraima enfrenta seca extrema mesmo após cheias em junho',
-    category: 'Clima',
-    summary: 'A seca em Roraima combina chuvas abaixo da média, rios em níveis baixos e dificuldades no fornecimento de água em cidades e comunidades.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/rio-branco-roraima.jpg',
-    href: 'https://olhardigital.com.br/2026/11/22/ciencia-e-espaco/por-que-roraima-enfrenta-seca-extrema-mesmo-apos-cheias-em-junho/',
-  },
-  {
-    title: 'Como os irmãos Amodei moldaram a cultura excêntrica da Anthropic',
+    title: 'Ataque hacker à Binance: governo dos EUA busca recuperar fortuna bilionária',
     category: 'Pro',
-    summary: 'Dario e Daniela Amodei levaram à Anthropic valores pessoais, práticas de gestão e uma cultura ligada à segurança da inteligência artificial.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/anthropic-1-1.jpg',
-    href: 'https://olhardigital.com.br/2026/11/22/pro/como-os-irmaos-amodei-moldaram-a-cultura-excentrica-da-anthropic/',
-  },
-  {
-    title: 'O ajudante de Alice Huang: homem é acusado de contrabandear chips da Nvidia para a China',
-    category: 'Pro',
-    summary: 'Li Ming atuou nos bastidores de uma rede ligada à ex-companheira de Jensen Huang, revelando um esquema mais amplo para driblar sanções.',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/Captura-de-Tela-2026-11-09-as-18.15.12-1.png',
-    href: 'https://olhardigital.com.br/2026/11/22/pro/o-ajudante-de-alice-huang-homem-e-acusado-de-contrabandear-chips-da-nvidia-para-a-china/',
-  },
-  {
-    title: 'COP31 termina sem acordo final após impasse sobre o fim dos combustíveis fósseis',
-    category: 'Ciência e Espaço',
-    summary: 'Rascunho apresentado por Turquia e Austrália foi rejeitado por omitir metas para o fim dos combustíveis fósseis',
-    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/55647307714_b15c691bbe_k.jpg',
-    href: 'https://olhardigital.com.br/2026/11/22/ciencia-e-espaco/cop31-termina-sem-acordo-final-apos-impasse-sobre-o-fim-dos-combustiveis-fosseis/',
+    summary: 'O Departamento de Justiça dos EUA entrou com ação civil para recuperar mais de R$ 5,4 bi em criptomoedas roubadas por hackers norte-coreanos',
+    image: 'https://olhardigital.com.br/wp-content/uploads/2026/11/binance-3.jpg',
+    href: 'https://olhardigital.com.br/2026/11/23/pro/ataque-hacker-a-binance-governo-dos-eua-busca-recuperar-fortuna-bilionaria/',
   },
 ]
 // AUTO-NEWS-END
